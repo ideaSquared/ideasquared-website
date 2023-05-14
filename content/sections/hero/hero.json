@@ -1,22 +1,22 @@
 {
-  "intro": "Hej",
+  "intro": "Hey!",
   "heroPhoto": {
-    "src": "../../images/lego-dummy.png",
-    "alt": "My Photo"
+    "src": "../../images/clement-h-95YRwf6CNw8-unsplash.jpg",
+    "alt": "Image of a development environment"
   },
   "image": {
     "src": "../../images/waving-hand.png",
     "alt": "Waving Hand Emoji"
   },
-  "title": "I'm a Gatsby Starter",
+  "title": "We're a team of tech enthusiasts",
   "subtitle": {
-    "prefix": "I do all the setup ",
-    "highlight": "for you",
+    "prefix": "and we'll help you ",
+    "highlight": "with all of your tech",
     "suffix": "."
   },
-  "description": "A Gatsby Starter Project to easily get started with Portfolio Minimal theme.",
+  "description": "A community of tech enthusiasts building products from inception to production.",
   "socialProfiles": {
-    "from": ["LinkedIn", "Medium", "Github", "Mail"],
-    "showIcons": false
+    "from": ["Twitter", "Github", "Facebook", "Mail"],
+    "showIcons": true
   }
 }
