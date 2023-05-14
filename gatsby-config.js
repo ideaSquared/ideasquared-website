@@ -1,7 +1,7 @@
 module.exports = {
   plugins: [
     {
-      resolve: "gatsby-theme-portfolio-minimal",
+      resolve: "gatsby-theme-portfolio-minimal-fb",
       options: {
         siteUrl: "https://ideasquared.co.uk/", // Used for sitemap generation
         manifestSettings: {
