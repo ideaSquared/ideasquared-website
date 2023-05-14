@@ -7,7 +7,7 @@
     "alt": "ideaSquared Logo"
   },
   "socialProfiles": {
-    "from": ["Twitter", "Github", "Facebook", "Mail"],
+    "from": ["Twitter", "Github", "Mail"],
     "showIcons": true
   }
 }

@@ -16,7 +16,7 @@
   },
   "description": "A community of tech enthusiasts building products from inception to production.",
   "socialProfiles": {
-    "from": ["Twitter", "Github", "Facebook", "Mail"],
+    "from": ["Twitter", "Github", "Mail"],
     "showIcons": true
   }
 }
