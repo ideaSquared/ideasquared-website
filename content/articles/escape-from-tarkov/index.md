@@ -71,3 +71,19 @@ The idea is for the website to be one singular location for official Tarkov news
 
 - Oh no, Twitter/X no longer has a free API and I can no longer pull the data so this kind of ruins my idea!
 - Let's pivot this to more of a live tracker of events and direct to important resources it's going to be less techy and more frontend!
+
+> Ah okay so I actually get to be more techy with this than expected honestly.
+
+I removed the map completely because while it's a great idea, it'd be better if it was a region style. I had the original idea to build out the regions in a image manipulation app, then overlay them over the image as is, then do some fancy Javascript transaction BUT that's a lot of work for something that isn't given to us by the developers.
+
+So they got yeeted in favour of having just buttons. I did play with a navbar but it didn't feel right, semantically it would make sense so maybe future iterations show that.
+
+I built out an object in a JavaScript file for each map to make this dynamic. I think maybe doing this in a more dynamically generated language like React/Vite with Firebase or PouchDB (I also WatermelonDB) on the backend to store the data would be fun.
+
+I've tried to move this more to a place to go for everything feel.
+
+When events happen I'd like to have them display on the actual buttons sections, things like alerts? Or even cool overlays with snow type for Christmas!
+
+Lots of ideas, but that means coming back to this within the next few months and uhhh yeah life and work comes first.
+
+Till next time!
