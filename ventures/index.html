@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ventures — ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Every project the ideaSquared studio has shipped — web apps, internal tools and gaming communities, all open source.">
+<link rel="icon" type="image/svg+xml" href="../assets/logo-stacked.svg">
+<link rel="stylesheet" href="../styles/tokens.css">
+<link rel="stylesheet" href="../styles/site.css">
+</head>
+<body class="i2">
+
+<header class="nav" id="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="nav-brand" href="../" aria-label="ideaSquared home">
+      <img src="../assets/logo-row.svg" alt="ideaSquared">
+    </a>
+    <nav class="nav-links" id="nav-links">
+      <a href="../ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="../thesis/"   data-nav="/thesis/">Thesis</a>
+      <a href="../studio/"   data-nav="/studio/">Studio</a>
+      <a href="../journal/"  data-nav="/journal/">Journal</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+    <a href="#pitch" class="btn btn-secondary btn-md" data-pitch>Pitch us an idea</a>
+  </div>
+</header>
+
+<main>
+<section class="subpage-hero">
+  <span class="eyebrow">The portfolio</span>
+  <h1>Every project, in one place.</h1>
+  <p>Nine repositories, three areas — web, tools and gaming. Each one ships open source on the <a href="https://github.com/ideaSquared">ideaSquared GitHub org</a>.</p>
+</section>
+
+<section class="projects container" id="projects" style="margin-top: 56px;">
+  <div class="project-grid" id="project-grid">
+
+    <a class="project-card" href="https://github.com/ideaSquared/adopt-dont-shop" data-tag="Web">
+      <div class="project-top"><span class="chip success">Active</span><span class="project-meta">Web · 2024</span></div>
+      <h3 class="project-name">Adopt Don't Shop</h3>
+      <p class="project-desc">A platform that connects rescue shelters with adopters. TypeScript end-to-end.</p>
+      <div class="project-foot"><span class="project-stake-label">Repo</span><span class="project-stake-n">adopt-dont-shop</span></div>
+    </a>
+
+    <a class="project-card" href="https://github.com/ideaSquared/adopt-dont-shop-landing" data-tag="Web">
+      <div class="project-top"><span class="chip">Maintained</span><span class="project-meta">Web · 2024</span></div>
+      <h3 class="project-name">Adopt Don't Shop · Landing</h3>
+      <p class="project-desc">The marketing front-door for the Adopt Don't Shop platform. Static HTML, fast and frugal.</p>
+      <div class="project-foot"><span class="project-stake-label">Repo</span><span class="project-stake-n">adopt-dont-shop-landing</span></div>
+    </a>
+
+    <a class="project-card dark" href="https://github.com/ideaSquared/pairflix" data-tag="Web">
+      <div class="project-top"><span class="chip signal">Spinning out</span><span class="project-meta">Web · 2025</span></div>
+      <h3 class="project-name">PairFlix</h3>
+      <p class="project-desc">A watch-together queue for couples and friends. Find what you'll actually agree on.</p>
+      <div class="project-foot"><span class="project-stake-label">Repo</span><span class="project-stake-n">pairflix</span></div>
+    </a>
+
+    <a class="project-card" href="https://github.com/ideaSquared/ideasquared-bot" data-tag="Tools">
+      <div class="project-top"><span class="chip success">Active</span><span class="project-meta">Tools · 2025</span></div>
+      <h3 class="project-name">ideaSquared Bot</h3>
+      <p class="project-desc">The studio's internal Discord assistant. Triage, deploy notifications and the occasional joke.</p>
+      <div class="project-foot"><span class="project-stake-label">Repo</span><span class="project-stake-n">ideasquared-bot</span></div>
+    </a>
+
+    <a class="project-card" href="https://github.com/ideaSquared/spotify-queue" data-tag="Tools">
+      <div class="project-top"><span class="chip">Maintained</span><span class="project-meta">Tools · 2023</span></div>
+      <h3 class="project-name">Spotify Queue</h3>
+      <p class="project-desc">A shared-queue overlay for Spotify — drop a link, hand the room a soundtrack.</p>
+      <div class="project-foot"><span class="project-stake-label">Repo</span><span class="project-stake-n">spotify-queue</span></div>
+    </a>
+
+    <a class="project-card" href="https://github.com/ideaSquared/tarkovcommunity" data-tag="Gaming">
+      <div class="project-top"><span class="chip">Maintained</span><span class="project-meta">Gaming · 2023</span></div>
+      <h3 class="project-name">Tarkov Community</h3>
+      <p class="project-desc">A community hub for Escape from Tarkov players — guides, raid stats and shared loadouts.</p>
+      <div class="project-foot"><span class="project-stake-label">Repo</span><span class="project-stake-n">tarkovcommunity</span></div>
+    </a>
+
+    <a class="project-card" href="https://github.com/ideaSquared/path-of-titans" data-tag="Gaming">
+      <div class="project-top"><span class="chip">Archived</span><span class="project-meta">Gaming · 2022</span></div>
+      <h3 class="project-name">Path of Titans</h3>
+      <p class="project-desc">Where the studio started — a community map and tracker for the dinosaur MMO.</p>
+      <div class="project-foot"><span class="project-stake-label">Repo</span><span class="project-stake-n">path-of-titans</span></div>
+    </a>
+
+    <a class="project-card" href="https://github.com/ideaSquared/ideasquared-website" data-tag="Tools">
+      <div class="project-top"><span class="chip success">Active</span><span class="project-meta">Tools · 2023</span></div>
+      <h3 class="project-name">ideasquared-website</h3>
+      <p class="project-desc">This site. Static, vanilla, open source — the studio's own front door.</p>
+      <div class="project-foot"><span class="project-stake-label">Repo</span><span class="project-stake-n">ideasquared-website</span></div>
+    </a>
+
+    <a class="project-card" href="https://github.com/ideaSquared/.github" data-tag="Tools">
+      <div class="project-top"><span class="chip">Maintained</span><span class="project-meta">Tools · 2023</span></div>
+      <h3 class="project-name">.github</h3>
+      <p class="project-desc">Org-wide GitHub defaults — issue templates, contribution guides, security policy.</p>
+      <div class="project-foot"><span class="project-stake-label">Repo</span><span class="project-stake-n">.github</span></div>
+    </a>
+
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <span>© 2026 ideaSquared · Open source on GitHub</span>
+    <span class="links">
+      <a href="https://github.com/ideaSquared/ideasquared-website">Source</a>
+      <a href="https://github.com/ideaSquared">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="../scripts/site.js" defer></script>
+</body>
+</html>
