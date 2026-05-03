@@ -41,19 +41,4 @@
     });
   }
 
-  const toast = document.getElementById('toast');
-  let toastTimer;
-  const showToast = (msg) => {
-    if (!toast) return;
-    toast.textContent = msg;
-    toast.classList.add('is-visible');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 2400);
-  };
-  document.querySelectorAll('[data-pitch]').forEach((el) => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      showToast('Pitch form would open here.');
-    });
-  });
 })();
