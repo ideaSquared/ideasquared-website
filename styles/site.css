@@ -178,16 +178,15 @@ button:focus-visible {
   max-width: 1192px;
 }
 .hero::before {
-  /* monogram backdrop — clipped to top-right corner */
+  /* Symbol-mark backdrop — top-right corner, inverted to white */
   content: "";
   position: absolute;
-  top: -180px; right: -180px;
-  width: 760px; height: 760px;
-  background: url("../assets/logo-stacked.svg") no-repeat;
-  background-size: 1170px auto;
-  background-position: -200px -120px;
-  opacity: 0.28;
+  top: -120px; right: -120px;
+  width: 640px; height: 640px;
+  background: url("../assets/logo-mark.svg") no-repeat center / contain;
+  opacity: 0.22;
   mix-blend-mode: screen;
+  filter: invert(1) brightness(1.1);
   pointer-events: none;
 }
 .hero-circuit {
