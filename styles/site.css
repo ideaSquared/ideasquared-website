@@ -723,14 +723,15 @@ button:focus-visible {
   overflow: hidden;
   font-size: 14px;
 }
-.venture-table caption {
+.venture-table caption,
+.table-label {
   text-align: left;
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-muted);
-  padding: 0 0 12px;
   font-weight: 600;
+  margin: 0 0 12px;
 }
 .venture-table th,
 .venture-table td {
