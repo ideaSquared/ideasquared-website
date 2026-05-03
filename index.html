@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>ideaSquared — A small studio for software side-projects.</title>
+<title>ideaSquared — Bold ideas, built properly.</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="ideaSquared is a small studio building open-source web apps, tools and gaming communities. Pet adoption, watch-together, council resources — all shipped from one shared platform.">
+<meta name="description" content="ideaSquared (i²) is a UK venture studio. We build, launch and scale digital ventures with social and commercial upside — without recreating the same plumbing every time.">
 <link rel="icon" type="image/svg+xml" href="assets/logo-stacked.svg">
 <link rel="stylesheet" href="styles/tokens.css">
 <link rel="stylesheet" href="styles/site.css">
@@ -18,13 +18,13 @@
       <img src="assets/logo-row.svg" alt="ideaSquared">
     </a>
     <nav class="nav-links" id="nav-links">
-      <a href="/ventures/" data-nav="ventures">Ventures</a>
-      <a href="/thesis/"   data-nav="thesis">Thesis</a>
-      <a href="/studio/"   data-nav="studio">Studio</a>
-      <a href="/journal/"  data-nav="journal">Journal</a>
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/thesis/"   data-nav="/thesis/">Thesis</a>
+      <a href="/studio/"   data-nav="/studio/">Studio</a>
+      <a href="/journal/"  data-nav="/journal/">Journal</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
     </button>
     <a href="#pitch" class="btn btn-secondary btn-md" data-pitch>Pitch us an idea</a>
   </div>
@@ -45,17 +45,17 @@
     </g>
   </svg>
   <div class="hero-inner">
-    <span class="eyebrow signal">Independent studio · building since 2022</span>
+    <span class="eyebrow signal">UK venture studio</span>
     <h1>Bold ideas, <em>built</em> properly.</h1>
     <p class="hero-lede">
-      ideaSquared is a small, open-source software studio. We design, build and
-      ship digital side-projects across the web, internal tools and gaming
-      communities — all from one shared platform.
+      ideaSquared (i²) is a UK-based venture studio. We build, launch and
+      scale digital ventures with social and commercial upside &mdash;
+      without recreating the same plumbing every time.
     </p>
     <div class="hero-cta">
       <a href="#pitch" class="btn btn-primary btn-lg" data-pitch>
         Pitch us an idea
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
       </a>
       <a href="/thesis/" class="btn btn-ghost-dark btn-lg">Read the thesis</a>
     </div>
@@ -65,188 +65,162 @@
 <section class="stats container" aria-label="Studio at a glance">
   <div class="stats-grid">
     <div class="stat">
-      <div class="stat-n">9</div>
-      <div class="stat-label">Public projects</div>
-      <div class="stat-note">Web apps, tools and game communities</div>
+      <div class="stat-n">2</div>
+      <div class="stat-label">Live ventures</div>
+      <div class="stat-note">AdoptDontShop &amp; Pairflix</div>
     </div>
     <div class="stat">
-      <div class="stat-n">100%</div>
-      <div class="stat-label">Open source</div>
-      <div class="stat-note">Every repo on github.com/ideaSquared</div>
+      <div class="stat-n">1,000+</div>
+      <div class="stat-label">Pre-registered users</div>
+      <div class="stat-note">Across the live ventures</div>
     </div>
     <div class="stat">
-      <div class="stat-n">2022</div>
-      <div class="stat-label">Studio founded</div>
-      <div class="stat-note">First project: <em>path-of-titans</em></div>
+      <div class="stat-n">5</div>
+      <div class="stat-label">Partnerships</div>
+      <div class="stat-note">Rescues &amp; media influencers signed</div>
     </div>
     <div class="stat">
-      <div class="stat-n">TS</div>
-      <div class="stat-label">Default stack</div>
-      <div class="stat-note">TypeScript, React, Node, Postgres</div>
+      <div class="stat-n">30–50%</div>
+      <div class="stat-label">Equity retained</div>
+      <div class="stat-note">In every spun-out venture</div>
     </div>
   </div>
 </section>
 
-<section class="projects container" id="projects" aria-label="Projects">
+<section class="projects container" id="projects" aria-label="Live ventures">
   <div class="projects-head">
     <div class="copy">
       <span class="eyebrow">The portfolio</span>
-      <h2 class="section-h2">Nine projects, one platform.</h2>
+      <h2 class="section-h2">Two live ventures, one shared platform.</h2>
       <p class="section-lede">
-        Each one shares the same engineering scaffolding — TypeScript, React,
-        a Node API, Postgres — so a new idea can ship in weeks, not quarters.
+        Each one inherits our shared product, engineering and operations
+        stack. Each one launches faster. Each one keeps i² as a meaningful
+        owner.
       </p>
-    </div>
-    <div class="filter" role="group" aria-label="Filter projects by area">
-      <button type="button" class="is-active" data-filter="All"    aria-pressed="true">All</button>
-      <button type="button" data-filter="Web"    aria-pressed="false">Web</button>
-      <button type="button" data-filter="Tools"  aria-pressed="false">Tools</button>
-      <button type="button" data-filter="Gaming" aria-pressed="false">Gaming</button>
     </div>
   </div>
 
   <div class="project-grid" id="project-grid">
 
-    <a class="project-card" href="https://github.com/ideaSquared/adopt-dont-shop" data-tag="Web">
+    <a class="project-card" href="ventures/adopt-dont-shop/" data-tag="Live" aria-label="AdoptDontShop — read the venture brief">
       <div class="project-top">
-        <span class="chip success">Active</span>
-        <span class="project-meta">Web · 2024</span>
+        <span class="chip success">Beta · Q4 2025</span>
+        <span class="project-meta">Pet adoption · UK</span>
       </div>
-      <h3 class="project-name">Adopt Don't Shop</h3>
-      <p class="project-desc">A platform that connects rescue shelters with adopters, built to nudge people away from breeders. TypeScript end-to-end.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Repo</span>
-        <span class="project-stake-n">adopt-dont-shop</span>
-      </div>
-    </a>
-
-    <a class="project-card dark" href="ventures/pairflix/" data-tag="Web" aria-label="Pairflix — read the venture brief">
-      <div class="project-top">
-        <span class="chip signal">Beta · seed-stage</span>
-        <span class="project-meta">Web &amp; AI · 2025</span>
-      </div>
-      <h3 class="project-name">Pairflix</h3>
-      <p class="project-desc">An AI matcher that turns the nightly "what shall we watch?" argument into a 30-second decision — across Netflix, Prime, Disney+ and friends.</p>
+      <h3 class="project-name">AdoptDontShop</h3>
+      <p class="project-desc">A swipe-based pet adoption platform connecting UK rescue pets with the right humans. Free for adopters; SaaS for rescues.</p>
       <div class="project-foot">
         <span class="project-stake-label">Read</span>
         <span class="project-stake-n">Venture brief →</span>
       </div>
     </a>
 
-    <a class="project-card" href="https://github.com/ideaSquared/ideasquared-bot" data-tag="Tools">
+    <a class="project-card dark" href="ventures/pairflix/" data-tag="Live" aria-label="Pairflix — read the venture brief">
       <div class="project-top">
-        <span class="chip success">Active</span>
-        <span class="project-meta">Tools · 2025</span>
+        <span class="chip signal">Beta · seed-stage</span>
+        <span class="project-meta">Streaming · UK households</span>
       </div>
-      <h3 class="project-name">ideaSquared Bot</h3>
-      <p class="project-desc">The studio's internal Discord assistant. Cross-project triage, deploy notifications and the occasional joke.</p>
+      <h3 class="project-name">Pairflix</h3>
+      <p class="project-desc">An AI matcher that turns the nightly "what shall we watch?" argument into a 30-second decision &mdash; across Netflix, Prime, Disney+ and friends.</p>
       <div class="project-foot">
-        <span class="project-stake-label">Repo</span>
-        <span class="project-stake-n">ideasquared-bot</span>
+        <span class="project-stake-label">Read</span>
+        <span class="project-stake-n">Venture brief →</span>
       </div>
     </a>
 
-    <a class="project-card" href="https://github.com/ideaSquared/tarkovcommunity" data-tag="Gaming">
+    <article class="project-card" aria-label="Pipeline venture in HealthTech">
       <div class="project-top">
-        <span class="chip">Maintained</span>
-        <span class="project-meta">Gaming · 2023</span>
+        <span class="chip">Pipeline</span>
+        <span class="project-meta">Validation · 2026</span>
       </div>
-      <h3 class="project-name">Tarkov Community</h3>
-      <p class="project-desc">A community hub for Escape from Tarkov players — guides, raid stats and shared loadouts.</p>
+      <h3 class="project-name">HealthTech (TBD)</h3>
+      <p class="project-desc">A concept under validation inside the studio. We'll say more when willingness-to-pay is proven and kill criteria are set.</p>
       <div class="project-foot">
-        <span class="project-stake-label">Repo</span>
-        <span class="project-stake-n">tarkovcommunity</span>
+        <span class="project-stake-label">Stage</span>
+        <span class="project-stake-n">Proposal</span>
       </div>
-    </a>
+    </article>
 
-    <a class="project-card" href="https://github.com/ideaSquared/spotify-queue" data-tag="Tools">
+    <article class="project-card" aria-label="Pipeline venture in FinTech">
       <div class="project-top">
-        <span class="chip">Maintained</span>
-        <span class="project-meta">Tools · 2023</span>
+        <span class="chip">Pipeline</span>
+        <span class="project-meta">Validation · 2026</span>
       </div>
-      <h3 class="project-name">Spotify Queue</h3>
-      <p class="project-desc">A shared-queue overlay for Spotify — drop a link, hand the room a soundtrack, no auth-juggling.</p>
+      <h3 class="project-name">FinTech (TBD)</h3>
+      <p class="project-desc">A second concept in validation. Same gate as everything else: prove the demand, set the kill criteria, then we build.</p>
       <div class="project-foot">
-        <span class="project-stake-label">Repo</span>
-        <span class="project-stake-n">spotify-queue</span>
+        <span class="project-stake-label">Stage</span>
+        <span class="project-stake-n">Proposal</span>
       </div>
-    </a>
-
-    <a class="project-card" href="https://github.com/ideaSquared/path-of-titans" data-tag="Gaming">
-      <div class="project-top">
-        <span class="chip">Archived</span>
-        <span class="project-meta">Gaming · 2022</span>
-      </div>
-      <h3 class="project-name">Path of Titans</h3>
-      <p class="project-desc">Where the studio started — a community map and tracker for the dinosaur MMO. The first repo on the org.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Repo</span>
-        <span class="project-stake-n">path-of-titans</span>
-      </div>
-    </a>
+    </article>
 
   </div>
+
+  <p style="margin-top: 32px; font-size: 14px; color: var(--fg-muted);">
+    See <a href="/ventures/">all ventures &amp; studio repos</a> for the full picture, including older open-source code from the studio.
+  </p>
 </section>
 
-<section class="how" aria-label="How we work">
+<section class="how" aria-label="Venture lifecycle">
   <div class="container">
     <div class="how-head">
-      <span class="eyebrow">How we work</span>
-      <h2 class="section-h2">From bold idea to defensible build.</h2>
+      <span class="eyebrow">The lifecycle</span>
+      <h2 class="section-h2">From bold idea to defensible business.</h2>
+      <p class="section-lede" style="margin-top: 12px;">
+        Every venture moves through a four-stage lifecycle, each with a
+        defined exit criterion. Kill criteria are mandatory.
+      </p>
     </div>
     <div class="how-grid">
 
       <article class="step">
         <div class="step-top">
-          <span class="step-n">01</span>
+          <span class="step-n">01 · IDEA</span>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m16 8-3 7-7 3 3-7 7-3z"/></svg>
         </div>
-        <h4>Pitch &amp; shape</h4>
-        <p>You bring the insight. We pressure-test the idea and shape a venture brief together — usually inside a fortnight.</p>
+        <h4>Problem hypothesis</h4>
+        <p>Market sketch and a kill-or-keep call within weeks. We start with a painful, paid-for problem &mdash; not a technology in search of one.</p>
       </article>
 
       <article class="step">
         <div class="step-top">
-          <span class="step-n">02</span>
+          <span class="step-n">02 · PROPOSAL</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+        </div>
+        <h4>Validate demand</h4>
+        <p>Willingness-to-pay and regulatory feasibility are tested before any production code. Mandatory kill criteria are set here.</p>
+      </article>
+
+      <article class="step">
+        <div class="step-top">
+          <span class="step-n">03 · PROJECT</span>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M3 14h7v7H3z"/><path d="M14 14h7v7h-7z"/></svg>
         </div>
         <h4>Build on the platform</h4>
-        <p>We reuse the studio's TypeScript scaffolding — auth, deploys, observability — so you skip the plumbing and ship to real users in weeks.</p>
+        <p>Shared product, engineering, design, legal and ops construct the MVP. Design partners onboarded; first paying users.</p>
       </article>
 
       <article class="step">
         <div class="step-top">
-          <span class="step-n">03</span>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3 5 14h6l-1 7 9-11h-6l1-7z"/></svg>
-        </div>
-        <h4>Launch &amp; learn</h4>
-        <p>Real users, real feedback, real defensibility. Every project ships open source so the next one starts further down the road.</p>
-      </article>
-
-      <article class="step">
-        <div class="step-top">
-          <span class="step-n">04</span>
+          <span class="step-n">04 · PRODUCT</span>
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
         </div>
-        <h4>Spin out or fold in</h4>
-        <p>Some projects graduate into standalone products. Others fold their lessons back into the platform. Both are wins.</p>
+        <h4>Spin out &amp; scale</h4>
+        <p>Independent legal entity, follow-on capital, growth. i² retains 30–50% and stays useful as a partner, not a parent.</p>
       </article>
 
     </div>
   </div>
 </section>
 
-<section class="quote" aria-label="From the studio">
+<section class="quote" aria-label="The bet we are making">
   <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--i2-signal-400)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V11a4 4 0 0 1 4-4h2v3H7a1 1 0 0 0-1 1v2h3v8z"/><path d="M14 21V11a4 4 0 0 1 4-4h2v3h-2a1 1 0 0 0-1 1v2h3v8z"/></svg>
-  <blockquote>
-    "Build the thing. Ship the thing. Open-source the thing. The next idea
-    starts where the last one left off."
-  </blockquote>
+  <blockquote>"Startups don't fail at ideation. They fail at execution."</blockquote>
   <div class="quote-attrib">
     <div class="quote-avatar" aria-hidden="true"></div>
     <div>
-      <div class="quote-name">The studio</div>
-      <div class="quote-role">Operating principle · since 2022</div>
+      <div class="quote-name">The i² thesis</div>
+      <div class="quote-role">Why a venture studio, and why now</div>
     </div>
   </div>
 </section>
@@ -257,7 +231,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <img src="assets/logo-row.svg" alt="ideaSquared">
-      <p>A small open-source studio building digital side-projects across the web, internal tools and gaming communities.</p>
+      <p>A UK venture studio building digital businesses with social and commercial upside.</p>
     </div>
 
     <div class="footer-col">
@@ -271,12 +245,11 @@
     </div>
 
     <div class="footer-col">
-      <h5>Projects</h5>
+      <h5>Ventures</h5>
       <ul>
-        <li><a href="https://github.com/ideaSquared/adopt-dont-shop">Adopt Don't Shop</a></li>
-        <li><a href="ventures/pairflix/">Pairflix</a></li>
-        <li><a href="https://github.com/ideaSquared/tarkovcommunity">Tarkov Community</a></li>
-        <li><a href="/ventures/">All projects</a></li>
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/">All ventures</a></li>
       </ul>
     </div>
 
@@ -300,7 +273,6 @@
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
 <script src="scripts/site.js" defer></script>
 </body>
 </html>

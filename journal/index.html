@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Journal — ideaSquared</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Notes from the ideaSquared studio — what we shipped, what we learned, what we'd do differently.">
+<meta name="description" content="What's shipping, what's next, what's still on the radar — across the live ideaSquared ventures.">
 <link rel="icon" type="image/svg+xml" href="../assets/logo-stacked.svg">
 <link rel="stylesheet" href="../styles/tokens.css">
 <link rel="stylesheet" href="../styles/site.css">
@@ -22,31 +22,123 @@
       <a href="../journal/"  data-nav="/journal/">Journal</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
     </button>
     <a href="#pitch" class="btn btn-secondary btn-md" data-pitch>Pitch us an idea</a>
   </div>
 </header>
 
 <main id="main">
+
 <section class="subpage-hero">
   <span class="eyebrow">The journal</span>
-  <h1>Build notes, in the open.</h1>
-  <p>What we shipped, what we learned, what we'd do differently next time. Posts will land here as the studio writes them.</p>
+  <h1>Roadmap &amp; release notes, in the open.</h1>
+  <p>The customer-visible counterpart of GitHub commits — every shipped feature gets a line within 24 hours. No dates that aren't committable; we use Now / Next / Later instead.</p>
 </section>
-<section class="subpage-body">
-  <article class="placeholder-card">
-    <span class="eyebrow">Coming soon</span>
-    <h3>The journal is empty — for now.</h3>
-    <p>The first posts will cover the platform stack, the PairFlix spinout, and what we learned shipping Adopt Don't Shop. Subscribe by <a href="https://github.com/ideaSquared">watching the GitHub org</a>.</p>
-  </article>
+
+<section class="venture-section" aria-labelledby="ads-roadmap">
+  <div class="head">
+    <span class="eyebrow signal">AdoptDontShop · roadmap</span>
+    <h2 id="ads-roadmap">Now, next, later.</h2>
+    <p>The path from beta to public launch and the rescue dashboard rollout.</p>
+  </div>
+  <div class="venture-grid-4">
+    <article class="venture-card">
+      <h4>Now · in build</h4>
+      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
+        <li>Close M7 issues + QA pass</li>
+        <li>Pilot rescue onboarding (M8)</li>
+      </ul>
+    </article>
+    <article class="venture-card">
+      <h4>Next · this quarter</h4>
+      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
+        <li>GDPR review + privacy policy (M9)</li>
+        <li>Production deployment + public launch (M10)</li>
+      </ul>
+    </article>
+    <article class="venture-card">
+      <h4>Later · this year</h4>
+      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
+        <li>Mobile app</li>
+        <li>Advanced search &amp; matching</li>
+      </ul>
+    </article>
+    <article class="venture-card">
+      <h4>Considering</h4>
+      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
+        <li>Adopter community / forum</li>
+        <li>Donations module for rescues</li>
+      </ul>
+    </article>
+  </div>
 </section>
+
+<section class="venture-section" aria-labelledby="ads-changelog">
+  <div class="head">
+    <span class="eyebrow">AdoptDontShop · changelog</span>
+    <h2 id="ads-changelog">What has shipped.</h2>
+    <p>One section per venture. Customer-facing language, not commit messages.</p>
+  </div>
+  <table class="venture-table">
+    <caption>v0.x — in build</caption>
+    <thead>
+      <tr><th scope="col">Status</th><th scope="col">Capability</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="num-col">Shipped</td><td>Auth (JWT), rescue registration and verification</td></tr>
+      <tr><td class="num-col">Shipped</td><td>Pet listing, staff permissions, photo upload</td></tr>
+      <tr><td class="num-col">Shipped</td><td>Adopter browse, filter, like and application flow</td></tr>
+      <tr><td class="num-col">Shipped</td><td>Real-time messaging (Socket.io)</td></tr>
+      <tr><td class="num-col">Shipped</td><td>Docker dev and prod environment</td></tr>
+      <tr><td class="num-col">Unreleased</td><td>M7 — closing 18 open issues, QA pass</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="venture-section" aria-labelledby="pf-status">
+  <div class="head">
+    <span class="eyebrow">Pairflix · status</span>
+    <h2 id="pf-status">Beta with 500 testers; seed-stage.</h2>
+    <p>Public roadmap and release notes go up here once Pairflix opens its public alpha. In the meantime, the <a href="../ventures/pairflix/">venture brief</a> covers product, model and market.</p>
+  </div>
+  <div class="callout" role="note">
+    <span class="icon" aria-hidden="true">🎬</span>
+    <div>
+      <strong>Pairflix changelog: unreleased.</strong>
+      <p style="margin: 4px 0 0;">Public release notes will start appearing here at public alpha. Subscribe by <a href="https://github.com/ideaSquared">watching the GitHub org</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="venture-section" aria-labelledby="principles">
+  <div class="head">
+    <span class="eyebrow">Operating principles · Journal</span>
+    <h2 id="principles">How this page is kept honest.</h2>
+  </div>
+  <div class="venture-grid-3">
+    <article class="venture-card">
+      <h4>Within 24 hours</h4>
+      <p>Every shipped feature gets a changelog line within twenty-four hours of going live.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Customer-facing language</h4>
+      <p>Written for the people who use the product, not the engineers who built it. No commit-message jargon.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Workflow-breaking only</h4>
+      <p>Bugs noteworthy enough to break a workflow get listed. Trivial fixes don't clutter the page.</p>
+    </article>
+  </div>
+</section>
+
 </main>
 
 <footer class="footer">
   <div class="footer-bottom">
     <span>© 2026 ideaSquared · Open source on GitHub</span>
     <span class="links">
+      <a href="../">Studio</a>
       <a href="https://github.com/ideaSquared/ideasquared-website">Source</a>
       <a href="https://github.com/ideaSquared">GitHub</a>
     </span>

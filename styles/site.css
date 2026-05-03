@@ -335,6 +335,7 @@ button:focus-visible {
   color: #fff;
   box-shadow: none;
 }
+.project-card.dark .project-name { color: #fff; }
 .project-card.dark .project-meta,
 .project-card.dark .project-stake-label { color: #c0c8d2; }
 .project-card.dark .project-desc { color: #e6e1d3; }
