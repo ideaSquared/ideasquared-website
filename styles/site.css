@@ -150,7 +150,7 @@ button:focus-visible {
 }
 .nav.is-scrolled .nav-inner { background: rgba(247, 246, 242, 0.85); }
 .nav-brand { display: inline-flex; align-items: center; }
-.nav-brand img { height: 22px; width: 22px; }
+.nav-brand img { height: 36px; width: 36px; }
 .nav-links { display: flex; gap: 4px; margin-left: 22px; flex: 1; }
 .nav-links a {
   text-decoration: none;
