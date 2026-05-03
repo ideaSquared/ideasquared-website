@@ -31,7 +31,7 @@
         buttons.forEach((b) => {
           const active = b === btn;
           b.classList.toggle('is-active', active);
-          b.setAttribute('aria-selected', String(active));
+          b.setAttribute('aria-pressed', String(active));
         });
         grid.querySelectorAll('.project-card').forEach((card) => {
           const tag = card.dataset.tag;

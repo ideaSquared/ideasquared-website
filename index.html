@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="styles/site.css">
 </head>
 <body class="i2">
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="nav" id="nav" aria-label="Primary">
   <div class="nav-inner">
@@ -29,7 +30,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
 
 <section class="hero">
   <svg class="hero-circuit" aria-hidden="true" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -96,11 +97,11 @@
         a Node API, Postgres — so a new idea can ship in weeks, not quarters.
       </p>
     </div>
-    <div class="filter" role="tablist" aria-label="Filter projects by area">
-      <button type="button" class="is-active" data-filter="All" role="tab" aria-selected="true">All</button>
-      <button type="button" data-filter="Web"     role="tab" aria-selected="false">Web</button>
-      <button type="button" data-filter="Tools"   role="tab" aria-selected="false">Tools</button>
-      <button type="button" data-filter="Gaming"  role="tab" aria-selected="false">Gaming</button>
+    <div class="filter" role="group" aria-label="Filter projects by area">
+      <button type="button" class="is-active" data-filter="All"    aria-pressed="true">All</button>
+      <button type="button" data-filter="Web"    aria-pressed="false">Web</button>
+      <button type="button" data-filter="Tools"  aria-pressed="false">Tools</button>
+      <button type="button" data-filter="Gaming" aria-pressed="false">Gaming</button>
     </div>
   </div>
 
@@ -119,16 +120,16 @@
       </div>
     </a>
 
-    <a class="project-card dark" href="https://github.com/ideaSquared/pairflix" data-tag="Web">
+    <a class="project-card dark" href="ventures/pairflix/" data-tag="Web" aria-label="Pairflix — read the venture brief">
       <div class="project-top">
-        <span class="chip signal">Spinning out</span>
-        <span class="project-meta">Web · 2025</span>
+        <span class="chip signal">Beta · seed-stage</span>
+        <span class="project-meta">Web &amp; AI · 2025</span>
       </div>
-      <h3 class="project-name">PairFlix</h3>
-      <p class="project-desc">A watch-together queue for couples and friends. Find the films and series you'll actually agree on.</p>
+      <h3 class="project-name">Pairflix</h3>
+      <p class="project-desc">An AI matcher that turns the nightly "what shall we watch?" argument into a 30-second decision — across Netflix, Prime, Disney+ and friends.</p>
       <div class="project-foot">
-        <span class="project-stake-label">Repo</span>
-        <span class="project-stake-n">pairflix</span>
+        <span class="project-stake-label">Read</span>
+        <span class="project-stake-n">Venture brief →</span>
       </div>
     </a>
 
@@ -273,7 +274,7 @@
       <h5>Projects</h5>
       <ul>
         <li><a href="https://github.com/ideaSquared/adopt-dont-shop">Adopt Don't Shop</a></li>
-        <li><a href="https://github.com/ideaSquared/pairflix">PairFlix</a></li>
+        <li><a href="ventures/pairflix/">Pairflix</a></li>
         <li><a href="https://github.com/ideaSquared/tarkovcommunity">Tarkov Community</a></li>
         <li><a href="/ventures/">All projects</a></li>
       </ul>
