@@ -150,7 +150,7 @@ button:focus-visible {
 }
 .nav.is-scrolled .nav-inner { background: rgba(247, 246, 242, 0.85); }
 .nav-brand { display: inline-flex; align-items: center; }
-.nav-brand img { height: 22px; width: auto; }
+.nav-brand img { height: 22px; width: 22px; }
 .nav-links { display: flex; gap: 4px; margin-left: 22px; flex: 1; }
 .nav-links a {
   text-decoration: none;
@@ -472,7 +472,7 @@ button:focus-visible {
   gap: 32px;
   margin-bottom: 48px;
 }
-.footer-brand img { height: 22px; width: auto; }
+.footer-brand img { height: 32px; width: 32px; }
 .footer-brand p {
   font-size: 14px;
   line-height: 1.55;
