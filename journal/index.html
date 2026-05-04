@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Journal -ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="What's shipping, what's next, what's still on the radar -across the live ideaSquared ventures.">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../styles/tokens.css">
+<link rel="stylesheet" href="../styles/site.css">
+</head>
+<body class="i2">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="nav-brand" href="../" aria-label="ideaSquared home"><img src="../assets/logo-mark.svg" alt="" aria-hidden="true"><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links">
+      <a href="../ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="../thesis/"   data-nav="/thesis/">Thesis</a>
+      <a href="../studio/"   data-nav="/studio/">Studio</a>
+      <a href="../journal/"  data-nav="/journal/">Journal</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+    <a href="mailto:investors@ideasquared.co.uk?subject=Pitching%20an%20idea" class="btn btn-secondary btn-md">Pitch us an idea</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="subpage-hero">
+  <span class="eyebrow">The journal</span>
+  <h1>Roadmap &amp; release notes, in the open.</h1>
+  <p>The customer-visible counterpart of GitHub commits -every shipped feature gets a line within 24 hours. No dates that aren't committable; we use Now / Next / Later instead.</p>
+</section>
+
+<section class="venture-section" aria-labelledby="ads-roadmap">
+  <div class="head">
+    <span class="eyebrow signal">AdoptDontShop · roadmap</span>
+    <h2 id="ads-roadmap">Now, next, later.</h2>
+    <p>The path from beta to public launch and the rescue dashboard rollout.</p>
+  </div>
+  <div class="venture-grid-4">
+    <article class="venture-card">
+      <h4>Now · in build</h4>
+      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
+        <li>Close M7 issues + QA pass</li>
+        <li>Rescue onboarding workflow (M8)</li>
+      </ul>
+    </article>
+    <article class="venture-card">
+      <h4>Next</h4>
+      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
+        <li>GDPR review + privacy policy (M9)</li>
+        <li>Production-grade deployment (M10)</li>
+      </ul>
+    </article>
+    <article class="venture-card">
+      <h4>Later</h4>
+      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
+        <li>Closed beta with first rescue cluster (Q4 2026 target)</li>
+        <li>Mobile app</li>
+        <li>Advanced search &amp; matching</li>
+      </ul>
+    </article>
+    <article class="venture-card">
+      <h4>Considering</h4>
+      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
+        <li>Adopter community / forum</li>
+        <li>Donations module for rescues</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="venture-section" aria-labelledby="ads-changelog">
+  <div class="head">
+    <span class="eyebrow">AdoptDontShop · platform</span>
+    <h2 id="ads-changelog">What's standing up in the repo.</h2>
+    <p>Verifiable from <a href="https://github.com/ideaSquared/adopt-dont-shop">the repo</a>. Architecture-level facts; user-facing product features land in the journal once they ship to a real cohort.</p>
+  </div>
+  <p class="table-label">Platform · in build</p>
+  <table class="venture-table">
+    <thead>
+      <tr><th scope="col">Status</th><th scope="col">Capability</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="num-col">Standing</td><td>Three React frontends -public client, internal admin, rescue portal</td></tr>
+      <tr><td class="num-col">Standing</td><td>Node.js + Express REST and WebSocket API backend</td></tr>
+      <tr><td class="num-col">Standing</td><td>JWT and session-based authentication</td></tr>
+      <tr><td class="num-col">Standing</td><td>PostgreSQL 16 with PostGIS, Redis 7, Socket.io for real-time</td></tr>
+      <tr><td class="num-col">Standing</td><td>Turborepo monorepo with shared libraries</td></tr>
+      <tr><td class="num-col">Standing</td><td>Docker Compose dev stack + multi-stage prod builds, Nginx reverse proxy</td></tr>
+      <tr><td class="num-col">Standing</td><td>Swagger API documentation</td></tr>
+      <tr><td class="num-col">In flight</td><td>M7 -closing open issues, QA pass</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="venture-section" aria-labelledby="pf-status">
+  <div class="head">
+    <span class="eyebrow">Pairflix · status</span>
+    <h2 id="pf-status">Early alpha -pre-launch, no public users yet.</h2>
+    <p>The platform stack is in place; the product hasn't opened to outside testers. No waitlist, no beta cohort, no release date. The <a href="../ventures/pairflix/">venture brief</a> covers product, model and market.</p>
+  </div>
+  <p class="table-label">Platform · in build</p>
+  <table class="venture-table">
+    <thead>
+      <tr><th scope="col">Status</th><th scope="col">Capability</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="num-col">Standing</td><td>Three apps -Client (React), Admin panel, Express + PostgreSQL backend</td></tr>
+      <tr><td class="num-col">Standing</td><td>JWT authentication, watchlist management, partner matching, TMDB integration</td></tr>
+      <tr><td class="num-col">Standing</td><td>TypeScript strict mode across all code; full test suite passing</td></tr>
+      <tr><td class="num-col">Standing</td><td>Multi-stage Docker builds, Nginx reverse proxy, production-ready infra</td></tr>
+      <tr><td class="num-col">In flight</td><td>Matcher and partner-pairing UX before opening a closed alpha</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="venture-section" aria-labelledby="principles">
+  <div class="head">
+    <span class="eyebrow">Operating principles · Journal</span>
+    <h2 id="principles">How this page is kept honest.</h2>
+  </div>
+  <div class="venture-grid-3">
+    <article class="venture-card">
+      <h4>Within 24 hours</h4>
+      <p>Every shipped feature gets a changelog line within twenty-four hours of going live.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Customer-facing language</h4>
+      <p>Written for the people who use the product, not the engineers who built it. No commit-message jargon.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Workflow-breaking only</h4>
+      <p>Bugs noteworthy enough to break a workflow get listed. Trivial fixes don't clutter the page.</p>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <span>© 2026 ideaSquared · Open source on GitHub</span>
+    <span class="links">
+      <a href="../">Studio</a>
+      <a href="https://github.com/ideaSquared/ideasquared-website">Source</a>
+      <a href="https://github.com/ideaSquared">GitHub</a>
+    </span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="../scripts/site.js" defer></script>
+</body>
+</html>

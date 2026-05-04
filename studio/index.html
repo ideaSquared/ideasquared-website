@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Studio -ideaSquared</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="How the ideaSquared studio is set up -operating principles, the venture lifecycle, and the engineering defaults every project inherits."
+		/>
+		<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+		<link rel="stylesheet" href="../styles/tokens.css" />
+		<link rel="stylesheet" href="../styles/site.css" />
+	</head>
+	<body class="i2">
+		<a class="skip-link" href="#main">Skip to main content</a>
+
+		<header class="nav" id="nav" aria-label="Primary">
+			<div class="nav-inner">
+				<a class="nav-brand" href="../" aria-label="ideaSquared home"
+					><img src="../assets/logo-mark.svg" alt="" aria-hidden="true" /><span
+						class="brand-text"
+						>idea<em>Squared</em></span
+					></a
+				>
+				<nav class="nav-links" id="nav-links">
+					<a href="../ventures/" data-nav="/ventures/">Ventures</a>
+					<a href="../thesis/" data-nav="/thesis/">Thesis</a>
+					<a href="../studio/" data-nav="/studio/">Studio</a>
+					<a href="../journal/" data-nav="/journal/">Journal</a>
+				</nav>
+				<button
+					class="nav-toggle"
+					id="nav-toggle"
+					aria-label="Toggle menu"
+					aria-controls="nav-links"
+					aria-expanded="false"
+				>
+					<svg
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.75"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<path d="M4 7h16" />
+						<path d="M4 12h16" />
+						<path d="M4 17h16" />
+					</svg>
+				</button>
+				<a
+					href="mailto:investors@ideasquared.co.uk?subject=Pitching%20an%20idea"
+					class="btn btn-secondary btn-md"
+					>Pitch us an idea</a
+				>
+			</div>
+		</header>
+
+		<main id="main">
+			<section class="subpage-hero">
+				<span class="eyebrow">The studio</span>
+				<h1>The studio is the platform. The ventures are the products.</h1>
+				<p>
+					i² runs as a small operating studio: one TypeScript stack, one CI
+					pipeline, one set of conventions -every venture inherits the lot. The
+					platform isn't glamorous, but it's the thing that lets a small team
+					ship like a large one.
+				</p>
+			</section>
+
+			<section class="venture-section" aria-labelledby="lifecycle">
+				<div class="head">
+					<span class="eyebrow">Venture lifecycle</span>
+					<h2 id="lifecycle">Four stages, mandatory kill criteria.</h2>
+					<p>
+						Every venture moves through the same lifecycle, with a defined exit
+						criterion at each gate. Sunk-cost rescues are not allowed.
+					</p>
+				</div>
+				<div class="venture-grid-4">
+					<article class="venture-card">
+						<div class="num">01</div>
+						<h4>IDEA</h4>
+						<p>
+							Problem hypothesis, market sketch, kill-or-keep call within weeks.
+						</p>
+					</article>
+					<article class="venture-card">
+						<div class="num">02</div>
+						<h4>PROPOSAL</h4>
+						<p>
+							Validate demand, willingness-to-pay and regulatory feasibility.
+							Mandatory kill criteria are set here.
+						</p>
+					</article>
+					<article class="venture-card">
+						<div class="num">03</div>
+						<h4>PROJECT</h4>
+						<p>
+							Shared product, engineering, design, legal and ops construct the
+							MVP. Design partners onboarded.
+						</p>
+					</article>
+					<article class="venture-card">
+						<div class="num">04</div>
+						<h4>PRODUCT</h4>
+						<p>
+							Venture spins out as an independent legal entity, takes follow-on
+							capital and scales -or hits its kill criteria and sunsets cleanly.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="venture-section" aria-labelledby="people">
+				<div class="head">
+					<span class="eyebrow">Operating principles · People</span>
+					<h2 id="people">How we treat each other.</h2>
+				</div>
+				<p class="table-label">People principles</p>
+				<table class="venture-table">
+					<thead>
+						<tr>
+							<th scope="col">Principle</th>
+							<th scope="col">Looks like</th>
+							<th scope="col">Does not look like</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Direct, kind feedback</th>
+							<td>
+								Say the hard thing early, with care; in person where possible
+							</td>
+							<td>Sugar-coating, back-channelling, public dunking</td>
+						</tr>
+						<tr>
+							<th scope="row">Default to writing</th>
+							<td>Decisions and context captured in Notion, async-first</td>
+							<td>Critical context trapped in DMs or one person's head</td>
+						</tr>
+						<tr>
+							<th scope="row">Ownership</th>
+							<td>
+								You see it, you fix it or flag it; you finish what you start
+							</td>
+							<td>"Not my ticket"; throwing work over the wall</td>
+						</tr>
+						<tr>
+							<th scope="row">Curiosity over ego</th>
+							<td>
+								Change your mind when the data does; ask before you assume
+							</td>
+							<td>Defending a position past the evidence</td>
+						</tr>
+						<tr>
+							<th scope="row">Sustainable pace</th>
+							<td>
+								Deep work in long blocks; real recovery; predictable hours
+							</td>
+							<td>
+								Heroics as a baseline; weekend "saves" that mask broken systems
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Trust by default</th>
+							<td>
+								Assume good intent; raise concerns directly with the person
+							</td>
+							<td>Surveillance, gotcha culture, escalating before talking</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="venture-section" aria-labelledby="tech">
+				<div class="head">
+					<span class="eyebrow">Operating principles · Tech</span>
+					<h2 id="tech">How we build.</h2>
+				</div>
+				<p class="table-label">Tech principles</p>
+				<table class="venture-table">
+					<thead>
+						<tr>
+							<th scope="col">Principle</th>
+							<th scope="col">Looks like</th>
+							<th scope="col">Does not look like</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Surgical execution</th>
+							<td>
+								PRs touch one concern; smallest change that solves the problem
+							</td>
+							<td>Drive-by refactors; speculative scope; "while I'm here…"</td>
+						</tr>
+						<tr>
+							<th scope="row">Test the behaviour</th>
+							<td>Tests assert outcomes a user can observe</td>
+							<td>Tests that lock in implementation details</td>
+						</tr>
+						<tr>
+							<th scope="row">Schema-first</th>
+							<td>
+								Typed contracts defined before code; validated at every boundary
+							</td>
+							<td>
+								"We'll figure out the shape later"; untyped JSON crossing
+								services
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Simplicity first</th>
+							<td>
+								Smallest dependency that survives 3 years; boring tech that
+								ships
+							</td>
+							<td>Clever abstractions chasing imagined future needs</td>
+						</tr>
+						<tr>
+							<th scope="row">Immutable foundations</th>
+							<td>Pure functions, idempotent jobs, append-only logs</td>
+							<td>Hidden mutation; in-place edits to shared state</td>
+						</tr>
+						<tr>
+							<th scope="row">Learn in public</th>
+							<td>
+								Wins, kills and post-mortems written up for the next venture
+							</td>
+							<td>Tribal knowledge; lessons relearned each cohort</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="venture-section" aria-labelledby="business">
+				<div class="head">
+					<span class="eyebrow">Operating principles · Business</span>
+					<h2 id="business">How we run the studio.</h2>
+				</div>
+				<p class="table-label">Business principles</p>
+				<table class="venture-table">
+					<thead>
+						<tr>
+							<th scope="col">Principle</th>
+							<th scope="col">Looks like</th>
+							<th scope="col">Does not look like</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Validate before we build</th>
+							<td>Willingness-to-pay tested before production code</td>
+							<td>Building "because the idea is exciting"</td>
+						</tr>
+						<tr>
+							<th scope="row">Kill criteria are mandatory</th>
+							<td>
+								Every venture sets kill conditions at PROPOSAL and honours them
+							</td>
+							<td>
+								Sunk-cost rescues; "one more quarter" without new evidence
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Equity, not fees</th>
+							<td>Alignment with venture outcomes; long-horizon bets</td>
+							<td>Consulting-hour mindset; optimising for billable activity</td>
+						</tr>
+						<tr>
+							<th scope="row">Compounding playbook</th>
+							<td>
+								Patterns and platform reused across ventures; each cohort costs
+								less to launch
+							</td>
+							<td>Greenfielding the same plumbing every time</td>
+						</tr>
+						<tr>
+							<th scope="row">Capital efficiency over scale</th>
+							<td>Runway is oxygen; every spend earns scrutiny</td>
+							<td>Hiring or burning ahead of validated demand</td>
+						</tr>
+						<tr>
+							<th scope="row">Portfolio over hero venture</th>
+							<td>Multiple validated bets in flight at all times</td>
+							<td>One venture defining the studio's survival</td>
+						</tr>
+						<tr>
+							<th scope="row">Customer trust is the franchise</th>
+							<td>
+								Honest comms; fix problems before they're noticed; refund
+								without haggling when we're wrong
+							</td>
+							<td>
+								Hiding outages; deceptive UX; legalistic responses to obvious
+								mistakes
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="venture-section" aria-labelledby="defaults">
+				<div class="head">
+					<span class="eyebrow">Engineering defaults</span>
+					<h2 id="defaults">Boring tech that ships.</h2>
+					<p>
+						Defaults, not mandates. Ventures may pick alternatives where the
+						trade-off is justified and documented.
+					</p>
+				</div>
+				<div class="venture-grid-3">
+					<article class="venture-card">
+						<h4>Default stack</h4>
+						<p>
+							TypeScript, React, Node, Postgres, Redis in a monorepo with shared
+							packages. Go for high-throughput backends, Python for ML, Swift /
+							Kotlin for native mobile when the trade-off justifies it.
+						</p>
+					</article>
+					<article class="venture-card">
+						<h4>Schema-first contracts</h4>
+						<p>
+							Typed contracts at every boundary -API, events, forms. Validated
+							at the seam, not in the middle.
+						</p>
+					</article>
+					<article class="venture-card">
+						<h4>CI is sacred</h4>
+						<p>
+							A red main branch is a P0 incident. Tests describe behaviour; we
+							delete tests that only mirror implementation.
+						</p>
+					</article>
+					<article class="venture-card">
+						<h4>Observability before scale</h4>
+						<p>
+							Logs, metrics and traces wired in from day one -not added in panic
+							later.
+						</p>
+					</article>
+					<article class="venture-card">
+						<h4>Accessibility as a baseline</h4>
+						<p>WCAG 2.2 AA target across every venture. Not a backlog item.</p>
+					</article>
+					<article class="venture-card">
+						<h4>Mobile-first</h4>
+						<p>
+							Unless the venture demands otherwise. Most of our users meet us on
+							a phone.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="venture-section" aria-labelledby="structure">
+				<div class="head">
+					<span class="eyebrow">Studio structure</span>
+					<h2 id="structure">Lean by design.</h2>
+					<p>We hire ahead of pain, not ahead of plan.</p>
+				</div>
+				<p class="table-label">Roles at i²</p>
+				<table class="venture-table">
+					<thead>
+						<tr>
+							<th scope="col">Role</th>
+							<th scope="col">Scope</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Founder &amp; CEO</th>
+							<td>Vision, capital, portfolio strategy</td>
+						</tr>
+						<tr>
+							<th scope="row">Product leadership</th>
+							<td>Discovery, roadmap, design across ventures</td>
+						</tr>
+						<tr>
+							<th scope="row">Platform engineering</th>
+							<td>Architecture, shared services, developer experience</td>
+						</tr>
+						<tr>
+							<th scope="row">Venture leads</th>
+							<td>End-to-end ownership of a single venture</td>
+						</tr>
+						<tr>
+							<th scope="row">Operations &amp; legal</th>
+							<td>Entity setup, compliance, finance, HR</td>
+						</tr>
+						<tr>
+							<th scope="row">Advisors</th>
+							<td>Domain-specific, time-boxed, equity-aligned</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+		</main>
+
+		<footer class="footer">
+			<div class="footer-bottom">
+				<span>© 2026 ideaSquared · Open source on GitHub</span>
+				<span class="links">
+					<a href="../">Studio</a>
+					<a href="https://github.com/ideaSquared/ideasquared-website"
+						>Source</a
+					>
+					<a href="https://github.com/ideaSquared">GitHub</a>
+				</span>
+			</div>
+		</footer>
+
+		<div class="toast" id="toast" role="status" aria-live="polite"></div>
+		<script src="../scripts/site.js" defer></script>
+	</body>
+</html>
