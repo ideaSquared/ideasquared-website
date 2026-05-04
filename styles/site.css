@@ -149,8 +149,23 @@ button:focus-visible {
   transition: background var(--dur-base) var(--ease-out);
 }
 .nav.is-scrolled .nav-inner { background: rgba(247, 246, 242, 0.85); }
-.nav-brand { display: inline-flex; align-items: center; }
-.nav-brand img { height: 36px; width: 36px; }
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--fg);
+}
+.nav-brand img { height: 30px; width: 30px; flex-shrink: 0; }
+.brand-text {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.018em;
+  line-height: 1;
+  color: inherit;
+}
+.brand-text em { font-style: italic; font-weight: 400; }
 .nav-links { display: flex; gap: 4px; margin-left: 22px; flex: 1; }
 .nav-links a {
   text-decoration: none;
@@ -178,15 +193,13 @@ button:focus-visible {
   max-width: 1192px;
 }
 .hero::before {
-  /* Symbol-mark backdrop — top-right corner, inverted to white */
+  /* Squared-dots mark backdrop, dark-surface variant */
   content: "";
   position: absolute;
-  top: -120px; right: -120px;
+  top: -80px; right: -80px;
   width: 640px; height: 640px;
-  background: url("../assets/logo-mark.svg") no-repeat center / contain;
-  opacity: 0.22;
-  mix-blend-mode: screen;
-  filter: invert(1) brightness(1.1);
+  background: url("../assets/logo-mark-on-dark.svg") no-repeat center / contain;
+  opacity: 0.18;
   pointer-events: none;
 }
 .hero-circuit {
@@ -472,7 +485,13 @@ button:focus-visible {
   gap: 32px;
   margin-bottom: 48px;
 }
-.footer-brand img { height: 32px; width: 32px; }
+.footer-brand .brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.footer-brand img { height: 32px; width: 32px; flex-shrink: 0; }
+.footer-brand .brand-text { font-size: 24px; }
 .footer-brand p {
   font-size: 14px;
   line-height: 1.55;
@@ -814,6 +833,7 @@ button:focus-visible {
     margin-left: auto;
   }
   .nav .btn-secondary { display: none; }
+  .nav-brand .brand-text { display: none; }
   .quote { padding: 48px 24px; margin: 64px 16px 0; }
   .container { padding-inline: 16px; }
   .footer { padding: 40px 16px 32px; }
