@@ -1,5 +1,5 @@
 /* ============================================================
-   ideaSquared — Foundations
+   ideaSquared -Foundations
    Colors and typography tokens.
    Import this once at the top of any artifact:
      <link rel="stylesheet" href="colors_and_type.css">
@@ -14,21 +14,21 @@
 
 :root {
   /* ----------------------------------------------------------
-     CORE PALETTE — Brand
+     CORE PALETTE -Brand
      The mark sits on a navy field. Navy + ink-white is the
      spine of the brand; a single warm accent provides energy.
      ---------------------------------------------------------- */
 
-  /* Navy — the primary brand surface */
+  /* Navy -the primary brand surface */
   --i2-navy-950: #04121f;   /* deepest, near-black navy (logo bg darker) */
   --i2-navy-900: #08182a;   /* monogram background, hero surfaces */
   --i2-navy-800: #0f2238;   /* raised navy, cards on dark */
   --i2-navy-700: #1a324d;   /* hover state on dark surfaces */
   --i2-navy-600: #284765;   /* borders / dividers on dark */
 
-  /* Ink — light surfaces */
-  --i2-ink-50:  #f7f6f2;    /* paper — primary light surface, slight warmth */
-  --i2-ink-100: #efece4;    /* warm sand — secondary surface */
+  /* Ink -light surfaces */
+  --i2-ink-50:  #f7f6f2;    /* paper -primary light surface, slight warmth */
+  --i2-ink-100: #efece4;    /* warm sand -secondary surface */
   --i2-ink-200: #e2ddd1;    /* hairline / subtle divider */
   --i2-ink-300: #c8c1b0;    /* muted line */
   --i2-ink-400: #8c8674;    /* tertiary text on light */
@@ -36,7 +36,7 @@
   --i2-ink-700: #2c2a25;    /* primary body on light */
   --i2-ink-900: #14130f;    /* near-black for headlines on light */
 
-  /* Signal — warm accent (used sparingly: CTAs, focus, highlights) */
+  /* Signal -warm accent (used sparingly: CTAs, focus, highlights) */
   --i2-signal-50:  #fef4e6;
   --i2-signal-200: #fbd9a3;
   --i2-signal-400: #f4a93b;
@@ -44,12 +44,12 @@
   --i2-signal-600: #c4750c;
   --i2-signal-800: #7a4805;
 
-  /* Circuit — a cooler accent, used to nod to the mark's tech motif */
+  /* Circuit -a cooler accent, used to nod to the mark's tech motif */
   --i2-circuit-300: #7fd4c5;
   --i2-circuit-500: #2fa692;
   --i2-circuit-700: #146557;
 
-  /* Equity — used in venture/equity contexts; a confident plum */
+  /* Equity -used in venture/equity contexts; a confident plum */
   --i2-equity-400: #b48bd6;
   --i2-equity-600: #7c4fa4;
 
@@ -60,7 +60,7 @@
   --i2-info:    #4a8dc2;
 
   /* ----------------------------------------------------------
-     SEMANTIC TOKENS — light theme (default)
+     SEMANTIC TOKENS -light theme (default)
      Use these in components, not the raw palette.
      ---------------------------------------------------------- */
 
@@ -95,7 +95,7 @@
   --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* ----------------------------------------------------------
-     TYPE SCALE — modular, gentle ratio (1.2x)
+     TYPE SCALE -modular, gentle ratio (1.2x)
      Use rem/px appropriately at the component level.
      ---------------------------------------------------------- */
   --t-display-1: clamp(56px, 8vw, 112px);  /* hero, single-purpose */
@@ -112,7 +112,7 @@
   --t-eyebrow: 12px;
 
   /* ----------------------------------------------------------
-     SPACING — 4px base, named scale
+     SPACING -4px base, named scale
      ---------------------------------------------------------- */
   --sp-1: 4px;
   --sp-2: 8px;
@@ -129,7 +129,7 @@
   --sp-32: 128px;
 
   /* ----------------------------------------------------------
-     RADII — restrained. Cards are soft, buttons capsule, chips pill.
+     RADII -restrained. Cards are soft, buttons capsule, chips pill.
      ---------------------------------------------------------- */
   --radius-xs: 4px;
   --radius-sm: 8px;
@@ -139,7 +139,7 @@
   --radius-pill: 999px;
 
   /* ----------------------------------------------------------
-     SHADOWS — soft, naturalistic. Avoid harsh drop shadows.
+     SHADOWS -soft, naturalistic. Avoid harsh drop shadows.
      ---------------------------------------------------------- */
   --shadow-xs: 0 1px 2px rgba(8, 24, 42, 0.04);
   --shadow-sm: 0 2px 6px rgba(8, 24, 42, 0.06), 0 1px 2px rgba(8, 24, 42, 0.04);
@@ -159,7 +159,7 @@
 }
 
 /* ============================================================
-   Dark surface — opt-in by adding `.on-dark` to a section
+   Dark surface -opt-in by adding `.on-dark` to a section
    ============================================================ */
 .on-dark {
   --bg: var(--i2-navy-900);
@@ -180,7 +180,7 @@
 }
 
 /* ============================================================
-   SEMANTIC ELEMENT STYLES — wired to the tokens above.
+   SEMANTIC ELEMENT STYLES -wired to the tokens above.
    Apply by using semantic tags inside a container that has
    `.i2-prose` (for long-form) or by just relying on global tags.
    ============================================================ */
@@ -290,7 +290,7 @@ h1.i2-hero {
   color: var(--fg-muted);
 }
 
-/* Eyebrow — short uppercase label that precedes a heading. */
+/* Eyebrow -short uppercase label that precedes a heading. */
 .i2-eyebrow {
   font-family: var(--font-sans);
   font-size: var(--t-eyebrow);
