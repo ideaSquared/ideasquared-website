@@ -77,22 +77,24 @@
 
 <section class="venture-section" aria-labelledby="ads-changelog">
   <div class="head">
-    <span class="eyebrow">AdoptDontShop · changelog</span>
-    <h2 id="ads-changelog">What has shipped.</h2>
-    <p>One section per venture. Customer-facing language, not commit messages.</p>
+    <span class="eyebrow">AdoptDontShop · platform</span>
+    <h2 id="ads-changelog">What's standing up in the repo.</h2>
+    <p>Verifiable from <a href="https://github.com/ideaSquared/adopt-dont-shop">the repo</a>. Architecture-level facts; user-facing product features land in the journal once they ship to a real cohort.</p>
   </div>
-  <p class="table-label">v0.x — in build</p>
+  <p class="table-label">Platform · in build</p>
   <table class="venture-table">
     <thead>
       <tr><th scope="col">Status</th><th scope="col">Capability</th></tr>
     </thead>
     <tbody>
-      <tr><td class="num-col">Shipped</td><td>Auth (JWT), rescue registration and verification</td></tr>
-      <tr><td class="num-col">Shipped</td><td>Pet listing, staff permissions, photo upload</td></tr>
-      <tr><td class="num-col">Shipped</td><td>Adopter browse, filter, like and application flow</td></tr>
-      <tr><td class="num-col">Shipped</td><td>Real-time messaging (Socket.io)</td></tr>
-      <tr><td class="num-col">Shipped</td><td>Docker dev and prod environment</td></tr>
-      <tr><td class="num-col">Unreleased</td><td>M7 — closing 18 open issues, QA pass</td></tr>
+      <tr><td class="num-col">Standing</td><td>Three React frontends — public client, internal admin, rescue portal</td></tr>
+      <tr><td class="num-col">Standing</td><td>Node.js + Express REST and WebSocket API backend</td></tr>
+      <tr><td class="num-col">Standing</td><td>JWT and session-based authentication</td></tr>
+      <tr><td class="num-col">Standing</td><td>PostgreSQL 16 with PostGIS, Redis 7, Socket.io for real-time</td></tr>
+      <tr><td class="num-col">Standing</td><td>Turborepo monorepo with shared libraries</td></tr>
+      <tr><td class="num-col">Standing</td><td>Docker Compose dev stack + multi-stage prod builds, Nginx reverse proxy</td></tr>
+      <tr><td class="num-col">Standing</td><td>Swagger API documentation</td></tr>
+      <tr><td class="num-col">In flight</td><td>M7 — closing open issues, QA pass</td></tr>
     </tbody>
   </table>
 </section>
@@ -100,16 +102,22 @@
 <section class="venture-section" aria-labelledby="pf-status">
   <div class="head">
     <span class="eyebrow">Pairflix · status</span>
-    <h2 id="pf-status">Beta with 500 testers; seed-stage.</h2>
-    <p>Public roadmap and release notes go up here once Pairflix opens its public alpha. In the meantime, the <a href="../ventures/pairflix/">venture brief</a> covers product, model and market.</p>
+    <h2 id="pf-status">Early alpha — pre-launch, no public users yet.</h2>
+    <p>The platform stack is in place; the product hasn't opened to outside testers. No waitlist, no beta cohort, no release date. The <a href="../ventures/pairflix/">venture brief</a> covers product, model and market.</p>
   </div>
-  <div class="callout" role="note">
-    <span class="icon" aria-hidden="true">🎬</span>
-    <div>
-      <strong>Pairflix changelog: unreleased.</strong>
-      <p style="margin: 4px 0 0;">Public release notes will start appearing here at public alpha. Subscribe by <a href="https://github.com/ideaSquared">watching the GitHub org</a>.</p>
-    </div>
-  </div>
+  <p class="table-label">Platform · in build</p>
+  <table class="venture-table">
+    <thead>
+      <tr><th scope="col">Status</th><th scope="col">Capability</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="num-col">Standing</td><td>Three apps — Client (React), Admin panel, Express + PostgreSQL backend</td></tr>
+      <tr><td class="num-col">Standing</td><td>JWT authentication, watchlist management, partner matching, TMDB integration</td></tr>
+      <tr><td class="num-col">Standing</td><td>TypeScript strict mode across all code; full test suite passing</td></tr>
+      <tr><td class="num-col">Standing</td><td>Multi-stage Docker builds, Nginx reverse proxy, production-ready infra</td></tr>
+      <tr><td class="num-col">In flight</td><td>Matcher and partner-pairing UX before opening a closed alpha</td></tr>
+    </tbody>
+  </table>
 </section>
 
 <section class="venture-section" aria-labelledby="principles">
