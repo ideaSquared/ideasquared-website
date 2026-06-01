@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Journal -ideaSquared</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="What's shipping, what's next, what's still on the radar -across the live ideaSquared ventures.">
+<meta name="description" content="Dated build log across the ideaSquared ventures, newest first, with venture-tagged entries and per-product current-state snapshots.">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="stylesheet" href="../styles/tokens.css">
 <link rel="stylesheet" href="../styles/site.css">
@@ -32,13 +32,78 @@
 
 <section class="subpage-hero">
   <span class="eyebrow">The journal</span>
-  <h1>Roadmap &amp; release notes, in the open.</h1>
-  <p>The customer-visible counterpart of GitHub commits -every shipped feature gets a line within 24 hours. No dates that aren't committable; we use Now / Next / Later instead.</p>
+  <h1>What's shipping across the studio, in the open.</h1>
+  <p>Dated entries from the live ventures, newest first. Per-venture current-state snapshots follow. No dates that aren't committable; the roadmap uses Now / Next / Later.</p>
+</section>
+
+<section class="venture-section" aria-labelledby="entries">
+  <div class="head">
+    <span class="eyebrow signal">Latest entries</span>
+    <h2 id="entries">Studio log.</h2>
+    <p>One line per change, tagged with the venture it belongs to.</p>
+  </div>
+  <div class="venture-grid-2">
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
+      </div>
+      <h4>Roadmap re-baselined to closed beta Aug–Sep 2026.</h4>
+      <p>Original §15 beta target (Q4 2025) was missed. The May 2026 re-baseline replaces it with seven sequenced milestones: legal foundation, data protection package, platform hardening, closed beta, trust &amp; safety, payments &amp; commercial, and public launch in November. Demand signal preserved -5 lister LOIs and a 1,000+ adopter waitlist carried in.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
+      </div>
+      <h4>Sprint focus published.</h4>
+      <p>Rescue profile builder (drag-and-drop, three columns) live in staging. Geographic search by postcode in review. 6-step application workflow in design. Welfare-incident reporting from the adopter side next.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
+      </div>
+      <h4>Scope cuts logged.</h4>
+      <p>Three features dropped on purpose: a rescue ratings system (against principle), an adopter "wishlist" (animal-as-listing -no thanks), and premium rescue placements (the £40k cheque we turned down).</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">26 Apr 2026</span>
+      </div>
+      <h4>Proposal moved to <em>In Build</em>.</h4>
+      <p>The ADS proposal cleared the gate and is now an active venture on the studio platform. Stack locked: React + Vite + TypeScript, Node + Express + Sequelize, PostgreSQL 16 + PostGIS, Redis 7, Socket.io, Turborepo. Lead: Alex Jenkinson.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">26 Apr 2026</span>
+      </div>
+      <h4>Alpha feature-complete.</h4>
+      <p>Six engineering milestones standing: monorepo + Docker dev stack, JWT auth + rescue registration, pet listings with staff permissions + photo upload, adopter browse/filter/like flow, real-time messaging on Socket.io, and Docker dev + prod environments. Closing 18 open issues + QA pass before handing off to compliance.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip">Pairflix</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">Apr 2026</span>
+      </div>
+      <h4>Early alpha state captured.</h4>
+      <p>Platform stack standing -three apps (client, admin, backend), JWT auth, watchlist + partner matching, TMDB integration, TypeScript strict mode, full test suite passing, multi-stage Docker builds behind Nginx. No public users yet; matcher and partner-pairing UX in flight before opening a closed alpha.</p>
+    </article>
+
+  </div>
 </section>
 
 <section class="venture-section" aria-labelledby="ads-roadmap">
   <div class="head">
-    <span class="eyebrow signal">AdoptDontShop · roadmap</span>
+    <span class="eyebrow signal">AdoptDontShop · current snapshot</span>
     <h2 id="ads-roadmap">Now, next, later.</h2>
     <p>Re-baselined May 2026. Product is feature-complete in the alpha; the path to closed beta now runs through legal foundation and platform hardening, not more product code.</p>
   </div>
@@ -82,7 +147,7 @@
 
 <section class="venture-section" aria-labelledby="ads-changelog">
   <div class="head">
-    <span class="eyebrow">AdoptDontShop · platform</span>
+    <span class="eyebrow signal">AdoptDontShop · current snapshot</span>
     <h2 id="ads-changelog">What's standing up in the repo.</h2>
     <p>Verifiable from <a href="https://github.com/ideaSquared/adopt-dont-shop">the repo</a>. Architecture-level facts; user-facing product features land in the journal once they ship to a real cohort.</p>
   </div>
@@ -111,7 +176,7 @@
 
 <section class="venture-section" aria-labelledby="pf-status">
   <div class="head">
-    <span class="eyebrow">Pairflix · status</span>
+    <span class="eyebrow">Pairflix · current snapshot</span>
     <h2 id="pf-status">Early alpha -pre-launch, no public users yet.</h2>
     <p>The platform stack is in place; the product hasn't opened to outside testers. No waitlist, no beta cohort, no release date. The <a href="../ventures/pairflix/">venture brief</a> covers product, model and market.</p>
   </div>
