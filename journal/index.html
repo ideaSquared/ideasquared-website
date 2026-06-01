@@ -40,36 +40,41 @@
   <div class="head">
     <span class="eyebrow signal">AdoptDontShop · roadmap</span>
     <h2 id="ads-roadmap">Now, next, later.</h2>
-    <p>The path from beta to public launch and the rescue dashboard rollout.</p>
+    <p>Re-baselined May 2026. Product is feature-complete in the alpha; the path to closed beta now runs through legal foundation and platform hardening, not more product code.</p>
   </div>
   <div class="venture-grid-4">
     <article class="venture-card">
-      <h4>Now · in build</h4>
+      <h4>Now · Jun–Jul 2026</h4>
       <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
-        <li>Close M7 issues + QA pass</li>
-        <li>Rescue onboarding workflow (M8)</li>
+        <li>Legal foundation -incorporation, HMRC, ICO controller registration, solicitor on retainer</li>
+        <li>Rescue profile builder (live in staging)</li>
+        <li>Geographic search by postcode (in review)</li>
+        <li>6-step application workflow (in design)</li>
       </ul>
     </article>
     <article class="venture-card">
-      <h4>Next</h4>
+      <h4>Next · Jul–Sep 2026</h4>
       <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
-        <li>GDPR review + privacy policy (M9)</li>
-        <li>Production-grade deployment (M10)</li>
+        <li>Data protection package -DPIA, ROPA, solicitor-reviewed Privacy, Cookie, ToS, AUP</li>
+        <li>Platform hardening -dedicated AWS, RDS restore drill, Sentry + Plausible + uptime</li>
+        <li>Welfare-incident reporting from the adopter side</li>
+        <li>Closed beta · Aug–Sep -convert 5 lister LOIs, onboard 50–100 invited adopters</li>
       </ul>
     </article>
     <article class="venture-card">
-      <h4>Later</h4>
+      <h4>Later · Oct–Nov 2026</h4>
       <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
-        <li>Closed beta with first rescue cluster (Q4 2026 target)</li>
-        <li>Mobile app</li>
-        <li>Advanced search &amp; matching</li>
+        <li>Trust &amp; safety -Charity Commission + Companies House verification, home checks, moderation runbook</li>
+        <li>Payments &amp; commercial -Stripe live, SaaS tiers, first paid lister, first affiliate LOI</li>
+        <li>Public launch · Nov 2026 -waterfall gate across legal, compliance, platform, T&amp;S, commercial</li>
       </ul>
     </article>
     <article class="venture-card">
-      <h4>Considering</h4>
+      <h4>Cut from scope</h4>
       <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
-        <li>Adopter community / forum</li>
-        <li>Donations module for rescues</li>
+        <li>Rescue ratings system -against principle</li>
+        <li>Adopter "wishlist" -animal-as-listing, no thanks</li>
+        <li>Premium rescue placements -the £40k cheque we turned down</li>
       </ul>
     </article>
   </div>
@@ -89,12 +94,17 @@
     <tbody>
       <tr><td class="num-col">Standing</td><td>Three React frontends -public client, internal admin, rescue portal</td></tr>
       <tr><td class="num-col">Standing</td><td>Node.js + Express REST and WebSocket API backend</td></tr>
-      <tr><td class="num-col">Standing</td><td>JWT and session-based authentication</td></tr>
-      <tr><td class="num-col">Standing</td><td>PostgreSQL 16 with PostGIS, Redis 7, Socket.io for real-time</td></tr>
-      <tr><td class="num-col">Standing</td><td>Turborepo monorepo with shared libraries</td></tr>
+      <tr><td class="num-col">Standing</td><td>JWT + refresh tokens + session secrets</td></tr>
+      <tr><td class="num-col">Standing</td><td>Rescue registration with staff permission tiers; pet listings with photo upload</td></tr>
+      <tr><td class="num-col">Standing</td><td>Adopter browse, filter and like/application flow end-to-end</td></tr>
+      <tr><td class="num-col">Standing</td><td>Real-time messaging on Socket.io between adopters and rescues</td></tr>
+      <tr><td class="num-col">Standing</td><td>PostgreSQL 16 with PostGIS, Redis 7, Turborepo monorepo with shared libraries</td></tr>
       <tr><td class="num-col">Standing</td><td>Docker Compose dev stack + multi-stage prod builds, Nginx reverse proxy</td></tr>
-      <tr><td class="num-col">Standing</td><td>Swagger API documentation</td></tr>
-      <tr><td class="num-col">In flight</td><td>M7 -closing open issues, QA pass</td></tr>
+      <tr><td class="num-col">Standing</td><td>Swagger API documentation at /api/docs</td></tr>
+      <tr><td class="num-col">In flight</td><td>Rescue profile builder -drag-and-drop, three columns, live in staging</td></tr>
+      <tr><td class="num-col">In flight</td><td>Geographic search by postcode -in review</td></tr>
+      <tr><td class="num-col">In flight</td><td>6-step application workflow -in design</td></tr>
+      <tr><td class="num-col">Next</td><td>Welfare-incident reporting from the adopter side</td></tr>
     </tbody>
   </table>
 </section>
