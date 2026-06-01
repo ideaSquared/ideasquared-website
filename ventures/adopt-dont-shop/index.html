@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>AdoptDontShop -Adoption made simple · ideaSquared</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="AdoptDontShop is a swipe-based pet adoption platform connecting UK rescue pets with the right humans. A venture of the ideaSquared studio.">
+<meta name="description" content="AdoptDontShop is a swipe-based pet adoption platform connecting UK rescue pets with the right humans. Closed beta Aug–Sep 2026, public launch Nov 2026. A venture of the ideaSquared studio.">
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
 <link rel="stylesheet" href="../../styles/tokens.css">
 <link rel="stylesheet" href="../../styles/site.css">
@@ -51,9 +51,9 @@
     </div>
     <aside class="venture-hero-side" aria-label="AdoptDontShop at a glance">
       <div class="venture-stat"><div class="label">Stage</div><div class="value">Alpha · in build</div></div>
+      <div class="venture-stat"><div class="label">Closed beta</div><div class="value">Aug–Sep 2026</div></div>
+      <div class="venture-stat"><div class="label">Public launch</div><div class="value">Nov 2026</div></div>
       <div class="venture-stat"><div class="label">Ask</div><div class="value">£500k seed</div></div>
-      <div class="venture-stat"><div class="label">Beta target</div><div class="value">Q4 2026</div></div>
-      <div class="venture-stat"><div class="label">Market</div><div class="value">£7bn UK pet care</div></div>
     </aside>
   </div>
 </section>
@@ -157,42 +157,61 @@
   <div class="venture-grid-3">
     <article class="venture-card">
       <h4>Phase 1 · Cluster</h4>
-      <p>Onboard 20 rescues across London and Manchester. Density before reach.</p>
+      <p>Convert the 5 lister LOIs to signed agreements and onboard 50–100 invited adopters from the existing waitlist into a single-region closed beta. Density before reach.</p>
     </article>
     <article class="venture-card">
       <h4>Phase 2 · Influence</h4>
-      <p>TikTok and Instagram pet creators drive adopter installs alongside organic.</p>
+      <p>TikTok and Instagram pet creators drive adopter installs alongside organic. Public launch opens the rescue dashboard beyond the closed beta cohort.</p>
     </article>
     <article class="venture-card">
       <h4>Phase 3 · National</h4>
-      <p>Rescue dashboard rollout UK-wide. Vet, insurer and food-brand partnerships layer on revenue and supply.</p>
+      <p>20 active listers and the first 100 adoptions by Q1 2027, then UK-wide rollout. Vet, insurer and food-brand partnerships layer on revenue and supply.</p>
     </article>
   </div>
 </section>
 
 <section class="venture-section" aria-labelledby="status">
   <div class="head">
-    <span class="eyebrow">Where we are</span>
-    <h2 id="status">Alpha -in active build, pre-outreach.</h2>
-    <p>No public waitlist, no rescue outreach yet. Engineering is the gate; we open up to rescues and adopters once the beta build clears its quality bar.</p>
+    <span class="eyebrow">Where we are · May 2026</span>
+    <h2 id="status">Alpha build is feature-complete. Compliance is the gate.</h2>
+    <p>The core adoption flow ships end-to-end in the alpha. The path to closed beta now runs through legal foundation, the data protection package and platform hardening -not more product code.</p>
   </div>
   <div class="venture-grid-3">
     <article class="venture-card">
-      <h4>Consumer app &amp; rescue dashboard</h4>
-      <p>Both applications in active development on the studio's TypeScript monorepo -three React frontends, a Node/Express API, full Docker dev and prod environment.</p>
+      <h4>Shipped in the alpha</h4>
+      <p>Auth, rescue verification, pet listings with staff permissions, adopter browse/filter/like flow, real-time messaging on Socket.io, and the full Docker dev + prod environment -all live on the TypeScript monorepo.</p>
     </article>
     <article class="venture-card">
-      <h4>Brand &amp; design system live</h4>
-      <p>Identity, voice and component library are settled. Future feature work plugs into the system rather than re-inventing it.</p>
+      <h4>Three frontends, one API</h4>
+      <p>React 18 + Vite + styled-components across the adopter portal, rescue dashboard and internal admin. Node 20 + Express + Sequelize backing PostgreSQL 16 + PostGIS and Redis 7, fronted by Nginx.</p>
     </article>
     <article class="venture-card">
-      <h4>Beta target: Q4 2026</h4>
-      <p>The first version we'll open to a closed cluster of UK rescues. Public launch follows once the beta cohort proves out adoption flow.</p>
+      <h4>Demand signal preserved</h4>
+      <p>5 lister letters of intent and a 1,000+ adopter waitlist carried over from the prior cycle. Cluster-first: we convert the LOIs to signed lister agreements at closed beta, not before.</p>
     </article>
   </div>
-  <p style="margin-top: 16px; font-size: 13px; color: var(--fg-muted);">
-    What's shipped already inside the alpha build is documented on the <a href="../../journal/">studio journal</a>.
-  </p>
+  <p class="table-label" style="margin-top: 32px;">Re-baselined roadmap to public launch</p>
+  <table class="venture-table">
+    <thead>
+      <tr><th scope="col">Milestone</th><th scope="col">Window</th><th scope="col">Definition of done</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Legal foundation</th><td>Jun 2026</td><td>Incorporation, HMRC, ICO controller registration, IP assignment, solicitor on retainer</td></tr>
+      <tr><th scope="row">Data protection package</th><td>Jul 2026</td><td>DPIA signed off, ROPA published, Privacy, Cookie, ToS and AUP solicitor-reviewed</td></tr>
+      <tr><th scope="row">Platform hardening</th><td>Jul 2026</td><td>Dedicated AWS, RDS with restore drill, Sentry + Plausible + uptime, CI green, rollback documented</td></tr>
+      <tr><th scope="row">Closed beta</th><td>Aug–Sep 2026</td><td>5 lister agreements signed, 50–100 invited adopters, applications flowing end-to-end</td></tr>
+      <tr><th scope="row">Trust &amp; safety hardening</th><td>Sep 2026</td><td>Charity Commission + Companies House verification, home checks, moderation and welfare runbooks</td></tr>
+      <tr><th scope="row">Payments &amp; commercial</th><td>Oct 2026</td><td>Stripe live, SaaS tiers published, first paid lister contracted, first affiliate LOI signed</td></tr>
+      <tr><th scope="row">Public launch</th><td>Nov 2026</td><td>Waterfall gate: legal, compliance, platform, trust &amp; safety and commercial all green</td></tr>
+    </tbody>
+  </table>
+  <div class="callout" role="note" style="margin-top: 24px;">
+    <span class="icon" aria-hidden="true">✂</span>
+    <div>
+      <strong>What we cut from scope</strong>
+      <p style="margin: 4px 0 0;">A rescue ratings system (against principle), a "wishlist" feature (animal-as-listing -no thanks), and premium rescue placements (the £40k cheque we turned down). Build-in-public notes live on the <a href="../../journal/">studio journal</a>.</p>
+    </div>
+  </div>
 </section>
 
 <section class="venture-section" aria-labelledby="projections">

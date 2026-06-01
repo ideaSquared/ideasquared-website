@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Journal -ideaSquared</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="What's shipping, what's next, what's still on the radar -across the live ideaSquared ventures.">
+<meta name="description" content="Dated build log across the ideaSquared ventures, newest first, with venture-tagged entries and per-product current-state snapshots.">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="stylesheet" href="../styles/tokens.css">
 <link rel="stylesheet" href="../styles/site.css">
@@ -32,92 +32,73 @@
 
 <section class="subpage-hero">
   <span class="eyebrow">The journal</span>
-  <h1>Roadmap &amp; release notes, in the open.</h1>
-  <p>The customer-visible counterpart of GitHub commits -every shipped feature gets a line within 24 hours. No dates that aren't committable; we use Now / Next / Later instead.</p>
+  <h1>What's shipping across the studio, in the open.</h1>
+  <p>Dated entries from the live ventures, newest first. Each entry links to the <a href="../ventures/">venture brief</a> for the full current snapshot -roadmap, stack and stage.</p>
 </section>
 
-<section class="venture-section" aria-labelledby="ads-roadmap">
+<section class="venture-section" aria-labelledby="entries">
   <div class="head">
-    <span class="eyebrow signal">AdoptDontShop · roadmap</span>
-    <h2 id="ads-roadmap">Now, next, later.</h2>
-    <p>The path from beta to public launch and the rescue dashboard rollout.</p>
+    <span class="eyebrow signal">Latest entries</span>
+    <h2 id="entries">Studio log.</h2>
+    <p>One line per change, tagged with the venture it belongs to.</p>
   </div>
-  <div class="venture-grid-4">
-    <article class="venture-card">
-      <h4>Now · in build</h4>
-      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
-        <li>Close M7 issues + QA pass</li>
-        <li>Rescue onboarding workflow (M8)</li>
-      </ul>
-    </article>
-    <article class="venture-card">
-      <h4>Next</h4>
-      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
-        <li>GDPR review + privacy policy (M9)</li>
-        <li>Production-grade deployment (M10)</li>
-      </ul>
-    </article>
-    <article class="venture-card">
-      <h4>Later</h4>
-      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
-        <li>Closed beta with first rescue cluster (Q4 2026 target)</li>
-        <li>Mobile app</li>
-        <li>Advanced search &amp; matching</li>
-      </ul>
-    </article>
-    <article class="venture-card">
-      <h4>Considering</h4>
-      <ul style="margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.55; color: var(--fg-body);">
-        <li>Adopter community / forum</li>
-        <li>Donations module for rescues</li>
-      </ul>
-    </article>
-  </div>
-</section>
+  <div class="venture-grid-2">
 
-<section class="venture-section" aria-labelledby="ads-changelog">
-  <div class="head">
-    <span class="eyebrow">AdoptDontShop · platform</span>
-    <h2 id="ads-changelog">What's standing up in the repo.</h2>
-    <p>Verifiable from <a href="https://github.com/ideaSquared/adopt-dont-shop">the repo</a>. Architecture-level facts; user-facing product features land in the journal once they ship to a real cohort.</p>
-  </div>
-  <p class="table-label">Platform · in build</p>
-  <table class="venture-table">
-    <thead>
-      <tr><th scope="col">Status</th><th scope="col">Capability</th></tr>
-    </thead>
-    <tbody>
-      <tr><td class="num-col">Standing</td><td>Three React frontends -public client, internal admin, rescue portal</td></tr>
-      <tr><td class="num-col">Standing</td><td>Node.js + Express REST and WebSocket API backend</td></tr>
-      <tr><td class="num-col">Standing</td><td>JWT and session-based authentication</td></tr>
-      <tr><td class="num-col">Standing</td><td>PostgreSQL 16 with PostGIS, Redis 7, Socket.io for real-time</td></tr>
-      <tr><td class="num-col">Standing</td><td>Turborepo monorepo with shared libraries</td></tr>
-      <tr><td class="num-col">Standing</td><td>Docker Compose dev stack + multi-stage prod builds, Nginx reverse proxy</td></tr>
-      <tr><td class="num-col">Standing</td><td>Swagger API documentation</td></tr>
-      <tr><td class="num-col">In flight</td><td>M7 -closing open issues, QA pass</td></tr>
-    </tbody>
-  </table>
-</section>
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
+      </div>
+      <h4>Roadmap re-baselined to closed beta Aug–Sep 2026.</h4>
+      <p>Original §15 beta target (Q4 2025) was missed. The May 2026 re-baseline replaces it with seven sequenced milestones: legal foundation, data protection package, platform hardening, closed beta, trust &amp; safety, payments &amp; commercial, and public launch in November. Demand signal preserved -5 lister LOIs and a 1,000+ adopter waitlist carried in.</p>
+    </article>
 
-<section class="venture-section" aria-labelledby="pf-status">
-  <div class="head">
-    <span class="eyebrow">Pairflix · status</span>
-    <h2 id="pf-status">Early alpha -pre-launch, no public users yet.</h2>
-    <p>The platform stack is in place; the product hasn't opened to outside testers. No waitlist, no beta cohort, no release date. The <a href="../ventures/pairflix/">venture brief</a> covers product, model and market.</p>
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
+      </div>
+      <h4>Sprint focus published.</h4>
+      <p>Rescue profile builder (drag-and-drop, three columns) live in staging. Geographic search by postcode in review. 6-step application workflow in design. Welfare-incident reporting from the adopter side next.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
+      </div>
+      <h4>Scope cuts logged.</h4>
+      <p>Three features dropped on purpose: a rescue ratings system (against principle), an adopter "wishlist" (animal-as-listing -no thanks), and premium rescue placements (the £40k cheque we turned down).</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">26 Apr 2026</span>
+      </div>
+      <h4>Proposal moved to <em>In Build</em>.</h4>
+      <p>The ADS proposal cleared the gate and is now an active venture on the studio platform. Stack locked: React + Vite + TypeScript, Node + Express + Sequelize, PostgreSQL 16 + PostGIS, Redis 7, Socket.io, Turborepo. Lead: Alex Jenkinson.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">26 Apr 2026</span>
+      </div>
+      <h4>Alpha feature-complete.</h4>
+      <p>Six engineering milestones standing: monorepo + Docker dev stack, JWT auth + rescue registration, pet listings with staff permissions + photo upload, adopter browse/filter/like flow, real-time messaging on Socket.io, and Docker dev + prod environments. Closing 18 open issues + QA pass before handing off to compliance.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip">Pairflix</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">Apr 2026</span>
+      </div>
+      <h4>Early alpha state captured.</h4>
+      <p>Platform stack standing -three apps (client, admin, backend), JWT auth, watchlist + partner matching, TMDB integration, TypeScript strict mode, full test suite passing, multi-stage Docker builds behind Nginx. No public users yet; matcher and partner-pairing UX in flight before opening a closed alpha.</p>
+    </article>
+
   </div>
-  <p class="table-label">Platform · in build</p>
-  <table class="venture-table">
-    <thead>
-      <tr><th scope="col">Status</th><th scope="col">Capability</th></tr>
-    </thead>
-    <tbody>
-      <tr><td class="num-col">Standing</td><td>Three apps -Client (React), Admin panel, Express + PostgreSQL backend</td></tr>
-      <tr><td class="num-col">Standing</td><td>JWT authentication, watchlist management, partner matching, TMDB integration</td></tr>
-      <tr><td class="num-col">Standing</td><td>TypeScript strict mode across all code; full test suite passing</td></tr>
-      <tr><td class="num-col">Standing</td><td>Multi-stage Docker builds, Nginx reverse proxy, production-ready infra</td></tr>
-      <tr><td class="num-col">In flight</td><td>Matcher and partner-pairing UX before opening a closed alpha</td></tr>
-    </tbody>
-  </table>
 </section>
 
 <section class="venture-section" aria-labelledby="principles">
