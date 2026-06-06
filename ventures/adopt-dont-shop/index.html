@@ -184,11 +184,11 @@
   <div class="venture-grid-3">
     <article class="venture-card">
       <h4>Shipped in the alpha</h4>
-      <p>Auth, rescue verification, pet listings with staff permissions, adopter browse/filter/like flow, real-time messaging on Socket.io, full Docker dev + prod environment, OpenTelemetry distributed tracing, and Sigstore container signing &mdash; all live on the TypeScript monorepo.</p>
+      <p>Auth, rescue verification, pet listings with staff permissions, adopter browse/filter/like flow, real-time messaging on Socket.io, full Docker dev + prod environment, OpenTelemetry distributed tracing, and Sigstore container signing. Microservices migration now underway &mdash; notifications and auth run as independent gRPC services behind a strangler-fig gateway, with the pets service extraction in progress.</p>
     </article>
     <article class="venture-card">
-      <h4>Three frontends, one API</h4>
-      <p>React 18 + Vite + styled-components across the adopter portal, rescue dashboard and internal admin. Node 20 + Express + Sequelize backing PostgreSQL 16 + PostGIS and Redis 7, fronted by Nginx.</p>
+      <h4>Three frontends, one platform</h4>
+      <p>React 18 + Vite + styled-components across the adopter portal, rescue dashboard and internal admin. Node 20 + Express + Sequelize on PostgreSQL 16 + PostGIS and Redis 7, fronted by Nginx. Services communicate over gRPC + NATS as the platform migrates to a domain-per-service architecture.</p>
     </article>
     <article class="venture-card">
       <h4>Demand signal preserved</h4>
