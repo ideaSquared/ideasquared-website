@@ -55,11 +55,11 @@ img { display: block; max-width: 100%; }
 .btn-primary { background: var(--i2-signal-500); color: var(--i2-navy-900); }
 .btn-primary:hover { background: var(--i2-signal-600); color: #fff; transform: translateY(-1px); }
 
-.btn-secondary { background: var(--i2-navy-900); color: #fff; }
-.btn-secondary:hover { background: var(--i2-navy-800); transform: translateY(-1px); }
+.btn-secondary { background: var(--fg); color: var(--bg); }
+.btn-secondary:hover { background: var(--fg-body); color: var(--bg); transform: translateY(-1px); }
 
 .btn-ghost { background: transparent; color: var(--fg); border-color: var(--line-strong); }
-.btn-ghost:hover { background: #fff; border-color: var(--i2-navy-900); }
+.btn-ghost:hover { background: var(--bg-raised); border-color: var(--fg); }
 
 .btn-ghost-dark { background: transparent; color: #fff; border-color: rgba(255,255,255,0.2); }
 .btn-ghost-dark:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.6); }
@@ -112,7 +112,7 @@ button:focus-visible {
   font-weight: 600;
   letter-spacing: 0.01em;
   border: 1px solid;
-  background: #fff;
+  background: var(--bg-raised);
   color: var(--fg);
   border-color: var(--line-strong);
 }
@@ -136,7 +136,7 @@ button:focus-visible {
   padding: 0 24px;
 }
 .nav-inner {
-  background: rgba(247, 246, 242, 0.55);
+  background: var(--nav-bg, rgba(247, 246, 242, 0.55));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--line);
@@ -148,7 +148,7 @@ button:focus-visible {
   gap: 14px;
   transition: background var(--dur-base) var(--ease-out);
 }
-.nav.is-scrolled .nav-inner { background: rgba(247, 246, 242, 0.85); }
+.nav.is-scrolled .nav-inner { background: var(--nav-bg-scrolled, rgba(247, 246, 242, 0.85)); }
 .nav-brand {
   display: inline-flex;
   align-items: center;
@@ -176,8 +176,8 @@ button:focus-visible {
   border-radius: 999px;
   transition: background 180ms;
 }
-.nav-links a:hover { background: rgba(8,24,42,0.05); }
-.nav-links a.is-active { background: rgba(8,24,42,0.08); }
+.nav-links a:hover { background: var(--nav-link-hover, rgba(8,24,42,0.05)); }
+.nav-links a.is-active { background: var(--nav-link-active, rgba(8,24,42,0.08)); }
 .nav-toggle { display: none; }
 
 /* ---------- Hero ---------- */
@@ -247,7 +247,7 @@ button:focus-visible {
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background: #fff;
+  background: var(--bg-raised);
   border: 1px solid var(--line);
   border-radius: 18px;
   overflow: hidden;
@@ -302,7 +302,7 @@ button:focus-visible {
 }
 .filter { display: flex; gap: 8px; flex-wrap: wrap; }
 .filter button {
-  background: #fff;
+  background: var(--bg-raised);
   color: var(--fg);
   border: 1px solid var(--line-strong);
   border-radius: 999px;
@@ -313,11 +313,11 @@ button:focus-visible {
   font-family: var(--font-sans);
   transition: all 180ms;
 }
-.filter button:hover { border-color: var(--i2-navy-900); }
+.filter button:hover { border-color: var(--fg); }
 .filter button.is-active {
-  background: var(--i2-navy-900);
-  color: #fff;
-  border-color: var(--i2-navy-900);
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
 }
 
 .project-grid {
@@ -326,7 +326,7 @@ button:focus-visible {
   gap: 16px;
 }
 .project-card {
-  background: #fff;
+  background: var(--bg-raised);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 28px;
@@ -411,7 +411,7 @@ button:focus-visible {
   gap: 16px;
 }
 .step {
-  background: #fff;
+  background: var(--bg-raised);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 28px;
@@ -583,7 +583,7 @@ button:focus-visible {
   padding: 0 24px;
 }
 .placeholder-card {
-  background: #fff;
+  background: var(--bg-raised);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 48px;
@@ -706,7 +706,7 @@ button:focus-visible {
   gap: 16px;
 }
 .venture-card {
-  background: #fff;
+  background: var(--bg-raised);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 24px;
@@ -735,7 +735,7 @@ button:focus-visible {
 .venture-table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
+  background: var(--bg-raised);
   border: 1px solid var(--line);
   border-radius: 18px;
   overflow: hidden;
@@ -837,6 +837,50 @@ button:focus-visible {
   .quote { padding: 48px 24px; margin: 64px 16px 0; }
   .container { padding-inline: 16px; }
   .footer { padding: 40px 16px 32px; }
+}
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--fg);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out),
+              color var(--dur-base) var(--ease-out);
+}
+.theme-toggle:hover { border-color: var(--fg); background: var(--bg-sunken); }
+.theme-toggle svg { width: 18px; height: 18px; }
+.theme-toggle .icon-sun  { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+/* Dark-theme tints for translucent nav surfaces and link hovers.
+   Light tokens for these can't be expressed as variables alone because
+   they involve alpha over a non-token base, so we override directly. */
+:root[data-theme="dark"] {
+  --nav-bg: rgba(8, 24, 42, 0.55);
+  --nav-bg-scrolled: rgba(8, 24, 42, 0.85);
+  --nav-link-hover: rgba(255, 255, 255, 0.06);
+  --nav-link-active: rgba(255, 255, 255, 0.1);
+}
+:root[data-theme="dark"] .theme-toggle .icon-sun  { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    --nav-bg: rgba(8, 24, 42, 0.55);
+    --nav-bg-scrolled: rgba(8, 24, 42, 0.85);
+    --nav-link-hover: rgba(255, 255, 255, 0.06);
+    --nav-link-active: rgba(255, 255, 255, 0.1);
+  }
+  :root[data-theme="auto"] .theme-toggle .icon-sun  { display: block; }
+  :root[data-theme="auto"] .theme-toggle .icon-moon { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

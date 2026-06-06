@@ -1,4 +1,57 @@
 (() => {
+  // ---- Theme toggle ---------------------------------------------------
+  // States: "auto" (follow OS), "light", "dark".
+  // Stored only when the user makes an explicit choice; absence == auto.
+  const THEME_KEY = 'i2-theme';
+  const root = document.documentElement;
+  const stored = (() => {
+    try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
+  })();
+  const initial = stored === 'light' || stored === 'dark' ? stored : 'auto';
+  root.setAttribute('data-theme', initial);
+
+  const mql = window.matchMedia('(prefers-color-scheme: dark)');
+  const resolved = () => {
+    const t = root.getAttribute('data-theme');
+    if (t === 'light' || t === 'dark') return t;
+    return mql.matches ? 'dark' : 'light';
+  };
+
+  const buttons = document.querySelectorAll('[data-theme-toggle]');
+  const syncButtons = () => {
+    const next = resolved() === 'dark' ? 'light' : 'dark';
+    buttons.forEach((btn) => {
+      btn.setAttribute('aria-label', `Switch to ${next} theme`);
+      btn.setAttribute('title', `Switch to ${next} theme`);
+      btn.setAttribute('aria-pressed', String(resolved() === 'dark'));
+    });
+  };
+  syncButtons();
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const next = resolved() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+      syncButtons();
+    });
+  });
+
+  // Reflect OS changes while in auto mode.
+  const onMqlChange = () => {
+    if (root.getAttribute('data-theme') === 'auto') syncButtons();
+  };
+  if (mql.addEventListener) mql.addEventListener('change', onMqlChange);
+  else if (mql.addListener) mql.addListener(onMqlChange);
+
+  // Sync across tabs.
+  window.addEventListener('storage', (e) => {
+    if (e.key !== THEME_KEY) return;
+    const t = e.newValue === 'light' || e.newValue === 'dark' ? e.newValue : 'auto';
+    root.setAttribute('data-theme', t);
+    syncButtons();
+  });
+
   const nav = document.getElementById('nav');
   if (nav) {
     const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 12);

@@ -11,6 +11,7 @@
 		<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
 		<link rel="stylesheet" href="../styles/tokens.css" />
 		<link rel="stylesheet" href="../styles/site.css" />
+		<script>(function(){try{var t=localStorage.getItem('i2-theme');document.documentElement.setAttribute('data-theme',t==='light'||t==='dark'?t:'auto');}catch(e){document.documentElement.setAttribute('data-theme','auto');}})();</script>
 	</head>
 	<body class="i2">
 		<a class="skip-link" href="#main">Skip to main content</a>
@@ -29,6 +30,10 @@
 					<a href="../studio/" data-nav="/studio/">Studio</a>
 					<a href="../journal/" data-nav="/journal/">Journal</a>
 				</nav>
+				<button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+					<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+					<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></svg>
+				</button>
 				<button
 					class="nav-toggle"
 					id="nav-toggle"
