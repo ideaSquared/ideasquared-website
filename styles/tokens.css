@@ -159,8 +159,14 @@
 }
 
 /* ============================================================
-   Dark surface -opt-in by adding `.on-dark` to a section
+   Dark theme tokens
+   Applied site-wide when:
+     - the user has explicitly chosen dark (html[data-theme="dark"]), OR
+     - the user is on "auto" (the default) and the OS prefers dark.
+   The `.on-dark` class keeps its old job: a localised dark surface
+   (hero, quote, dark cards) that stays dark regardless of theme.
    ============================================================ */
+:root[data-theme="dark"],
 .on-dark {
   --bg: var(--i2-navy-900);
   --bg-raised: var(--i2-navy-800);
@@ -175,6 +181,27 @@
   --line-strong: rgba(255, 255, 255, 0.16);
   --link: var(--i2-ink-50);
   --link-hover: var(--i2-signal-400);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] {
+    --bg: var(--i2-navy-900);
+    --bg-raised: var(--i2-navy-800);
+    --bg-sunken: var(--i2-navy-950);
+    --bg-inverse: var(--i2-ink-50);
+    --fg: var(--i2-ink-50);
+    --fg-body: #d8d3c5;
+    --fg-muted: #9aa1ab;
+    --fg-subtle: #6c7480;
+    --fg-inverse: var(--i2-ink-900);
+    --line: rgba(255, 255, 255, 0.08);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --link: var(--i2-ink-50);
+    --link-hover: var(--i2-signal-400);
+  }
+}
+
+.on-dark {
   background: var(--bg);
   color: var(--fg-body);
 }
