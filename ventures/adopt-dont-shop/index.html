@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>AdoptDontShop &mdash; Adoption made simple · ideaSquared</title>
+<title>AdoptDontShop &mdash; Adoption made simple &middot; ideaSquared</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="AdoptDontShop is a swipe-based pet adoption platform connecting UK rescue pets with the right humans. Closed beta Aug–Sep 2026, public launch Nov 2026. A venture of the ideaSquared studio.">
+<meta name="description" content="AdoptDontShop is a swipe-based pet adoption platform connecting UK rescue pets with the right humans. Closed beta Aug&ndash;Sep 2026, public launch Nov 2026. A venture of the ideaSquared studio.">
 <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
 <link rel="stylesheet" href="../../styles/tokens.css">
 <link rel="stylesheet" href="../../styles/site.css">
@@ -38,13 +38,13 @@
 <section class="venture-hero" aria-labelledby="ads-name">
   <div class="venture-hero-inner">
     <div>
-      <span class="eyebrow signal">Venture · in build</span>
+      <span class="eyebrow signal">Venture &middot; in build</span>
       <h1 id="ads-name">AdoptDontShop.</h1>
       <p class="lede">Adoption made simple. A swipe-based pet adoption platform connecting UK rescue pets with the right humans &mdash; built mobile-first, free for adopters.</p>
       <div class="meta">
         <span class="chip">Pet adoption</span>
         <span class="chip">UK-first</span>
-        <span class="chip">Alpha · pre-launch</span>
+        <span class="chip">Alpha &middot; pre-launch</span>
       </div>
       <div class="cta">
         <a href="mailto:investors@ideasquared.co.uk?subject=AdoptDontShop%20%C2%B7%20seed" class="btn btn-primary btn-lg">
@@ -55,10 +55,10 @@
       </div>
     </div>
     <aside class="venture-hero-side" aria-label="AdoptDontShop at a glance">
-      <div class="venture-stat"><div class="label">Stage</div><div class="value">Alpha · in build</div></div>
-      <div class="venture-stat"><div class="label">Closed beta</div><div class="value">Aug–Sep 2026</div></div>
+      <div class="venture-stat"><div class="label">Stage</div><div class="value">Alpha &middot; in build</div></div>
+      <div class="venture-stat"><div class="label">Closed beta</div><div class="value">Aug&ndash;Sep 2026</div></div>
       <div class="venture-stat"><div class="label">Public launch</div><div class="value">Nov 2026</div></div>
-      <div class="venture-stat"><div class="label">Ask</div><div class="value">£500k seed</div></div>
+      <div class="venture-stat"><div class="label">Ask</div><div class="value">&pound;500k seed</div></div>
     </aside>
   </div>
 </section>
@@ -109,7 +109,7 @@
       <tr><th scope="col">Indicator</th><th scope="col">Value</th></tr>
     </thead>
     <tbody>
-      <tr><th scope="row">UK pet care market</th><td class="num-col">£7bn</td></tr>
+      <tr><th scope="row">UK pet care market</th><td class="num-col">&pound;7bn</td></tr>
       <tr><th scope="row">Pets entering UK rescues annually</th><td class="num-col">100,000+</td></tr>
       <tr><th scope="row">New pets adopted since COVID</th><td class="num-col">3.2m</td></tr>
       <tr><th scope="row">Largest adopter segment</th><td>Gen Z &amp; Millennials</td></tr>
@@ -161,15 +161,15 @@
   </div>
   <div class="venture-grid-3">
     <article class="venture-card">
-      <h4>Phase 1 · Cluster</h4>
-      <p>Convert the 5 lister LOIs to signed agreements and onboard 50–100 invited adopters from the existing waitlist into a single-region closed beta. Density before reach.</p>
+      <h4>Phase 1 &middot; Cluster</h4>
+      <p>Convert the 5 lister LOIs to signed agreements and onboard 50&ndash;100 invited adopters from the existing waitlist into a single-region closed beta. Density before reach.</p>
     </article>
     <article class="venture-card">
-      <h4>Phase 2 · Influence</h4>
+      <h4>Phase 2 &middot; Influence</h4>
       <p>TikTok and Instagram pet creators drive adopter installs alongside organic. Public launch opens the rescue dashboard beyond the closed beta cohort.</p>
     </article>
     <article class="venture-card">
-      <h4>Phase 3 · National</h4>
+      <h4>Phase 3 &middot; National</h4>
       <p>20 active listers and the first 100 adoptions by Q1 2027, then UK-wide rollout. Vet, insurer and food-brand partnerships layer on revenue and supply.</p>
     </article>
   </div>
@@ -177,18 +177,18 @@
 
 <section class="venture-section" aria-labelledby="status">
   <div class="head">
-    <span class="eyebrow">Where we are · June 2026</span>
+    <span class="eyebrow">Where we are &middot; June 2026</span>
     <h2 id="status">Alpha build is feature-complete. Compliance is the gate.</h2>
     <p>The core adoption flow ships end-to-end in the alpha. The path to closed beta now runs through legal foundation, the data protection package and platform hardening &mdash; not more product code.</p>
   </div>
   <div class="venture-grid-3">
     <article class="venture-card">
       <h4>Shipped in the alpha</h4>
-      <p>Auth, rescue verification, pet listings with staff permissions, adopter browse/filter/like flow, real-time messaging on Socket.io, full Docker dev + prod environment, OpenTelemetry distributed tracing, and Sigstore container signing. Microservices migration now underway &mdash; notifications and auth run as independent gRPC services behind a strangler-fig gateway, with the pets service extraction in progress.</p>
+      <p>Auth, rescue verification, pet listings with staff permissions, adopter browse/filter/like flow, real-time messaging, email notifications with per-account channel preferences, full Docker dev + prod environment, OpenTelemetry distributed tracing, and Sigstore container signing. Microservices migration <strong>complete</strong> &mdash; all ten domain services (auth, pets, rescue, applications, notifications, chat, moderation, matching, audit, storage) run as independent gRPC containers; the legacy monolith is deleted. Security hardening pass done: all high-severity static-analysis findings resolved.</p>
     </article>
     <article class="venture-card">
       <h4>Three frontends, one platform</h4>
-      <p>React 18 + Vite + styled-components across the adopter portal, rescue dashboard and internal admin. Node 20 + Express + Sequelize on PostgreSQL 16 + PostGIS and Redis 7, fronted by Nginx. Services communicate over gRPC + NATS as the platform migrates to a domain-per-service architecture.</p>
+      <p>React 18 + Vite + styled-components across the adopter portal, rescue dashboard and internal admin. Node 20 + Express + Sequelize on PostgreSQL 16 + PostGIS and Redis 7, fronted by Nginx. All services communicate over gRPC + NATS JetStream with durable, at-least-once event delivery.</p>
     </article>
     <article class="venture-card">
       <h4>Demand signal preserved</h4>
@@ -204,17 +204,17 @@
       <tr><th scope="row">Legal foundation</th><td>Jun 2026</td><td>Incorporation, HMRC, ICO controller registration, IP assignment, solicitor on retainer</td></tr>
       <tr><th scope="row">Data protection package</th><td>Jul 2026</td><td>DPIA signed off, ROPA published, Privacy, Cookie, ToS and AUP solicitor-reviewed</td></tr>
       <tr><th scope="row">Platform hardening</th><td>Jul 2026</td><td>Dedicated AWS, RDS with restore drill, Sentry + Plausible + uptime, CI green, rollback documented</td></tr>
-      <tr><th scope="row">Closed beta</th><td>Aug–Sep 2026</td><td>5 lister agreements signed, 50–100 invited adopters, applications flowing end-to-end</td></tr>
+      <tr><th scope="row">Closed beta</th><td>Aug&ndash;Sep 2026</td><td>5 lister agreements signed, 50&ndash;100 invited adopters, applications flowing end-to-end</td></tr>
       <tr><th scope="row">Trust &amp; safety hardening</th><td>Sep 2026</td><td>Charity Commission + Companies House verification, home checks, moderation and welfare runbooks</td></tr>
       <tr><th scope="row">Payments &amp; commercial</th><td>Oct 2026</td><td>Stripe live, SaaS tiers published, first paid lister contracted, first affiliate LOI signed</td></tr>
       <tr><th scope="row">Public launch</th><td>Nov 2026</td><td>Waterfall gate: legal, compliance, platform, trust &amp; safety and commercial all green</td></tr>
     </tbody>
   </table>
   <div class="callout" role="note" style="margin-top: 24px;">
-    <span class="icon" aria-hidden="true">✂</span>
+    <span class="icon" aria-hidden="true">&#x2702;</span>
     <div>
       <strong>What we cut from scope</strong>
-      <p style="margin: 4px 0 0;">A rescue ratings system (against principle), a "wishlist" feature (animal-as-listing &mdash; no thanks), and premium rescue placements (the £40k cheque we turned down). Build-in-public notes live on the <a href="../../journal/">studio journal</a>.</p>
+      <p style="margin: 4px 0 0;">A rescue ratings system (against principle), a &ldquo;wishlist&rdquo; feature (animal-as-listing &mdash; no thanks), and premium rescue placements (the &pound;40k cheque we turned down). Build-in-public notes live on the <a href="../../journal/">studio journal</a>.</p>
     </div>
   </div>
 </section>
@@ -239,7 +239,7 @@
 <section class="venture-section" aria-labelledby="ask">
   <div class="head">
     <span class="eyebrow signal">Funding ask</span>
-    <h2 id="ask">£500k seed to fund 18 months of rescue onboarding, growth and engineering.</h2>
+    <h2 id="ask">&pound;500k seed to fund 18 months of rescue onboarding, growth and engineering.</h2>
   </div>
   <p class="table-label">Allocation</p>
   <table class="venture-table">
@@ -253,7 +253,7 @@
     </tbody>
   </table>
   <div class="callout" role="note">
-    <span class="icon" aria-hidden="true">£</span>
+    <span class="icon" aria-hidden="true">&pound;</span>
     <div>
       <strong>Want to back the seed?</strong>
       <p style="margin: 4px 0 0;">Pitch decks and the full financial model are available on request. Email <a href="mailto:investors@ideasquared.co.uk?subject=AdoptDontShop%20%C2%B7%20seed">investors@ideasquared.co.uk</a>.</p>
@@ -264,7 +264,7 @@
 <section class="venture-section" aria-labelledby="impact">
   <div class="head">
     <span class="eyebrow">Impact</span>
-    <h2 id="impact">A cultural shift to "adopt first".</h2>
+    <h2 id="impact">A cultural shift to &ldquo;adopt first&rdquo;.</h2>
   </div>
   <div class="venture-grid-3">
     <article class="venture-card">
@@ -277,7 +277,7 @@
       <p>Faster, better-matched adoptions across partner rescues mean fewer pets reaching the welfare cliff edge.</p>
     </article>
     <article class="venture-card">
-      <h4>"Adopt first" before "buy"</h4>
+      <h4>&ldquo;Adopt first&rdquo; before &ldquo;buy&rdquo;</h4>
       <p>The cultural shift we're after &mdash; making adoption the default expectation, not the more difficult option.</p>
     </article>
   </div>
@@ -285,7 +285,7 @@
 
 <section class="quote" aria-label="Founder note">
   <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--i2-signal-400)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V11a4 4 0 0 1 4-4h2v3H7a1 1 0 0 0-1 1v2h3v8z"/><path d="M14 21V11a4 4 0 0 1 4-4h2v3h-2a1 1 0 0 0-1 1v2h3v8z"/></svg>
-  <blockquote>"The path to adoption should be simpler than the path to a breeder. Today it's the opposite."</blockquote>
+  <blockquote>&ldquo;The path to adoption should be simpler than the path to a breeder. Today it's the opposite.&rdquo;</blockquote>
   <div class="quote-attrib">
     <div class="quote-avatar" aria-hidden="true"></div>
     <div>
@@ -299,7 +299,7 @@
 
 <footer class="footer">
   <div class="footer-bottom">
-    <span>© 2026 ideaSquared · AdoptDontShop is a venture of the ideaSquared studio</span>
+    <span>&copy; 2026 ideaSquared &middot; AdoptDontShop is a venture of the ideaSquared studio</span>
     <span class="links">
       <a href="../../">Studio</a>
       <a href="https://github.com/ideaSquared/adopt-dont-shop">Source</a>
