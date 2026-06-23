@@ -52,6 +52,60 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">22 Jun 2026</span>
+      </div>
+      <h4>Admin panel: dashboard, inbox, rescue management and user creation restored.</h4>
+      <p>A backlog of admin-panel actions that were silently failing now work end-to-end: the Dashboard and Analytics pages load real platform data; moderation reports and support tickets appear together in one triage inbox with staff assignment; rescue detail actions (plan changes, analytics, email, bulk verify/suspend/reject) and rescue staff management are restored; rescue counts on the dashboard are now exact rather than capped at 100; and admins can create new user accounts with an optional setup invitation.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">22 Jun 2026</span>
+      </div>
+      <h4>Rescue dashboard: bulk and single application actions restored.</h4>
+      <p>Approving, rejecting, withdrawing or advancing the stage of one or more adoption applications at once was failing across the board &mdash; including ordinary single-application review. Both bulk and single-application actions now work end-to-end.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">21 Jun 2026</span>
+      </div>
+      <h4>Admin: Security Center login history, plus broadcast notifications restored.</h4>
+      <p>Administrators can now see a durable login-history and suspicious-activity log for any account, sourced from the full audit trail rather than a basic counter. The Activity tab on user, pet, application, rescue, chat, report and support-ticket records is fixed after failing to load. Sending a targeted in-app announcement to a user cohort no longer fails, and now shows a recipient-count preview before sending.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">20 Jun 2026</span>
+      </div>
+      <h4>Top Picks: personalised pet recommendations.</h4>
+      <p>The home page and a new Top Picks page now surface personalised pet recommendations, ranked by your match preferences, recency and promotion &mdash; each with a plain-language reason for the suggestion.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">20 Jun 2026</span>
+      </div>
+      <h4>Faster applications, plus new admin security controls.</h4>
+      <p>New adoption applications now pre-fill from your saved details, and your defaults update automatically as you apply. Rescue dashboard settings save correctly again after a regression. Administrators gained two new Security Center tools: viewing and revoking active sessions (or locking/unlocking accounts) across all users, and managing IP allow/block rules.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">19 Jun 2026</span>
+      </div>
+      <h4>Security hardening: CSP tightened, full API contract published.</h4>
+      <p>The frontend&rsquo;s Content-Security-Policy no longer allows unsafe-inline stylesheets, closing a CSS-injection vector, with a CI guard to prevent regressions. Every route across the application and document lifecycle now declares its contract in the OpenAPI spec, browsable at /docs. Admins can now reset a user&rsquo;s password directly from the Users page, immediately revoking that user&rsquo;s active sessions.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">18 Jun 2026</span>
       </div>
       <h4>Staff invitations, 2FA, pet favourites and custom application questions.</h4>
