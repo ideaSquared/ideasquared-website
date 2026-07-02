@@ -52,6 +52,42 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">1 Jul 2026</span>
+      </div>
+      <h4>Security: session tokens hardened; cold-start errors resolved.</h4>
+      <p>Refresh tokens are now stored as one-way cryptographic hashes &mdash; a database read can no longer be used to hijack an active session. Separately, the adopter portal, rescue dashboard and admin panel no longer return errors for the first ~40 seconds after a cold boot; all three now wait for the API gateway to become healthy before serving.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
+      </div>
+      <h4>Rescue events; live analytics dashboard; profile updates fixed.</h4>
+      <p>Rescues can now create and manage adoption events, fundraisers, volunteer days and community meetups &mdash; attendees register and check in, and analytics track attendance and capacity. The rescue dashboard analytics page now shows real-time figures for adoption trends, application status, pet performance and top breeds; mock data placeholders are removed. A bug that had silently prevented account profile changes from saving has also been fixed.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
+      </div>
+      <h4>Security: password-reset and email-verification links hardened.</h4>
+      <p>The one-time tokens sent in password-reset and email-verification emails are now stored as one-way hashes &mdash; a database read can no longer be used to forge a valid account-takeover link.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">29 Jun 2026</span>
+      </div>
+      <h4>Saved reports; rescue adoption policy fixed; application identity secured.</h4>
+      <p>Rescue analytics reports can now be executed to produce live figures, previewed, scheduled for recurring delivery, and shared with team members. A bug that caused an error when saving a rescue&rsquo;s adoption policy in Settings has been fixed. Adoption applications now derive the applicant&rsquo;s identity from the authenticated session only &mdash; a body-level override can no longer be used to submit an application as another user.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">23 Jun 2026</span>
       </div>
       <h4>Account sanction notices; application drafts now autosave.</h4>
