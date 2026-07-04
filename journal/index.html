@@ -37,7 +37,7 @@
 
 <section class="subpage-hero">
   <span class="eyebrow">The journal</span>
-  <h1>What's shipping across the studio, in the open.</h1>
+  <h1>What&rsquo;s shipping across the studio, in the open.</h1>
   <p>Dated entries from the live ventures, newest first. Each entry links to the <a href="../ventures/">venture brief</a> for the full current snapshot &mdash; roadmap, stack and stage.</p>
 </section>
 
@@ -48,6 +48,60 @@
     <p>One line per change, tagged with the venture it belongs to.</p>
   </div>
   <div class="venture-grid-2">
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">1 Jul 2026</span>
+      </div>
+      <h4>API reliability; session tokens hardened; cold-start fix.</h4>
+      <p>A full review of the API gateway contract closed edge cases where some list endpoints mis-serialised array data, some DELETE and POST routes rejected valid requests, and the top picks endpoint returned malformed responses &mdash; all 939 gateway tests now pass and the interactive API docs at /docs accurately reflect every endpoint. Refresh tokens are now stored as one-way hashes; a database exposure can no longer replay an active session. The adopter portal, rescue dashboard and admin panel no longer return errors for around 40 seconds after a cold boot &mdash; all three now wait for the gateway to be healthy before serving.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
+      </div>
+      <h4>Rescue events; live analytics data; profile update fix.</h4>
+      <p>Rescues can now create, publish and manage their own events &mdash; adoption days, fundraisers, volunteer sessions and community meetups &mdash; with attendee registration, check-in and capacity tracking built in. The rescue dashboard analytics page now shows real-time figures for adoption trends, application status, pet performance and top breeds; the previous placeholder data has been removed. A bug that silently dropped profile updates has been fixed &mdash; account changes now save correctly.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
+      </div>
+      <h4>Security: password-reset and verification links hardened.</h4>
+      <p>The one-time tokens inside password-reset and email-verification emails are now stored as SHA-256 hashes on the server. A database read alone can no longer produce a valid link to take over an account.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">29 Jun 2026</span>
+      </div>
+      <h4>Analytics reports: save, schedule and share. Policy and application security fixes.</h4>
+      <p>Rescue analytics reports can now be saved with a name, re-run to pull live figures, scheduled for recurring delivery and shared with team members. A bug preventing changes to a rescue&rsquo;s adoption policy from saving has been fixed. Adoption applications now derive the applicant&rsquo;s identity strictly from their authenticated session &mdash; a crafted request can no longer submit an application as a different user.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">22&ndash;23 Jun 2026</span>
+      </div>
+      <h4>Admin panel: triage inbox, bulk pet management, privacy tools and staff visibility.</h4>
+      <p>A wave of admin improvements: moderation reports and support tickets now land in a single filterable, sortable triage inbox, making platform health easier to manage in one view. Admins can bulk-update pet listings and manage pets across every rescue from one place. A new privacy tools panel lets administrators export a user&rsquo;s personal data and schedule account deletion. The Rescue detail Staff tab surfaces current staff and pending invitations at a glance. Several previously broken actions &mdash; rescue dashboard analytics, rescue detail controls, support ticket assignment and staff management &mdash; have been restored.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip">Pairflix</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">Jun 2026</span>
+      </div>
+      <h4>Watch on Netflix, Prime or Disney+ &mdash; one tap away. Picks now tracked.</h4>
+      <p>The TonightPicker recommendation card now shows deep-link buttons for every streaming platform a title is available on &mdash; tap to open it directly in the app, no searching required. Every recommendation now records whether the household accepted it, swapped it out, or dismissed it. Per-household 30-day stats surface your first-pick acceptance rate and a breakdown by platform.</p>
+    </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
