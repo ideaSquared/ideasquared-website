@@ -52,6 +52,33 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">1 Jul 2026</span>
+      </div>
+      <h4>Security: session tokens hardened. API contract fixes. Cold-start reliability improved.</h4>
+      <p>Refresh tokens are now stored as one-way hashes &mdash; a database exposure can no longer be used to replay an active session. A batch of API schema issues causing some list endpoints to mis-serialise array data, some DELETE and POST routes to reject valid requests, and the Top Picks endpoint to return malformed responses have all been corrected; all 939 gateway tests pass and the interactive API docs at /docs now accurately reflect every endpoint. The adopter portal, rescue dashboard and admin panel no longer return errors for ~40&nbsp;seconds after a cold server boot.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
+      </div>
+      <h4>Rescue events launched. Live analytics data. Profile updates fixed. Token security hardening.</h4>
+      <p>Rescues can now create, publish and manage adoption events, fundraisers, volunteer days and community meetups &mdash; attendees can register and check in, and event analytics track attendance against capacity. The rescue dashboard analytics page now shows real-time figures for adoption trends, application status, pet performance and top breeds; mock data placeholders are removed. Account profile changes that were silently failing after the gateway migration now persist correctly. Password-reset and email-verification one-time tokens are now stored as SHA-256 hashes; a database read can no longer produce valid account-takeover links.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">29 Jun 2026</span>
+      </div>
+      <h4>Saved reports: run, schedule and share. Admin Privacy Tools, staff management and pet bulk-actions.</h4>
+      <p>Rescue analytics reports can now be executed to produce live figures, previewed before scheduling, set to deliver on a recurring basis, and shared with team members. Several admin panel capabilities also went live: administrators can export a user&rsquo;s personal data and schedule an account for deletion (GDPR Privacy Tools), view and manage a rescue&rsquo;s staff list and pending invitations from the Rescue detail page, and bulk-update pet listings or manage pets across every rescue. The rescue adoption policy settings page now saves correctly.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">23 Jun 2026</span>
       </div>
       <h4>Account sanction notices; application drafts now autosave.</h4>
