@@ -37,7 +37,7 @@
 
 <section class="subpage-hero">
   <span class="eyebrow">The journal</span>
-  <h1>What's shipping across the studio, in the open.</h1>
+  <h1>What&rsquo;s shipping across the studio, in the open.</h1>
   <p>Dated entries from the live ventures, newest first. Each entry links to the <a href="../ventures/">venture brief</a> for the full current snapshot &mdash; roadmap, stack and stage.</p>
 </section>
 
@@ -48,6 +48,33 @@
     <p>One line per change, tagged with the venture it belongs to.</p>
   </div>
   <div class="venture-grid-2">
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">1 Jul 2026</span>
+      </div>
+      <h4>API reliability fixes; session security hardened; cold-start wait resolved.</h4>
+      <p>A batch of API schema issues were causing list endpoints to mis-serialise data, DELETE routes to reject valid requests, and the matching top-picks endpoint to return malformed responses &mdash; all fixed, with the interactive API docs at /docs now accurately reflecting every endpoint. Refresh tokens are now stored as one-way hashes, so a database exposure can no longer be used to impersonate an active session. The adopter portal, rescue dashboard and admin panel no longer return errors for &sim;40 seconds after a cold boot &mdash; all three now wait for the API gateway to become healthy before serving.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
+      </div>
+      <h4>Rescue events live; live analytics dashboard; profile saves fixed; security: account tokens hardened.</h4>
+      <p>Rescues can now create and manage adoption events, fundraisers, volunteer days and community meetups &mdash; attendees can register and check in, and event analytics track attendance and capacity. The rescue dashboard analytics page now shows real figures for adoption trends, application status, pet performance and top breeds (mock data removed). Account profile changes that were silently failing now save correctly. Password-reset and email-verification tokens are now stored as SHA-256 hashes, closing a vector where a database read could produce valid account-takeover links.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">29 Jun 2026</span>
+      </div>
+      <h4>Analytics reports: run, schedule &amp; share; rescue adoption policy fix; application security.</h4>
+      <p>Rescue analytics reports can now be executed for live figures, previewed, scheduled for recurring delivery and shared with team members. Saving changes to a rescue&rsquo;s adoption policy on the Settings page no longer returns an error. Adoption applications now derive the applicant&rsquo;s identity exclusively from the authenticated session, closing a gap where a crafted request body could submit an application as another user.</p>
+    </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
