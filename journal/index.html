@@ -37,7 +37,7 @@
 
 <section class="subpage-hero">
   <span class="eyebrow">The journal</span>
-  <h1>What's shipping across the studio, in the open.</h1>
+  <h1>What&rsquo;s shipping across the studio, in the open.</h1>
   <p>Dated entries from the live ventures, newest first. Each entry links to the <a href="../ventures/">venture brief</a> for the full current snapshot &mdash; roadmap, stack and stage.</p>
 </section>
 
@@ -48,6 +48,33 @@
     <p>One line per change, tagged with the venture it belongs to.</p>
   </div>
   <div class="venture-grid-2">
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">1 Jul 2026</span>
+      </div>
+      <h4>Security: session tokens hardened; API contract corrections; cold-start reliability.</h4>
+      <p>Refresh tokens are now stored as one-way hashes &mdash; a database exposure can no longer be used to hijack an active session. A schema correction resolves issues where some list and delete endpoints were mis-handling requests; all 939 API gateway tests now pass. The adopter portal, rescue dashboard and admin panel no longer show errors for ~40 seconds after a cold boot while the gateway warms up.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
+      </div>
+      <h4>Rescue events; live analytics; profile saves fixed; password-reset tokens hardened.</h4>
+      <p>Rescues can now create and publish events &mdash; adoption days, fundraisers, volunteer days and community meetups &mdash; with attendee registration, check-in and live capacity analytics. The rescue dashboard analytics page now shows real-time figures for adoption trends, application status, pet performance and top breeds; mock data placeholders have been removed. Profile changes on rescue dashboards now save correctly after a routing mismatch introduced during the gateway migration. Password-reset and email-verification links are now backed by SHA-256 hashes, closing a window where a database snapshot could have produced valid account-takeover links.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">29 Jun 2026</span>
+      </div>
+      <h4>Saved reports: run, schedule and share; adoption policy saves; application identity locked.</h4>
+      <p>Rescue analytics reports can now be run to produce live figures, previewed, scheduled for recurring delivery, and shared with team members &mdash; delivering the saved-reports feature end-to-end. Changes to a rescue&rsquo;s adoption policy on the Settings page now save correctly after previously returning an error. Adoption applications now derive the applicant&rsquo;s identity from the authenticated session only, closing a gap where a crafted request could have submitted an application as a different user.</p>
+    </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
@@ -155,6 +182,15 @@
       </div>
       <h4>Microservices migration complete. Security hardening pass done.</h4>
       <p>All ten domain services now run as independent containers &mdash; the legacy monolith is deleted. Separately: all high-severity findings from an automated static-analysis security audit have been resolved, and the API documentation page is now gated behind admin credentials. The platform is closer to closed beta readiness.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip">Pairflix</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">2 Jun 2026</span>
+      </div>
+      <h4>Tonight&rsquo;s pick tracks what you chose; provider badges are now launch buttons.</h4>
+      <p>Every recommendation now records its outcome &mdash; accepted, swapped or dismissed &mdash; and per-household 30-day stats surface first-pick acceptance rate alongside per-provider click counts. The platform badges in the Tonight Picker are now deep-link buttons that open Netflix, Prime, Disney+ and friends directly in a new tab.</p>
     </article>
 
     <article class="venture-card">
