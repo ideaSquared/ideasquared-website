@@ -52,6 +52,42 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
+      </div>
+      <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
+      <p>A scoping gap in the events system meant rescue staff with event-read access but no linked rescue could inadvertently see attendee names and emails belonging to other organisations&rsquo; events; all event endpoints now enforce strict per-rescue isolation. A regression introduced by an earlier database migration had caused account-deletion requests (GDPR erasure) to fail silently, leaving personal data in place and sessions valid; deletion now completes correctly across all associated data. A gap in the admin user-update path allowed admin accounts to escalate their own or others&rsquo; roles to super-admin level without the correct authorisation checks; role changes now require the same strict guards as account creation.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">1 Jul 2026</span>
+      </div>
+      <h4>API reliability restored; session security hardened; cold-start errors fixed.</h4>
+      <p>A sweep of the API gateway resolved schema issues that were causing list endpoints to mis-serialise data, some DELETE and POST routes to reject valid requests, and the top-picks endpoint to return malformed responses &mdash; all gateway tests now pass. Refresh tokens are now stored as one-way hashes; a database exposure can no longer be used to impersonate an active session. The adopter portal, rescue dashboard and admin panel no longer return errors for around 40&nbsp;seconds after a cold boot &mdash; all three now wait for the API gateway to become healthy before serving.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
+      </div>
+      <h4>Rescue events launch; real-time analytics; profile save fix.</h4>
+      <p>Rescues can now create, publish and manage adoption events, fundraisers, volunteer days and community meetups directly from the dashboard &mdash; with attendee registration, check-in and event analytics included. The rescue dashboard analytics page now shows real-time figures for adoption trends, application status, pet performance and top breeds, replacing the placeholder data that had been there since launch. Separately, account profile changes that were silently failing due to a routing mismatch now save correctly.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">29 Jun 2026</span>
+      </div>
+      <h4>Saved analytics reports; adoption policy fix; application security hardening.</h4>
+      <p>Rescue analytics reports can now be run to produce live figures, previewed, scheduled for recurring delivery and shared with team members. Saving changes to a rescue&rsquo;s adoption policy on the Settings page no longer returns an error. Adoption applications now derive the applicant&rsquo;s identity exclusively from the authenticated session &mdash; a body-level override that could previously be used to submit an application as a different user has been removed.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">23 Jun 2026</span>
       </div>
       <h4>Account sanction notices; application drafts now autosave.</h4>
