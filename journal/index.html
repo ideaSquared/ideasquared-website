@@ -52,6 +52,15 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">10 Jul 2026</span>
+      </div>
+      <h4>Security hardening: login brute-force protection, IP spoofing closed, backups encrypted; event attendance figures fixed.</h4>
+      <p>Login attempts are now rate-limited per email address as well as per IP, closing a vector where a distributed or proxy-rotating attacker could attempt unlimited credential guesses against a single account. The gateway now trusts only its direct upstream proxy for client IP resolution, so a crafted X-Forwarded-For header can no longer be used to rotate apparent identity and bypass rate limiting. Production database and upload backups are now stored with server-side encryption &mdash; backup storage is no longer a plaintext data exposure vector. Separately, rescue event attendance rates were always reporting 0% due to a stale database column; rates are now calculated from actual check-in counts in real time.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
