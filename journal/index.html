@@ -52,6 +52,15 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">10 Jul 2026</span>
+      </div>
+      <h4>Security hardening: brute-force protection, IP spoofing closed, attendance fixed, infrastructure.</h4>
+      <p>Login attempts are now rate-limited per email address as well as per IP, so a distributed attacker can no longer try unlimited passwords against a single account by rotating IPs or proxies. A gateway misconfiguration that allowed crafted request headers to spoof the caller&rsquo;s apparent IP address &mdash; bypassing rate limiting entirely &mdash; has been closed. Rescue event attendance rates were always displaying as 0% due to a stale database column that was initialised at migration time and never updated; they now reflect live check-in counts in real time. On the infrastructure side: production backups are now encrypted at rest; real-time WebSocket connections per account are capped to prevent credential-abuse amplification; and a batch of container, secrets and CI hardening has been completed.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
