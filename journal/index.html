@@ -52,6 +52,15 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">10 Jul 2026</span>
+      </div>
+      <h4>Security: login brute-force protection, network trust hardening, encrypted backups and infrastructure controls.</h4>
+      <p>A batch of hardening changes ships across five areas. Login is now rate-limited per email address as well as per IP, so a proxy-rotating attacker can no longer target a single account by cycling their apparent identity. The gateway now trusts only its direct upstream proxy for client IP resolution, closing an X-Forwarded-For spoofing bypass that could be used to defeat every per-IP limit. Concurrent WebSocket connections from a single account are now capped, so a compromised credential cannot open unbounded sockets to amplify notification and chat fan-out. On the infrastructure side: production app containers now run with a read-only filesystem; Grafana anonymous access is restricted to Viewer rather than Admin; the dev /metrics endpoint is no longer reachable from outside the network; the Redis secret file is written with restricted permissions; and the dev base image is pinned to an immutable content digest, closing a supply-chain drift risk. The startup validation layer now refuses to boot if the Redis password is a known placeholder or shorter than 32 characters. CI workflows across the project now declare minimum token scope, with elevated permissions granted only at the specific job that requires them. Production S3 backups are stored with server-side encryption, closing a plaintext data-exposure risk on backup storage.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
