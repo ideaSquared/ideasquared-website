@@ -52,6 +52,33 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">13 Jul 2026</span>
+      </div>
+      <h4>Security: 2FA hardening, platform data isolation and session integrity.</h4>
+      <p>Two-factor authentication codes are now encrypted before storage &mdash; a database exposure can no longer produce usable offline bypass codes, and any code accepted once cannot be replayed within its 30-second window. Concurrent saves to a rescue&rsquo;s adoption policy settings are now conflict-detected rather than silently overwriting each other. Platform-wide user statistics are restricted to platform administrators only &mdash; they are no longer visible to rescue staff via the reports dashboard. The list of users who favourited a pet is gated behind a system-only permission not granted to any user-facing role. Document attachment URLs are validated at upload so crafted links cannot reach rescue reviewer interfaces. Session IP address and user agent are now derived from the verified gateway connection, not caller-supplied fields.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">11 Jul 2026</span>
+      </div>
+      <h4>Reliability and security: resilient reports, private chat previews and authorisation fixes.</h4>
+      <p>Reports no longer fail entirely when one data source is unavailable &mdash; each widget now returns its own status, so the rest of the page stays usable. The chat PDF preview no longer routes private attachment URLs through Google&rsquo;s servers; previews render natively in the browser inside a sandboxed frame, and non-PDF attachments prompt a direct download. Support ticket authorship is now always derived from the authenticated session. Chat sessions verify the relationship between the parties before opening, and closing a conversation is restricted to rescue staff and moderators only.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">10 Jul 2026</span>
+      </div>
+      <h4>Security: token theft response, brute-force protection and infrastructure hardening.</h4>
+      <p>When a stolen refresh token is detected as reused, every token in that family is now immediately revoked and active access tokens are invalidated, so an attacker can no longer stay logged in after detection. Login attempts are now rate-limited per email address as well as per IP, closing distributed credential-stuffing against individual accounts. The gateway now only trusts its direct upstream proxy for client IP resolution, so a crafted <code>X-Forwarded-For</code> header can no longer bypass rate limiting. Production database and upload backups are now encrypted at rest. Concurrent WebSocket connections per account are capped to limit fan-out from a compromised credential. Production containers run with a read-only filesystem and Grafana access is restricted to Viewer level.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
