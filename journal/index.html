@@ -52,6 +52,60 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">16 Jul 2026</span>
+      </div>
+      <h4>Security: 2FA backup codes are now tamper-proof under concurrent use.</h4>
+      <p>Two simultaneous login attempts using the same two-factor authentication recovery code can no longer both succeed. The check-and-consume step is now a single atomic database operation, so the second attempt is rejected instantly &mdash; the same result as entering a wrong code. Previously, a race condition meant that under precise timing a leaked backup code could theoretically be accepted twice.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">15 Jul 2026</span>
+      </div>
+      <h4>Security: session tokens moved to HttpOnly cookies.</h4>
+      <p>Authentication tokens are no longer stored in browser localStorage where any injected script could read them. They now live in server-set HttpOnly cookies that are invisible to the page&rsquo;s own JavaScript, eliminating a class of attack where an XSS vulnerability could silently steal credentials and impersonate a logged-in user. Any old tokens still in localStorage are automatically cleared on first load after the update.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">14 Jul 2026</span>
+      </div>
+      <h4>Security: CSRF protection live; 2FA backup recovery codes added.</h4>
+      <p>All state-changing requests now require a CSRF token matched against a server-set cookie; a malicious third-party page can no longer silently act on your behalf. Accounts with two-factor authentication now receive ten single-use recovery codes at enrolment &mdash; if you ever lose access to your authenticator app, a recovery code lets you sign in and regain access without staff intervention. Codes are stored as one-way hashes; a Regenerate action issues a fresh set and immediately voids the old ones.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">13 Jul 2026</span>
+      </div>
+      <h4>Security: 2FA secrets encrypted at rest; policy race fixed; access controls tightened.</h4>
+      <p>Two-factor authentication secrets are now stored encrypted (AES-256-GCM); a database exposure can no longer produce usable offline bypass tokens, and a TOTP code accepted once cannot be reused within its 30-second window. A race condition that could silently overwrite a rescue&rsquo;s adoption policy settings when two staff members saved simultaneously has been closed. Platform-wide user statistics are restricted to platform administrators; the full list of users who favourited a pet is no longer readable by other adopters; document attachment links are validated at upload so crafted URLs cannot reach the reviewer interface.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">11 Jul 2026</span>
+      </div>
+      <h4>Reliability: report pages survive a broken widget. Chat and support identity hardened.</h4>
+      <p>A single failing data source no longer crashes the entire report page &mdash; each widget loads independently, so the rest of the page still displays when one source returns an error. The inline PDF viewer in chat no longer proxies private attachment URLs through an external service; previews now render natively inside a sandboxed browser frame. Support tickets and chat sessions now always derive the participant&rsquo;s identity from the authenticated session, preventing identity impersonation inside a conversation.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">10 Jul 2026</span>
+      </div>
+      <h4>Security: session takeover closed; brute-force hardened; backups encrypted; infra tightened.</h4>
+      <p>A compromised refresh token no longer stays valid after detection &mdash; the entire token family is revoked instantly and active access tokens are immediately invalidated. Login attempts are now rate-limited per email address as well as per IP, so a distributed attacker cycling through proxies cannot guess credentials against a single account. A crafted X-Forwarded-For header can no longer spoof identity to bypass rate limiting. Production database and upload backups are now encrypted at rest. Concurrent WebSocket connections from a single account are capped. Production containers run with a read-only filesystem and CI workflow permissions are scoped to least-privilege.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
