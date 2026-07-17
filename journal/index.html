@@ -52,6 +52,69 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">17 Jul 2026</span>
+      </div>
+      <h4>Security: unverified accounts no longer leak whether a password is correct.</h4>
+      <p>Submitting a correct password against an account that had not yet verified its email previously returned a response subtly different from a wrong password &mdash; and did not count toward the account lockout limit. An attacker who knew your email could silently confirm or rule out passwords with no lockout to slow them down. The two responses are now indistinguishable and the same failed-attempt counter applies, closing the oracle.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">17 Jul 2026</span>
+      </div>
+      <h4>2FA backup code reveal hardened; regeneration now requires authenticator confirmation.</h4>
+      <p>New backup codes are shown exactly once in a confirm-before-dismiss panel &mdash; you must tick a box confirming you have saved them before the panel closes, replacing a persistent grid with no confirmation step. The &ldquo;Regenerate Backup Codes&rdquo; action now requires a valid current authenticator code before issuing a fresh set, so a stolen browser session alone can no longer replace your account&rsquo;s recovery path. If your last backup code is used to sign in, a persistent prompt now appears asking you to generate a new set before your self-service recovery option is exhausted.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">15&ndash;16 Jul 2026</span>
+      </div>
+      <h4>Session tokens moved to HttpOnly cookies; 2FA backup code race condition fixed.</h4>
+      <p>Authentication tokens are no longer stored in browser localStorage &mdash; they now live in HttpOnly cookies that JavaScript cannot access, eliminating the class of attack where an XSS vulnerability could silently steal a session. Any tokens stored in localStorage before this change are automatically purged on first page load after deployment. Separately, two simultaneous sign-ins using the same 2FA backup code can no longer both succeed &mdash; the check-and-consume step is now a single atomic database operation, so a leaked code can only ever work once.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">14 Jul 2026</span>
+      </div>
+      <h4>2FA backup recovery codes; CSRF protection; encrypted authenticator secrets.</h4>
+      <p>Accounts with two-factor authentication now receive ten single-use recovery codes at enrolment, allowing self-service sign-in if you lose your authenticator app &mdash; no staff intervention required. Codes are stored as one-way hashes and each can only be used once. A &ldquo;Regenerate Backup Codes&rdquo; option in Security Settings issues a fresh set and immediately invalidates the old ones. All state-changing requests to the platform now require a CSRF token matched against a cookie, blocking cross-site request forgery from malicious third-party pages. Behind the scenes, TOTP secrets are now encrypted with AES-256-GCM at rest, so a database exposure can no longer produce usable bypass tokens; a code accepted within its 30-second window cannot be replayed.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">13 Jul 2026</span>
+      </div>
+      <h4>Security: data integrity fixes across rescue settings, statistics and file uploads.</h4>
+      <p>Five targeted fixes: simultaneous saves to a rescue&rsquo;s adoption policy can no longer silently overwrite each other &mdash; a conflicting save is now rejected with a clear error. Platform-wide user statistics (active account counts) are restricted to platform administrators only; rescue staff can no longer read them. The list of users who have favourited a specific pet is locked to internal systems. Uploaded application document links are validated on submission, so crafted URLs (such as <code>javascript:</code> links or arbitrary external hosts) cannot be saved and rendered in the rescue review interface. Session metadata &mdash; IP address and user agent &mdash; is now read from the verified gateway connection rather than the request body, making it impossible for a caller to forge.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">11 Jul 2026</span>
+      </div>
+      <h4>Report previews survive broken data; chat and document security hardened.</h4>
+      <p>A single failing data source in a rescue analytics report no longer aborts the whole page &mdash; each widget now returns its own status so the rest of the report continues to load. The inline document viewer in chat no longer routes private file URLs through an external service; previews are restricted to confirmed PDFs rendered natively in a sandboxed browser frame, and any other file type becomes a direct download. Support tickets now always derive the requester&rsquo;s identity from the authenticated session; chat sessions verify the participant relationship before opening; and only moderators or rescue staff can close a conversation.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">10 Jul 2026</span>
+      </div>
+      <h4>Security sprint: brute-force protection, session integrity and infrastructure hardening.</h4>
+      <p>A batch of security improvements: login attempts are now rate-limited per email address as well as per IP, so an attacker rotating proxies can no longer make unlimited guesses at a single account. The gateway no longer trusts caller-supplied IP headers &mdash; only the direct upstream proxy &mdash; closing a technique for spoofing apparent identity to bypass rate limiting. When a reused refresh token is detected, the entire token family is immediately revoked and live access tokens are invalidated, closing the window where a stolen token could keep an attacker active after detection. Concurrent WebSocket connections from a single account are now capped. Production database and file-upload backups are stored with server-side encryption. The dev environment no longer runs as root. The service start-up sequence now rejects weak or placeholder Redis passwords. GitHub Actions workflow permissions have been tightened to the minimum required for each job.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
