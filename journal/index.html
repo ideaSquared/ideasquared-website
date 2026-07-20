@@ -37,7 +37,7 @@
 
 <section class="subpage-hero">
   <span class="eyebrow">The journal</span>
-  <h1>What's shipping across the studio, in the open.</h1>
+  <h1>What&#39;s shipping across the studio, in the open.</h1>
   <p>Dated entries from the live ventures, newest first. Each entry links to the <a href="../ventures/">venture brief</a> for the full current snapshot &mdash; roadmap, stack and stage.</p>
 </section>
 
@@ -48,6 +48,51 @@
     <p>One line per change, tagged with the venture it belongs to.</p>
   </div>
   <div class="venture-grid-2">
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">18 Jul 2026</span>
+      </div>
+      <h4>Security: 2FA flows hardened; invitation brute-force closed; API errors sanitised.</h4>
+      <p>Several gaps in the 2FA enrolment and sign-in flows have been closed: a pending authenticator secret is now stored server-side so an attacker with a temporary access token can no longer inject their own authenticator app; an enrolment confirmation code can no longer be replayed at the next sign-in within its 30-second window. Login responses for locked, suspended or deactivated accounts are now identical to a wrong-password response until the correct password is supplied, closing an account-status enumeration risk. Staff invitation endpoints now enforce per-IP and per-token rate limits, preventing guessed tokens from silently provisioning accounts. Event image and virtual-meeting-link URLs are validated at the gateway boundary &mdash; javascript: and data: URI schemes are now rejected. Internal infrastructure detail (table names, service hostnames, gRPC error text) has been stripped from all client-facing error responses and preserved in server-side logs only. Gateway access logs no longer record URL query parameters, HSTS headers are now consistent across the gateway and Nginx edge, and Docker base images for service builds are pinned to immutable content digests with a CI gate enforcing the rule.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">15 Jul 2026</span>
+      </div>
+      <h4>Session tokens moved to HttpOnly cookies; 2FA backup code security hardened.</h4>
+      <p>Authentication tokens are no longer stored in browser localStorage &mdash; they now live in HttpOnly, server-set cookies that JavaScript cannot read, eliminating the class of session-theft attack where an XSS vulnerability could silently exfiltrate credentials. Any tokens left in localStorage from before this change are automatically cleared on first page load. Two gaps in the 2FA backup-code flow have been closed: new codes are shown exactly once in a confirm-before-dismiss panel that requires acknowledgement before closing; the Regenerate Backup Codes action now requires a valid current TOTP code, so a stolen browser session alone can no longer replace an account&rsquo;s entire recovery path. A race condition that previously allowed the same recovery code to succeed twice in simultaneous requests has been closed &mdash; the check-and-consume is now a single atomic database operation. Separately, submitting a correct password for an account that has not yet verified its email now returns the same response as a wrong password and increments the lockout counter identically, closing a silent password-oracle gap.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">14 Jul 2026</span>
+      </div>
+      <h4>CSRF protection live; 2FA recovery codes issued at enrolment; access controls tightened.</h4>
+      <p>All state-changing API requests now require a CSRF token validated against a server-set cookie, blocking cross-site request forgery from malicious third-party pages at the gateway layer. Accounts with two-factor authentication now receive 10 single-use cryptographically random recovery codes at enrolment &mdash; a recovery code allows sign-in if the authenticator app is lost; codes are stored as one-way hashes only, and regenerating them (which requires a valid current TOTP code) immediately invalidates the old set. TOTP secrets are now stored encrypted (AES-256-GCM), and a code accepted within its 30-second window cannot be replayed. Several additional access controls were tightened: platform-wide active-user statistics are now restricted to platform administrators; the full list of users who favourited a pet is no longer readable by adopters; application document attachment URLs must be verified same-origin storage paths (preventing crafted javascript: links from being saved); and the IP address and user agent recorded against a session are now derived from the authenticated gateway connection rather than caller-supplied headers.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">11 Jul 2026</span>
+      </div>
+      <h4>Report previews more resilient; chat attachments and identity controls hardened.</h4>
+      <p>A single failing data source no longer aborts an entire rescue analytics report with a server error &mdash; each widget now returns its own ok/error status independently, so the rest of the report page continues to load correctly. The inline PDF viewer in chat has been hardened: it no longer proxies private attachment URLs through Google&rsquo;s external viewer (which was a URL-leak risk); preview is now restricted to confirmed PDFs rendered natively by the browser inside a sandboxed frame, and all other file types become a direct download. Chat and support ticket identity controls have also been tightened: support tickets now always derive the requester&rsquo;s identity from the authenticated session rather than a caller-supplied field; chat sessions verify the relationship between the parties before opening; and only moderators or rescue staff can close a conversation.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">10 Jul 2026</span>
+      </div>
+      <h4>Platform-wide security hardening: session integrity, brute-force protections and data encryption.</h4>
+      <p>A broad sweep of platform security shipped across auth, infrastructure and operations. When a reused or compromised refresh token is detected, every token in that family is now revoked immediately and active access tokens are invalidated via a validity watermark, so an attacker who stole a token can no longer stay logged in after detection. Login attempts are now rate-limited per email address as well as per IP, preventing a distributed attacker from targeting a single account by rotating apparent client identity; X-Forwarded-For spoofing to bypass per-IP limits has also been closed. Production database snapshots and upload backups are now stored with server-side encryption &mdash; backup storage is no longer a plaintext data exposure vector. Concurrent WebSocket connections from a single user are now capped, preventing a compromised credential from amplifying notification and chat fan-out. Production app containers now run with read-only filesystems, Grafana anonymous access is restricted to viewer-only, and a startup guard refuses to boot services if the Redis password is a known placeholder or shorter than 32 characters. Separately, rescue event attendance rates were always reporting 0% due to a stale database column; rates are now derived from actual check-in counts in real time.</p>
+    </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
