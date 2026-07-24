@@ -52,6 +52,60 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">22 Jul 2026</span>
+      </div>
+      <h4>Security: two further dependency vulnerabilities patched.</h4>
+      <p>fast-uri, which handles URI validation inside the API gateway, had a host-confusion flaw in the way international domain names are canonicalized that could route requests to unintended hosts. @opentelemetry/propagator-jaeger, the distributed-tracing component, could be crashed by a malformed trace header. Both have been updated to their nearest patched releases; the automated advisory check now reports zero open high-severity findings.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">21 Jul 2026</span>
+      </div>
+      <h4>Security: WebSocket flood protection live; rescue event attendance figures now accurate; five dependency patches.</h4>
+      <p>Unauthenticated connection attempts to the real-time gateway are now rate-limited per IP before any session or token validation runs, so a connection flood no longer consumes backend capacity or triggers unnecessary service calls. Rescue events now correctly report how many attendees went on to complete an adoption &mdash; the figure was previously stuck at zero due to a missing attribution link between the events and applications systems. Five transitive dependency vulnerabilities (brace-expansion, js-yaml, shell-quote, protobufjs, dompurify) have also been updated to patched versions.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">17&ndash;18 Jul 2026</span>
+      </div>
+      <h4>Security: 2FA hardening, access controls and infrastructure tightened.</h4>
+      <p>A cluster of security fixes shipped across two days. The pending authenticator secret during 2FA setup is now stored encrypted server-side, so a temporary access token can no longer be used to hijack the enrolment process. The one-time code used to confirm 2FA activation can no longer be replayed at the very next sign-in. Locked, suspended or deactivated accounts no longer reveal their status on an incorrect-password attempt. Staff invitation endpoints are now rate-limited per IP and per token, closing a brute-force path to silent account provisioning. Rescue event image and virtual-meeting-link URLs are validated to reject javascript: and data: URI schemes. Permission and authentication error responses no longer include internal infrastructure detail (table names, service hostnames, gRPC error text) in what clients see. Docker base images are pinned to immutable content digests with a CI gate; Grafana requires a real admin password and disables anonymous access; and CI deploy workflows now route inputs through environment variables rather than shell interpolation, closing a command-injection surface.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">15&ndash;16 Jul 2026</span>
+      </div>
+      <h4>Session tokens moved to HttpOnly cookies; 2FA backup code race condition closed.</h4>
+      <p>Authentication tokens are no longer stored in browser localStorage &mdash; they now live in HttpOnly server-set cookies that JavaScript cannot read. This eliminates the class of session-theft attack where an XSS vulnerability could silently export credentials; any tokens left in localStorage from before the migration are automatically cleared on first page load. Separately, two simultaneous login attempts using the same 2FA backup recovery code can no longer both succeed &mdash; the check-and-consume operation is now a single atomic database update, so the second attempt is rejected immediately.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">13&ndash;14 Jul 2026</span>
+      </div>
+      <h4>2FA backup codes; CSRF protection; data access hardening.</h4>
+      <p>Accounts with two-factor authentication now receive ten single-use recovery codes at enrolment, shown once in a confirm-before-dismiss panel, so a lost authenticator app doesn&rsquo;t mean a locked account. Codes are stored as one-way hashes; regenerating a set requires a valid current TOTP code and immediately invalidates the old ones; a persistent warning appears when the last code is used. All state-changing API requests now require a CSRF token validated against a gateway-set cookie, blocking cross-site request forgery from malicious third-party pages. Additional fixes in this window: platform-wide user statistics are now restricted to platform administrators; the full list of users who favourited a pet is no longer accessible to adopters; application document attachment URLs are validated at upload to reject crafted paths; and session IP address and user agent are now read from the authenticated upstream connection rather than caller-supplied request headers.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">10&ndash;11 Jul 2026</span>
+      </div>
+      <h4>Session security, brute-force protection, encrypted backups and chat hardening.</h4>
+      <p>When a reused or compromised refresh token is detected, every token in that family is now revoked immediately and active access tokens are invalidated &mdash; an attacker who stole a token can no longer remain signed in after detection. Login attempts are now rate-limited per email address as well as per IP, closing a distributed brute-force path. The client IP used for rate limiting is now read from the verified upstream proxy only &mdash; a crafted X-Forwarded-For header can no longer rotate apparent identity. Production database and upload backups are stored with server-side encryption. Concurrent WebSocket connections from a single account are now capped. The inline PDF viewer in chat no longer routes private attachment URLs through an external service; preview renders natively inside a sandboxed frame. Support ticket identity is derived from the authenticated session only, chat participants are verified before a conversation opens, and only moderators or rescue staff can close a conversation. Rescue event attendance rates, which had been stuck at 0% due to a stale database column, now reflect actual check-in counts.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
