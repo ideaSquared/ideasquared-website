@@ -52,6 +52,78 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">28 Jul 2026</span>
+      </div>
+      <h4>CI security: fork-PR privilege bypass closed; deploy token scope verified automatically.</h4>
+      <p>A fork pull request whose head branch was named &ldquo;main&rdquo; could previously satisfy the release gate and reach Docker-publishing jobs with registry credentials in scope; the CI workflow now verifies that the triggering run was a push event on this repository before any secrets are accessed. Separately, the deploy and rollback pipelines now automatically inspect the container-registry token&rsquo;s OAuth scope before every deployment &mdash; an over-privileged token fails loudly at the CI layer rather than reaching the production host.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">25 Jul 2026</span>
+      </div>
+      <h4>React Router v8; dependency security sweep; per-PR preview environments.</h4>
+      <p>All three frontends migrated from React Router v7 to v8, resolving two security advisories with no v7 fix: a route-matching denial-of-service and a server-side CSRF. Node.js updated to 22.23.1. DOMPurify updated to 3.4.12 and six further transitive dependency advisories resolved; the dependency audit now reports zero high-severity findings. Every pull request touching an app or shared library now automatically receives live preview links for all three frontends posted as a PR comment, so reviewers can inspect visual changes without a local build.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">21 Jul 2026</span>
+      </div>
+      <h4>WebSocket flood protection; rescue event attendance attribution fixed; five dependencies patched.</h4>
+      <p>Unauthenticated connection attempts to the real-time gateway are now rate-limited per IP before any session or token validation runs &mdash; a connection flood no longer consumes backend capacity or triggers authentication round-trips. Rescue events now correctly report how many attendees went on to complete an adoption; the figure previously always showed zero due to a missing cross-service attribution link. Five dependency vulnerabilities (brace-expansion, js-yaml, shell-quote, protobufjs and DOMPurify) patched across all workspace packages.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">18 Jul 2026</span>
+      </div>
+      <h4>2FA enrolment hardened; staff invitation brute-force blocked; API error messages sanitised.</h4>
+      <p>The pending TOTP secret is now stored encrypted server-side during 2FA setup, closing an attack path where a temporary session could inject a different authenticator app and lock the real account holder out. The authenticator code used to confirm enrolment is consumed on confirmation and cannot be replayed at the next sign-in. Login responses for locked, suspended or inactive accounts are now identical to a wrong-password reply &mdash; account status is no longer revealed before the correct password is supplied. The invitation acceptance endpoint now enforces per-IP and per-token rate limits. Rescue event image and meeting-link URLs are validated against javascript: and data: URI injection at the gateway boundary. Permission, authentication and widget-failure messages from downstream services no longer expose internal infrastructure detail in client-facing responses.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">15 Jul 2026</span>
+      </div>
+      <h4>Session tokens moved to HttpOnly cookies; CSRF protection; 2FA backup recovery codes.</h4>
+      <p>Authentication tokens moved out of browser localStorage into HttpOnly server-set cookies that JavaScript cannot read, eliminating the class of credential-theft where an XSS flaw could silently exfiltrate a session. Residual localStorage tokens from before the migration are purged automatically on first page load. All state-changing API requests now require a CSRF token validated against a gateway-set cookie, blocking cross-site request forgery from third-party pages. Accounts enrolled in two-factor authentication now receive 10 single-use cryptographically random recovery codes at enrolment; each lets a user regain access without staff intervention if they lose their authenticator app. A race condition that could allow a leaked backup code to be accepted twice simultaneously has been closed &mdash; the check-and-consume is now a single atomic database operation.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">13 Jul 2026</span>
+      </div>
+      <h4>2FA secrets encrypted at rest; data access controls tightened across four vectors.</h4>
+      <p>TOTP secrets are now stored AES-256-GCM encrypted and a 30-second replay window is closed &mdash; a code accepted once cannot be reused within the same window. A concurrent-save race in adoption policy settings is closed; two simultaneous saves can no longer silently overwrite each other. Platform-wide active-user statistics are now restricted to platform administrators. The full list of users who favourited a pet is gated to internal systems only. Application document links are validated at upload to reject javascript: URIs and arbitrary external hosts. Session IP address and user agent are now read from the authenticated gateway connection, not from caller-supplied headers.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">11 Jul 2026</span>
+      </div>
+      <h4>Chat and report security hardened; broken report widgets no longer abort the page.</h4>
+      <p>The inline PDF viewer no longer proxies private attachment URLs through an external service; preview is now restricted to confirmed PDFs rendered natively inside a sandboxed browser frame, with other files becoming direct downloads. Support tickets now derive the requester&rsquo;s identity from the authenticated session rather than a caller-supplied field; chat sessions verify the relationship between parties before opening; and only moderators or rescue staff can close a conversation. A single failing report widget no longer aborts the whole report with a server error &mdash; each widget returns its own status so the rest of the dashboard still loads.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">10 Jul 2026</span>
+      </div>
+      <h4>Session token reuse protection; brute-force hardening; backups encrypted; infrastructure security wave.</h4>
+      <p>When a reused or compromised refresh token is detected, every token in that family is now revoked immediately and active access tokens are invalidated &mdash; an attacker who stole a token cannot stay logged in after detection. Login attempts are now rate-limited per email address as well as per IP, closing distributed credential-guessing attacks against a single account. The gateway now trusts only its direct upstream proxy for client IP resolution; a crafted X-Forwarded-For header can no longer rotate apparent identity to bypass rate limits. Production database and upload snapshots are stored with server-side encryption. Concurrent WebSocket connections per account are capped. Production containers now run with a read-only filesystem, the dev metrics endpoint is no longer publicly reachable, and the dev base image is pinned to an immutable content digest. CI GitHub Actions token scopes tightened to least-privilege across all workflows.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
