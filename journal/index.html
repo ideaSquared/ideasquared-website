@@ -52,6 +52,60 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">31 Jul 2026</span>
+      </div>
+      <h4>Admin data exports secured against formula injection.</h4>
+      <p>CSV files downloaded from the admin panel now neutralise any formula characters in user-controlled fields &mdash; names, rescue names and similar data that could begin with <code>=</code>, <code>+</code>, <code>-</code>, or <code>@</code> are safely escaped before download, so the file opens correctly in Excel and Google Sheets without executing unexpected content.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">21 Jul 2026</span>
+      </div>
+      <h4>Rescue event adoption attribution now accurate.</h4>
+      <p>Rescue event analytics now correctly report how many attendees went on to complete an adoption. The figure was always showing zero because the link between event check-ins and adoption outcomes was missing end-to-end &mdash; rescue coordinators can now see real conversion rates for each event they run.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">17 Jul 2026</span>
+      </div>
+      <h4>2FA backup codes: confirm-before-dismiss panel; regenerating now requires your authenticator.</h4>
+      <p>Backup codes are now shown exactly once in a panel that requires you to confirm you&rsquo;ve saved them before it closes, replacing the previous persistent grid with no acknowledgement step. The &ldquo;Regenerate Backup Codes&rdquo; action now requires a valid current authenticator code before issuing a fresh set, so a stolen browser session alone cannot replace your account&rsquo;s recovery path. A persistent warning also appears when the last code is used at sign-in, prompting immediate regeneration before self-service recovery is exhausted.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">14 Jul 2026</span>
+      </div>
+      <h4>2FA backup recovery codes live; session tokens now HttpOnly.</h4>
+      <p>Accounts with two-factor authentication now receive 10 single-use, cryptographically random recovery codes at enrolment &mdash; use one to sign in if you ever lose your authenticator app, without needing staff intervention. Codes are stored as one-way hashes; each is consumed on use, and regenerating a fresh set requires your current TOTP code and immediately voids the old ones. Separately, authentication tokens have moved from browser storage into HttpOnly server-set cookies that JavaScript cannot read, removing a class of session-theft risk.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">11 Jul 2026</span>
+      </div>
+      <h4>Report dashboard survives a broken widget; PDF chat attachments preview natively.</h4>
+      <p>A single failing analytics widget no longer takes down the whole report page &mdash; the remaining widgets load and display their data independently even when one data source has an error. Separately, PDF files shared in chat now open in a sandboxed browser frame rather than routing through an external viewer; all other attachment types download directly.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">10 Jul 2026</span>
+      </div>
+      <h4>Rescue event attendance now shows accurate figures.</h4>
+      <p>Rescue event attendance rates were always reporting 0% due to a database column that was never updated after event creation. Rates are now derived from actual check-in counts in real time &mdash; rescue coordinators can finally see how their events are actually performing.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
