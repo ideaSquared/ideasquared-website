@@ -320,6 +320,42 @@ button:focus-visible {
   border-color: var(--fg);
 }
 
+/* Audience switch — venture pages that serve two audiences ----------- */
+.audience-switch {
+  max-width: 1192px;
+  margin: 80px auto 0;
+  padding: 28px 24px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+.audience-switch .audience-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-body);
+}
+.audience-switch .filter { justify-content: center; }
+.audience-switch .filter button { padding: 10px 22px; font-size: 14px; }
+.audience-hint {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--fg-body);
+  margin: 0;
+  max-width: 52ch;
+}
+/* Track visibility is driven by the root data-audience attribute, set
+   synchronously in the page head so there's no flash. With JS disabled the
+   attribute is never set, so both tracks stay visible and nothing is lost. */
+:root[data-audience="rescues"]   [data-track="investors"] { display: none; }
+:root[data-audience="investors"] [data-track="rescues"]   { display: none; }
+
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
