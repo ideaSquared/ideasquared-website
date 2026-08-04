@@ -806,22 +806,46 @@ button:focus-visible {
 .venture-table .num-col { font-family: var(--font-mono); font-feature-settings: "tnum" 1, "lnum" 1; }
 
 .callout {
-  background: var(--i2-signal-50);
-  border: 1px solid var(--i2-signal-200);
+  --callout-bg: var(--i2-signal-50);
+  --callout-border: var(--i2-signal-200);
+  --callout-fg: var(--i2-signal-800);
+  --callout-strong: var(--i2-ink-900);
+  --callout-icon: var(--i2-signal-600);
+  background: var(--callout-bg);
+  border: 1px solid var(--callout-border);
   border-radius: 18px;
   padding: 24px 28px;
   display: flex;
   gap: 16px;
   align-items: flex-start;
-  color: var(--i2-signal-800);
+  color: var(--callout-fg);
   margin: 24px 0;
 }
-.callout strong { color: var(--i2-ink-900); }
+.callout strong { color: var(--callout-strong); }
 .callout .icon {
   font-family: var(--font-display);
   font-size: 28px;
   line-height: 1;
-  color: var(--i2-signal-600);
+  color: var(--callout-icon);
+}
+/* Dark theme: a warm translucent tint over the dark surface instead of the
+   fixed cream box, so callouts read correctly in both themes. */
+:root[data-theme="dark"] .callout,
+.on-dark .callout {
+  --callout-bg: rgba(232, 145, 26, 0.10);
+  --callout-border: rgba(232, 145, 26, 0.30);
+  --callout-fg: var(--fg-body);
+  --callout-strong: var(--fg);
+  --callout-icon: var(--i2-signal-400);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="auto"] .callout {
+    --callout-bg: rgba(232, 145, 26, 0.10);
+    --callout-border: rgba(232, 145, 26, 0.30);
+    --callout-fg: var(--fg-body);
+    --callout-strong: var(--fg);
+    --callout-icon: var(--i2-signal-400);
+  }
 }
 
 /* ---------- Responsive ---------- */
