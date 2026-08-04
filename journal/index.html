@@ -52,6 +52,114 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">4 Aug 2026</span>
+      </div>
+      <h4>Field-level permissions enforced; private uploads move to signed URLs; live sessions cut off on logout.</h4>
+      <p>Three access-control fixes shipped together. The field-level permission system that governs which parts of a rescue record each role can see or edit is now enforced at the API &mdash; rescue records are masked on read and write-guarded by the caller&rsquo;s role, where before the controls existed only as configuration. Private application documents are no longer served directly: they&rsquo;re reachable only through short-lived, per-request signed URLs issued after an authorisation check, and the storage layer fails closed if signing isn&rsquo;t configured. Real-time chat and notification sockets now revalidate on logout, token revocation or account suspension, so a signed-out or suspended session is disconnected within seconds instead of streaming on. The analytics ingestion endpoints were hardened to strip tokens from logged URLs, and a further batch of dependency advisories was patched the same day.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">2 Aug 2026</span>
+      </div>
+      <h4>Backend authorisation hardening: adoption-outcome privacy and analytics token leaks closed.</h4>
+      <p>A logged-in adopter could previously probe whether any specific person had ever been approved for adoption &mdash; the adoption-outcome count was gated on a permission every adopter holds and would answer for a single individual. That endpoint is now restricted to admin reporting and enforces a minimum cohort size, so it can never return a per-person answer. Alongside it, a broader sweep of backend authorisation and data-isolation fixes landed, and analytics page-view capture stopped recording single-use links &mdash; password-reset, email-verification and rescue-invitation tokens &mdash; that could otherwise be read back from the analytics store.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">31 Jul 2026</span>
+      </div>
+      <h4>Admin data exports secured against formula injection.</h4>
+      <p>CSV files downloaded from the admin panel now neutralise formula characters in user-controlled fields &mdash; names, rescue names and similar data beginning with <code>=</code>, <code>+</code>, <code>-</code> or <code>@</code> are escaped before download, so an export opens safely in Excel or Google Sheets without executing embedded content.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">28 Jul 2026</span>
+      </div>
+      <h4>CI supply-chain hardening: fork-PR release bypass closed; deploy tokens scope-checked.</h4>
+      <p>A fork pull request could previously satisfy the release gate and reach the container-publishing jobs with registry credentials in scope; the workflow now verifies a run originated from a push on this repository before any secret is accessed. The deploy and rollback pipelines also began verifying that the container-registry token carries only the access it needs before every release, failing loudly at the CI layer rather than on the production host.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">25 Jul 2026</span>
+      </div>
+      <h4>React Router v8; dependency security sweep to zero high-severity.</h4>
+      <p>All three frontends migrated from React Router v7 to v8, resolving two advisories with no v7 fix &mdash; a route-matching denial-of-service and a server-side CSRF &mdash; with Node.js updated to 22.23.1. A wave of dependency advisories was cleared across the week (brace-expansion, js-yaml, shell-quote, protobuf.js, DOMPurify, fast-uri and the OpenTelemetry Jaeger propagator), taking the automated advisory audit to zero high-severity findings.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">21 Jul 2026</span>
+      </div>
+      <h4>Rescue event adoption attribution; real-time flood protection; GDPR records completed.</h4>
+      <p>Rescue event analytics now attribute adoptions that followed an event &mdash; the &ldquo;adoptions from this event&rdquo; figure had always read zero because the cross-service link was missing. Unauthenticated connection attempts to the real-time gateway are rate-limited per IP before any token check runs, so a connection flood can&rsquo;t consume backend capacity. Separately, the GDPR Record of Processing Activities was completed with sub-processor and data-location detail.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">19 Jul 2026</span>
+      </div>
+      <h4>Distributed-tracing coverage completed.</h4>
+      <p>OpenTelemetry instrumentation was extended to the content service, completing end-to-end trace coverage across every microservice &mdash; a single request can now be followed across service boundaries from the API gateway down to the database.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">18 Jul 2026</span>
+      </div>
+      <h4>Security hardening day: 2FA setup, the edge and infrastructure.</h4>
+      <p>The pending authenticator secret created during 2FA setup is now stored server-side, closing an attack that could lock the real account holder out. Sign-in responses for locked, suspended or deactivated accounts are made indistinguishable from a wrong password until the correct one is supplied, closing a user-enumeration path, and a 2FA-confirmation replay was closed. Invitation acceptance is rate-limited. At the edge: a strict Content-Security-Policy for the single-page apps, Socket.IO connection rate limiting, fail-closed CORS, HSTS and event-URL validation (javascript: and data: links rejected), with error and URL handling tightened so responses don&rsquo;t leak internal detail. On infrastructure, production image digests were pinned and CI workflow-injection vectors closed.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">17 Jul 2026</span>
+      </div>
+      <h4>2FA backup codes shown once; regeneration requires a live code; unverified-account oracle closed.</h4>
+      <p>Backup recovery codes are now revealed exactly once in a confirm-before-dismiss panel, and regenerating them requires a valid current authenticator code &mdash; a stolen browser session alone can no longer replace the recovery path. Separately, submitting a correct password for an unverified account no longer bypasses the failed-attempt counter, closing a path that revealed whether a password was right before the account was verified.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">16 Jul 2026</span>
+      </div>
+      <h4>2FA backup-code use made race-safe.</h4>
+      <p>Consuming a two-factor backup recovery code is now atomic, so the same code can&rsquo;t be accepted twice by two simultaneous sign-in attempts.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">15 Jul 2026</span>
+      </div>
+      <h4>Session tokens moved to HttpOnly cookies.</h4>
+      <p>Authentication tokens no longer live in browser localStorage &mdash; they&rsquo;re held in HttpOnly, server-set cookies that JavaScript cannot read, removing the class of credential theft where a cross-site-scripting flaw silently exfiltrates a token. Any legacy tokens left in localStorage are purged on the first load after deployment.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">14 Jul 2026</span>
+      </div>
+      <h4>CSRF protection groundwork; 2FA recovery codes; authenticator secrets encrypted at rest.</h4>
+      <p>The gateway now issues and validates CSRF tokens for state-changing requests &mdash; the foundation for the move to cookie-based sessions. Accounts with two-factor authentication receive single-use recovery codes at enrolment, and the stored TOTP secrets that back the authenticator app are now encrypted at rest (AES-256-GCM), so a database exposure can no longer yield usable offline bypass codes.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
