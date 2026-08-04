@@ -351,10 +351,14 @@ button:focus-visible {
   max-width: 52ch;
 }
 /* Track visibility is driven by the root data-audience attribute, set
-   synchronously in the page head so there's no flash. With JS disabled the
-   attribute is never set, so both tracks stay visible and nothing is lost. */
-:root[data-audience="rescues"]   [data-track="investors"] { display: none; }
-:root[data-audience="investors"] [data-track="rescues"]   { display: none; }
+   synchronously in the page head so there's no flash. Whenever an audience
+   is chosen, every track is hidden and only the matching one is shown. With
+   JS disabled the attribute is never set, so all tracks stay visible and no
+   content is lost. New venture audiences just add one "show" line below. */
+:root[data-audience] [data-track] { display: none; }
+:root[data-audience="rescues"]    [data-track="rescues"]    { display: block; }
+:root[data-audience="households"] [data-track="households"] { display: block; }
+:root[data-audience="investors"]  [data-track="investors"]  { display: block; }
 
 .project-grid {
   display: grid;

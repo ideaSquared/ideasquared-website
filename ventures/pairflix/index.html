@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../../styles/tokens.css">
 <link rel="stylesheet" href="../../styles/site.css">
 <script>(function(){try{var t=localStorage.getItem('i2-theme');document.documentElement.setAttribute('data-theme',t==='light'||t==='dark'?t:'auto');}catch(e){document.documentElement.setAttribute('data-theme','auto');}})();</script>
+<script>(function(){var h=location.hash;document.documentElement.setAttribute('data-audience',h==='#for-investors'?'investors':'households');})();</script>
 </head>
 <body class="i2">
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -34,6 +35,10 @@
 </header>
 
 <main id="main">
+
+<!-- ============================================================= -->
+<!-- SHARED  ·  the venture story everyone needs                    -->
+<!-- ============================================================= -->
 
 <section class="venture-hero" aria-labelledby="pairflix-name">
   <div class="venture-hero-inner">
@@ -89,7 +94,7 @@
 
 <section class="venture-section" aria-labelledby="solution">
   <div class="head">
-    <span class="eyebrow">The solution</span>
+    <span class="eyebrow">How it works</span>
     <h2 id="solution">A relationship-first recommendation layer.</h2>
     <p>Pairflix sits on top of the streaming subscriptions a household already pays for and recommends a single, agreed title &mdash; based on both partners' tastes, mood and the time they've actually got.</p>
   </div>
@@ -111,42 +116,6 @@
       <p>Tracks what you've actually agreed on &mdash; not just what you started &mdash; and learns the household's real taste over time.</p>
     </article>
   </div>
-</section>
-
-<section class="venture-section" aria-labelledby="competition">
-  <div class="head">
-    <span class="eyebrow">Competitive landscape</span>
-    <h2 id="competition">The only product designed around the household decision.</h2>
-  </div>
-  <p class="table-label">How Pairflix differs</p>
-  <table class="venture-table">
-    <thead>
-      <tr><th scope="col">Player</th><th scope="col">Their strength</th><th scope="col">Pairflix edge</th></tr>
-    </thead>
-    <tbody>
-      <tr><th scope="row">Netflix profiles</th><td>Distribution</td><td>Single-platform only, individual-first</td></tr>
-      <tr><th scope="row">Teleparty</th><td>Sync watching</td><td>We solve the <em>decision</em>, not the playback</td></tr>
-      <tr><th scope="row">Generic recommenders</th><td>Algorithmic depth</td><td>Relationship-first profile model</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section class="venture-section" aria-labelledby="model">
-  <div class="head">
-    <span class="eyebrow">Business model</span>
-    <h2 id="model">Freemium drives top of funnel; premium is the engine.</h2>
-  </div>
-  <p class="table-label">Revenue streams</p>
-  <table class="venture-table">
-    <thead>
-      <tr><th scope="col">Stream</th><th scope="col">Payer</th><th scope="col">Pricing</th></tr>
-    </thead>
-    <tbody>
-      <tr><th scope="row">Premium subscription</th><td>Couples &amp; households</td><td>Monthly fee &mdash; unlimited matches &amp; cross-platform</td></tr>
-      <tr><th scope="row">Affiliate revenue</th><td>Streamers &amp; content partners</td><td>Rev-share on signups</td></tr>
-      <tr><th scope="row">Free tier</th><td>Adopters</td><td>Limited matches per day, ad-light</td></tr>
-    </tbody>
-  </table>
 </section>
 
 <section class="venture-section" aria-labelledby="status">
@@ -171,7 +140,89 @@
   </div>
 </section>
 
-<section class="venture-section" aria-labelledby="projections">
+<!-- ============================================================= -->
+<!-- AUDIENCE SWITCH  ·  choose the track that fits you             -->
+<!-- ============================================================= -->
+
+<section class="audience-switch" data-audience-switch="households" aria-label="Choose your view">
+  <span class="audience-label">Who&rsquo;s this for?</span>
+  <div class="filter" role="group" aria-label="Choose your view">
+    <button type="button" data-audience="households" class="is-active" aria-pressed="true" data-hint="How Pairflix works, what it costs, and when you can use it.">I want to watch</button>
+    <button type="button" data-audience="investors" aria-pressed="false" data-hint="The market, model, three-year projection and the &pound;400k seed ask.">I&rsquo;m an investor</button>
+  </div>
+  <p class="audience-hint" data-audience-hint>How Pairflix works, what it costs, and when you can use it.</p>
+</section>
+
+<!-- ============================================================= -->
+<!-- TRACK  ·  FOR HOUSEHOLDS                                       -->
+<!-- ============================================================= -->
+
+<section class="venture-section" data-track="households" aria-labelledby="h-cost">
+  <div class="head">
+    <span class="eyebrow signal">For households</span>
+    <h2 id="h-cost">Free to end the standoff. Premium when you want more.</h2>
+    <p>Pairflix sits on top of the subscriptions you already pay for &mdash; it doesn&rsquo;t replace them. The core is free; premium is for the households that want the full cross-platform picture.</p>
+  </div>
+  <div class="venture-grid-2">
+    <article class="venture-card">
+      <h4>Free</h4>
+      <p>Your pair profile, the mood &amp; time picker, and daily matches across your services. Ad-light &mdash; enough to settle most &ldquo;what shall we watch?&rdquo; standoffs in about thirty seconds.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Premium</h4>
+      <p>Unlimited matches, full cross-platform coverage and a richer watch-together history that keeps learning your household&rsquo;s taste &mdash; a small monthly fee per household.</p>
+    </article>
+  </div>
+  <div class="callout" role="note">
+    <span class="icon" aria-hidden="true">&#x25B6;</span>
+    <div>
+      <strong>Not open to the public yet</strong>
+      <p style="margin: 4px 0 0;">There&rsquo;s no waitlist and no launch date &mdash; we&rsquo;ll announce when the build clears its quality bar. Follow along on the <a href="../../journal/">studio journal</a>, or watch the build on <a href="https://github.com/ideaSquared/pairflix">GitHub</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- TRACK  ·  FOR INVESTORS                                        -->
+<!-- ============================================================= -->
+
+<section class="venture-section" data-track="investors" aria-labelledby="competition">
+  <div class="head">
+    <span class="eyebrow signal">For investors</span>
+    <h2 id="competition">The only product designed around the household decision.</h2>
+  </div>
+  <p class="table-label">How Pairflix differs</p>
+  <table class="venture-table">
+    <thead>
+      <tr><th scope="col">Player</th><th scope="col">Their strength</th><th scope="col">Pairflix edge</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Netflix profiles</th><td>Distribution</td><td>Single-platform only, individual-first</td></tr>
+      <tr><th scope="row">Teleparty</th><td>Sync watching</td><td>We solve the <em>decision</em>, not the playback</td></tr>
+      <tr><th scope="row">Generic recommenders</th><td>Algorithmic depth</td><td>Relationship-first profile model</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="venture-section" data-track="investors" aria-labelledby="model">
+  <div class="head">
+    <span class="eyebrow">Business model</span>
+    <h2 id="model">Freemium drives top of funnel; premium is the engine.</h2>
+  </div>
+  <p class="table-label">Revenue streams</p>
+  <table class="venture-table">
+    <thead>
+      <tr><th scope="col">Stream</th><th scope="col">Payer</th><th scope="col">Pricing</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Premium subscription</th><td>Couples &amp; households</td><td>Monthly fee &mdash; unlimited matches &amp; cross-platform</td></tr>
+      <tr><th scope="row">Affiliate revenue</th><td>Streamers &amp; content partners</td><td>Rev-share on signups</td></tr>
+      <tr><th scope="row">Free tier</th><td>Households</td><td>Limited matches per day, ad-light</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="venture-section" data-track="investors" aria-labelledby="projections">
   <div class="head">
     <span class="eyebrow">Three-year projection (post-launch)</span>
     <h2 id="projections">The trajectory we're building toward.</h2>
@@ -190,7 +241,7 @@
   </table>
 </section>
 
-<section class="venture-section" aria-labelledby="ask">
+<section class="venture-section" data-track="investors" aria-labelledby="ask">
   <div class="head">
     <span class="eyebrow signal">Funding ask</span>
     <h2 id="ask">£400k seed to take Pairflix from alpha to paid product–market fit.</h2>
@@ -214,6 +265,10 @@
     </div>
   </div>
 </section>
+
+<!-- ============================================================= -->
+<!-- SHARED  ·  founder note                                        -->
+<!-- ============================================================= -->
 
 <section class="quote" aria-label="From the founder">
   <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--i2-signal-400)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V11a4 4 0 0 1 4-4h2v3H7a1 1 0 0 0-1 1v2h3v8z"/><path d="M14 21V11a4 4 0 0 1 4-4h2v3h-2a1 1 0 0 0-1 1v2h3v8z"/></svg>
