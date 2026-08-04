@@ -163,7 +163,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
-      <p>A scoping gap in the events system meant rescue staff with event-read access but no linked rescue could inadvertently see attendee names and emails belonging to other organisations&rsquo; events; all event endpoints now enforce strict per-rescue isolation. A regression introduced by an earlier database migration had caused account-deletion requests (GDPR erasure) to fail silently, leaving personal data in place and sessions valid; deletion now completes correctly across all associated data. A gap in the admin user-update path allowed admin accounts to escalate their own or others&rsquo; roles to super-admin level without the correct authorisation checks; role changes now require the same strict guards as account creation.</p>
+      <p>A gap in the events system meant some rescue staff could inadvertently see attendee names and emails from other organisations&rsquo; events; events are now strictly separated so each rescue only ever sees its own. A separate issue had been causing account-deletion requests (GDPR erasure) to fail silently, leaving personal data in place; deletion now completes correctly across all associated data. And a gap that let administrator accounts raise their own or others&rsquo; access to the highest level without the proper checks has been closed &mdash; role changes now require the same strict safeguards as creating an account.</p>
     </article>
 
     <article class="venture-card">
@@ -171,8 +171,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">1 Jul 2026</span>
       </div>
-      <h4>API reliability restored; session security hardened; cold-start errors fixed.</h4>
-      <p>A sweep of the API gateway resolved schema issues that were causing list endpoints to mis-serialise data, some DELETE and POST routes to reject valid requests, and the top-picks endpoint to return malformed responses &mdash; all gateway tests now pass. Refresh tokens are now stored as one-way hashes; a database exposure can no longer be used to impersonate an active session. The adopter portal, rescue dashboard and admin panel no longer return errors for around 40&nbsp;seconds after a cold boot &mdash; all three now wait for the API gateway to become healthy before serving.</p>
+      <h4>Reliability restored; sign-in security hardened; start-up errors fixed.</h4>
+      <p>A thorough sweep fixed a set of issues that had been causing some lists to display incorrectly, some updates to be wrongly rejected, and the Top Picks page to misbehave &mdash; everything now checks out. Sign-in credentials are now stored scrambled, so a data exposure can no longer be used to hijack an active session. And the adopter portal, rescue dashboard and admin panel no longer show errors for the first several seconds after the system starts up &mdash; each now waits until the platform is fully ready before serving.</p>
     </article>
 
     <article class="venture-card">
@@ -225,8 +225,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">19 Jun 2026</span>
       </div>
-      <h4>Security: inline styles removed from CSP. Full API documentation published.</h4>
-      <p>The frontend&rsquo;s Content-Security-Policy no longer permits <code>unsafe-inline</code> for stylesheets, closing a CSS-injection vector; a CI guard now blocks any regression. Every route across the application and document lifecycle now declares its contract in the interactive API docs at /docs, for integration partners and SDK generators.</p>
+      <h4>Security: a common web-injection route closed; full developer documentation published.</h4>
+      <p>We tightened the rules that control what a page is allowed to load, closing a route that could be used to slip unwanted styling into the site, with an automated check to stop it slipping back. And every part of the platform is now fully documented for the partners and tools that connect to it.</p>
     </article>
 
     <article class="venture-card">
@@ -235,7 +235,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">18 Jun 2026</span>
       </div>
       <h4>Staff invitations, 2FA, pet favourites and custom application questions.</h4>
-      <p>Rescue staff can now accept email invitations to join their organisation &mdash; the invite link creates or connects an account and grants team access automatically. Accounts can enrol in two-factor authentication (TOTP); once enabled, a one-time code is required at every sign-in. Adopters can save favourite pets and return to them at any time. Rescues can add their own screening questions to the adoption application form, with answers captured on submission.</p>
+      <p>Rescue staff can now accept email invitations to join their organisation &mdash; the invite link creates or connects an account and grants team access automatically. Accounts can enrol in two-factor authentication; once enabled, a one-time code is required at every sign-in. Adopters can save favourite pets and return to them at any time. Rescues can add their own screening questions to the adoption application form, with answers captured on submission.</p>
     </article>
 
     <article class="venture-card">
@@ -243,8 +243,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">18 Jun 2026</span>
       </div>
-      <h4>Security: high-severity vulnerabilities patched; production images pinned.</h4>
-      <p>Two CVE-grade advisories &mdash; an arbitrary file read risk in the email delivery library and a TLS certificate validation bypass in HTTP transport &mdash; have been resolved. All production container images are now pinned to immutable content digests; a CI gate blocks any unverified image from deploying. Automated audit reports zero high-severity findings.</p>
+      <h4>Security: high-severity vulnerabilities patched; releases locked to verified versions.</h4>
+      <p>Two serious issues in third-party software &mdash; one that could expose files and one that weakened secure connections &mdash; have been fixed. Every release is now locked to an exact, verified version, and an automated check blocks anything unverified from going live. Our automated audit reports no remaining high-priority issues.</p>
     </article>
 
     <article class="venture-card">
@@ -252,8 +252,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">17 Jun 2026</span>
       </div>
-      <h4>Login restored after gateway migration.</h4>
-      <p>Following the switch from the legacy monolith to the new Fastify API gateway, the adopter portal had an auth contract mismatch that prevented users from signing in. The contract is now aligned &mdash; login works correctly end-to-end across the adopter portal, rescue dashboard and admin panel.</p>
+      <h4>Login restored after a behind-the-scenes upgrade.</h4>
+      <p>After a major upgrade to how the apps talk to the platform, a mismatch had briefly stopped people signing in on the adopter portal. That&rsquo;s now resolved &mdash; login works correctly end to end across the adopter portal, rescue dashboard and admin panel.</p>
     </article>
 
     <article class="venture-card">
@@ -280,7 +280,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">16 Jun 2026</span>
       </div>
       <h4>Data isolation, notification opt-outs and infrastructure reliability.</h4>
-      <p>Applications are now strictly scoped to the adopter who submitted them; pet listings are correctly isolated to the managing rescue &mdash; no cross-organisation data access is possible. Email notification opt-outs are enforced per notification type, so opting out of one category doesn&rsquo;t affect others. A dead-letter queue now captures any background event that fails processing, eliminating silent data loss.</p>
+      <p>Applications are now strictly scoped to the adopter who submitted them; pet listings are correctly isolated to the managing rescue &mdash; no cross-organisation data access is possible. Email notification opt-outs are enforced per notification type, so opting out of one category doesn&rsquo;t affect others. Any background task that fails is now safely captured and retried rather than lost, eliminating silent data loss.</p>
     </article>
 
     <article class="venture-card">
@@ -289,7 +289,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">15 Jun 2026</span>
       </div>
       <h4>Email notifications live.</h4>
-      <p>Adopters and rescue staff now receive application updates, new messages and rescue decisions by email as well as in-app. Each account&rsquo;s saved channel preferences are enforced at send time &mdash; if you&rsquo;ve opted out of email for a notification type, it stays in-app only. A deduplication guard ensures each alert arrives exactly once.</p>
+      <p>Adopters and rescue staff now receive application updates, new messages and rescue decisions by email as well as in-app. Each account&rsquo;s saved channel preferences are enforced at send time &mdash; if you&rsquo;ve opted out of email for a notification type, it stays in-app only. Built-in safeguards ensure each alert arrives exactly once, never twice.</p>
     </article>
 
     <article class="venture-card">
@@ -297,8 +297,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">15 Jun 2026</span>
       </div>
-      <h4>Microservices migration complete. Security hardening pass done.</h4>
-      <p>All ten domain services now run as independent containers &mdash; the legacy monolith is deleted. Separately: all high-severity findings from an automated static-analysis security audit have been resolved, and the API documentation page is now gated behind admin credentials. The platform is closer to closed beta readiness.</p>
+      <h4>Platform re-architecture complete. Security hardening pass done.</h4>
+      <p>The platform has been fully split into ten independent services and the old single-block system is gone &mdash; a foundation that&rsquo;s easier to scale and keep reliable. Separately, every high-priority finding from an automated security audit has been resolved, and the technical documentation is now kept behind admin sign-in. The platform is closer to closed-beta readiness.</p>
     </article>
 
     <article class="venture-card">
