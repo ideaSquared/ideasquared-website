@@ -181,7 +181,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
       </div>
       <h4>Rescue events launch; real-time analytics; profile save fix.</h4>
-      <p>Rescues can now create, publish and manage adoption events, fundraisers, volunteer days and community meetups directly from the dashboard &mdash; with attendee registration, check-in and event analytics included. The rescue dashboard analytics page now shows real-time figures for adoption trends, application status, pet performance and top breeds, replacing the placeholder data that had been there since launch. Separately, account profile changes that were silently failing due to a routing mismatch now save correctly.</p>
+      <p>Rescues can now create, publish and manage adoption events, fundraisers, volunteer days and community meetups directly from the dashboard &mdash; with attendee registration, check-in and event analytics included. The rescue dashboard analytics page now shows real-time figures for adoption trends, application status, pet performance and top breeds, replacing the placeholder data that had been there since launch. Separately, account profile changes that had been silently failing now save correctly.</p>
     </article>
 
     <article class="venture-card">
@@ -190,7 +190,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">29 Jun 2026</span>
       </div>
       <h4>Saved analytics reports; adoption policy fix; application security hardening.</h4>
-      <p>Rescue analytics reports can now be run to produce live figures, previewed, scheduled for recurring delivery and shared with team members. Saving changes to a rescue&rsquo;s adoption policy on the Settings page no longer returns an error. Adoption applications now derive the applicant&rsquo;s identity exclusively from the authenticated session &mdash; a body-level override that could previously be used to submit an application as a different user has been removed.</p>
+      <p>Rescue analytics reports can now be run to produce live figures, previewed, scheduled for recurring delivery and shared with team members. Saving changes to a rescue&rsquo;s adoption policy on the Settings page no longer returns an error. Adoption applications now always use the identity of the signed-in person submitting them &mdash; closing a loophole that could previously be used to submit an application in someone else&rsquo;s name.</p>
     </article>
 
     <article class="venture-card">
@@ -306,8 +306,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
       </div>
-      <h4>Roadmap re-baselined to closed beta Aug&ndash;Sep 2026.</h4>
-      <p>Original &sect;15 beta target (Q4 2025) was missed. The May 2026 re-baseline replaces it with seven sequenced milestones: legal foundation, data protection package, platform hardening, closed beta, trust &amp; safety, payments &amp; commercial, and public launch in November. Demand signal preserved &mdash; 5 lister LOIs and a 1,000+ adopter waitlist carried in.</p>
+      <h4>Timeline reset: closed beta now Aug&ndash;Sep 2026.</h4>
+      <p>The original beta target (late 2025) was missed. The May 2026 reset replaces it with seven clear stages: legal foundation, data protection, platform readiness, closed beta, trust &amp; safety, payments, and public launch in November. Early demand is intact &mdash; letters of intent from five rescues and a waitlist of over 1,000 adopters carried across.</p>
     </article>
 
     <article class="venture-card">
@@ -315,8 +315,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
       </div>
-      <h4>Sprint focus published.</h4>
-      <p>Rescue profile builder (drag-and-drop, three columns) live in staging. Geographic search by postcode in review. 6-step application workflow in design. Welfare-incident reporting from the adopter side next.</p>
+      <h4>What we&rsquo;re working on next.</h4>
+      <p>The rescue profile builder (drag-and-drop, three columns) is up and running in testing. Search by postcode is in review, a six-step application journey is in design, and welfare-incident reporting for adopters is next.</p>
     </article>
 
     <article class="venture-card">
@@ -324,8 +324,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
       </div>
-      <h4>Scope cuts logged.</h4>
-      <p>Three features dropped on purpose: a rescue ratings system (against principle), an adopter &ldquo;wishlist&rdquo; (animal-as-listing &mdash; no thanks), and premium rescue placements (the &pound;40k cheque we turned down).</p>
+      <h4>Three things we chose not to build.</h4>
+      <p>We deliberately dropped three features: a rescue ratings system (against our principles), an adopter &ldquo;wishlist&rdquo; (treating animals as products &mdash; no thanks), and paid priority placements for rescues (the &pound;40k cheque we turned down).</p>
     </article>
 
     <article class="venture-card">
@@ -334,7 +334,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">26 Apr 2026</span>
       </div>
       <h4>Proposal moved to <em>In Build</em>.</h4>
-      <p>The ADS proposal cleared the gate and is now an active venture on the studio platform. Stack locked: React + Vite + TypeScript, Node + Express + Sequelize, PostgreSQL 16 + PostGIS, Redis 7, Socket.io, Turborepo. Lead: Alex Jenkinson.</p>
+      <p>The AdoptDontShop proposal cleared its review and is now an active venture in the studio. The technology it&rsquo;s built on is decided, and the build is under way. Lead: Alex Jenkinson.</p>
     </article>
 
     <article class="venture-card">
@@ -343,7 +343,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">26 Apr 2026</span>
       </div>
       <h4>Alpha feature-complete.</h4>
-      <p>Six engineering milestones standing: monorepo + Docker dev stack, JWT auth + rescue registration, pet listings with staff permissions + photo upload, adopter browse/filter/like flow, real-time messaging on Socket.io, and Docker dev + prod environments. Closing 18 open issues + QA pass before handing off to compliance.</p>
+      <p>Six early milestones are in place: the developer setup, sign-in and rescue registration, pet listings with staff controls and photo upload, the browse-filter-and-like flow for adopters, real-time messaging, and matching development and live environments. Eighteen remaining issues and a quality pass are being closed out before handing over to compliance.</p>
     </article>
 
     <article class="venture-card">
@@ -352,7 +352,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">Apr 2026</span>
       </div>
       <h4>Early alpha state captured.</h4>
-      <p>Platform stack standing &mdash; three apps (client, admin, backend), JWT auth, watchlist + partner matching, TMDB integration, TypeScript strict mode, full test suite passing, multi-stage Docker builds behind Nginx. No public users yet; matcher and partner-pairing UX in flight before opening a closed alpha.</p>
+      <p>The foundations are in place &mdash; three apps (the viewer app, an admin tool and the backend), secure sign-in, a shared watchlist with partner matching, film and TV data from TMDB, and a full set of automated tests passing. No public users yet; the matching and partner-pairing experience is being refined before opening a closed alpha.</p>
     </article>
 
   </div>
