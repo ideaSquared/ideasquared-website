@@ -52,10 +52,118 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">4 Aug 2026</span>
+      </div>
+      <h4>Tighter control over who sees rescue details, private documents and live sessions.</h4>
+      <p>Three privacy and security improvements shipped together. Rescues now have precise control over which parts of a record each team member can see or change. Private application documents &mdash; things like ID and proof of address &mdash; are no longer shared through open links; each is reached through a secure link that expires shortly after it&rsquo;s opened. And when someone signs out, is suspended or has their access removed, their live chat and notifications now disconnect within seconds rather than lingering. A batch of routine security updates to third-party software shipped the same day.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">2 Aug 2026</span>
+      </div>
+      <h4>Closed a gap that could reveal whether someone had adopted.</h4>
+      <p>Previously a signed-in user could work out whether a specific person had ever been approved to adopt. That information is now limited to administrators and only ever reported for large groups, never for a single individual. Alongside it, a wider round of behind-the-scenes privacy fixes landed, and our usage analytics stopped recording the one-time links contained in password-reset, email-verification and invitation emails.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">31 Jul 2026</span>
+      </div>
+      <h4>Safer spreadsheet exports for admins.</h4>
+      <p>Spreadsheets exported from the admin area are now cleaned so that information someone typed into a form &mdash; like a name or rescue name &mdash; can&rsquo;t be misread as a live formula when the file is opened in Excel or Google Sheets. Exports open safely every time.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">28 Jul 2026</span>
+      </div>
+      <h4>Stronger safeguards around how we release updates.</h4>
+      <p>We tightened the automated process that ships new versions of the platform, so that only trusted internal changes can trigger a release and each release is given only the access it actually needs. It makes it much harder for anything unexpected to find its way into a deployment.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">25 Jul 2026</span>
+      </div>
+      <h4>Routine security updates across the platform.</h4>
+      <p>We refreshed the platform&rsquo;s underlying software to its latest, most secure versions and cleared every known high-priority security advisory. Nothing changes in how you use the site &mdash; it&rsquo;s the kind of housekeeping that keeps everything current and safe.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">21 Jul 2026</span>
+      </div>
+      <h4>Event reports now count adoptions correctly; sturdier live connections.</h4>
+      <p>Rescue event reports now correctly count the adoptions that came from an event &mdash; a figure that had always shown zero. We also added protection so a flood of connection attempts can&rsquo;t slow down the live parts of the site for everyone else. And we completed our formal record of how personal data is handled, part of our data-protection commitments.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">19 Jul 2026</span>
+      </div>
+      <h4>Better visibility into how the platform is running.</h4>
+      <p>We finished rolling out behind-the-scenes monitoring across every part of the platform, so that when something needs looking into we can follow exactly what happened from start to finish. It helps us spot and fix issues faster.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">18 Jul 2026</span>
+      </div>
+      <h4>A day of security hardening across sign-in and the wider platform.</h4>
+      <p>Several protections landed together. Setting up two-factor authentication is now more secure and can&rsquo;t be misused to lock you out of your own account. Sign-in no longer gives away whether an account is locked, suspended or simply has the wrong password. Accepting a team invitation is now limited to block automated abuse. And we added a range of protections across the edges of the platform &mdash; stricter rules on what can load in a page, what links an event can contain, and how errors are shown &mdash; so nothing reveals information it shouldn&rsquo;t.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">17 Jul 2026</span>
+      </div>
+      <h4>Stronger two-factor backup codes; safer sign-in for new accounts.</h4>
+      <p>Your two-factor backup codes are now shown once, with a clear prompt to save them before the screen closes, and creating a fresh set requires a code from your authenticator app &mdash; so a borrowed or stolen browser session on its own can&rsquo;t replace them. We also closed a gap where a brand-new, unverified account could reveal whether a password was correct before the email address had been confirmed.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">16 Jul 2026</span>
+      </div>
+      <h4>Two-factor backup codes can&rsquo;t be used twice.</h4>
+      <p>We made sure a two-factor backup code can only ever be used once &mdash; even if two sign-in attempts happen at exactly the same moment.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">15 Jul 2026</span>
+      </div>
+      <h4>A safer way of keeping you signed in.</h4>
+      <p>We changed the way your sign-in is stored in the browser so that it can no longer be read by code running on a page &mdash; removing a common way that account access can be stolen. You don&rsquo;t need to do anything; it takes effect automatically the next time you load the site.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">14 Jul 2026</span>
+      </div>
+      <h4>Two-factor recovery codes, plus new protections behind the scenes.</h4>
+      <p>Accounts with two-factor authentication now receive single-use recovery codes when they set it up, so you can still get in if you lose your device. Behind the scenes, the secret that powers your authenticator app is now stored scrambled so it stays safe even in the unlikely event of a data exposure, and we added new safeguards against malicious requests being made in your name.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
       </div>
       <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
-      <p>A scoping gap in the events system meant rescue staff with event-read access but no linked rescue could inadvertently see attendee names and emails belonging to other organisations&rsquo; events; all event endpoints now enforce strict per-rescue isolation. A regression introduced by an earlier database migration had caused account-deletion requests (GDPR erasure) to fail silently, leaving personal data in place and sessions valid; deletion now completes correctly across all associated data. A gap in the admin user-update path allowed admin accounts to escalate their own or others&rsquo; roles to super-admin level without the correct authorisation checks; role changes now require the same strict guards as account creation.</p>
+      <p>A gap in the events system meant some rescue staff could inadvertently see attendee names and emails from other organisations&rsquo; events; events are now strictly separated so each rescue only ever sees its own. A separate issue had been causing account-deletion requests (GDPR erasure) to fail silently, leaving personal data in place; deletion now completes correctly across all associated data. And a gap that let administrator accounts raise their own or others&rsquo; access to the highest level without the proper checks has been closed &mdash; role changes now require the same strict safeguards as creating an account.</p>
     </article>
 
     <article class="venture-card">
@@ -63,8 +171,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">1 Jul 2026</span>
       </div>
-      <h4>API reliability restored; session security hardened; cold-start errors fixed.</h4>
-      <p>A sweep of the API gateway resolved schema issues that were causing list endpoints to mis-serialise data, some DELETE and POST routes to reject valid requests, and the top-picks endpoint to return malformed responses &mdash; all gateway tests now pass. Refresh tokens are now stored as one-way hashes; a database exposure can no longer be used to impersonate an active session. The adopter portal, rescue dashboard and admin panel no longer return errors for around 40&nbsp;seconds after a cold boot &mdash; all three now wait for the API gateway to become healthy before serving.</p>
+      <h4>Reliability restored; sign-in security hardened; start-up errors fixed.</h4>
+      <p>A thorough sweep fixed a set of issues that had been causing some lists to display incorrectly, some updates to be wrongly rejected, and the Top Picks page to misbehave &mdash; everything now checks out. Sign-in credentials are now stored scrambled, so a data exposure can no longer be used to hijack an active session. And the adopter portal, rescue dashboard and admin panel no longer show errors for the first several seconds after the system starts up &mdash; each now waits until the platform is fully ready before serving.</p>
     </article>
 
     <article class="venture-card">
@@ -73,7 +181,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
       </div>
       <h4>Rescue events launch; real-time analytics; profile save fix.</h4>
-      <p>Rescues can now create, publish and manage adoption events, fundraisers, volunteer days and community meetups directly from the dashboard &mdash; with attendee registration, check-in and event analytics included. The rescue dashboard analytics page now shows real-time figures for adoption trends, application status, pet performance and top breeds, replacing the placeholder data that had been there since launch. Separately, account profile changes that were silently failing due to a routing mismatch now save correctly.</p>
+      <p>Rescues can now create, publish and manage adoption events, fundraisers, volunteer days and community meetups directly from the dashboard &mdash; with attendee registration, check-in and event analytics included. The rescue dashboard analytics page now shows real-time figures for adoption trends, application status, pet performance and top breeds, replacing the placeholder data that had been there since launch. Separately, account profile changes that had been silently failing now save correctly.</p>
     </article>
 
     <article class="venture-card">
@@ -82,7 +190,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">29 Jun 2026</span>
       </div>
       <h4>Saved analytics reports; adoption policy fix; application security hardening.</h4>
-      <p>Rescue analytics reports can now be run to produce live figures, previewed, scheduled for recurring delivery and shared with team members. Saving changes to a rescue&rsquo;s adoption policy on the Settings page no longer returns an error. Adoption applications now derive the applicant&rsquo;s identity exclusively from the authenticated session &mdash; a body-level override that could previously be used to submit an application as a different user has been removed.</p>
+      <p>Rescue analytics reports can now be run to produce live figures, previewed, scheduled for recurring delivery and shared with team members. Saving changes to a rescue&rsquo;s adoption policy on the Settings page no longer returns an error. Adoption applications now always use the identity of the signed-in person submitting them &mdash; closing a loophole that could previously be used to submit an application in someone else&rsquo;s name.</p>
     </article>
 
     <article class="venture-card">
@@ -117,8 +225,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">19 Jun 2026</span>
       </div>
-      <h4>Security: inline styles removed from CSP. Full API documentation published.</h4>
-      <p>The frontend&rsquo;s Content-Security-Policy no longer permits <code>unsafe-inline</code> for stylesheets, closing a CSS-injection vector; a CI guard now blocks any regression. Every route across the application and document lifecycle now declares its contract in the interactive API docs at /docs, for integration partners and SDK generators.</p>
+      <h4>Security: a common web-injection route closed; full developer documentation published.</h4>
+      <p>We tightened the rules that control what a page is allowed to load, closing a route that could be used to slip unwanted styling into the site, with an automated check to stop it slipping back. And every part of the platform is now fully documented for the partners and tools that connect to it.</p>
     </article>
 
     <article class="venture-card">
@@ -127,7 +235,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">18 Jun 2026</span>
       </div>
       <h4>Staff invitations, 2FA, pet favourites and custom application questions.</h4>
-      <p>Rescue staff can now accept email invitations to join their organisation &mdash; the invite link creates or connects an account and grants team access automatically. Accounts can enrol in two-factor authentication (TOTP); once enabled, a one-time code is required at every sign-in. Adopters can save favourite pets and return to them at any time. Rescues can add their own screening questions to the adoption application form, with answers captured on submission.</p>
+      <p>Rescue staff can now accept email invitations to join their organisation &mdash; the invite link creates or connects an account and grants team access automatically. Accounts can enrol in two-factor authentication; once enabled, a one-time code is required at every sign-in. Adopters can save favourite pets and return to them at any time. Rescues can add their own screening questions to the adoption application form, with answers captured on submission.</p>
     </article>
 
     <article class="venture-card">
@@ -135,8 +243,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">18 Jun 2026</span>
       </div>
-      <h4>Security: high-severity vulnerabilities patched; production images pinned.</h4>
-      <p>Two CVE-grade advisories &mdash; an arbitrary file read risk in the email delivery library and a TLS certificate validation bypass in HTTP transport &mdash; have been resolved. All production container images are now pinned to immutable content digests; a CI gate blocks any unverified image from deploying. Automated audit reports zero high-severity findings.</p>
+      <h4>Security: high-severity vulnerabilities patched; releases locked to verified versions.</h4>
+      <p>Two serious issues in third-party software &mdash; one that could expose files and one that weakened secure connections &mdash; have been fixed. Every release is now locked to an exact, verified version, and an automated check blocks anything unverified from going live. Our automated audit reports no remaining high-priority issues.</p>
     </article>
 
     <article class="venture-card">
@@ -144,8 +252,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">17 Jun 2026</span>
       </div>
-      <h4>Login restored after gateway migration.</h4>
-      <p>Following the switch from the legacy monolith to the new Fastify API gateway, the adopter portal had an auth contract mismatch that prevented users from signing in. The contract is now aligned &mdash; login works correctly end-to-end across the adopter portal, rescue dashboard and admin panel.</p>
+      <h4>Login restored after a behind-the-scenes upgrade.</h4>
+      <p>After a major upgrade to how the apps talk to the platform, a mismatch had briefly stopped people signing in on the adopter portal. That&rsquo;s now resolved &mdash; login works correctly end to end across the adopter portal, rescue dashboard and admin panel.</p>
     </article>
 
     <article class="venture-card">
@@ -172,7 +280,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">16 Jun 2026</span>
       </div>
       <h4>Data isolation, notification opt-outs and infrastructure reliability.</h4>
-      <p>Applications are now strictly scoped to the adopter who submitted them; pet listings are correctly isolated to the managing rescue &mdash; no cross-organisation data access is possible. Email notification opt-outs are enforced per notification type, so opting out of one category doesn&rsquo;t affect others. A dead-letter queue now captures any background event that fails processing, eliminating silent data loss.</p>
+      <p>Applications are now strictly scoped to the adopter who submitted them; pet listings are correctly isolated to the managing rescue &mdash; no cross-organisation data access is possible. Email notification opt-outs are enforced per notification type, so opting out of one category doesn&rsquo;t affect others. Any background task that fails is now safely captured and retried rather than lost, eliminating silent data loss.</p>
     </article>
 
     <article class="venture-card">
@@ -181,7 +289,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">15 Jun 2026</span>
       </div>
       <h4>Email notifications live.</h4>
-      <p>Adopters and rescue staff now receive application updates, new messages and rescue decisions by email as well as in-app. Each account&rsquo;s saved channel preferences are enforced at send time &mdash; if you&rsquo;ve opted out of email for a notification type, it stays in-app only. A deduplication guard ensures each alert arrives exactly once.</p>
+      <p>Adopters and rescue staff now receive application updates, new messages and rescue decisions by email as well as in-app. Each account&rsquo;s saved channel preferences are enforced at send time &mdash; if you&rsquo;ve opted out of email for a notification type, it stays in-app only. Built-in safeguards ensure each alert arrives exactly once, never twice.</p>
     </article>
 
     <article class="venture-card">
@@ -189,8 +297,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">15 Jun 2026</span>
       </div>
-      <h4>Microservices migration complete. Security hardening pass done.</h4>
-      <p>All ten domain services now run as independent containers &mdash; the legacy monolith is deleted. Separately: all high-severity findings from an automated static-analysis security audit have been resolved, and the API documentation page is now gated behind admin credentials. The platform is closer to closed beta readiness.</p>
+      <h4>Platform re-architecture complete. Security hardening pass done.</h4>
+      <p>The platform has been fully split into ten independent services and the old single-block system is gone &mdash; a foundation that&rsquo;s easier to scale and keep reliable. Separately, every high-priority finding from an automated security audit has been resolved, and the technical documentation is now kept behind admin sign-in. The platform is closer to closed-beta readiness.</p>
     </article>
 
     <article class="venture-card">
@@ -198,8 +306,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
       </div>
-      <h4>Roadmap re-baselined to closed beta Aug&ndash;Sep 2026.</h4>
-      <p>Original &sect;15 beta target (Q4 2025) was missed. The May 2026 re-baseline replaces it with seven sequenced milestones: legal foundation, data protection package, platform hardening, closed beta, trust &amp; safety, payments &amp; commercial, and public launch in November. Demand signal preserved &mdash; 5 lister LOIs and a 1,000+ adopter waitlist carried in.</p>
+      <h4>Timeline reset: closed beta now Aug&ndash;Sep 2026.</h4>
+      <p>The original beta target (late 2025) was missed. The May 2026 reset replaces it with seven clear stages: legal foundation, data protection, platform readiness, closed beta, trust &amp; safety, payments, and public launch in November. Early demand is intact &mdash; letters of intent from five rescues and a waitlist of over 1,000 adopters carried across.</p>
     </article>
 
     <article class="venture-card">
@@ -207,8 +315,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
       </div>
-      <h4>Sprint focus published.</h4>
-      <p>Rescue profile builder (drag-and-drop, three columns) live in staging. Geographic search by postcode in review. 6-step application workflow in design. Welfare-incident reporting from the adopter side next.</p>
+      <h4>What we&rsquo;re working on next.</h4>
+      <p>The rescue profile builder (drag-and-drop, three columns) is up and running in testing. Search by postcode is in review, a six-step application journey is in design, and welfare-incident reporting for adopters is next.</p>
     </article>
 
     <article class="venture-card">
@@ -216,8 +324,8 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
       </div>
-      <h4>Scope cuts logged.</h4>
-      <p>Three features dropped on purpose: a rescue ratings system (against principle), an adopter &ldquo;wishlist&rdquo; (animal-as-listing &mdash; no thanks), and premium rescue placements (the &pound;40k cheque we turned down).</p>
+      <h4>Three things we chose not to build.</h4>
+      <p>We deliberately dropped three features: a rescue ratings system (against our principles), an adopter &ldquo;wishlist&rdquo; (treating animals as products &mdash; no thanks), and paid priority placements for rescues (the &pound;40k cheque we turned down).</p>
     </article>
 
     <article class="venture-card">
@@ -226,7 +334,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">26 Apr 2026</span>
       </div>
       <h4>Proposal moved to <em>In Build</em>.</h4>
-      <p>The ADS proposal cleared the gate and is now an active venture on the studio platform. Stack locked: React + Vite + TypeScript, Node + Express + Sequelize, PostgreSQL 16 + PostGIS, Redis 7, Socket.io, Turborepo. Lead: Alex Jenkinson.</p>
+      <p>The AdoptDontShop proposal cleared its review and is now an active venture in the studio. The technology it&rsquo;s built on is decided, and the build is under way. Lead: Alex Jenkinson.</p>
     </article>
 
     <article class="venture-card">
@@ -235,7 +343,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">26 Apr 2026</span>
       </div>
       <h4>Alpha feature-complete.</h4>
-      <p>Six engineering milestones standing: monorepo + Docker dev stack, JWT auth + rescue registration, pet listings with staff permissions + photo upload, adopter browse/filter/like flow, real-time messaging on Socket.io, and Docker dev + prod environments. Closing 18 open issues + QA pass before handing off to compliance.</p>
+      <p>Six early milestones are in place: the developer setup, sign-in and rescue registration, pet listings with staff controls and photo upload, the browse-filter-and-like flow for adopters, real-time messaging, and matching development and live environments. Eighteen remaining issues and a quality pass are being closed out before handing over to compliance.</p>
     </article>
 
     <article class="venture-card">
@@ -244,7 +352,7 @@
         <span style="font-size: 12px; color: var(--fg-muted);">Apr 2026</span>
       </div>
       <h4>Early alpha state captured.</h4>
-      <p>Platform stack standing &mdash; three apps (client, admin, backend), JWT auth, watchlist + partner matching, TMDB integration, TypeScript strict mode, full test suite passing, multi-stage Docker builds behind Nginx. No public users yet; matcher and partner-pairing UX in flight before opening a closed alpha.</p>
+      <p>The foundations are in place &mdash; three apps (the viewer app, an admin tool and the backend), secure sign-in, a shared watchlist with partner matching, film and TV data from TMDB, and a full set of automated tests passing. No public users yet; the matching and partner-pairing experience is being refined before opening a closed alpha.</p>
     </article>
 
   </div>

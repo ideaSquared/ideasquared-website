@@ -84,7 +84,7 @@
 <section class="venture-section" aria-labelledby="solution">
   <div class="head">
     <span class="eyebrow">The solution</span>
-    <h2 id="solution">A consumer app plus rescue SaaS that owns the full journey.</h2>
+    <h2 id="solution">A consumer app plus rescue software that owns the full journey.</h2>
   </div>
   <div class="venture-grid-2">
     <article class="venture-card">
@@ -120,7 +120,7 @@
 <section class="venture-section" aria-labelledby="model">
   <div class="head">
     <span class="eyebrow">Business model</span>
-    <h2 id="model">Free for adopters keeps top-of-funnel friction at zero.</h2>
+    <h2 id="model">Free for adopters keeps the first step friction-free.</h2>
   </div>
   <p class="table-label">Revenue streams</p>
   <table class="venture-table">
@@ -128,8 +128,8 @@
       <tr><th scope="col">Stream</th><th scope="col">Payer</th><th scope="col">Pricing</th></tr>
     </thead>
     <tbody>
-      <tr><th scope="row">Rescue SaaS</th><td>Rescues</td><td>Tiered monthly subscription</td></tr>
-      <tr><th scope="row">Affiliate revenue</th><td>Vets, insurers, pet food, accessories</td><td>Rev-share on adopter conversion</td></tr>
+      <tr><th scope="row">Rescue software</th><td>Rescues</td><td>Tiered monthly subscription</td></tr>
+      <tr><th scope="row">Partner revenue</th><td>Vets, insurers, pet food, accessories</td><td>A share of revenue when an adopter signs up</td></tr>
       <tr><th scope="row">Premium adopter</th><td>Adopters</td><td>Optional &mdash; priority matching, extras</td></tr>
     </tbody>
   </table>
@@ -156,43 +156,43 @@
 <section class="venture-section" aria-labelledby="gtm">
   <div class="head">
     <span class="eyebrow">Go-to-market</span>
-    <h2 id="gtm">Cluster, then influence, then national.</h2>
-    <p>Two-sided marketplaces don't survive a national cold start. We onboard density first.</p>
+    <h2 id="gtm">Local first, then influencers, then national.</h2>
+    <p>A marketplace with rescues on one side and adopters on the other can&rsquo;t launch everywhere at once. We build up a strong local base first.</p>
   </div>
   <div class="venture-grid-3">
     <article class="venture-card">
-      <h4>Phase 1 &middot; Cluster</h4>
-      <p>Convert the 5 lister LOIs to signed agreements and onboard 50&ndash;100 invited adopters from the existing waitlist into a single-region closed beta. Density before reach.</p>
+      <h4>Phase 1 &middot; Local</h4>
+      <p>Turn the letters of intent from five rescues into signed agreements and bring 50&ndash;100 invited adopters from the existing waitlist into a single-region closed beta. Depth before breadth.</p>
     </article>
     <article class="venture-card">
       <h4>Phase 2 &middot; Influence</h4>
-      <p>TikTok and Instagram pet creators drive adopter installs alongside organic. Public launch opens the rescue dashboard beyond the closed beta cohort.</p>
+      <p>Pet creators on TikTok and Instagram bring in adopters alongside word of mouth. Public launch opens the rescue dashboard beyond the first invited group.</p>
     </article>
     <article class="venture-card">
       <h4>Phase 3 &middot; National</h4>
-      <p>20 active listers and the first 100 adoptions by Q1 2027, then UK-wide rollout. Vet, insurer and food-brand partnerships layer on revenue and supply.</p>
+      <p>20 active rescues and the first 100 adoptions by early 2027, then a UK-wide rollout. Partnerships with vets, insurers and food brands add both revenue and supply.</p>
     </article>
   </div>
 </section>
 
 <section class="venture-section" aria-labelledby="status">
   <div class="head">
-    <span class="eyebrow">Where we are &middot; July 2026</span>
-    <h2 id="status">Alpha build is feature-complete. Compliance is the gate.</h2>
-    <p>The core adoption flow ships end-to-end in the alpha. The path to closed beta now runs through legal foundation, the data protection package and platform hardening &mdash; not more product code.</p>
+    <span class="eyebrow">Where we are &middot; August 2026</span>
+    <h2 id="status">Alpha build is feature-complete. Closed beta is the next gate.</h2>
+    <p>The core adoption flow works end to end in the alpha, and a month-long security and privacy push (mid-July to early August) has shipped its major pieces. The path to closed beta now runs through final platform readiness and signing up our first rescues &mdash; the product itself is ready.</p>
   </div>
   <div class="venture-grid-3">
     <article class="venture-card">
       <h4>Shipped in the alpha</h4>
-      <p>Auth, rescue verification, pet listings with staff permissions, adopter browse/filter/like flow, rescue search &amp; discovery, real-time chat with unread counts and full-text search, email and in-app notifications with per-account channel preferences, admin broadcasts, document and image upload with signed delivery, automated content moderation, matching recommendations, saved analytics reports, a CMS for rescue-owned content pages, field-level role permissions, two-factor authentication (TOTP), per-user pet favourites, rescue custom application questions, staff invitation accept, GDPR right-to-erasure, personalised pet recommendations (Top Picks), autosaving application drafts, account sanction notices, rescue events (creation, publishing, attendee registration, check-in and event analytics), and real-time rescue dashboard analytics. Microservices migration <strong>complete</strong> &mdash; all ten domain services (auth, pets, rescue, applications, notifications, chat, moderation, matching, audit, storage) run as independent gRPC containers behind the API gateway and the legacy monolith is deleted, with Redis-backed rate limiting, per-service circuit breakers, OpenTelemetry distributed tracing, Sigstore container signing, and full Docker dev + prod environments. Security hardening pass done: signed inter-service identity tokens, a full audit trail with payload redaction, an auditable deploy safety gate, interactive OpenAPI docs gated behind admin auth, all high-severity static-analysis findings resolved, CI gating every merge on service tests and E2E, fail-closed cross-rescue event data isolation (preventing any cross-organisation attendee data exposure), GDPR account deletion hardened and restored after a migration regression, and admin role-escalation protection closing a privilege escalation gap in the user-update path.</p>
+      <p>Everything the adoption journey needs is built and working: sign-up and secure sign-in, rescue verification, pet listings with role-based staff access, browse-filter-and-like discovery, cross-rescue search, real-time chat with unread counts and search, email and in-app notifications each person can tune, admin announcements, secure document and image uploads, automatic content moderation, personalised match recommendations and a Top Picks page, saved and scheduled reports, a simple content-page editor for rescues, precise control over who can see and edit what, two-factor authentication with recovery codes, saved favourite pets, rescues&rsquo; own application questions, staff invitations, one-click data deletion for GDPR, auto-saving application drafts, account-sanction notices, full rescue events (create, publish, register attendees, check in and report), and a live rescue dashboard. Under the hood the platform is fully built out as ten independent services &mdash; covering accounts, pets, rescues, applications, notifications, chat, moderation, matching, audit and content &mdash; with the old single-block system retired, running with automatic traffic limiting, end-to-end monitoring, signed-and-verified releases, and matching development and production setups. Security has had a thorough pass: trusted service-to-service identity, a complete tamper-evident audit trail with sensitive data hidden, a safety check before every release, technical documentation kept behind admin sign-in, every high-priority code-scan finding resolved, automated tests gating every change, strict separation so one rescue can never see another&rsquo;s attendee data, hardened account deletion, and protection against staff escalating their own access. Through July and early August 2026 we ran a focused security and privacy push: a safer way of keeping people signed in, two-factor authentication strengthened end to end with single-use recovery codes, protection against automated abuse of sign-in and invitations, safer spreadsheet exports, finer control over who can see which rescue details, secure expiring links for private documents, live sessions that end promptly on sign-out or suspension, stronger safeguards around adoption privacy, and a full refresh of underlying software to clear every known high-priority advisory. A couple of further access-control fixes are in review.</p>
     </article>
     <article class="venture-card">
-      <h4>Three frontends, one platform</h4>
-      <p>React 18 + Vite + vanilla-extract across the adopter portal (app.client), rescue dashboard (app.rescue) and internal admin (app.admin). Ten domain microservices in TypeScript, each with its own PostgreSQL 16 + PostGIS schema and Redis 7, behind a Fastify API gateway fronted by Nginx. Services communicate over gRPC + NATS JetStream with durable, at-least-once delivery, managed with pnpm + Turborepo for fast, cache-aware builds.</p>
+      <h4>Three apps, one platform</h4>
+      <p>Three tailored apps &mdash; the adopter portal, the rescue dashboard and the internal admin tool &mdash; sit on one shared platform. It runs on a modern, well-supported technology stack with a location-aware database, fast search and messaging, and durable, no-loss delivery between its parts, so it stays quick and reliable as the number of rescues and adopters grows.</p>
     </article>
     <article class="venture-card">
       <h4>Demand signal preserved</h4>
-      <p>5 lister letters of intent and a 1,000+ adopter waitlist carried over from the prior cycle. Cluster-first: we convert the LOIs to signed lister agreements at closed beta, not before.</p>
+      <p>Letters of intent from five rescues and a waitlist of over 1,000 adopters carried over from the previous cycle. Local-first: we turn those letters into signed rescue agreements at closed beta, not before.</p>
     </article>
   </div>
   <p class="table-label" style="margin-top: 32px;">Re-baselined roadmap to public launch</p>
@@ -201,12 +201,12 @@
       <tr><th scope="col">Milestone</th><th scope="col">Window</th><th scope="col">Definition of done</th></tr>
     </thead>
     <tbody>
-      <tr><th scope="row">Legal foundation</th><td>Jun 2026</td><td>Incorporation, HMRC, ICO controller registration, IP assignment, solicitor on retainer</td></tr>
-      <tr><th scope="row">Data protection package</th><td>Jul 2026</td><td>DPIA signed off, ROPA published, Privacy, Cookie, ToS and AUP solicitor-reviewed</td></tr>
-      <tr><th scope="row">Platform hardening</th><td>Jul 2026</td><td>Dedicated AWS, RDS with restore drill, Sentry + Plausible + uptime, CI green, rollback documented</td></tr>
-      <tr><th scope="row">Closed beta</th><td>Aug&ndash;Sep 2026</td><td>5 lister agreements signed, 50&ndash;100 invited adopters, applications flowing end-to-end</td></tr>
+      <tr><th scope="row">Legal foundation</th><td>Jun 2026</td><td>Company incorporated, registered with HMRC and the ICO (the data regulator), intellectual-property rights assigned, and a solicitor on retainer</td></tr>
+      <tr><th scope="row">Data protection package</th><td>Jul 2026</td><td>Data-protection impact assessment signed off, processing records published, and Privacy, Cookie, Terms and Acceptable-Use policies solicitor-reviewed</td></tr>
+      <tr><th scope="row">Platform hardening</th><td>Jul 2026</td><td>Dedicated cloud hosting, database backups with a tested restore, error and traffic monitoring, automated checks passing, documented rollback</td></tr>
+      <tr><th scope="row">Closed beta</th><td>Aug&ndash;Sep 2026</td><td>Agreements signed with five rescues, 50&ndash;100 invited adopters, applications flowing from start to finish</td></tr>
       <tr><th scope="row">Trust &amp; safety hardening</th><td>Sep 2026</td><td>Charity Commission + Companies House verification, home checks, moderation and welfare runbooks</td></tr>
-      <tr><th scope="row">Payments &amp; commercial</th><td>Oct 2026</td><td>Stripe live, SaaS tiers published, first paid lister contracted, first affiliate LOI signed</td></tr>
+      <tr><th scope="row">Payments &amp; commercial</th><td>Oct 2026</td><td>Card payments live, subscription tiers published, first paying rescue signed, first partner agreement signed</td></tr>
       <tr><th scope="row">Public launch</th><td>Nov 2026</td><td>Waterfall gate: legal, compliance, platform, trust &amp; safety and commercial all green</td></tr>
     </tbody>
   </table>
@@ -231,7 +231,7 @@
     </thead>
     <tbody>
       <tr><th scope="row">Active rescues</th><td class="num-col">20</td><td class="num-col">250</td><td class="num-col">1,000</td></tr>
-      <tr><th scope="row">Affiliate revenue % of total</th><td class="num-col">10%</td><td class="num-col">25%</td><td class="num-col">35%</td></tr>
+      <tr><th scope="row">Partner revenue % of total</th><td class="num-col">10%</td><td class="num-col">25%</td><td class="num-col">35%</td></tr>
     </tbody>
   </table>
 </section>
@@ -239,7 +239,7 @@
 <section class="venture-section" aria-labelledby="ask">
   <div class="head">
     <span class="eyebrow signal">Funding ask</span>
-    <h2 id="ask">&pound;500k seed to fund 18 months of rescue onboarding, growth and engineering.</h2>
+    <h2 id="ask">&pound;500k seed funding for 18 months of signing up rescues, growth and engineering.</h2>
   </div>
   <p class="table-label">Allocation</p>
   <table class="venture-table">
@@ -248,8 +248,8 @@
     </thead>
     <tbody>
       <tr><th scope="row">Engineering &amp; product</th><td class="num-col">45%</td><td>CTO hire, mobile build, dashboard polish</td></tr>
-      <tr><th scope="row">Growth &amp; partnerships</th><td class="num-col">35%</td><td>Influencer marketing, rescue onboarding</td></tr>
-      <tr><th scope="row">Operations &amp; compliance</th><td class="num-col">20%</td><td>Legal, data protection, runway</td></tr>
+      <tr><th scope="row">Growth &amp; partnerships</th><td class="num-col">35%</td><td>Influencer marketing, signing up rescues</td></tr>
+      <tr><th scope="row">Operations &amp; compliance</th><td class="num-col">20%</td><td>Legal, data protection, ongoing running costs</td></tr>
     </tbody>
   </table>
   <div class="callout" role="note">
