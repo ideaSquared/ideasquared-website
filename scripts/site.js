@@ -94,4 +94,37 @@
     });
   }
 
+  // ---- Audience switch (venture pages serving two audiences) ----------
+  const audience = document.querySelector('[data-audience-switch]');
+  if (audience) {
+    const audBtns = audience.querySelectorAll('[data-audience]');
+    const hint = audience.querySelector('[data-audience-hint]');
+    const HINTS = {
+      rescues: 'The software, data protection and pricing for UK rescues.',
+      investors: 'The market, business model, projections and the £500k seed ask.',
+    };
+    const apply = (which) => {
+      root.setAttribute('data-audience', which);
+      audBtns.forEach((b) => {
+        const active = b.dataset.audience === which;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+      if (hint && HINTS[which]) hint.textContent = HINTS[which];
+    };
+    const fromHash =
+      window.location.hash === '#for-investors' ? 'investors' :
+      window.location.hash === '#for-rescues' ? 'rescues' : null;
+    apply(fromHash || root.getAttribute('data-audience') || audience.dataset.audienceSwitch || 'rescues');
+    audBtns.forEach((b) => {
+      b.addEventListener('click', () => {
+        const which = b.dataset.audience;
+        apply(which);
+        try {
+          history.replaceState(null, '', which === 'investors' ? '#for-investors' : '#for-rescues');
+        } catch (e) {}
+      });
+    });
+  }
+
 })();
