@@ -95,34 +95,34 @@
   }
 
   // ---- Audience switch (venture pages serving two audiences) ----------
+  // Page-agnostic: audience values, labels and hints all come from the
+  // markup, so any venture page can drop in the component. Each button
+  // carries data-audience (the value) and data-hint (the sub-line text).
   const audience = document.querySelector('[data-audience-switch]');
   if (audience) {
     const audBtns = audience.querySelectorAll('[data-audience]');
     const hint = audience.querySelector('[data-audience-hint]');
-    const HINTS = {
-      rescues: 'The software, data protection and pricing for UK rescues.',
-      investors: 'The market, business model, projections and the £500k seed ask.',
-    };
+    const values = Array.from(audBtns, (b) => b.dataset.audience);
     const apply = (which) => {
       root.setAttribute('data-audience', which);
       audBtns.forEach((b) => {
         const active = b.dataset.audience === which;
         b.classList.toggle('is-active', active);
         b.setAttribute('aria-pressed', String(active));
+        if (active && hint && b.dataset.hint) hint.textContent = b.dataset.hint;
       });
-      if (hint && HINTS[which]) hint.textContent = HINTS[which];
     };
-    const fromHash =
-      window.location.hash === '#for-investors' ? 'investors' :
-      window.location.hash === '#for-rescues' ? 'rescues' : null;
-    apply(fromHash || root.getAttribute('data-audience') || audience.dataset.audienceSwitch || 'rescues');
+    const hashValue = (window.location.hash.match(/^#for-(.+)$/) || [])[1];
+    const start =
+      (values.indexOf(hashValue) !== -1 ? hashValue : null) ||
+      root.getAttribute('data-audience') ||
+      audience.dataset.audienceSwitch ||
+      values[0];
+    apply(start);
     audBtns.forEach((b) => {
       b.addEventListener('click', () => {
-        const which = b.dataset.audience;
-        apply(which);
-        try {
-          history.replaceState(null, '', which === 'investors' ? '#for-investors' : '#for-rescues');
-        } catch (e) {}
+        apply(b.dataset.audience);
+        try { history.replaceState(null, '', '#for-' + b.dataset.audience); } catch (e) {}
       });
     });
   }
