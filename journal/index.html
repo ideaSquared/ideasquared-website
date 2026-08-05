@@ -52,6 +52,33 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">5 Aug 2026</span>
+      </div>
+      <h4>The platform handles disruptions more gracefully.</h4>
+      <p>Three reliability improvements landed together. If the database has a momentary blip, services now recover cleanly rather than crashing. During a planned update, live requests are handed off without being cut off mid-flight. And the load balancer can now correctly tell whether a service is genuinely ready to accept traffic, so requests are no longer routed somewhere that&rsquo;s still starting up.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">5 Aug 2026</span>
+      </div>
+      <h4>Creating an account is now as secure as signing in.</h4>
+      <p>When you create a new account, your session is now established the same way as when you sign in &mdash; through a protected browser cookie that page code can&rsquo;t read. Previously, the session briefly appeared in the server response during registration, leaving a narrow opening. That gap is now closed.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">5 Aug 2026</span>
+      </div>
+      <h4>Scheduled notifications will no longer arrive twice.</h4>
+      <p>On a platform running more than one server instance for reliability, some scheduled messages &mdash; like weekly digest emails &mdash; could occasionally fire more than once. A coordination fix now ensures each scheduled task runs exactly once, regardless of how many instances are active at the time.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">4 Aug 2026</span>
       </div>
       <h4>Tighter control over who sees rescue details, private documents and live sessions.</h4>
