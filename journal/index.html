@@ -52,10 +52,46 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">5 Aug 2026</span>
+      </div>
+      <h4>The platform handles disruptions more gracefully.</h4>
+      <p>Three reliability improvements landed together. If the database has a momentary blip, services now recover cleanly rather than crashing. During a planned update, live requests are handed off without being cut off mid-flight. And the load balancer can now correctly tell whether a service is genuinely ready to accept traffic, so requests are no longer routed somewhere that&rsquo;s still starting up.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">5 Aug 2026</span>
+      </div>
+      <h4>Creating an account is now as secure as signing in.</h4>
+      <p>When you create a new account, your session is now established the same way as when you sign in &mdash; through a protected browser cookie that page code can&rsquo;t read. Previously, the session briefly appeared in the server response during registration, leaving a narrow opening. That gap is now closed.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">5 Aug 2026</span>
+      </div>
+      <h4>Scheduled notifications will no longer arrive twice.</h4>
+      <p>On a platform running more than one server instance for reliability, some scheduled messages &mdash; like weekly digest emails &mdash; could occasionally fire more than once. A coordination fix now ensures each scheduled task runs exactly once, regardless of how many instances are active at the time.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">4 Aug 2026</span>
       </div>
       <h4>Tighter control over who sees rescue details, private documents and live sessions.</h4>
       <p>Three privacy and security improvements shipped together. Rescues now have precise control over which parts of a record each team member can see or change. Private application documents &mdash; things like ID and proof of address &mdash; are no longer shared through open links; each is reached through a secure link that expires shortly after it&rsquo;s opened. And when someone signs out, is suspended or has their access removed, their live chat and notifications now disconnect within seconds rather than lingering. A batch of routine security updates to third-party software shipped the same day.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">4 Aug 2026</span>
+      </div>
+      <h4>Rescue event reports now count adoptions correctly.</h4>
+      <p>When a rescue runs an adoption event, the dashboard can show how many attendees went on to adopt. That figure was previously unreliable in two ways: it counted adoptions from <em>any</em> rescue, not just the one running the event, and it measured from when someone applied rather than when they were actually approved. Both are now fixed. Events with an unusually large attendee list also get a clear error rather than a silently incomplete result.</p>
     </article>
 
     <article class="venture-card">
