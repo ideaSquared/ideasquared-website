@@ -37,7 +37,7 @@
 
 <section class="subpage-hero">
   <span class="eyebrow">The portfolio</span>
-  <h1>Three ventures in build. One shared platform.</h1>
+  <h1 data-venture-heading="{count} ventures in build. One shared platform.">Three ventures in build. One shared platform.</h1>
   <p>Active ventures are products under active development on the studio platform. Pipeline concepts are still in validation &mdash; willingness-to-pay first, code second.</p>
 </section>
 
@@ -46,48 +46,7 @@
     <span class="eyebrow signal">Active ventures</span>
     <h2 id="live">In active build, pre-launch.</h2>
   </div>
-  <div class="project-grid">
-
-    <a class="project-card" href="adopt-dont-shop/" aria-label="AdoptDontShop &mdash; read the venture brief">
-      <div class="project-top">
-        <span class="chip">Alpha · in build</span>
-        <span class="project-meta">Pet adoption · UK</span>
-      </div>
-      <h3 class="project-name">AdoptDontShop</h3>
-      <p class="project-desc">A swipe-based pet adoption platform connecting UK rescue pets with the right humans. Free for adopters; SaaS for rescues; affiliate revenue from vets, insurers and food.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Read</span>
-        <span class="project-stake-n">Venture brief →</span>
-      </div>
-    </a>
-
-    <a class="project-card dark" href="pairflix/" aria-label="Pairflix &mdash; read the venture brief">
-      <div class="project-top">
-        <span class="chip">Alpha · in build</span>
-        <span class="project-meta">Streaming · UK households</span>
-      </div>
-      <h3 class="project-name">Pairflix</h3>
-      <p class="project-desc">An AI matcher that turns the nightly "what shall we watch?" argument into a 30-second decision &mdash; across Netflix, Prime, Disney+ and friends.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Read</span>
-        <span class="project-stake-n">Venture brief →</span>
-      </div>
-    </a>
-
-    <a class="project-card" href="creatorgrid/" aria-label="CreatorGrid &mdash; read the venture brief">
-      <div class="project-top">
-        <span class="chip">Alpha · in build</span>
-        <span class="project-meta">Creator tools · global</span>
-      </div>
-      <h3 class="project-name">CreatorGrid</h3>
-      <p class="project-desc">An automatically-updated personal website for content creators. Connect YouTube, TikTok and Instagram &mdash; your posts appear on your public page without any manual work.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Read</span>
-        <span class="project-stake-n">Venture brief →</span>
-      </div>
-    </a>
-
-  </div>
+  <div class="project-grid" id="venture-grid"></div>
 </section>
 
 
@@ -152,6 +111,7 @@
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="../scripts/ventures-data.js" defer></script>
 <script src="../scripts/site.js" defer></script>
 </body>
 </html>

@@ -68,9 +68,9 @@
 <section class="stats container" aria-label="Studio at a glance">
   <div class="stats-grid">
     <div class="stat">
-      <div class="stat-n">2</div>
+      <div class="stat-n" id="stat-venture-count">3</div>
       <div class="stat-label">Active ventures</div>
-      <div class="stat-note">AdoptDontShop &amp; Pairflix in build</div>
+      <div class="stat-note" id="stat-venture-note">AdoptDontShop, Pairflix &amp; CreatorGrid in build</div>
     </div>
     <div class="stat">
       <div class="stat-n">4</div>
@@ -94,7 +94,7 @@
   <div class="projects-head">
     <div class="copy">
       <span class="eyebrow">The portfolio</span>
-      <h2 class="section-h2">Two ventures in build, one shared platform.</h2>
+      <h2 class="section-h2" data-venture-heading="{count} ventures in build, one shared platform.">Three ventures in build, one shared platform.</h2>
       <p class="section-lede">
         Each one inherits our shared product, engineering and operations
         stack. Each one launches faster. Each one keeps i² as a meaningful
@@ -103,61 +103,7 @@
     </div>
   </div>
 
-  <div class="project-grid" id="project-grid">
-
-    <a class="project-card" href="ventures/adopt-dont-shop/" data-tag="Live" aria-label="AdoptDontShop &mdash; read the venture brief">
-      <div class="project-top">
-        <span class="chip">Alpha · in build</span>
-        <span class="project-meta">Pet adoption · UK</span>
-      </div>
-      <h3 class="project-name">AdoptDontShop</h3>
-      <p class="project-desc">A swipe-based pet adoption platform connecting UK rescue pets with the right humans. Free for adopters; SaaS for rescues.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Read</span>
-        <span class="project-stake-n">Venture brief →</span>
-      </div>
-    </a>
-
-    <a class="project-card dark" href="ventures/pairflix/" data-tag="Live" aria-label="Pairflix &mdash; read the venture brief">
-      <div class="project-top">
-        <span class="chip">Alpha · in build</span>
-        <span class="project-meta">Streaming · UK households</span>
-      </div>
-      <h3 class="project-name">Pairflix</h3>
-      <p class="project-desc">An AI matcher that turns the nightly "what shall we watch?" argument into a 30-second decision &mdash; across Netflix, Prime, Disney+ and friends.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Read</span>
-        <span class="project-stake-n">Venture brief →</span>
-      </div>
-    </a>
-
-    <article class="project-card" aria-label="Pipeline venture in HealthTech">
-      <div class="project-top">
-        <span class="chip">Pipeline</span>
-        <span class="project-meta">Validation · 2026</span>
-      </div>
-      <h3 class="project-name">HealthTech (TBD)</h3>
-      <p class="project-desc">A concept under validation inside the studio. We'll say more when willingness-to-pay is proven and kill criteria are set.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Stage</span>
-        <span class="project-stake-n">Proposal</span>
-      </div>
-    </article>
-
-    <article class="project-card" aria-label="Pipeline venture in FinTech">
-      <div class="project-top">
-        <span class="chip">Pipeline</span>
-        <span class="project-meta">Validation · 2026</span>
-      </div>
-      <h3 class="project-name">FinTech (TBD)</h3>
-      <p class="project-desc">A second concept in validation. Same gate as everything else: prove the demand, set the kill criteria, then we build.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Stage</span>
-        <span class="project-stake-n">Proposal</span>
-      </div>
-    </article>
-
-  </div>
+  <div class="project-grid" id="project-grid"></div>
 
   <p style="margin-top: 32px; font-size: 14px; color: var(--fg-muted);">
     See <a href="/ventures/">all ventures &amp; studio repos</a> for the full picture, including older open-source code from the studio.
@@ -249,9 +195,10 @@
 
     <div class="footer-col">
       <h5>Ventures</h5>
-      <ul>
+      <ul id="footer-ventures">
         <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
         <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/creatorgrid/">CreatorGrid</a></li>
         <li><a href="/ventures/">All ventures</a></li>
       </ul>
     </div>
@@ -276,6 +223,7 @@
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="scripts/ventures-data.js" defer></script>
 <script src="scripts/site.js" defer></script>
 </body>
 </html>
