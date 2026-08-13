@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Ventures &mdash; ideaSquared</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The ideaSquared portfolio: two ventures in active build, two pipeline concepts, and the open-source studio code behind them.">
+<meta name="description" content="The ideaSquared portfolio: three ventures in active build and the open-source studio code behind them.">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <link rel="stylesheet" href="../styles/tokens.css">
 <link rel="stylesheet" href="../styles/site.css">
@@ -37,8 +37,8 @@
 
 <section class="subpage-hero">
   <span class="eyebrow">The portfolio</span>
-  <h1>Two ventures in build. Two pipeline concepts. One shared platform.</h1>
-  <p>Active ventures are products under active development on the studio platform &mdash; neither has opened to public users yet. Pipeline concepts are still in validation &mdash; willingness-to-pay first, code second.</p>
+  <h1 data-venture-heading="{count} ventures in build. One shared platform.">Three ventures in build. One shared platform.</h1>
+  <p>Active ventures are products under active development on the studio platform. Pipeline concepts are still in validation &mdash; willingness-to-pay first, code second.</p>
 </section>
 
 <section class="venture-section" aria-labelledby="live">
@@ -46,56 +46,9 @@
     <span class="eyebrow signal">Active ventures</span>
     <h2 id="live">In active build, pre-launch.</h2>
   </div>
-  <div class="project-grid">
-
-    <a class="project-card" href="adopt-dont-shop/" aria-label="AdoptDontShop &mdash; read the venture brief">
-      <div class="project-top">
-        <span class="chip">Alpha · in build</span>
-        <span class="project-meta">Pet adoption · UK</span>
-      </div>
-      <h3 class="project-name">AdoptDontShop</h3>
-      <p class="project-desc">A swipe-based pet adoption platform connecting UK rescue pets with the right humans. Free for adopters; SaaS for rescues; affiliate revenue from vets, insurers and food.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Read</span>
-        <span class="project-stake-n">Venture brief →</span>
-      </div>
-    </a>
-
-    <a class="project-card dark" href="pairflix/" aria-label="Pairflix &mdash; read the venture brief">
-      <div class="project-top">
-        <span class="chip">Alpha · in build</span>
-        <span class="project-meta">Streaming · UK households</span>
-      </div>
-      <h3 class="project-name">Pairflix</h3>
-      <p class="project-desc">An AI matcher that turns the nightly "what shall we watch?" argument into a 30-second decision &mdash; across Netflix, Prime, Disney+ and friends.</p>
-      <div class="project-foot">
-        <span class="project-stake-label">Read</span>
-        <span class="project-stake-n">Venture brief →</span>
-      </div>
-    </a>
-
-  </div>
+  <div class="project-grid" id="venture-grid"></div>
 </section>
 
-<section class="venture-section" aria-labelledby="pipeline">
-  <div class="head">
-    <span class="eyebrow">Pipeline</span>
-    <h2 id="pipeline">In validation.</h2>
-    <p>Concepts at the PROPOSAL stage of the venture lifecycle. We're testing demand and willingness-to-pay before any production code is written.</p>
-  </div>
-  <div class="venture-grid-2">
-    <article class="venture-card">
-      <span class="chip" style="align-self: flex-start; margin-bottom: 4px;">Pipeline · 2026</span>
-      <h4>HealthTech (TBD)</h4>
-      <p>A concept under validation. Sector chosen because it scores high on the studio's three filters: painful, paid-for and underserved by modern UX.</p>
-    </article>
-    <article class="venture-card">
-      <span class="chip" style="align-self: flex-start; margin-bottom: 4px;">Pipeline · 2026</span>
-      <h4>FinTech (TBD)</h4>
-      <p>A second concept in validation. Same gate as everything else &mdash; prove the demand, set the kill criteria, then we build.</p>
-    </article>
-  </div>
-</section>
 
 <section class="venture-section" aria-labelledby="toolkit">
   <div class="head">
@@ -158,6 +111,7 @@
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="../scripts/ventures-data.js" defer></script>
 <script src="../scripts/site.js" defer></script>
 </body>
 </html>
