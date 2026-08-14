@@ -22,7 +22,7 @@
     },
     {
       name: 'CreatrGrid',
-      slug: 'creatorgrid',
+      slug: 'creatrgrid',
       chip: 'Alpha · in build',
       meta: 'Creator tools · global',
       desc: 'An automatically-updated personal website for content creators. Connect YouTube, TikTok and Instagram — your posts appear on your public page without any manual work.',
