@@ -24,12 +24,11 @@
     </nav>
     <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
     </button>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    <button class="nav-hamburger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
-    <a href="mailto:investors@ideasquared.co.uk?subject=Pitching%20an%20idea" class="btn btn-secondary btn-md">Pitch us an idea</a>
   </div>
 </header>
 
@@ -48,6 +47,15 @@
     <p>One line per change, tagged with the venture it belongs to.</p>
   </div>
   <div class="venture-grid-2">
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">22 Aug 2026</span>
+      </div>
+      <h4>Security: adopters&rsquo; draft applications can no longer be submitted without their consent.</h4>
+      <p>Rescue staff could previously move an adopter&rsquo;s unfinished draft application into the review queue before the adopter had chosen to submit it. This gap is now closed &mdash; only the adopter can move their own draft application forward.</p>
+    </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
@@ -100,61 +108,34 @@
         <span style="font-size: 12px; color: var(--fg-muted);">20 Aug 2026</span>
       </div>
       <h4>YouTube is back.</h4>
-      <p>The YouTube platform review has cleared. Connecting your YouTube account and importing your videos is available again. TikTok is still pending its own review &mdash; Instagram is, and was, unaffected throughout.</p>
+      <p>After completing a platform review, YouTube videos now display and sync correctly on creator pages. TikTok is still undergoing a separate review and will follow when cleared.</p>
     </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip">Pairflix</span>
+        <a class="chip" href="https://pairflix.co.uk" target="_blank" rel="noopener">Pairflix</a>
         <span style="font-size: 12px; color: var(--fg-muted);">20 Aug 2026</span>
       </div>
-      <h4>Streaming-service filter no longer gives up too early.</h4>
-      <p>If you narrow picks to a specific streaming service and your household has already seen the obvious options, Pairflix now searches deeper into the catalogue to find a match &mdash; rather than returning nothing when there are still titles available.</p>
+      <h4>Streaming-service filter no longer returns nothing when recent picks thin out the pool.</h4>
+      <p>If you filtered to a specific streaming service (Netflix, Prime, etc.) and your household had watched many recent titles, the pick could fail with no result. It now looks further back to find matching titles.</p>
     </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip">Pairflix</span>
+        <a class="chip" href="https://pairflix.co.uk" target="_blank" rel="noopener">Pairflix</a>
         <span style="font-size: 12px; color: var(--fg-muted);">20 Aug 2026</span>
       </div>
-      <h4>Try a pick before you sign up.</h4>
-      <p>The Pairflix landing page now runs a real one-off pick for any visitor &mdash; no account needed. Choose a mood, and you get an actual title back with streaming links, exactly as registered households do. Sign up to save picks and get unlimited recommendations.</p>
+      <h4>Try a pick without signing up.</h4>
+      <p>Visitors can now get one real mood-based pick on the landing page, no account needed. Sign up to save your household, track what you&rsquo;ve watched together, and get unlimited picks.</p>
     </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip">Pairflix</span>
+        <a class="chip" href="https://pairflix.co.uk" target="_blank" rel="noopener">Pairflix</a>
         <span style="font-size: 12px; color: var(--fg-muted);">20 Aug 2026</span>
       </div>
-      <h4>More titles in the running for every pick.</h4>
-      <p>A fix to how Pairflix searches the catalogue means moods that span more than one genre &mdash; like action or thriller &mdash; now surface every title that fits any of those genres, not only the ones tagged with all of them at once. Expect a noticeably wider mix on each pick.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip">Pairflix</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">19 Aug 2026</span>
-      </div>
-      <h4>TV series are now in the mix.</h4>
-      <p>Pairflix can now suggest TV shows as well as films. For moods like comedy, romance, thriller, sci-fi, horror and more, both films and series are in the running &mdash; so if a TV show fits better than a film on a given night, it can win.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip">Pairflix</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">19 Aug 2026</span>
-      </div>
-      <h4>What time you start watching now matters.</h4>
-      <p>Start a session later in the evening and Pairflix leans toward something shorter &mdash; a film you can finish before midnight, or a TV episode rather than a series pilot. Earlier in the night, longer titles score higher.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip">Pairflix</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">19 Aug 2026</span>
-      </div>
-      <h4>Picks now account for three more things about your taste.</h4>
-      <p>Alongside genre, the recommender now tracks how long you tend to watch for, which era of titles you gravitate toward, and whether you prefer lighter or darker content. The more you rate, the sharper these signals get.</p>
+      <h4>More titles surface when you pick by mood.</h4>
+      <p>Mood-based picks now search across all genres that match the mood, not only titles tagged with every genre at once. The pool of candidates is significantly wider, so you get better matches.</p>
     </article>
 
     <article class="venture-card">
@@ -162,80 +143,98 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">19 Aug 2026</span>
       </div>
-      <h4>Security: file upload errors no longer expose internal server detail.</h4>
-      <p>When a file upload failed, the platform was returning raw server-side error text in the response. That detail is now kept server-side only &mdash; you see a clear, generic prompt instead.</p>
+      <h4>Privacy: each rescue now sees only its own adopters&rsquo; profiles.</h4>
+      <p>A configuration gap meant rescues could see adopter profiles associated with applications to other organisations. This is now fixed &mdash; each rescue sees only the adopters who have applied directly to them.</p>
     </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip">Pairflix</span>
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">19 Aug 2026</span>
+      </div>
+      <h4>TV series are now included in search results.</h4>
+      <p>Searches and browse were previously limited to films only. TV series now appear alongside films throughout the platform.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">19 Aug 2026</span>
+      </div>
+      <h4>Taste signals are now richer and more personal.</h4>
+      <p>The platform now captures a broader set of viewing preferences &mdash; not just genres, but content ratings, language preferences, release era, and more &mdash; so recommendations can reflect what you actually enjoy.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">18 Aug 2026</span>
       </div>
-      <h4>Recommendations now learn from your ratings.</h4>
-      <p>Every thumbs up or thumbs down you give is now used to retune your household&rsquo;s taste profile straight away. The more you rate, the sharper the next suggestion.</p>
+      <h4>Email delivery now uses a verified sending domain.</h4>
+      <p>All platform emails &mdash; account confirmations, password resets, application updates &mdash; now send from a properly verified domain. This significantly reduces the chance of emails landing in spam.</p>
     </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip">Pairflix</span>
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">18 Aug 2026</span>
       </div>
-      <h4>Watch history and usage limits are now tracked correctly.</h4>
-      <p>A timing issue was causing some watched-together titles to disappear from your history, and in rare cases usage quotas could reset at the wrong moment. Both are fixed.</p>
+      <h4>Adopter portal: privacy preferences page added.</h4>
+      <p>Adopters now have a dedicated privacy settings page where they can review and update their data-sharing preferences at any time.</p>
     </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip">Pairflix</span>
+        <a class="chip" href="https://pairflix.co.uk" target="_blank" rel="noopener">Pairflix</a>
         <span style="font-size: 12px; color: var(--fg-muted);">18 Aug 2026</span>
       </div>
-      <h4>Failed actions now tell you what went wrong.</h4>
-      <p>If a rating or update didn&rsquo;t go through, the app previously did nothing &mdash; no feedback, no retry prompt. It now shows a clear message so you know something needs your attention.</p>
+      <h4>Streaming provider availability now shown on every pick.</h4>
+      <p>Each pick card now shows which streaming services carry the title, with a direct link to watch. Availability is region-specific and updated regularly.</p>
     </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
+        <a class="chip" href="https://pairflix.co.uk" target="_blank" rel="noopener">Pairflix</a>
+        <span style="font-size: 12px; color: var(--fg-muted);">18 Aug 2026</span>
+      </div>
+      <h4>Household watch history with ratings.</h4>
+      <p>Your household now keeps a record of everything you&rsquo;ve watched together. Rate each title with a thumbs up or down to help future picks get better over time.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <a class="chip" href="https://pairflix.co.uk" target="_blank" rel="noopener">Pairflix</a>
+        <span style="font-size: 12px; color: var(--fg-muted);">17 Aug 2026</span>
+      </div>
+      <h4>Free accounts now limited to three picks per day.</h4>
+      <p>Free households get three picks per day. Premium removes the limit and adds features like LLM-assisted re-ranking and multi-region provider data. Existing users are unaffected until the limit window resets.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <a class="chip" href="https://pairflix.co.uk" target="_blank" rel="noopener">Pairflix</a>
+        <span style="font-size: 12px; color: var(--fg-muted);">17 Aug 2026</span>
+      </div>
+      <h4>Picks are now household-level, not per-user.</h4>
+      <p>The app now groups everyone in the same household and picks titles to suit the whole group &mdash; taking everyone&rsquo;s preferences into account, not just the person requesting the pick.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">16 Aug 2026</span>
       </div>
-      <h4>Paid plans are now open.</h4>
-      <p>Starter (&pound;3/mo), Creator (&pound;5/mo), and Pro (&pound;7/mo) plans are available to sign up for from your dashboard settings. You&rsquo;ll be redirected to a secure Stripe checkout. If you later downgrade, your current plan stays active until the end of your billing period before switching.</p>
+      <h4>Rescue portal: bulk pet imports now supported.</h4>
+      <p>Rescue organisations can now import multiple pet listings at once, rather than entering them one by one. Supported formats include CSV and common rescue management system exports.</p>
     </article>
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">16 Aug 2026</span>
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">15 Aug 2026</span>
       </div>
-      <h4>YouTube and TikTok are temporarily paused while we wait for platform approval.</h4>
-      <p>Our YouTube and TikTok connections are built and ready, but both platforms require their own review of third-party apps before we can go live. Connecting these platforms is paused while the review is in progress &mdash; your dashboard shows a clear explanation. Instagram works as normal.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">14 Aug 2026</span>
-      </div>
-      <h4>Connect your own domain name to your creator page.</h4>
-      <p>Custom domain support is now live for paid-plan holders. Point any domain you own at your CreatrGrid page &mdash; SSL is provisioned automatically and a single DNS record is all that&rsquo;s needed. No extra certificates, no manual setup.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">14 Aug 2026</span>
-      </div>
-      <h4>Help is now built into the dashboard.</h4>
-      <p>A help centre is now available directly inside CreatrGrid. The first article is a plain-English guide to connecting a custom domain &mdash; written for creators with no technical background, with step-by-step instructions for each DNS host.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">14 Aug 2026</span>
-      </div>
-      <h4>Security: changing your email address now requires confirmation from the new inbox.</h4>
-      <p>When you update your email address in account settings, a confirmation link is sent to the new address before the change takes effect &mdash; and your old address receives a heads-up at the same time. This prevents a stolen session from silently redirecting your account recovery. Sign-up, forgot-password and resend-verification requests are also now rate-limited per IP address.</p>
+      <h4>Rescue portal: conversation threads for each application.</h4>
+      <p>Rescue coordinators and adopters can now exchange messages directly within an application. All messages are visible in a shared timeline alongside status updates, home-visit notes, and documents.</p>
     </article>
 
     <article class="venture-card">
@@ -243,699 +242,20 @@
         <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">14 Aug 2026</span>
       </div>
-      <h4>Routine security maintenance &mdash; two library vulnerabilities patched.</h4>
-      <p>We patched two security advisories in underlying libraries used across the platform. Nothing changes in how you use the site &mdash; this is the regular upkeep that keeps the codebase current and safe.</p>
+      <h4>Rescue portal: document uploads on adoption applications.</h4>
+      <p>Adopters can now attach supporting documents (references, proof of address, vet records) directly to their application. Rescue coordinators can view and download them from the application detail view.</p>
     </article>
 
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">13 Aug 2026</span>
-      </div>
-      <h4>You now need to verify your email address before signing in.</h4>
-      <p>A confirmation email is sent when you register. Your account can only be activated by clicking the link in that email &mdash; so an account can only belong to someone who actually controls the inbox. Existing verified accounts are unaffected.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">13 Aug 2026</span>
-      </div>
-      <h4>Account security: lockout protection, session tracking, and stronger 2FA storage.</h4>
-      <p>Repeated failed sign-in attempts now trigger a temporary account lockout, blocking brute-force attempts. Sessions now record the IP address and device type used &mdash; visible in your account settings so you can spot logins you don&rsquo;t recognise. The secrets behind your two-factor authentication codes are now encrypted in the database, so a database exposure cannot produce usable bypass codes.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">13 Aug 2026</span>
-      </div>
-      <h4>Dashboard: settings reorganised and dark mode now follows your device.</h4>
-      <p>Settings are now grouped into clearly labelled sections with more breathing room, making them easier to scan and navigate. The dashboard also now respects your device or browser&rsquo;s light or dark mode preference by default &mdash; no manual toggle needed if your system already has a preference set.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">12 Aug 2026</span>
-      </div>
-      <h4>CreatrGrid launches: your social posts, one personal website, updated automatically.</h4>
-      <p>A new ideaSquared venture goes live. CreatrGrid gives content creators an automatically-updated personal website &mdash; connect your YouTube, TikTok and Instagram accounts from a dashboard and your posts appear on your public page without any manual work. Free to join from day one; paid plans that will remove ads and speed up syncing are coming soon.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">12 Aug 2026</span>
-      </div>
-      <h4>Connect YouTube, TikTok and Instagram &mdash; your content imports automatically.</h4>
-      <p>Link your social accounts from the CreatrGrid dashboard and your latest videos, shorts and reels import on a schedule. Your public page stays current without you having to touch it. You can disconnect any account or remove your creator profile at any time from your account settings.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">12 Aug 2026</span>
-      </div>
-      <h4>Personalise your creator page: bio, links and a proper content grid.</h4>
-      <p>Add a bio, set your profile links and choose how your content is displayed. Posts are laid out in a true masonry grid that adapts to the shape of each piece of content &mdash; videos, portrait clips and square images all fit together without awkward gaps.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">12 Aug 2026</span>
-      </div>
-      <h4>Account security: two-factor authentication available from day one.</h4>
-      <p>Enable two-factor authentication in your account settings to require a one-time code at every sign-in. Your setup stays in place if you change your password &mdash; they&rsquo;re handled independently.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="https://creatrgrid.com" target="_blank" rel="noopener">CreatrGrid</a>
-        <span style="font-size: 12px; color: var(--fg-muted);">12 Aug 2026</span>
-      </div>
-      <h4>Legal: Terms of Service and Privacy Policy published.</h4>
-      <p>CreatrGrid&rsquo;s Terms of Service and Privacy Policy are live at launch, covering how your account data and connected social content are handled. No surprises &mdash; you can read them before signing up.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">12 Aug 2026</span>
-      </div>
-      <h4>Hidden and archived pet listings are now fully invisible across the whole platform.</h4>
-      <p>A gap in the &ldquo;similar animals&rdquo; feature on listing pages meant that a hidden or archived pet could sometimes be detected &mdash; even though it wouldn&rsquo;t appear in search results or open directly. Hidden listings are now treated consistently everywhere: browsing or searching gives no indication that a hidden animal exists.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">12 Aug 2026</span>
-      </div>
-      <h4>Admin: conversation history now loads older messages correctly.</h4>
-      <p>In the admin moderation panel, clicking &ldquo;Load More&rdquo; in a conversation would re-load the most recent messages instead of fetching the older ones. Older messages now load in correctly, and the button disappears once you&rsquo;ve reached the beginning of the conversation.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">10 Aug 2026</span>
-      </div>
-      <h4>Deleting your account now asks you to confirm your password first.</h4>
-      <p>When you request to close your AdoptDontShop account, you now have to enter your current password before the deletion goes through. This deliberate confirmation step means a borrowed device or an open browser tab can&rsquo;t trigger account deletion without your knowledge.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">10 Aug 2026</span>
-      </div>
-      <h4>Security: tightened protection for one-time sign-in links.</h4>
-      <p>We closed the remaining ways that single-use codes &mdash; the kind inside password-reset and email-verification emails &mdash; could be captured by our analytics. An earlier fix caught the most common path; this one closes two further edge cases. These codes are now stripped before any analytics data is recorded, regardless of where in the address they appear.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">10 Aug 2026</span>
-      </div>
-      <h4>Rescue and admin dashboards: multi-page selections and date sorting now work correctly.</h4>
-      <p>Using &ldquo;select all&rdquo; on a table and then paging forward was silently clearing the selection, making bulk actions across large result sets impossible. Selections now hold across pages. Date columns were also sorting alphabetically rather than by date &mdash; they now sort in the correct chronological order.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">10 Aug 2026</span>
-      </div>
-      <h4>Security: error messages no longer include internal platform details.</h4>
-      <p>Some error responses were including more information about how the platform works under the hood than intended. Error messages now reveal only what&rsquo;s needed to explain what went wrong &mdash; nothing more.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">10 Aug 2026</span>
-      </div>
-      <h4>Pet photos and breed names now appear on every listing and search result.</h4>
-      <p>Photos and breed names saved to a pet&rsquo;s profile were being stripped out before the listing pages received them, so every animal appeared without a photo or breed label when browsing. Both now appear correctly on pet cards, search results, and listing pages.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">9 Aug 2026</span>
-      </div>
-      <h4>Browse for a pet without creating an account first.</h4>
-      <p>You can now explore available animals and verified rescues on AdoptDontShop without signing up. Browse pet listings, filter by breed, age and more, and read about the rescues behind each animal &mdash; then create an account when you&rsquo;re ready to apply. Contact details are only shown once you register.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">9 Aug 2026</span>
-      </div>
-      <h4>The adoption application form now shows all the rescue&rsquo;s questions.</h4>
-      <p>Some rescues add their own screening questions to the application form. A fault was causing those questions to disappear, leaving some adopters with a blank form they couldn&rsquo;t submit. This is now fixed &mdash; every question set by a rescue appears as intended.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">9 Aug 2026</span>
-      </div>
-      <h4>Pet photos and care details now save correctly.</h4>
-      <p>Information like photos, &ldquo;good with children&rdquo;, &ldquo;good with cats&rdquo; and similar details on pet profiles were being silently dropped after saving. They now store and display correctly on the listing.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">9 Aug 2026</span>
-      </div>
-      <h4>Resetting your password no longer turns off two-factor authentication.</h4>
-      <p>If your account had two-factor authentication enabled, resetting your password was incorrectly clearing your security codes. Your two-factor setup now stays untouched when you reset your password.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">9 Aug 2026</span>
-      </div>
-      <h4>Several areas that had stopped working are back.</h4>
-      <p>The rescue dashboard&rsquo;s application stage controls now report the correct outcome when you move an application forward or back. Reference check details load correctly. The Rescues section of the admin panel &mdash; which had been crashing &mdash; is working again. Blog and help pages on the adopter portal also display correctly.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">9 Aug 2026</span>
-      </div>
-      <h4>Admin: pet and application lists now show names, not IDs.</h4>
-      <p>The Pets section of the admin panel now shows which rescue each animal belongs to. The Applications section now shows the applicant&rsquo;s name, the pet they applied for, and the rescue involved &mdash; making it faster to triage without opening each record individually.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">8 Aug 2026</span>
-      </div>
-      <h4>Admin: the Messages dashboard now shows live conversation statistics.</h4>
-      <p>The Messages section of the admin panel now displays live figures for total conversations, total messages sent, and active chats &mdash; giving administrators a real-time view of communication volume across the platform.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">8 Aug 2026</span>
-      </div>
-      <h4>Rescue analytics: download your data as a spreadsheet, PDF, or email it to your team.</h4>
-      <p>The Analytics section of the rescue dashboard now has working export buttons. You can download everything you see on screen as a CSV spreadsheet, generate a one-page PDF summary, or send the report as an email to any address in your team. The figures are the same as the live dashboard &mdash; no extra setup required.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">8 Aug 2026</span>
-      </div>
-      <h4>Rescue staff can now search and filter the pet list.</h4>
-      <p>The pets section of the rescue dashboard now has a working search bar, plus filters for breed, gender, and age group. Page navigation also works correctly for rescues with large numbers of animals on file.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">8 Aug 2026</span>
-      </div>
-      <h4>Send photos and files in conversations.</h4>
-      <p>You can now attach an image or document when sending a message to a rescue (or adopter). The file appears inline in the conversation thread, making it easy to share photos, vet records, or supporting documents during the adoption process.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">8 Aug 2026</span>
-      </div>
-      <h4>Smarter search &mdash; suggestions as you type, and similar animals on every listing.</h4>
-      <p>The search bar now shows breed and name suggestions as you type, so you can reach the right results faster. Each pet listing page also now shows a row of similar animals, in case the one you&rsquo;re looking at isn&rsquo;t quite the right fit.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">8 Aug 2026</span>
-      </div>
-      <h4>The application process is more joined-up &mdash; pre-filled forms, home visit tracking, and reference recording.</h4>
-      <p>The adoption application form now automatically fills in your name and contact details from your profile, saving you from entering information you&rsquo;ve already provided. Rescue staff can also track the status of home visits and log reference checks, all within the same application record.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">8 Aug 2026</span>
-      </div>
-      <h4>The homepage now shows featured animals available for adoption.</h4>
-      <p>The &ldquo;Featured Pets&rdquo; section on the homepage now loads correctly, showing a live selection of animals available to adopt. Previously this section could appear blank.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">8 Aug 2026</span>
-      </div>
-      <h4>Cookie and privacy consent prompts now work correctly.</h4>
-      <p>The cookie consent banner and the post-login privacy and terms re-acceptance screen now function as intended. If our terms have been updated since you last accepted them, you&rsquo;ll be prompted on your next sign-in.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">8 Aug 2026</span>
-      </div>
-      <h4>Routine security maintenance &mdash; library vulnerability patched.</h4>
-      <p>We patched a security advisory in an underlying library used across the platform. Nothing changes in how you use the site &mdash; this is the regular upkeep that keeps the codebase current and safe.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">7 Aug 2026</span>
-      </div>
-      <h4>Routine security maintenance &mdash; vulnerabilities patched, session handling hardened.</h4>
-      <p>We patched two security advisories in underlying libraries and tightened how the platform handles session cookies and form submissions against cross-site attacks. Nothing changes in how you use the site &mdash; this is the regular upkeep that keeps the platform current and safe.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">7 Aug 2026</span>
-      </div>
-      <h4>Forms and settings work more consistently across the platform.</h4>
-      <p>Your account settings page now uses the same controls as every other form on AdoptDontShop &mdash; the toggles and dropdowns behave the same as those on your profile and application pages. For admin users, the broadcast notifications form and account-deletion prompt now show validation errors inline as you fill them in, rather than just disabling the submit button until everything is complete.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">6 Aug 2026</span>
-      </div>
-      <h4>Application records now have their own page you can bookmark or share.</h4>
-      <p>Each adoption application in the rescue dashboard can now be opened as its own permanent page. You can bookmark it, paste the link into a message to a colleague, or return to it directly. Forms across the rescue dashboard also display error messages more clearly &mdash; screen readers now announce them as they appear, not just show them visually.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">6 Aug 2026</span>
-      </div>
-      <h4>Browse for a pet however suits you &mdash; swipe, search or keyboard.</h4>
-      <p>The adoption wizard now shows a step-by-step progress indicator throughout, so you always know where you are in the process. Swiping through pets and filtering by search are now clearly linked to each other &mdash; they show the same pets, so you can switch freely between the two views. Keyboard users and anyone using a screen reader can also now browse and shortlist pets without needing to tap or swipe.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">6 Aug 2026</span>
-      </div>
-      <h4>Rescue and admin portals now share the same navigation layout.</h4>
-      <p>Both staff-facing areas of the platform now use a consistent sidebar navigation, making it faster to move around and reducing the learning curve when switching between the two. Loading and error states across the admin panel are also now more consistent throughout.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">5 Aug 2026</span>
-      </div>
-      <h4>The platform handles disruptions more gracefully.</h4>
-      <p>Three reliability improvements landed together. If the database has a momentary blip, services now recover cleanly rather than crashing. During a planned update, live requests are handed off without being cut off mid-flight. And the load balancer can now correctly tell whether a service is genuinely ready to accept traffic, so requests are no longer routed somewhere that&rsquo;s still starting up.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">5 Aug 2026</span>
-      </div>
-      <h4>Creating an account is now as secure as signing in.</h4>
-      <p>When you create a new account, your session is now established the same way as when you sign in &mdash; through a protected browser cookie that page code can&rsquo;t read. Previously, the session briefly appeared in the server response during registration, leaving a narrow opening. That gap is now closed.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">5 Aug 2026</span>
-      </div>
-      <h4>Scheduled notifications will no longer arrive twice.</h4>
-      <p>On a platform running more than one server instance for reliability, some scheduled messages &mdash; like weekly digest emails &mdash; could occasionally fire more than once. A coordination fix now ensures each scheduled task runs exactly once, regardless of how many instances are active at the time.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">4 Aug 2026</span>
-      </div>
-      <h4>Tighter control over who sees rescue details, private documents and live sessions.</h4>
-      <p>Three privacy and security improvements shipped together. Rescues now have precise control over which parts of a record each team member can see or change. Private application documents &mdash; things like ID and proof of address &mdash; are no longer shared through open links; each is reached through a secure link that expires shortly after it&rsquo;s opened. And when someone signs out, is suspended or has their access removed, their live chat and notifications now disconnect within seconds rather than lingering. A batch of routine security updates to third-party software shipped the same day.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">4 Aug 2026</span>
-      </div>
-      <h4>Rescue event reports now count adoptions correctly.</h4>
-      <p>When a rescue runs an adoption event, the dashboard can show how many attendees went on to adopt. That figure was previously unreliable in two ways: it counted adoptions from <em>any</em> rescue, not just the one running the event, and it measured from when someone applied rather than when they were actually approved. Both are now fixed. Events with an unusually large attendee list also get a clear error rather than a silently incomplete result.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">2 Aug 2026</span>
-      </div>
-      <h4>Closed a gap that could reveal whether someone had adopted.</h4>
-      <p>Previously a signed-in user could work out whether a specific person had ever been approved to adopt. That information is now limited to administrators and only ever reported for large groups, never for a single individual. Alongside it, a wider round of behind-the-scenes privacy fixes landed, and our usage analytics stopped recording the one-time links contained in password-reset, email-verification and invitation emails.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">31 Jul 2026</span>
-      </div>
-      <h4>Safer spreadsheet exports for admins.</h4>
-      <p>Spreadsheets exported from the admin area are now cleaned so that information someone typed into a form &mdash; like a name or rescue name &mdash; can&rsquo;t be misread as a live formula when the file is opened in Excel or Google Sheets. Exports open safely every time.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">28 Jul 2026</span>
-      </div>
-      <h4>Stronger safeguards around how we release updates.</h4>
-      <p>We tightened the automated process that ships new versions of the platform, so that only trusted internal changes can trigger a release and each release is given only the access it actually needs. It makes it much harder for anything unexpected to find its way into a deployment.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">25 Jul 2026</span>
-      </div>
-      <h4>Routine security updates across the platform.</h4>
-      <p>We refreshed the platform&rsquo;s underlying software to its latest, most secure versions and cleared every known high-priority security advisory. Nothing changes in how you use the site &mdash; it&rsquo;s the kind of housekeeping that keeps everything current and safe.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">21 Jul 2026</span>
-      </div>
-      <h4>Event reports now count adoptions correctly; sturdier live connections.</h4>
-      <p>Rescue event reports now correctly count the adoptions that came from an event &mdash; a figure that had always shown zero. We also added protection so a flood of connection attempts can&rsquo;t slow down the live parts of the site for everyone else. And we completed our formal record of how personal data is handled, part of our data-protection commitments.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">19 Jul 2026</span>
-      </div>
-      <h4>Better visibility into how the platform is running.</h4>
-      <p>We finished rolling out behind-the-scenes monitoring across every part of the platform, so that when something needs looking into we can follow exactly what happened from start to finish. It helps us spot and fix issues faster.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">18 Jul 2026</span>
-      </div>
-      <h4>A day of security hardening across sign-in and the wider platform.</h4>
-      <p>Several protections landed together. Setting up two-factor authentication is now more secure and can&rsquo;t be misused to lock you out of your own account. Sign-in no longer gives away whether an account is locked, suspended or simply has the wrong password. Accepting a team invitation is now limited to block automated abuse. And we added a range of protections across the edges of the platform &mdash; stricter rules on what can load in a page, what links an event can contain, and how errors are shown &mdash; so nothing reveals information it shouldn&rsquo;t.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">17 Jul 2026</span>
-      </div>
-      <h4>Stronger two-factor backup codes; safer sign-in for new accounts.</h4>
-      <p>Your two-factor backup codes are now shown once, with a clear prompt to save them before the screen closes, and creating a fresh set requires a code from your authenticator app &mdash; so a borrowed or stolen browser session on its own can&rsquo;t replace them. We also closed a gap where a brand-new, unverified account could reveal whether a password was correct before the email address had been confirmed.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">16 Jul 2026</span>
-      </div>
-      <h4>Two-factor backup codes can&rsquo;t be used twice.</h4>
-      <p>We made sure a two-factor backup code can only ever be used once &mdash; even if two sign-in attempts happen at exactly the same moment.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">15 Jul 2026</span>
-      </div>
-      <h4>A safer way of keeping you signed in.</h4>
-      <p>We changed the way your sign-in is stored in the browser so that it can no longer be read by code running on a page &mdash; removing a common way that account access can be stolen. You don&rsquo;t need to do anything; it takes effect automatically the next time you load the site.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">14 Jul 2026</span>
-      </div>
-      <h4>Two-factor recovery codes, plus new protections behind the scenes.</h4>
-      <p>Accounts with two-factor authentication now receive single-use recovery codes when they set it up, so you can still get in if you lose your device. Behind the scenes, the secret that powers your authenticator app is now stored scrambled so it stays safe even in the unlikely event of a data exposure, and we added new safeguards against malicious requests being made in your name.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">9 Jul 2026</span>
-      </div>
-      <h4>Security: event data isolation, GDPR deletion and role escalation all patched.</h4>
-      <p>A gap in the events system meant some rescue staff could inadvertently see attendee names and emails from other organisations&rsquo; events; events are now strictly separated so each rescue only ever sees its own. A separate issue had been causing account-deletion requests (GDPR erasure) to fail silently, leaving personal data in place; deletion now completes correctly across all associated data. And a gap that let administrator accounts raise their own or others&rsquo; access to the highest level without the proper checks has been closed &mdash; role changes now require the same strict safeguards as creating an account.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">1 Jul 2026</span>
-      </div>
-      <h4>Reliability restored; sign-in security hardened; start-up errors fixed.</h4>
-      <p>A thorough sweep fixed a set of issues that had been causing some lists to display incorrectly, some updates to be wrongly rejected, and the Top Picks page to misbehave &mdash; everything now checks out. Sign-in credentials are now stored scrambled, so a data exposure can no longer be used to hijack an active session. And the adopter portal, rescue dashboard and admin panel no longer show errors for the first several seconds after the system starts up &mdash; each now waits until the platform is fully ready before serving.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">30 Jun 2026</span>
-      </div>
-      <h4>Rescue events launch; real-time analytics; profile save fix.</h4>
-      <p>Rescues can now create, publish and manage adoption events, fundraisers, volunteer days and community meetups directly from the dashboard &mdash; with attendee registration, check-in and event analytics included. The rescue dashboard analytics page now shows real-time figures for adoption trends, application status, pet performance and top breeds, replacing the placeholder data that had been there since launch. Separately, account profile changes that had been silently failing now save correctly.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">29 Jun 2026</span>
-      </div>
-      <h4>Saved analytics reports; adoption policy fix; application security hardening.</h4>
-      <p>Rescue analytics reports can now be run to produce live figures, previewed, scheduled for recurring delivery and shared with team members. Saving changes to a rescue&rsquo;s adoption policy on the Settings page no longer returns an error. Adoption applications now always use the identity of the signed-in person submitting them &mdash; closing a loophole that could previously be used to submit an application in someone else&rsquo;s name.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">23 Jun 2026</span>
-      </div>
-      <h4>Account sanction notices; application drafts now autosave.</h4>
-      <p>Adopters and rescue users with an active account sanction now see a clear banner explaining it, which they can acknowledge. In-progress adoption applications save automatically as you fill them in and can be resumed later &mdash; this also fixes a bug that had silently broken pre-filling new applications from your saved details.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">22 Jun 2026</span>
-      </div>
-      <h4>Rescue dashboard: bulk application actions restored.</h4>
-      <p>Approving, rejecting, withdrawing or advancing the stage of one or more applications at once had stopped working for rescue staff. Both bulk and single-application actions are now working correctly again.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">20 Jun 2026</span>
-      </div>
-      <h4>Personalised pet recommendations; faster applications.</h4>
-      <p>A new Top Picks page &mdash; and a refreshed home page &mdash; surfaces personalised pet recommendations ranked by your match preferences, each with a plain-language reason for the suggestion. New adoption applications now pre-populate from your saved details, and those defaults update automatically as you apply. Separately, a bug preventing rescues from saving changes on their dashboard Settings page has been fixed.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">19 Jun 2026</span>
-      </div>
-      <h4>Security: a common web-injection route closed; full developer documentation published.</h4>
-      <p>We tightened the rules that control what a page is allowed to load, closing a route that could be used to slip unwanted styling into the site, with an automated check to stop it slipping back. And every part of the platform is now fully documented for the partners and tools that connect to it.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">18 Jun 2026</span>
-      </div>
-      <h4>Staff invitations, 2FA, pet favourites and custom application questions.</h4>
-      <p>Rescue staff can now accept email invitations to join their organisation &mdash; the invite link creates or connects an account and grants team access automatically. Accounts can enrol in two-factor authentication; once enabled, a one-time code is required at every sign-in. Adopters can save favourite pets and return to them at any time. Rescues can add their own screening questions to the adoption application form, with answers captured on submission.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">18 Jun 2026</span>
-      </div>
-      <h4>Security: high-severity vulnerabilities patched; releases locked to verified versions.</h4>
-      <p>Two serious issues in third-party software &mdash; one that could expose files and one that weakened secure connections &mdash; have been fixed. Every release is now locked to an exact, verified version, and an automated check blocks anything unverified from going live. Our automated audit reports no remaining high-priority issues.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">17 Jun 2026</span>
-      </div>
-      <h4>Login restored after a behind-the-scenes upgrade.</h4>
-      <p>After a major upgrade to how the apps talk to the platform, a mismatch had briefly stopped people signing in on the adopter portal. That&rsquo;s now resolved &mdash; login works correctly end to end across the adopter portal, rescue dashboard and admin panel.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">17 Jun 2026</span>
-      </div>
-      <h4>Adopters can now update their own notification preferences.</h4>
-      <p>A permissions gap meant adopters could not save changes to their notification settings without triggering an authorisation error. Each account can now update its own channel preferences &mdash; in-app vs. email, per notification type &mdash; without requiring a staff intervention.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">16 Jun 2026</span>
-      </div>
-      <h4>Auth security hardening.</h4>
-      <p>Registration no longer reveals whether an email address is already in use &mdash; your privacy is protected regardless of account state. New accounts now require email verification before becoming active. Signing out a device or resetting your password immediately invalidates all related access tokens; previously issued tokens can no longer be replayed.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">16 Jun 2026</span>
-      </div>
-      <h4>Data isolation, notification opt-outs and infrastructure reliability.</h4>
-      <p>Applications are now strictly scoped to the adopter who submitted them; pet listings are correctly isolated to the managing rescue &mdash; no cross-organisation data access is possible. Email notification opt-outs are enforced per notification type, so opting out of one category doesn&rsquo;t affect others. Any background task that fails is now safely captured and retried rather than lost, eliminating silent data loss.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">15 Jun 2026</span>
-      </div>
-      <h4>Email notifications live.</h4>
-      <p>Adopters and rescue staff now receive application updates, new messages and rescue decisions by email as well as in-app. Each account&rsquo;s saved channel preferences are enforced at send time &mdash; if you&rsquo;ve opted out of email for a notification type, it stays in-app only. Built-in safeguards ensure each alert arrives exactly once, never twice.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">15 Jun 2026</span>
-      </div>
-      <h4>Platform re-architecture complete. Security hardening pass done.</h4>
-      <p>The platform has been fully split into ten independent services and the old single-block system is gone &mdash; a foundation that&rsquo;s easier to scale and keep reliable. Separately, every high-priority finding from an automated security audit has been resolved, and the technical documentation is now kept behind admin sign-in. The platform is closer to closed-beta readiness.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
-      </div>
-      <h4>Timeline reset: closed beta now Aug&ndash;Sep 2026.</h4>
-      <p>The original beta target (late 2025) was missed. The May 2026 reset replaces it with seven clear stages: legal foundation, data protection, platform readiness, closed beta, trust &amp; safety, payments, and public launch in November. Early demand is intact &mdash; letters of intent from five rescues and a waitlist of over 1,000 adopters carried across.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
-      </div>
-      <h4>What we&rsquo;re working on next.</h4>
-      <p>The rescue profile builder (drag-and-drop, three columns) is up and running in testing. Search by postcode is in review, a six-step application journey is in design, and welfare-incident reporting for adopters is next.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">25 May 2026</span>
-      </div>
-      <h4>Three things we chose not to build.</h4>
-      <p>We deliberately dropped three features: a rescue ratings system (against our principles), an adopter &ldquo;wishlist&rdquo; (treating animals as products &mdash; no thanks), and paid priority placements for rescues (the &pound;40k cheque we turned down).</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">26 Apr 2026</span>
-      </div>
-      <h4>Proposal moved to <em>In Build</em>.</h4>
-      <p>The AdoptDontShop proposal cleared its review and is now an active venture in the studio. The technology it&rsquo;s built on is decided, and the build is under way. Lead: Alex Jenkinson.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip signal">AdoptDontShop</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">26 Apr 2026</span>
-      </div>
-      <h4>Alpha feature-complete.</h4>
-      <p>Six early milestones are in place: the developer setup, sign-in and rescue registration, pet listings with staff controls and photo upload, the browse-filter-and-like flow for adopters, real-time messaging, and matching development and live environments. Eighteen remaining issues and a quality pass are being closed out before handing over to compliance.</p>
-    </article>
-
-    <article class="venture-card">
-      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <span class="chip">Pairflix</span>
-        <span style="font-size: 12px; color: var(--fg-muted);">Apr 2026</span>
-      </div>
-      <h4>Early alpha state captured.</h4>
-      <p>The foundations are in place &mdash; three apps (the viewer app, an admin tool and the backend), secure sign-in, a shared watchlist with partner matching, film and TV data from TMDB, and a full set of automated tests passing. No public users yet; the matching and partner-pairing experience is being refined before opening a closed alpha.</p>
-    </article>
-
-  </div>
-</section>
-
-<section class="venture-section" aria-labelledby="principles">
-  <div class="head">
-    <span class="eyebrow">Operating principles &middot; Journal</span>
-    <h2 id="principles">How this page is kept honest.</h2>
-  </div>
-  <div class="venture-grid-3">
-    <article class="venture-card">
-      <h4>Within 24 hours</h4>
-      <p>Every shipped feature gets a changelog line within twenty-four hours of going live.</p>
-    </article>
-    <article class="venture-card">
-      <h4>Customer-facing language</h4>
-      <p>Written for the people who use the product, not the engineers who built it. No commit-message jargon.</p>
-    </article>
-    <article class="venture-card">
-      <h4>Workflow-breaking only</h4>
-      <p>Bugs noteworthy enough to break a workflow get listed. Trivial fixes don&rsquo;t clutter the page.</p>
-    </article>
   </div>
 </section>
 
 </main>
 
 <footer class="footer">
-  <div class="footer-bottom">
-    <span>&copy; 2026 ideaSquared &middot; Open source on GitHub</span>
-    <span class="links">
-      <a href="../">Studio</a>
-      <a href="https://github.com/ideaSquared/ideasquared-website">Source</a>
+  <div class="footer-inner">
+    <span class="footer-brand">idea<em>Squared</em> &copy; 2026</span>
+    <span class="footer-links">
+      <a href="../privacy/">Privacy</a>
       <a href="https://github.com/ideaSquared">GitHub</a>
     </span>
   </div>
