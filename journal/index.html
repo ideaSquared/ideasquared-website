@@ -51,6 +51,15 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">24 Aug 2026</span>
+      </div>
+      <h4>Security: rescue staff invitation links can no longer be misused via a leaked database.</h4>
+      <p>When a rescue invites a new staff member by email, the link contains a secret token. Those tokens were previously stored as plain text &mdash; a compromised database backup would hand an attacker ready-to-use links that could add them as staff to any rescue. Tokens are now stored in a one-way hashed form: the original email link still works, but a copy of the database is useless for gaining access.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">23 Aug 2026</span>
       </div>
       <h4>Security: changes to two-factor authentication settings are now fully logged.</h4>
