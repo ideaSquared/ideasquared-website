@@ -51,6 +51,42 @@
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">28 Aug 2026</span>
+      </div>
+      <h4>Bug fix: responses to support tickets were silently failing.</h4>
+      <p>When rescue staff or platform administrators added a reply to a support ticket, the request was being sent to a route that doesn&rsquo;t exist &mdash; so the reply was lost without any visible error. Responses now reach the right place and save correctly.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">28 Aug 2026</span>
+      </div>
+      <h4>Security: changes to who can see sensitive application fields are now in the audit log.</h4>
+      <p>Rescue administrators can configure which staff roles are allowed to view specific fields on adoption applications &mdash; for example, an adopter&rsquo;s address or referees. Changes to those settings are now recorded in the platform&rsquo;s audit log, so there&rsquo;s a full history of who changed what and when.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">28 Aug 2026</span>
+      </div>
+      <h4>Security: rescue staff can no longer read an adopter&rsquo;s unsubmitted application.</h4>
+      <p>An unsubmitted adoption application &mdash; answers, uploaded documents, home-visit notes &mdash; could be read by rescue staff before the adopter chose to submit it. Only the adopter themselves can now view their own draft until they decide to send it.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">28 Aug 2026</span>
+      </div>
+      <h4>Privacy: email addresses and secure tokens are no longer written to internal logs.</h4>
+      <p>The system that sends notification emails was writing recipient addresses and, in some environments, the one-time links inside password-reset and verification emails to internal system logs. Those are now masked &mdash; logs retain enough for troubleshooting without holding any personal data or usable links.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
         <span style="font-size: 12px; color: var(--fg-muted);">26 Aug 2026</span>
       </div>
       <h4>Security: a loophole that let admins assign higher-level roles has been closed.</h4>
