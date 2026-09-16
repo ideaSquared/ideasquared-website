@@ -50,6 +50,24 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">16 Sep 2026</span>
+      </div>
+      <h4>Security: rescue organisations can no longer see each other&rsquo;s statistics.</h4>
+      <p>A gap in the rescue statistics screen meant a staff member at one rescue could, in theory, view the statistics of a different rescue by changing a request identifier. Each rescue can now only see its own data. Platform-wide summary figures are restricted to platform administrators.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
+        <span class="chip signal">AdoptDontShop</span>
+        <span style="font-size: 12px; color: var(--fg-muted);">16 Sep 2026</span>
+      </div>
+      <h4>Security: file uploads are now blocked if the malware scanner is unavailable.</h4>
+      <p>Previously, if the platform&rsquo;s malware scanner was unreachable in a non-production environment, uploaded files could pass through without being scanned. The platform now blocks any upload if the scanner cannot be reached, regardless of environment. No files uploaded to the live platform were ever passed through without scanning.</p>
+    </article>
+
+    <article class="venture-card">
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <span class="chip">Pairflix</span>
         <span style="font-size: 12px; color: var(--fg-muted);">10 Sep 2026</span>
       </div>
