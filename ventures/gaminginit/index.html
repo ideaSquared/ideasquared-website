@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>gaminginit &mdash; The WARDOGS community hub &middot; ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="gaminginit is the live community hub for the WARDOGS game server: real-time stats, match summaries, a player leaderboard, and a full-featured Discord bot. Built by ideaSquared.">
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<link rel="stylesheet" href="../../styles/tokens.css">
+<link rel="stylesheet" href="../../styles/site.css">
+<script>(function(){try{var t=localStorage.getItem('i2-theme');document.documentElement.setAttribute('data-theme',t==='light'||t==='dark'?t:'auto');}catch(e){document.documentElement.setAttribute('data-theme','auto');}})();</script>
+</head>
+<body class="i2">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="nav-brand" href="../../" aria-label="ideaSquared home"><img src="../../assets/logo-mark.svg" alt="" aria-hidden="true"><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links">
+      <a href="../../ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="../../thesis/"   data-nav="/thesis/">Thesis</a>
+      <a href="../../studio/"   data-nav="/studio/">Studio</a>
+      <a href="../../journal/"  data-nav="/journal/">Journal</a>
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></svg>
+    </button>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+    <a href="mailto:investors@ideasquared.co.uk?subject=Pitching%20an%20idea" class="btn btn-secondary btn-md">Pitch us an idea</a>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="venture-hero" aria-labelledby="gaminginit-name">
+  <div class="venture-hero-inner">
+    <div>
+      <span class="eyebrow signal">Venture &middot; live</span>
+      <h1 id="gaminginit-name">gaminginit.</h1>
+      <p class="lede">The community hub for the WARDOGS game server. Live stats, match summaries, a player leaderboard, and a full moderation suite directly in Discord &mdash; all on one platform.</p>
+      <div class="meta">
+        <span class="chip">Gaming community</span>
+        <span class="chip">Live · gaminginit.com</span>
+        <span class="chip">Cloudflare Pages</span>
+      </div>
+      <div class="cta">
+        <a href="https://gaminginit.com" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          Visit gaminginit.com
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://github.com/paragonjenko/gaminginit" class="btn btn-ghost-dark btn-lg">View on GitHub</a>
+      </div>
+    </div>
+    <aside class="venture-hero-side" aria-label="gaminginit at a glance">
+      <div class="venture-stat"><div class="label">Stage</div><div class="value">Live · launched Sep 2026</div></div>
+      <div class="venture-stat"><div class="label">Community</div><div class="value">WARDOGS server</div></div>
+      <div class="venture-stat"><div class="label">Platform</div><div class="value">Cloudflare Pages + Workers</div></div>
+      <div class="venture-stat"><div class="label">Repos</div><div class="value">gaminginit + wardogs-discord-bot</div></div>
+    </aside>
+  </div>
+</section>
+
+<section class="venture-section" aria-labelledby="problem">
+  <div class="head">
+    <span class="eyebrow">The problem</span>
+    <h2 id="problem">Game servers have rich activity. None of it is visible outside the game.</h2>
+  </div>
+  <div class="venture-grid-3">
+    <article class="venture-card">
+      <div class="num">0</div>
+      <h4>External visibility by default</h4>
+      <p>Who&rsquo;s online, what map is running, who won the last match &mdash; none of it reaches players who aren&rsquo;t already in-game.</p>
+    </article>
+    <article class="venture-card">
+      <div class="num">No hub</div>
+      <h4>Community scattered across Discord</h4>
+      <p>Stats, announcements, and moderation all happen in separate Discord channels with no shared source of truth that players outside Discord can reach.</p>
+    </article>
+    <article class="venture-card">
+      <div class="num">Manual</div>
+      <h4>Staff moderation is tedious</h4>
+      <p>Without tooling, every warn, kick, ban, or team-switch requires a server admin to log in directly. No audit trail, no convenience.</p>
+    </article>
+  </div>
+</section>
+
+<section class="venture-section" aria-labelledby="solution">
+  <div class="head">
+    <span class="eyebrow">How it works</span>
+    <h2 id="solution">A public website and a Discord bot, built as one platform.</h2>
+    <p>gaminginit is two products that share the same RCON data source: a public Cloudflare Pages site at gaminginit.com, and a Discord bot (wardogs-discord-bot) that pipes the same information into the community&rsquo;s server.</p>
+  </div>
+  <div class="venture-grid-2">
+    <article class="venture-card">
+      <h4>Live server dashboard</h4>
+      <p>Real-time player count, active map with its own colour, current faction breakdown and a full player list &mdash; updated continuously without a page refresh.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Match summaries and history</h4>
+      <p>Every completed match is recorded: winner, factions, scores and duration. A 24-hour chart and a 14-day activity chart show when the server is busiest.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Leaderboard</h4>
+      <p>Top-ranked players surfaced publicly, with a call to action for seeder VIPs who keep the server alive at low population.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Staff moderation in Discord</h4>
+      <p>The full admin command suite &mdash; /warn, /kick, /ban, /switchteam, /setnextmap, /changemap and more &mdash; is available to Discord members with the Staff role, with clear failure reasons when something goes wrong.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Bot personality</h4>
+      <p>In-game broadcast messages and Discord embeds reflect the server&rsquo;s character: faction-specific jokes at the halfway point, varied lines so nothing gets stale, and a 5-minute grace period before low-population alerts fire.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Map identity</h4>
+      <p>Each map &mdash; Bakurani, Ozeti, Zestafona &mdash; has its own distinct colour in Discord and on the site, making it easy to read at a glance what&rsquo;s running.</p>
+    </article>
+  </div>
+</section>
+
+<section class="venture-section" aria-labelledby="status">
+  <div class="head">
+    <span class="eyebrow">Where we are &middot; September 2026</span>
+    <h2 id="status">Launched &mdash; live on 30 Sep 2026.</h2>
+    <p>The full platform shipped in a single day: the public community website at gaminginit.com and the wardogs-discord-bot reached production together. Both repos went from zero to live in 18 PRs. The site is publicly accessible with no login required; the Discord bot is running live in the WARDOGS community server.</p>
+  </div>
+  <div class="venture-grid-3">
+    <article class="venture-card">
+      <h4>Website</h4>
+      <p>Static Cloudflare Pages site. Server stats are fetched from the RCON API at page load and on a polling interval. Branded as gaminginit with a teal colour scheme, Open Graph meta, a sitemap and structured data for search.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Discord bot</h4>
+      <p>Cloudflare Worker running wardogs-discord-bot. Handles slash commands from the Discord application, calls the RCON API, and posts embeds directly into the community server. All in-game broadcast lines live in <code>src/lines.ts</code> and are picked at random per faction.</p>
+    </article>
+    <article class="venture-card">
+      <h4>Next steps</h4>
+      <p>Server statistics over longer time windows, player profile pages, and broader community features as the WARDOGS server grows. The platform is designed to serve any game server that exposes a compatible RCON API.</p>
+    </article>
+  </div>
+</section>
+
+<section class="quote" aria-label="From the founder">
+  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--i2-signal-400)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V11a4 4 0 0 1 4-4h2v3H7a1 1 0 0 0-1 1v2h3v8z"/><path d="M14 21V11a4 4 0 0 1 4-4h2v3h-2a1 1 0 0 0-1 1v2h3v8z"/></svg>
+  <blockquote>&ldquo;Every game server has a story. gaminginit makes that story visible to anyone, not just the players already in-game.&rdquo;</blockquote>
+  <div class="quote-attrib">
+    <div class="quote-avatar" aria-hidden="true"></div>
+    <div>
+      <div class="quote-name">Alex Jenkinson</div>
+      <div class="quote-role">Founder, ideaSquared</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <span>© 2026 ideaSquared &middot; gaminginit is a venture of the ideaSquared studio</span>
+    <span class="links">
+      <a href="../../">Studio</a>
+      <a href="https://gaminginit.com" target="_blank" rel="noopener">Live site</a>
+      <a href="https://github.com/paragonjenko/gaminginit">Source</a>
+    </span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="../../scripts/site.js" defer></script>
+</body>
+</html>

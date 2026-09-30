@@ -28,6 +28,14 @@
       desc: 'An automatically-updated personal website for content creators. Connect YouTube, TikTok and Instagram — your posts appear on your public page without any manual work.',
       dark: false,
     },
+    {
+      name: 'gaminginit',
+      slug: 'gaminginit',
+      chip: 'Live · gaminginit.com',
+      meta: 'Gaming community · WARDOGS',
+      desc: 'The community hub for the WARDOGS game server. Live stats, match summaries, a player leaderboard, and a full staff moderation suite directly in Discord.',
+      dark: true,
+    },
   ];
   // -----------------------------------------------------------------------
 
