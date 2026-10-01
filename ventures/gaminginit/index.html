@@ -123,22 +123,22 @@
 
 <section class="venture-section" aria-labelledby="status">
   <div class="head">
-    <span class="eyebrow">Where we are &middot; September 2026</span>
-    <h2 id="status">Launched &mdash; live on 30 Sep 2026.</h2>
-    <p>The full platform shipped in a single day: the public community website at gaminginit.com and the wardogs-discord-bot reached production together. Both repos went from zero to live in 18 PRs. The site is publicly accessible with no login required; the Discord bot is running live in the WARDOGS community server.</p>
+    <span class="eyebrow">Where we are &middot; October 2026</span>
+    <h2 id="status">Live and growing &mdash; launched 30 Sep 2026.</h2>
+    <p>The full platform launched on 30 Sep 2026: the public community website at gaminginit.com and the wardogs-discord-bot reached production together. In the days since, the platform has expanded with public player pages, a busiest-times chart, and a self-updating live status feed in Discord.</p>
   </div>
   <div class="venture-grid-3">
     <article class="venture-card">
       <h4>Website</h4>
-      <p>Static Cloudflare Pages site. Server stats are fetched from the RCON API at page load and on a polling interval. Branded as gaminginit with a teal colour scheme, Open Graph meta, a sitemap and structured data for search.</p>
+      <p>Cloudflare Pages site with live server stats, match history, leaderboard, a player page for everyone who has played in the last 90 days, and a &ldquo;busiest times&rdquo; view showing typical player counts by hour. Updated continuously in the browser without a page refresh.</p>
     </article>
     <article class="venture-card">
       <h4>Discord bot</h4>
-      <p>Cloudflare Worker running wardogs-discord-bot. Handles slash commands from the Discord application, calls the RCON API, and posts embeds directly into the community server. All in-game broadcast lines live in <code>src/lines.ts</code> and are picked at random per faction.</p>
+      <p>Cloudflare Worker running wardogs-discord-bot. Posts seeding, live and low-pop alerts with a configurable Seeders role ping; keeps a self-updating live-status message in a dedicated channel; handles the full staff command suite; sends faction-aware in-game messages. Seeding credit counts correctly after crashes and brief drops.</p>
     </article>
     <article class="venture-card">
       <h4>Next steps</h4>
-      <p>Server statistics over longer time windows, player profile pages, and broader community features as the WARDOGS server grows. The platform is designed to serve any game server that exposes a compatible RCON API.</p>
+      <p>Broader community features as the WARDOGS server grows. The platform is designed to serve any game server that exposes a compatible RCON API.</p>
     </article>
   </div>
 </section>
