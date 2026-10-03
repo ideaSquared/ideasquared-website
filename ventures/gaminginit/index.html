@@ -125,16 +125,16 @@
   <div class="head">
     <span class="eyebrow">Where we are &middot; October 2026</span>
     <h2 id="status">Live and growing &mdash; launched 30 Sep 2026.</h2>
-    <p>The full platform launched on 30 Sep 2026: the public community website at gaminginit.com and the wardogs-discord-bot reached production together. In the days since, the platform has expanded with public player pages, a busiest-times chart, a self-updating live status feed in Discord, in-game seeding broadcasts, a <code>/seednow</code> command for staff, accurate match results for tight finishes, and reliable ban enforcement.</p>
+    <p>The full platform launched on 30 Sep 2026: the public community website at gaminginit.com and the wardogs-discord-bot reached production together. In the days since, the platform has expanded significantly. On 1&ndash;2 Oct: public player pages, a busiest-times chart, a self-updating live status feed in Discord, in-game seeding broadcasts, a <code>/seednow</code> command for staff, accurate match results for tight finishes, and reliable ban enforcement. On 3 Oct: a new Teams page showing faction win rates overall and per map; the seeding page now lists top seeders and seeder VIP holders; the home page has been split into focused sub-pages with a &ldquo;Play with us&rdquo; section; the busiest-times chart now uses a typical day (crashes excluded) so one bad day cannot skew the picture; the bot now checks players&rsquo; Steam accounts for suspicious activity and alerts staff only on the highest-risk accounts; staff can save and schedule named map rotations; permanent VIP is available; and the staff page is reorganised into Players, Alerts and Admin tabs with a filterable moderation log.</p>
   </div>
   <div class="venture-grid-3">
     <article class="venture-card">
       <h4>Website</h4>
-      <p>Cloudflare Pages site with live server stats, match history, leaderboard, a player page for everyone who has played in the last 90 days, and a &ldquo;busiest times&rdquo; view showing typical player counts by hour. Updated continuously in the browser without a page refresh.</p>
+      <p>Cloudflare Pages site with live server stats, match history, leaderboard, a player page for everyone who has played in the last 90 days, a &ldquo;busiest times&rdquo; view drawn from a typical day, a Teams page for faction win rates, and a seeding page listing top seeders and VIP holders. The home page links to each section. Updated continuously without a page refresh.</p>
     </article>
     <article class="venture-card">
       <h4>Discord bot</h4>
-      <p>Cloudflare Worker running wardogs-discord-bot. Posts seeding, live and low-pop alerts with a configurable Seeders role ping; keeps a self-updating live-status message in a dedicated channel; handles the full staff command suite including <code>/seednow</code> for on-demand seeding calls; sends faction-aware in-game messages every 5 minutes during seeding. Bans take full effect until the player leaves; seeding credit counts correctly after crashes and brief drops; match results are accurate for tight finishes.</p>
+      <p>Cloudflare Worker running wardogs-discord-bot. Posts seeding, live and low-pop alerts; keeps a self-updating live-status message; handles the full staff command suite including <code>/seednow</code> and permanent VIP; broadcasts seeding calls in-game every 5 minutes; checks Steam accounts for suspicious activity and alerts on the riskiest; supports named map rotations scheduled by day; bans take full effect; seeding credit counts correctly after crashes.</p>
     </article>
     <article class="venture-card">
       <h4>Next steps</h4>
