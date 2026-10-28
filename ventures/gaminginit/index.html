@@ -123,18 +123,18 @@
 
 <section class="venture-section" aria-labelledby="status">
   <div class="head">
-    <span class="eyebrow">Where we are &middot; October 2026</span>
+    <span class="eyebrow">Where we are &middot; 28 October 2026</span>
     <h2 id="status">Live and growing &mdash; launched 30 Sep 2026.</h2>
     <p>The full platform launched on 30 Sep 2026: the public community website at gaminginit.com and the wardogs-discord-bot reached production together. In the days since, the platform has expanded significantly. Every update since launch is in the changelog below, newest first, and the <a href="../../journal/">studio journal</a> has the detail.</p>
   </div>
   <div class="venture-grid-3">
     <article class="venture-card">
       <h4>Website</h4>
-      <p>Cloudflare Pages site at gaminginit.com. Public pages for live server status, every match, the leaderboard, a profile for every recent player, faction win rates, seeding, lifetime server history, the map vote, the rules and a Hall of Shame. Players sign in with Discord to link Steam, check VIP status and vote from the site. Staff get a single-page dashboard for moderation, player history, map rotations and server settings. Custom artwork and in-game weapon icons throughout, and it all updates live without a page refresh.</p>
+      <p>Cloudflare Pages site at gaminginit.com. Public pages for live server status, every match, the leaderboard, a profile for every recent player, faction win rates, seeding, lifetime server history, the map vote, the rules, a Hall of Shame, and the INITcoins reward system. Players sign in with Discord to link Steam, check VIP status, vote from the site, and see their INITcoins balance. Staff get a single-page dashboard for moderation, player history, map rotations and server settings. Custom artwork and in-game weapon icons throughout, and it all updates live without a page refresh.</p>
     </article>
     <article class="venture-card">
       <h4>Discord bot</h4>
-      <p>Cloudflare Worker running wardogs-discord-bot. It reads the game server over RCON to post seeding, live and low-pop alerts, match results and weekly roundups, runs the map vote, and sends in-game welcomes, broadcasts and personal shoutouts. Staff get the full moderation suite in Discord &mdash; <code>/warn</code>, <code>/kick</code>, <code>/ban</code>, <code>/player</code>, <code>/seednow</code>, <code>/moveclan</code> and more &mdash; plus automatic weapon rules, team-kill warnings, Steam risk checks, support tickets and a full moderation log. VIP rewards cover seeding and streak-breaking.</p>
+      <p>Cloudflare Worker running wardogs-discord-bot. It reads the game server over RCON to post seeding, live and low-pop alerts, match results and weekly roundups, runs the map vote, and sends in-game welcomes, broadcasts and personal shoutouts. Staff get the full moderation suite in Discord &mdash; <code>/warn</code>, <code>/kick</code>, <code>/ban</code>, <code>/player</code>, <code>/seednow</code>, <code>/moveclan</code> and more &mdash; plus automatic weapon rules, team-kill warnings, Steam risk checks, support tickets and a full moderation log. VIP rewards cover seeding and streak-breaking. The INITcoins economy lets players earn coins by seeding, playing and completing kill-feed missions, and spend them on whitelist days and cosmetics.</p>
     </article>
     <article class="venture-card">
       <h4>Next steps</h4>
@@ -142,9 +142,11 @@
     </article>
   </div>
   <details class="changelog">
-    <summary>Changelog since launch <span class="changelog-count">20 updates</span></summary>
+    <summary>Changelog since launch <span class="changelog-count">22 updates</span></summary>
     <!-- Newest first. Add each new day as one <li> at the top of this list. -->
     <ul class="changelog-list">
+      <li><time datetime="2026-10-28">28 Oct</time><div><ul><li>Staff members now earn INITcoins, with all their activity since launch retroactively credited. Staff appear on the coin board alongside regular players.</li></ul></div></li>
+      <li><time datetime="2026-10-27">27 Oct</time><div><ul><li>INITcoins launched &mdash; the server&rsquo;s own coin economy. Earn coins by seeding (you must stay until the server goes live), playing matches, and completing kill-feed missions including headshots, kill streaks, and using a lesser-known weapon. Spend them on whitelist days and cosmetics.</li><li>A dedicated INITcoins page on gaminginit.com explains the system, and your balance is now shown on your account page, the home page, the seeding page and your player profile, each with its own achievement emblem.</li><li>The Discord bot&rsquo;s seeder thank-you and end-of-match messages now reference INITcoins.</li></ul></div></li>
       <li><time datetime="2026-10-26">26 Oct</time><div><ul><li>Players can now open support tickets directly from the WARDOGS Discord &mdash; four types are available (Urgent, Report, Appeal and Query).</li><li>The in-game ban message now includes the reason and a link to the Discord server to appeal.</li><li>VIP and seeder announcements now @-mention players who have linked their Discord account so they receive a notification, and weekly roundup posts show linked names in-line with each award on its own line.</li><li>Staff can move all players sharing a clan tag to the same team in one step using a new Discord command and a matching button on the staff dashboard.</li></ul></div></li>
       <li><time datetime="2026-10-25">25 Oct</time><div><ul><li>A Hall of Shame page was added to the website listing the server&rsquo;s most-banned players with medals.</li><li>Every weapon now shows its own in-game icon on the leaderboard, player profiles, live kill feed, and weapons list.</li><li>Player pages now show the reason and end time of any active ban in a red notice.</li><li>The leaderboard shows flames next to players on an active kill streak in a live match.</li><li>The map vote page was redesigned with map artwork, weather icons, a live team-score tracker, and a closing countdown.</li><li>Custom artwork was added across the whole site including a hero banner, faction crests, map art, rank medals, trophies, and illustrated empty states, with player-page icons labelled on hover and player names in Chinese and other non-Latin scripts now displaying correctly.</li><li>No grenade launchers was added to the Rules page and the new-player in-game welcome.</li><li>Map votes can be restricted to players who are currently in the game.</li></ul></div></li>
       <li><time datetime="2026-10-24">24 Oct</time><div><ul><li>The website gained a dedicated Rules page.</li><li>Match pages now show which control-zone layout (&ldquo;circles&rdquo;) was active during each match.</li><li>A new rule &mdash; no dropping supply crates in the HQ area &mdash; was added to the in-game welcome message for new players.</li></ul></div></li>
