@@ -399,9 +399,12 @@ button:focus-visible {
 
 .project-top {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 8px 12px;
 }
+.project-top .chip { white-space: nowrap; }
 .project-meta {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -852,6 +855,69 @@ button:focus-visible {
   }
 }
 
+/* ---------- Changelog (venture "where we are" detail) ----------
+   Dated update log under a venture's status section. Collapsed by default
+   so the page stays scannable; newest entry first. */
+.changelog {
+  margin-top: 24px;
+  max-width: 860px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.changelog > summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg);
+  cursor: pointer;
+  list-style: none;
+  border-radius: 18px;
+}
+.changelog > summary::-webkit-details-marker { display: none; }
+.changelog > summary::after {
+  content: "+";
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--fg-muted);
+}
+.changelog[open] > summary::after { content: "\2212"; }
+.changelog > summary:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+.changelog-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--fg-muted);
+}
+.changelog-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 24px 8px;
+  border-top: 1px solid var(--line);
+}
+.changelog-list > li {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.changelog-list > li:last-child { border-bottom: none; }
+.changelog-list time {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fg-muted);
+  padding-top: 3px;
+}
+.changelog-list ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.venture-section .changelog-list p,
+.changelog-list li li { margin: 0; font-size: 15px; line-height: 1.55; color: var(--fg-body); }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
   .venture-hero-inner { grid-template-columns: 1fr; padding: 64px 40px 48px; gap: 32px; }
@@ -877,6 +943,9 @@ button:focus-visible {
   .stat:last-child { border-bottom: none; }
   .project-grid { grid-template-columns: 1fr; }
   .how-grid { grid-template-columns: 1fr; }
+  .changelog > summary { padding: 16px 20px; }
+  .changelog-list { padding: 0 20px 8px; }
+  .changelog-list > li { grid-template-columns: 1fr; gap: 6px; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
   .hero { margin: 24px 16px 0; }
