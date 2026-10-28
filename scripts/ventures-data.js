@@ -83,7 +83,7 @@
 
     // Stat: venture names note
     var note = document.getElementById('stat-venture-note');
-    if (note) note.textContent = andList(VENTURES.map(function(v) { return v.name; })) + ' in build';
+    if (note) note.textContent = andList(VENTURES.map(function(v) { return v.name; }));
 
     // Any heading with data-venture-heading="{count} ..." gets {count} substituted
     var word = WORDS[VENTURES.length] !== undefined ? WORDS[VENTURES.length] : String(VENTURES.length);
