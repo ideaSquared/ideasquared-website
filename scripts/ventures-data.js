@@ -31,14 +31,16 @@
     {
       name: 'gaminginit',
       slug: 'gaminginit',
-      chip: 'Live · gaminginit.com',
+      chip: 'Deprecated',
       meta: 'Gaming community · WARDOGS',
-      desc: 'The community hub for the WARDOGS game server. Live stats, match summaries, a player leaderboard, and a full staff moderation suite directly in Discord.',
+      desc: 'Deprecated 21 November 2026. The game lost popularity and keeping a big enough player base became difficult, so we have stopped working on it. Thank you to everyone who played.',
       dark: true,
+      deprecated: true,
     },
   ];
   // -----------------------------------------------------------------------
 
+  const ACTIVE = VENTURES.filter(function(v) { return !v.deprecated; });
   const WORDS = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'];
 
   function cardHtml(v, prefix) {
@@ -73,20 +75,20 @@
     var fl = document.getElementById('footer-ventures');
     if (fl) {
       fl.innerHTML = VENTURES.map(function(v) {
-        return '<li><a href="/ventures/' + v.slug + '/">' + v.name + '</a></li>';
+        return '<li><a href="/ventures/' + v.slug + '/">' + v.name + (v.deprecated ? ' (deprecated)' : '') + '</a></li>';
       }).join('\n') + '\n<li><a href="/ventures/">All ventures</a></li>';
     }
 
     // Stat: count number
     var sn = document.getElementById('stat-venture-count');
-    if (sn) sn.textContent = String(VENTURES.length);
+    if (sn) sn.textContent = String(ACTIVE.length);
 
     // Stat: venture names note
     var note = document.getElementById('stat-venture-note');
-    if (note) note.textContent = andList(VENTURES.map(function(v) { return v.name; }));
+    if (note) note.textContent = andList(ACTIVE.map(function(v) { return v.name; }));
 
     // Any heading with data-venture-heading="{count} ..." gets {count} substituted
-    var word = WORDS[VENTURES.length] !== undefined ? WORDS[VENTURES.length] : String(VENTURES.length);
+    var word = WORDS[ACTIVE.length] !== undefined ? WORDS[ACTIVE.length] : String(ACTIVE.length);
     document.querySelectorAll('[data-venture-heading]').forEach(function(el) {
       el.textContent = el.getAttribute('data-venture-heading').replace('{count}', word);
     });
