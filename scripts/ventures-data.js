@@ -41,6 +41,7 @@
   // -----------------------------------------------------------------------
 
   const ACTIVE = VENTURES.filter(function(v) { return !v.deprecated; });
+  const DEPRECATED = VENTURES.filter(function(v) { return v.deprecated; });
   const WORDS = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'];
 
   function cardHtml(v, prefix) {
@@ -66,10 +67,13 @@
   function render() {
     // Card grids
     var vg = document.getElementById('venture-grid');
-    if (vg) vg.innerHTML = VENTURES.map(function(v) { return cardHtml(v, ''); }).join('\n');
+    if (vg) vg.innerHTML = ACTIVE.map(function(v) { return cardHtml(v, ''); }).join('\n');
 
     var pg = document.getElementById('project-grid');
-    if (pg) pg.innerHTML = VENTURES.map(function(v) { return cardHtml(v, 'ventures/'); }).join('\n');
+    if (pg) pg.innerHTML = ACTIVE.map(function(v) { return cardHtml(v, 'ventures/'); }).join('\n');
+
+    var dg = document.getElementById('deprecated-grid');
+    if (dg) dg.innerHTML = DEPRECATED.map(function(v) { return cardHtml(v, ''); }).join('\n');
 
     // Footer ventures list
     var fl = document.getElementById('footer-ventures');
