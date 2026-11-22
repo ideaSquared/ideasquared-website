@@ -87,6 +87,27 @@ jobs:
             [ "$status" = 404 ] || { echo "::error::$path is published (HTTP $status). Add it to .assetsignore."; exit 1; }
           done
 
+  pr-title:
+    name: PR title
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # The title is untrusted input: it goes through env, never into the script text.
+      - name: Lint the PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: printf '%s\n' "$PR_TITLE" | pnpm exec commitlint
+
   # Every merge to main deploys to staging through ideaSquared/shipper once the checks pass (gate, wrangler
   # deploy, health check, rollback on failure; see ship.yaml). Production is deployed by hand with
   # `ship production ideasquared-website` or the Deploy workflow, and only takes a commit that is live on staging.
