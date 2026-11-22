@@ -9,6 +9,7 @@ LICENSE
 package.json
 pnpm-lock.yaml
 pnpm-workspace.yaml
+.htmlvalidate.json
 wrangler.jsonc
 ship.yaml
 eslint.config.mjs
