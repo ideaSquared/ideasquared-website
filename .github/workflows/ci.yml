@@ -36,4 +36,27 @@ jobs:
       - run: pnpm format:check
       - run: pnpm lint
       # No typecheck step: the repo has no TypeScript. No build step: the HTML is published as written.
+      - run: pnpm check:html
       - run: pnpm test
+      # Broken internal links fail the build. The repo root is the site root, so absolute links like
+      # /thesis/ resolve against the workspace.
+      - name: Check internal links
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: >-
+            --offline --no-progress --root-dir ${{ github.workspace }}
+            --exclude-path node_modules --exclude-path .git
+            './**/*.html'
+          fail: true
+      # External links only warn: other sites go down and rate-limit CI runners.
+      - name: Check external links (warn only)
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        continue-on-error: true
+        with:
+          args: >-
+            --no-progress --scheme https --max-retries 2 --accept '200..=299,403,429'
+            --exclude-path node_modules --exclude-path .git
+            './**/*.html'
+          fail: false
+      # Builds the Worker as a deploy would, for production and staging, without deploying.
+      - run: pnpm check:deploy
