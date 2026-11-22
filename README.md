@@ -62,17 +62,17 @@ Deploys go through shipper (`ship.yaml`); nothing runs `wrangler deploy` directl
 ### Custom domains
 
 `wrangler.jsonc` has no `routes` yet because the hostnames are not decided in code. Once the domain's zone is on
-Cloudflare, add these to `wrangler.jsonc` (replace `<domain>`), set `workers_dev` to `false` in both places, and
+Cloudflare, add these to `wrangler.jsonc` , set `workers_dev` to `false` in both places, and
 point the health checks in `ship.yaml` at full URLs (see the comments there):
 
 ```jsonc
 "routes": [
-  { "pattern": "<domain>", "custom_domain": true },
-  { "pattern": "www.<domain>", "custom_domain": true }
+  { "pattern": "ideasquared.co.uk", "custom_domain": true },
+  { "pattern": "www.ideasquared.co.uk", "custom_domain": true }
 ],
 "env": {
   "staging": {
-    "routes": [{ "pattern": "staging.<domain>", "custom_domain": true }],
+    "routes": [{ "pattern": "staging.ideasquared.co.uk", "custom_domain": true }],
     "workers_dev": false
   }
 }

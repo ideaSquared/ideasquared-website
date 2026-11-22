@@ -26,8 +26,8 @@ components:
 # Smoke checks need full https URLs, which exist only once the custom domains are attached (cutover
 # steps in the README). Until then they stay empty; a smoke failure fails the deploy, so do not add a
 # URL that does not answer yet. After the domains are live, list them here, for example:
-#   staging: [{ url: 'https://staging.<domain>/', expect: Bold ideas }]
-#   production: [{ url: 'https://<domain>/', expect: Bold ideas }]
+#   staging: [{ url: 'https://staging.ideasquared.co.uk/', expect: Bold ideas }]
+#   production: [{ url: 'https://ideasquared.co.uk/', expect: Bold ideas }]
 smoke:
   staging: []
   production: []
