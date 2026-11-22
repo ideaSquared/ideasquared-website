@@ -11,9 +11,16 @@
     // Unknown paths answer 404 with ./404.html.
     "not_found_handling": "404-page",
   },
+  // Version (preview) URLs for `wrangler versions upload --preview-alias pr-<n>` (preview.yml). Their default
+  // follows `workers_dev`, so without this they would stop when `workers_dev` is set to false at cutover.
+  // They are served from workers.dev (the account's workers.dev subdomain must exist); custom domains
+  // never serve them.
+  "preview_urls": true,
   "env": {
     "staging": {
       "name": "ideasquared-website-staging",
+      // Previews are uploaded for the production Worker only.
+      "preview_urls": false,
       "assets": {
         "directory": ".",
         "html_handling": "auto-trailing-slash",

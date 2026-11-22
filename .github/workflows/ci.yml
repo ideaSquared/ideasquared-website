@@ -109,9 +109,10 @@ jobs:
           PR_TITLE: ${{ github.event.pull_request.title }}
         run: printf '%s\n' "$PR_TITLE" | pnpm exec commitlint
 
-  # Every merge to main deploys to staging through ideaSquared/shipper once the checks pass (gate, wrangler
-  # deploy, health check, rollback on failure; see ship.yaml). Production is deployed by hand with
-  # `ship production ideasquared-website` or the Deploy workflow, and only takes a commit that is live on staging.
+  # Every merge to main deploys through ideaSquared/shipper: staging first, then production in the same run.
+  # Each deploy is gate, wrangler deploy, health check, rollback on failure (see ship.yaml). The production
+  # gate needs this commit's successful staging deployment (`requires: [staging]`), and `needs` below keeps
+  # the order, so a failed staging deploy or health check stops the run before production.
   deploy-staging:
     name: Deploy staging
     needs: [verify, lighthouse]
@@ -123,4 +124,17 @@ jobs:
     uses: ideaSquared/shipper/.github/workflows/deploy.yml@v1
     with:
       environment: staging
+    secrets: inherit
+
+  deploy-production:
+    name: Deploy production
+    needs: deploy-staging
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: read
+      checks: read
+      deployments: write
+    uses: ideaSquared/shipper/.github/workflows/deploy.yml@v1
+    with:
+      environment: production
     secrets: inherit

@@ -9,7 +9,8 @@ checks: [Verify, Lighthouse]
 dispatch:
   workflow: deploy.yml
   environmentInput: environment
-# Every merge to main deploys to staging (ci.yml). Production only takes a commit that is live on staging.
+# Every merge to main deploys staging, then production in the same ci.yml run, with no manual step. The gate
+# for production is `requires: [staging]` (this commit is live on staging, health check passed) plus the CI checks.
 environments:
   staging:
     wranglerEnv: staging
