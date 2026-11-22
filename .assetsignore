@@ -11,6 +11,6 @@ pnpm-lock.yaml
 pnpm-workspace.yaml
 wrangler.jsonc
 ship.yaml
-eslint.config.js
-commitlint.config.js
+eslint.config.mjs
+commitlint.config.mjs
 lighthouserc.json
