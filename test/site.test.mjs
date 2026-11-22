@@ -82,28 +82,57 @@ describe('the CSP matches what the pages load', () => {
       .forEach((hash) => assert.ok(used.has(hash), `${hash} is unused`));
   });
 
-  it('allows every external origin the pages and stylesheets load', () => {
-    const sources = files
+  it('allows every external origin in the directive for its resource type', () => {
+    // CSP fallback chain: the first directive present wins, default-src is last.
+    const allowedFor = (...names) =>
+      directive(names.find((name) => directive(name).length) ?? 'default-src');
+    const loads = files
       .filter((file) => /\.(html|css)$/.test(file))
       .flatMap((file) => {
         const text = read(file);
-        const fromHtml = [
-          ...text.matchAll(
-            /<(?:script|img|link|iframe)\b[^>]*?\s(?:src|href)="(https?:\/\/[^"]+)"/g,
-          ),
-        ]
-          .filter(([tag]) => !/^<a\b/.test(tag) && !/rel="(?:canonical|alternate)"/.test(tag))
-          .map((m) => m[1]);
-        const fromCss = [
-          ...text.matchAll(/(?:@import\s+url\(|url\()["']?(https?:\/\/[^"')]+)/g),
-        ].map((m) => m[1]);
-        return [...fromHtml, ...fromCss];
+        const tags = [...text.matchAll(/<(script|img|link|iframe)\b([^>]*)>/g)].flatMap(
+          ([, tag, attrs]) => {
+            const url = attrs.match(/\s(?:src|href)="(https?:\/\/[^"]+)"/)?.[1];
+            if (!url) return [];
+            if (tag === 'script') return [{ url, names: ['script-src-elem', 'script-src'] }];
+            if (tag === 'img') return [{ url, names: ['img-src'] }];
+            if (tag === 'iframe') return [{ url, names: ['frame-src', 'child-src'] }];
+            return /rel="stylesheet"/.test(attrs)
+              ? [{ url, names: ['style-src-elem', 'style-src'] }]
+              : [];
+          },
+        );
+        const imports = [...text.matchAll(/@import\s+url\(["']?(https?:\/\/[^"')]+)/g)].map(
+          (m) => ({
+            url: m[1],
+            names: ['style-src-elem', 'style-src'],
+          }),
+        );
+        const fonts = [...text.matchAll(/@font-face\s*\{[^}]*url\(["']?(https?:\/\/[^"')]+)/g)].map(
+          (m) => ({
+            url: m[1],
+            names: ['font-src'],
+          }),
+        );
+        return [...tags, ...imports, ...fonts];
       });
-    const origins = [...new Set(sources.map((url) => new URL(url).origin))];
-    const allowedOrigins = csp.split(/[\s;]+/).filter((token) => token.startsWith('https://'));
-    origins.forEach((origin) =>
-      assert.ok(allowedOrigins.includes(origin), `${origin} is loaded but not in the CSP`),
+    assert.ok(loads.length > 0);
+    loads.forEach(({ url, names }) => {
+      const origin = new URL(url).origin;
+      assert.ok(
+        allowedFor(...names).includes(origin),
+        `${origin} is loaded as ${names.at(-1)} but not allowed there`,
+      );
+    });
+  });
+
+  it('allows the font files that the Google Fonts stylesheet pulls in', () => {
+    // fonts.googleapis.com serves only CSS; its @font-face rules point at fonts.gstatic.com.
+    const usesGoogleFonts = files.some(
+      (file) => file.endsWith('.css') && /fonts\.googleapis\.com/.test(read(file)),
     );
+    assert.ok(usesGoogleFonts);
+    assert.ok(directive('font-src').includes('https://fonts.gstatic.com'));
   });
 });
 
