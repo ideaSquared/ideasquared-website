@@ -185,6 +185,7 @@ describe('deploy and preview flow', () => {
 
   it('previews only same-repo PRs, with write access on the preview job alone', () => {
     assert.match(preview, /head\.repo\.full_name == github\.repository/);
+    assert.match(preview, /github\.event\.pull_request\.user\.login != 'dependabot\[bot\]'/);
     assert.match(preview, /environment: preview/);
     assert.match(preview, /--preview-alias "pr-\$\{PR_NUMBER\}"/);
     assert.match(preview, /^permissions:\n {2}contents: read\n/m);
@@ -193,9 +194,12 @@ describe('deploy and preview flow', () => {
 
   it('never interpolates event data into a run script', () => {
     const runs = [
-      ...preview.matchAll(/^ +run: [|>]?-?\n?([\s\S]*?)(?=^ {6}- |^ {6}[a-z-]+:|(?![\s\S]))/gm),
+      ...preview.matchAll(
+        /^ +(?:- )?run: [|>]?-?\n?([\s\S]*?)(?=^ {6}- |^ {6}[a-z-]+:|(?![\s\S]))/gm,
+      ),
     ].map((m) => m[1]);
-    assert.ok(runs.length >= 3);
+    assert.ok(runs.length >= 4);
+    assert.ok(runs.some((script) => script.includes('pnpm install')));
     runs.forEach((script) => assert.doesNotMatch(script, /\$\{\{ *github\.event/));
   });
 });
