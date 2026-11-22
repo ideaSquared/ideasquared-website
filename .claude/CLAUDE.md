@@ -21,6 +21,10 @@ a Cloudflare Worker with static assets (`wrangler.jsonc`) and deployed through s
 - Only fingerprinted files may get `Cache-Control: immutable`. Nothing is fingerprinted today.
 - No secrets, `vars` or API keys anywhere in the published files or `wrangler.jsonc`.
 - Never run `wrangler deploy` yourself and do not create Cloudflare resources; deploys go through shipper.
+- Deploy flow: a same-repo PR gets a preview version of the production Worker (`preview.yml`, alias `pr-<number>`,
+  one sticky PR comment, no traffic). A merge to `main` deploys staging then production in one `ci.yml` run, with
+  no manual step and no reviewer; production's gate is the merge plus a healthy staging deploy. Keep
+  `preview_urls: true` in `wrangler.jsonc`: it must survive `workers_dev: false`.
 - Conventional commits, one change per PR, tests with behaviour changes.
 
 ## Logging

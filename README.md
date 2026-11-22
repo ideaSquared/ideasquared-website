@@ -51,18 +51,29 @@ Things to know when editing:
 
 Deploys go through shipper (`ship.yaml`); nothing runs `wrangler deploy` directly.
 
-- Every merge to `main` runs CI and then deploys to **staging** (`ideasquared-website-staging`).
-- **Production** (`ideasquared-website`) is deployed with `ship production ideasquared-website` or Actions > Deploy.
-  It only takes a commit that is already live on staging. `ship rollback ideasquared-website production` puts back
-  the previous commit.
-- GitHub Environments `staging` and `production` hold the secrets `CLOUDFLARE_API_TOKEN` and
-  `CLOUDFLARE_ACCOUNT_ID`. `production` should require a reviewer.
+- **Preview (pull requests):** every pull request from this repo (not forks, not Dependabot) uploads a preview
+  version of the production Worker with `wrangler versions upload --preview-alias pr-<number>` and keeps one
+  comment on the PR with the URL, `https://pr-<number>-ideasquared-website.<workers.dev subdomain>.workers.dev`
+  (`preview.yml`). A preview version gets no production traffic and is not a deploy. It is served from
+  `workers.dev` through Cloudflare's version URLs, which `preview_urls: true` in `wrangler.jsonc` keeps on after
+  `workers_dev` is set to `false` (their default follows `workers_dev`). Only the 1000 most recent aliases are kept.
+- **Merge to `main`:** CI runs, then shipper deploys **staging** (`ideasquared-website-staging`) and, in the same
+  run, **production** (`ideasquared-website`). There is no manual production step and no reviewer. The gate for
+  production is the merge itself (the commit is on `main`, `Verify` and `Lighthouse` passed) plus staging: the
+  commit must be live on staging with its health check passing (`requires: [staging]` in `ship.yaml`). If staging
+  fails, production does not run. A failed health check rolls that Worker back to its previous version.
+- **Manual deploy and rollback:** Actions > Deploy re-runs a deploy for `main`'s head; `ship rollback
+ideasquared-website production` puts back the previous commit.
+- **GitHub Environments:** `staging` and `production` hold `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`;
+  `production` is limited to the `main` branch and has no required reviewer (`ship doctor` warns about that; it is
+  expected). `preview` holds its own pair of the same two secrets for the preview job, so pull-request code never
+  sees the production Environment.
 - The site needs no other secrets or variables.
 
 ### Custom domains
 
 `wrangler.jsonc` has no `routes` yet: they are added after the first staging deploy, once the zone for
-`ideasquared.co.uk` is on Cloudflare. Then add these to `wrangler.jsonc`, set `workers_dev` to `false` in both places, and
+`ideasquared.co.uk` is on Cloudflare. Then add these to `wrangler.jsonc`, set `workers_dev` to `false` in both places (keep `preview_urls: true` on the production Worker), and
 point the health checks in `ship.yaml` at full URLs (see the comments there):
 
 ```jsonc
