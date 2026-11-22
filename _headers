@@ -1,9 +1,20 @@
+# Response headers for every page. Cloudflare Workers static assets (and Netlify, until it is retired)
+# read this file; it is not served as a file itself.
+#
+# The CSP matches what the pages load: own files only. Fonts are self-hosted in /assets/fonts/ and
+# there are no inline scripts, so every source is 'self'. Inline style="" attributes are allowed
+# through style-src-attr only; <style> blocks and stylesheets stay restricted. `pnpm test` fails if
+# a page gains an inline script or an external origin that is not allowed here.
 /*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; font-src 'self'; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
   X-Content-Type-Options: nosniff
-  X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
+  Cross-Origin-Opener-Policy: same-origin
 
-/assets/fonts/*
-  Cache-Control: public, max-age=31536000, immutable
+# Caching: nothing here is fingerprinted (styles/site.css, scripts/site.js ... keep their names when
+# their content changes), so nothing gets `immutable`. Every response keeps the default
+# `public, max-age=0, must-revalidate`. If a build step ever fingerprints files (for example
+# /assets/app.3f9a1c.css), add a rule that matches only those paths with
+# `Cache-Control: public, max-age=31536000, immutable`.

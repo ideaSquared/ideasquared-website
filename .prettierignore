@@ -1,0 +1,14 @@
+# The published site is formatted by hand (journal entries are appended by tooling, and reformatting
+# would change the bytes the live site serves). Prettier covers the tooling files only.
+*.html
+styles/
+scripts/
+assets/
+_headers
+.assetsignore
+node_modules/
+.wrangler/
+.lighthouseci/
+pnpm-lock.yaml
+LICENSE
+.claude/skills/logging/SKILL.md

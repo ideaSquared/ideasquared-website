@@ -1,0 +1,140 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+  workflow_dispatch:
+
+# Pull requests cancel superseded runs. Runs on main go one at a time, in the order they were pushed,
+# and are never cancelled, so a deploy is not cut off and an older commit never deploys after a newer one.
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('ci-pr-{0}', github.event.pull_request.number) || 'ci-main' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+env:
+  WRANGLER_SEND_METRICS: false
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm lint
+      # No typecheck step: the repo has no TypeScript. No build step: the HTML is published as written.
+      - run: pnpm check:html
+      - run: pnpm test
+      # Broken internal links fail the build. The repo root is the site root, so absolute links like
+      # /thesis/ resolve against the workspace.
+      - name: Check internal links
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: >-
+            --offline --no-progress --root-dir ${{ github.workspace }}
+            --exclude-path node_modules --exclude-path .git
+            './**/*.html'
+          fail: true
+      # External links only warn: other sites go down and rate-limit CI runners.
+      - name: Check external links (warn only)
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        continue-on-error: true
+        with:
+          args: >-
+            --no-progress --scheme https --max-retries 2 --accept '200..=299,403,429'
+            --exclude-path node_modules --exclude-path .git
+            './**/*.html'
+          fail: false
+      # Builds the Worker as a deploy would, for production and staging, without deploying.
+      - run: pnpm check:deploy
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # lighthouserc.json starts `wrangler dev` over the repo root, so the audit sees the real headers.
+      - run: pnpm exec lhci autorun
+      # The published folder must not contain tooling files (see .assetsignore).
+      - name: Tooling files are not published
+        run: |
+          pnpm exec wrangler dev --env staging --port 8788 --ip 127.0.0.1 > "$RUNNER_TEMP/dev.log" 2>&1 &
+          until curl -sf -o /dev/null http://127.0.0.1:8788/; do sleep 2; done
+          for path in /package.json /wrangler.jsonc /ship.yaml /README.md /node_modules/wrangler/package.json; do
+            status=$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:8788$path")
+            [ "$status" = 404 ] || { echo "::error::$path is published (HTTP $status). Add it to .assetsignore."; exit 1; }
+          done
+
+  pr-title:
+    name: PR title
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # The title is untrusted input: it goes through env, never into the script text.
+      - name: Lint the PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: printf '%s\n' "$PR_TITLE" | pnpm exec commitlint
+
+  # Every merge to main deploys through ideaSquared/shipper: staging first, then production in the same run.
+  # Each deploy is gate, wrangler deploy, health check, rollback on failure (see ship.yaml). The production
+  # gate needs this commit's successful staging deployment (`requires: [staging]`), and `needs` below keeps
+  # the order, so a failed staging deploy or health check stops the run before production.
+  deploy-staging:
+    name: Deploy staging
+    needs: [verify, lighthouse]
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: read
+      checks: read
+      deployments: write
+    uses: ideaSquared/shipper/.github/workflows/deploy.yml@v1
+    with:
+      environment: staging
+    secrets: inherit
+
+  deploy-production:
+    name: Deploy production
+    needs: deploy-staging
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: read
+      checks: read
+      deployments: write
+    uses: ideaSquared/shipper/.github/workflows/deploy.yml@v1
+    with:
+      environment: production
+    secrets: inherit

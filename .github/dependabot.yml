@@ -1,0 +1,39 @@
+# Dependabot keeps the npm dev tooling and the CI actions current. Minor and patch bumps are batched into
+# one weekly PR per ecosystem; majors stay separate so each gets its own review. `cooldown` skips versions
+# published in the last 3 days. The shipper workflows are referenced by their moving major tag (@v1), so
+# there is nothing to bump for them.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: Europe/London
+    commit-message:
+      prefix: chore(deps)
+    cooldown:
+      default-days: 3
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: Europe/London
+    commit-message:
+      prefix: chore(deps)
+    cooldown:
+      default-days: 3
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch

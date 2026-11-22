@@ -1,0 +1,18 @@
+# Single-package repo: pnpm 10+ reads its settings from this file.
+packages:
+  - '.'
+
+# Supply-chain settings: https://pnpm.io/supply-chain-security
+minimumReleaseAge: 1440
+trustPolicy: no-downgrade
+strictDepBuilds: true
+blockExoticSubdeps: true
+# Only wrangler's own native dependencies may run install scripts.
+allowBuilds:
+  esbuild: true
+  workerd: true
+# @lhci/cli -> lighthouse -> puppeteer-core -> chromium-bidi: this exact version was published without
+# the trusted-publisher evidence earlier versions had, which no-downgrade refuses. It is only used by
+# the Lighthouse CI step (dev only, never deployed). Revisit when lighthouse moves on.
+trustPolicyExclude:
+  - chromium-bidi@157.0.8090-0

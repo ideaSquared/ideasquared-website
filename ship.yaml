@@ -1,0 +1,35 @@
+# How this repo deploys. Read by ideaSquared/shipper's reusable workflow (see its README).
+product: ideasquared-website
+# ideaSquared bot project: the deploy message goes to its ideasquared-github channel.
+discord: ideasquared
+# CI jobs (their `name:`) that must pass on the commit before it deploys.
+checks: [Verify, Lighthouse]
+# `ship deploy ideasquared-website <env>` starts this workflow; it deploys main's head, whose checks
+# already ran on its push.
+dispatch:
+  workflow: deploy.yml
+  environmentInput: environment
+# Every merge to main deploys staging, then production in the same ci.yml run, with no manual step. The gate
+# for production is `requires: [staging]` (this commit is live on staging, health check passed) plus the CI checks.
+environments:
+  staging:
+    wranglerEnv: staging
+  production:
+    requires: [staging]
+components:
+  site:
+    type: cloudflare-worker
+    # The default path is the repo root, where wrangler.jsonc is. Nothing to build: the HTML is published as written.
+    # workers.dev is off, so the checks use the custom domains. `expect` rejects a 404 page that answers 200.
+    health:
+      staging: { url: 'https://staging.ideasquared.co.uk/', expect: A little spark }
+      production: { url: 'https://ideasquared.co.uk/', expect: A little spark }
+# After every component deployed and passed its health check, shipper requests each URL (3 attempts). A failure
+# fails the deploy but does not roll back. The first deploy after a hostname is attached can fail here while its
+# certificate is still being issued; re-run the failed job.
+smoke:
+  staging:
+    - { url: 'https://staging.ideasquared.co.uk/', expect: A little spark }
+  production:
+    - { url: 'https://ideasquared.co.uk/', expect: A little spark }
+    - { url: 'https://www.ideasquared.co.uk/', expect: A little spark }

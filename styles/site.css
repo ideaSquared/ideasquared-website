@@ -786,3 +786,25 @@ dl.facts { margin: 0; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+.footer-bottom a { margin-left: 12px; }
+
+/* Wide tables stack into labelled rows on small screens */
+@media (max-width: 640px) {
+  .venture-table.stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .venture-table.stack tr { display: block; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .venture-table.stack th,
+  .venture-table.stack td { display: block; padding: 0; border: 0; }
+  .venture-table.stack tbody th { font-size: 17px; }
+  .venture-table.stack td { margin-top: 10px; }
+  .venture-table.stack td::before {
+    content: attr(data-label);
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--t-label);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    margin-bottom: 2px;
+  }
+}

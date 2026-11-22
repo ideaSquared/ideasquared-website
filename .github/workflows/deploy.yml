@@ -1,0 +1,34 @@
+# `ship deploy ideasquared-website <staging|production>` (or Actions > Deploy > Run workflow) starts this.
+# It deploys main's head through ideaSquared/shipper. It runs no checks of its own: shipper's gate reads
+# the ones that ran on the commit's push, and production also requires the commit to be live on staging.
+# Pushes to main deploy staging from ci.yml.
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to deploy main to
+        type: choice
+        options: [staging, production]
+        default: staging
+
+# One deploy per environment at a time, in the order they were started; a running deploy is never cancelled.
+concurrency:
+  group: deploy-${{ inputs.environment }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      checks: read
+      deployments: write
+    uses: ideaSquared/shipper/.github/workflows/deploy.yml@v1
+    with:
+      environment: ${{ inputs.environment }}
+    secrets: inherit

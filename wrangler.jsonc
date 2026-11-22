@@ -1,0 +1,41 @@
+// Assets-only Worker: no `main`, no Worker script. Wrangler uploads the files in `assets.directory`
+// and serves them as they are. `_headers` (in the same folder) sets the response headers.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ideasquared-website",
+  "compatibility_date": "2026-11-19",
+  "assets": {
+    "directory": ".",
+    // /about, /about/ and /about/index.html all resolve to the same page.
+    "html_handling": "auto-trailing-slash",
+    // Unknown paths answer 404 with ./404.html.
+    "not_found_handling": "404-page",
+  },
+  // Version (preview) URLs for `wrangler versions upload --preview-alias pr-<n>` (preview.yml). Their default
+  // follows `workers_dev`, so without this they would stop when `workers_dev` is set to false at cutover.
+  // They are served from workers.dev (the account's workers.dev subdomain must exist); custom domains
+  // never serve them.
+  "preview_urls": true,
+  // Production is served from the site's own domain: custom domains on a zone that is on Cloudflare DNS (the
+  // certificate and the DNS records are created on deploy). Matching is exact, so the apex and www are two
+  // entries; both serve the same content. workers.dev is off.
+  "routes": [
+    { "pattern": "ideasquared.co.uk", "custom_domain": true },
+    { "pattern": "www.ideasquared.co.uk", "custom_domain": true },
+  ],
+  "workers_dev": false,
+  "env": {
+    "staging": {
+      "name": "ideasquared-website-staging",
+      // Previews are uploaded for the production Worker only.
+      "preview_urls": false,
+      "routes": [{ "pattern": "staging.ideasquared.co.uk", "custom_domain": true }],
+      "workers_dev": false,
+      "assets": {
+        "directory": ".",
+        "html_handling": "auto-trailing-slash",
+        "not_found_handling": "404-page",
+      },
+    },
+  },
+}
