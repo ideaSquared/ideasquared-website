@@ -5,7 +5,8 @@
 <title>Pairflix &middot; An ideaSquared venture</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Pairflix helps two people agree on what to watch. An ideaSquared venture at the Idea stage: a prototype exists, with no public users and no launch date yet.">
-<meta name="theme-color" content="#02273f">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ideaSquared">
 <meta property="og:title" content="Pairflix &middot; An ideaSquared venture">
@@ -13,8 +14,8 @@
 <meta property="og:url" content="https://ideasquared.co.uk/ventures/pairflix/">
 <link rel="canonical" href="https://ideasquared.co.uk/ventures/pairflix/">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<link rel="preload" href="/assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles/tokens.css">
 <link rel="stylesheet" href="/styles/site.css">
 </head>
@@ -23,7 +24,7 @@
 
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="/" aria-label="ideaSquared home"><img src="/assets/logo-mark-on-dark.svg" alt="" width="28" height="28"><span class="brand-text">idea<em>Squared</em></span></a>
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
     <nav class="nav-links" id="nav-links" aria-label="Primary">
       <a href="/ventures/" data-nav="/ventures/">Ventures</a>
       <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
@@ -122,7 +123,7 @@
     <span class="icon" aria-hidden="true">&#x25B6;</span>
     <div>
       <strong>Not open to the public yet</strong>
-      <p style="margin: 4px 0 0;">There is no waitlist and no launch date. Follow along on the <a href="/journal/">build log</a>, or watch the code on <a href="https://github.com/ideaSquared/pairflix">GitHub</a>.</p>
+      <p class="mt-1">There is no waitlist and no launch date. Follow along on the <a href="/journal/">build log</a>, or watch the code on <a href="https://github.com/ideaSquared/pairflix">GitHub</a>.</p>
     </div>
   </div>
 </section>
@@ -132,7 +133,7 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="brand-lockup"><img src="/assets/logo-mark-on-dark.svg" alt="" width="28" height="28"><span class="brand-text">idea<em>Squared</em></span></span>
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
       <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
     </div>
 

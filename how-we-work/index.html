@@ -5,7 +5,8 @@
 <title>How we work &middot; ideaSquared</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Four stages, a go or no-go decision at every gate, and the numbers written down first. How ideaSquared takes an idea from first spark to something people can use.">
-<meta name="theme-color" content="#02273f">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ideaSquared">
 <meta property="og:title" content="How we work &middot; ideaSquared">
@@ -13,8 +14,8 @@
 <meta property="og:url" content="https://ideasquared.co.uk/how-we-work/">
 <link rel="canonical" href="https://ideasquared.co.uk/how-we-work/">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-<link rel="preload" href="/assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles/tokens.css">
 <link rel="stylesheet" href="/styles/site.css">
 </head>
@@ -23,7 +24,7 @@
 
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="/" aria-label="ideaSquared home"><img src="/assets/logo-mark-on-dark.svg" alt="" width="28" height="28"><span class="brand-text">idea<em>Squared</em></span></a>
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
     <nav class="nav-links" id="nav-links" aria-label="Primary">
       <a href="/ventures/" data-nav="/ventures/">Ventures</a>
       <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
@@ -98,8 +99,8 @@
   <div class="container split">
     <div>
       <span class="eyebrow signal">A real example</span>
-      <h2 id="example-title" style="margin-top: 14px;">The AdoptDontShop gate.</h2>
-      <p style="margin-top: 16px; font-size: var(--t-lede);">AdoptDontShop is at the Project stage. Its test is an 8-week closed beta with 3 to 5 rescues, planned for early 2027.</p>
+      <h2 id="example-title" class="mt-4">The AdoptDontShop gate.</h2>
+      <p class="mt-4 lede-text">AdoptDontShop is at the Project stage. Its test is an 8-week closed beta with 3 to 5 rescues, planned for early 2027.</p>
       <p>These are targets, not results. Completed adoptions are a stretch goal, not a requirement, because an adoption often takes longer than 8 weeks.</p>
       <p>We&rsquo;ll post the numbers during the beta, whatever they are.</p>
       <div class="cta"><a href="/ventures/adopt-dont-shop/" class="btn btn-ghost-dark btn-lg">About AdoptDontShop</a></div>
@@ -151,8 +152,8 @@
   <div class="container split">
     <div>
       <span class="eyebrow">What every venture reuses</span>
-      <h2 id="shared-title" style="margin-top: 14px;">Each venture starts further along.</h2>
-      <p style="margin-top: 16px;">A new venture doesn&rsquo;t start from nothing. It picks up what the last one left behind.</p>
+      <h2 id="shared-title" class="mt-4">Each venture starts further along.</h2>
+      <p class="mt-4">A new venture doesn&rsquo;t start from nothing. It picks up what the last one left behind.</p>
     </div>
     <dl class="facts">
       <div><dt>Infrastructure</dt><dd>Hosting, the GitHub organisation, the deployment pipeline and backups.</dd></div>
@@ -167,8 +168,8 @@
   <div class="container split">
     <div>
       <span class="eyebrow">Money</span>
-      <h2 id="money-title" style="margin-top: 14px;">How the studio makes money. Right now, it doesn&rsquo;t.</h2>
-      <p style="margin-top: 16px;">ideaSquared is self-funded, with a cap of &pound;200 a month. There is no raise at studio level. Each venture sets its own revenue model when it reaches the Product stage, and grants are applied for venture by venture.</p>
+      <h2 id="money-title" class="mt-4">How the studio makes money. Right now, it doesn&rsquo;t.</h2>
+      <p class="mt-4">ideaSquared is self-funded, with a cap of &pound;200 a month. There is no raise at studio level. Each venture sets its own revenue model when it reaches the Product stage, and grants are applied for venture by venture.</p>
     </div>
     <dl class="facts">
       <div><dt>Revenue</dt><dd>None yet.</dd></div>
@@ -185,7 +186,7 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="brand-lockup"><img src="/assets/logo-mark-on-dark.svg" alt="" width="28" height="28"><span class="brand-text">idea<em>Squared</em></span></span>
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
       <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
     </div>
 

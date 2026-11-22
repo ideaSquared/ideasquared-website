@@ -10,6 +10,7 @@ cutover in the pull request that added this setup is done, the live site is stil
 - `index.html`, `how-we-work/`, `about/`, `press/`, `privacy/`, `journal/`, `ventures/`: the pages. Each is a folder with an `index.html`.
 - `styles/` and `scripts/`: the shared stylesheet and scripts. `scripts/ventures-data.js` lists the ventures.
 - `assets/`: the logo mark and the self-hosted fonts (SIL Open Font License, licence texts alongside).
+- `styles/tokens.css`: generated from the ideaSquared Design System, which is the source of truth for colour, type, spacing, radii and shadows. Change a value there first, then here.
 - `404.html`, `_headers`, `_redirects`: the 404 page, the response headers (security headers and the CSP) and
   the redirects from the removed `/thesis/` and `/studio/` pages.
 - `robots.txt`, `sitemap.xml`: crawler rules and the list of public pages (every page has a canonical link at the
