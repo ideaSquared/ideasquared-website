@@ -10,7 +10,8 @@
     "prepare": "husky || true",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test": "node --test"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",
