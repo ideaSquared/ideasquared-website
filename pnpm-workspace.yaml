@@ -7,4 +7,7 @@ minimumReleaseAge: 1440
 trustPolicy: no-downgrade
 strictDepBuilds: true
 blockExoticSubdeps: true
-allowBuilds: {}
+# Only wrangler's own native dependencies may run install scripts.
+allowBuilds:
+  esbuild: true
+  workerd: true

@@ -1,0 +1,12 @@
+// Assets-only Worker: no `main`, no Worker script. Wrangler uploads the files in `assets.directory`
+// and serves them as they are. `_headers` (in the same folder) sets the response headers.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ideasquared-website",
+  "assets": {
+    "directory": "."
+  }
+  // `routes` (custom domains) and `workers_dev: false` are not set yet: the production and staging
+  // hostnames are an owner decision made when the domain moves to Cloudflare. See the "Deploy"
+  // section of the README for the exact entries to add.
+}
