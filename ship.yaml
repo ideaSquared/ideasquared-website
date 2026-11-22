@@ -20,15 +20,16 @@ components:
   site:
     type: cloudflare-worker
     # The default path is the repo root, where wrangler.jsonc is. Nothing to build: the HTML is published as written.
-    # A relative path is polled on the URL wrangler prints; `expect` rejects a 404 page that answers 200.
+    # workers.dev is off, so the checks use the custom domains. `expect` rejects a 404 page that answers 200.
     health:
-      staging: { url: /, expect: Bold ideas }
-      production: { url: /, expect: Bold ideas }
-# Smoke checks need full https URLs, which exist only once the custom domains are attached (cutover
-# steps in the README). Until then they stay empty; a smoke failure fails the deploy, so do not add a
-# URL that does not answer yet. After the domains are live, list them here, for example:
-#   staging: [{ url: 'https://staging.ideasquared.co.uk/', expect: Bold ideas }]
-#   production: [{ url: 'https://ideasquared.co.uk/', expect: Bold ideas }]
+      staging: { url: 'https://staging.ideasquared.co.uk/', expect: Bold ideas }
+      production: { url: 'https://ideasquared.co.uk/', expect: Bold ideas }
+# After every component deployed and passed its health check, shipper requests each URL (3 attempts). A failure
+# fails the deploy but does not roll back. The first deploy after a hostname is attached can fail here while its
+# certificate is still being issued; re-run the failed job.
 smoke:
-  staging: []
-  production: []
+  staging:
+    - { url: 'https://staging.ideasquared.co.uk/', expect: Bold ideas }
+  production:
+    - { url: 'https://ideasquared.co.uk/', expect: Bold ideas }
+    - { url: 'https://www.ideasquared.co.uk/', expect: Bold ideas }
