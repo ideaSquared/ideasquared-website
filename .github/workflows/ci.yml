@@ -60,3 +60,29 @@ jobs:
           fail: false
       # Builds the Worker as a deploy would, for production and staging, without deploying.
       - run: pnpm check:deploy
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # lighthouserc.json starts `wrangler dev` over the repo root, so the audit sees the real headers.
+      - run: pnpm exec lhci autorun
+      # The published folder must not contain tooling files (see .assetsignore).
+      - name: Tooling files are not published
+        run: |
+          pnpm exec wrangler dev --env staging --port 8788 --ip 127.0.0.1 > "$RUNNER_TEMP/dev.log" 2>&1 &
+          until curl -sf -o /dev/null http://127.0.0.1:8788/; do sleep 2; done
+          for path in /package.json /wrangler.jsonc /ship.yaml /README.md /node_modules/wrangler/package.json; do
+            status=$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:8788$path")
+            [ "$status" = 404 ] || { echo "::error::$path is published (HTTP $status). Add it to .assetsignore."; exit 1; }
+          done

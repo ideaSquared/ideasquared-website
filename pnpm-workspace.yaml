@@ -11,3 +11,8 @@ blockExoticSubdeps: true
 allowBuilds:
   esbuild: true
   workerd: true
+# @lhci/cli -> lighthouse -> puppeteer-core -> chromium-bidi: this exact version was published without
+# the trusted-publisher evidence earlier versions had, which no-downgrade refuses. It is only used by
+# the Lighthouse CI step (dev only, never deployed). Revisit when lighthouse moves on.
+trustPolicyExclude:
+  - chromium-bidi@157.0.8090-0
