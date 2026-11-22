@@ -1,30 +1,23 @@
 /* ============================================================
    ideaSquared - foundations
-   Palette and type follow the interim brand voice guidelines v1.1
-   (Nov 2026 brand notes direction): deep blue and near-black,
-   white type, one cyan accent. Green is reserved for "go".
-   The site is dark only: the approved logo has no light version.
+   Generated from the ideaSquared Design System (tokens.json, v1.0),
+   which is the source of truth: change a value there first, then here.
+   Light by default. Navy hero and band sections opt in to the dark
+   theme with the same tokens (see .on-dark below).
    Fonts are self-hosted (SIL Open Font License), so the site
    makes no third-party requests.
    ============================================================ */
 
 @font-face {
-  font-family: "Poppins";
-  src: url("/assets/fonts/poppins-latin-600-normal.woff2") format("woff2");
-  font-weight: 600;
+  font-family: "Fraunces";
+  src: url("/assets/fonts/fraunces-latin-opsz-normal.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Poppins";
-  src: url("/assets/fonts/poppins-latin-700-normal.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("/assets/fonts/inter-latin-wght-normal.woff2") format("woff2");
+  font-family: "Inter Tight";
+  src: url("/assets/fonts/inter-tight-latin-wght-normal.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -38,62 +31,159 @@
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  /* Brand palette */
-  --i2-deep-blue:  #02273f;  /* primary brand background */
-  --i2-near-black: #010e13;  /* dark base */
-  --i2-graphite:   #1e272b;  /* neutral surface */
-  --i2-white:      #ffffff;
-  --i2-cool-grey:  #c7d0d5;  /* body text */
-  --i2-cyan:       #00e0ff;  /* the one accent */
-  --i2-green:      #2aff8c;  /* "go" and live states only */
+  /* Palette: use the semantic tokens below in components, not these. */
+  --i2-navy-950: #04121f;
+  --i2-navy-900: #08182a;
+  --i2-navy-800: #0f2238;
+  --i2-navy-700: #1a324d;
+  --i2-navy-600: #284765;
+  --i2-ink-50:  #f7f6f2;
+  --i2-ink-100: #efece4;
+  --i2-ink-200: #e2ddd1;
+  --i2-ink-300: #c8c1b0;
+  --i2-ink-400: #6f6a5c;
+  --i2-ink-500: #5b574c;
+  --i2-ink-700: #2c2a25;
+  --i2-ink-900: #14130f;
+  --i2-signal-50:  #fef4e6;
+  --i2-signal-200: #fbd9a3;
+  --i2-signal-400: #f4a93b;
+  --i2-signal-500: #e8911a;
+  --i2-signal-600: #c4750c;
+  --i2-signal-800: #7a4805;
+  --i2-circuit-300: #7fd4c5;
+  --i2-circuit-500: #2fa692;
+  --i2-circuit-700: #146557;
+  --i2-equity-400: #b48bd6;
+  --i2-equity-600: #7c4fa4;
 
-  /* Semantic tokens. Components use these, not the raw palette. */
-  --bg:          var(--i2-near-black);
-  --bg-band:     var(--i2-deep-blue);
-  --bg-raised:   #071b27;
-  --bg-sunken:   #000a0e;
+  /* Semantic tokens, light theme (design system: Approved text pairs) */
+  --bg:          var(--i2-ink-50);
+  --bg-raised:   #ffffff;
+  --bg-sunken:   var(--i2-ink-100);
+  --bg-inverse:  var(--i2-navy-900);
 
-  --fg:          var(--i2-white);
-  --fg-body:     var(--i2-cool-grey);
-  --fg-muted:    #8fa0a9;
-  --fg-subtle:   #6b7c85;
+  --fg:          var(--i2-ink-900);
+  --fg-body:     var(--i2-ink-700);
+  --fg-muted:    var(--i2-ink-500);
+  --fg-subtle:   var(--i2-ink-400);
+  --fg-inverse:  var(--i2-ink-50);
 
-  --line:        rgba(199, 208, 213, 0.14);
-  --line-strong: rgba(199, 208, 213, 0.28);
+  --line:        var(--i2-ink-200);
+  --line-strong: #928566;
 
-  --accent:      var(--i2-cyan);
-  --accent-fg:   var(--i2-near-black);
-  --accent-soft: rgba(0, 224, 255, 0.1);
-  --go:          var(--i2-green);
-  --go-soft:     rgba(42, 255, 140, 0.1);
-  --stop:        #ff8a7a;
+  --accent:      var(--i2-signal-500);   /* fills: buttons, dots, rules */
+  --accent-fg:   var(--i2-navy-900);     /* text on --accent */
+  --accent-soft: var(--i2-signal-50);
+  --accent-text: #9a5c09;                /* signal as text on light, 5.0:1 */
+  --on-accent-soft: var(--i2-signal-800);/* text on --accent-soft */
 
-  --focus-ring:  var(--i2-cyan);
+  --go:          #227769;                /* success: text and marks, 5.0:1 */
+  --go-soft:     rgba(34, 119, 105, 0.1);
+  --stop:        #ba4238;                /* danger: text and marks, 5.0:1 */
+
+  --link:        var(--i2-navy-900);
+  --link-hover:  #9a5c09;
+  --focus-ring:  #bf7613;
+
+  --nav-bg:      rgba(247, 246, 242, 0.85);
 
   /* Type */
-  --font-display: "Poppins", "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-sans:    "Inter", "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", "Times New Roman", Georgia, serif;
+  --font-sans:    "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
-  --t-display: clamp(40px, 7.2vw, 88px);
-  --t-h1:      clamp(34px, 5vw, 56px);
-  --t-h2:      clamp(26px, 3.2vw, 38px);
-  --t-h3:      22px;
-  --t-h4:      18px;
-  --t-lede:    clamp(17px, 1.6vw, 20px);
+  --t-display-1: clamp(56px, 8vw, 112px);
+  --t-display-2: clamp(44px, 6vw, 80px);
+  --t-h1:      clamp(36px, 5vw, 56px);
+  --t-h2:      clamp(28px, 3.4vw, 40px);
+  --t-h3:      clamp(22px, 2.6vw, 28px);
+  --t-h4:      22px;
+  --t-h5:      18px;
+  --t-lede:    clamp(17px, 1.6vw, 19px);
   --t-body:    16px;
   --t-small:   14px;
   --t-label:   12px;
 
-  /* Space, radius, motion */
+  /* Spacing: 4px base */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+  --sp-32: 128px;
+
   --gutter: clamp(16px, 4vw, 40px);
   --max:    1120px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* Shadows: soft, navy-tinted */
+  --shadow-sm: 0 2px 6px rgba(8, 24, 42, 0.06), 0 1px 2px rgba(8, 24, 42, 0.04);
+  --shadow-md: 0 8px 24px rgba(8, 24, 42, 0.08), 0 2px 6px rgba(8, 24, 42, 0.04);
+  --shadow-glow-signal: 0 0 0 6px rgba(232, 145, 26, 0.18);
+
+  /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 120ms;
   --dur-base: 220ms;
+}
+
+/* Dark theme: the design system's on-dark surfaces. Heroes and bands are
+   flat navy; everything inside re-tints through the same tokens. */
+.on-dark,
+.hero,
+.subpage-hero,
+.venture-hero,
+.section.band {
+  color-scheme: dark;
+
+  --bg:          var(--i2-navy-900);
+  --bg-raised:   var(--i2-navy-800);
+  --bg-sunken:   var(--i2-navy-950);
+  --bg-inverse:  var(--i2-ink-50);
+
+  --fg:          var(--i2-ink-50);
+  --fg-body:     #d8d3c5;
+  --fg-muted:    #9aa1ab;
+  --fg-subtle:   #818995;
+  --fg-inverse:  var(--i2-ink-900);
+
+  --line:        rgba(255, 255, 255, 0.08);
+  --line-strong: #3f6f9e;
+
+  --accent-soft: var(--i2-signal-800);
+  --accent-text: var(--i2-signal-500);
+  --on-accent-soft: var(--i2-ink-50);
+
+  --go:          #2fa692;
+  --go-soft:     rgba(47, 166, 146, 0.14);
+  --stop:        #d06b62;
+
+  --link:        var(--i2-ink-50);
+  --link-hover:  var(--i2-signal-400);
+  --focus-ring:  var(--i2-signal-500);
+
+  --nav-bg:      rgba(8, 24, 42, 0.85);
+
+  --shadow-sm: none;
+  --shadow-md: none;
+
+  background: var(--bg);
+  color: var(--fg-body);
 }
