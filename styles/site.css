@@ -188,8 +188,6 @@ a.chip:hover { color: var(--link-hover); border-color: var(--accent); }
   top: 0;
   z-index: 50;
   background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
 .nav-inner {

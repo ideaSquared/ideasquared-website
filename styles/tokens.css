@@ -88,7 +88,7 @@
   --link-hover:  #9a5c09;
   --focus-ring:  #bf7613;
 
-  --nav-bg:      rgba(247, 246, 242, 0.85);
+  --nav-bg:      var(--i2-ink-50);
 
   /* Type */
   --font-display: "Fraunces", "Times New Roman", Georgia, serif;
@@ -179,7 +179,7 @@
   --link-hover:  var(--i2-signal-400);
   --focus-ring:  var(--i2-signal-500);
 
-  --nav-bg:      rgba(8, 24, 42, 0.85);
+  --nav-bg:      var(--i2-navy-900);
 
   --shadow-sm: none;
   --shadow-md: none;
@@ -218,7 +218,7 @@
     --link-hover:  var(--i2-signal-400);
     --focus-ring:  var(--i2-signal-500);
 
-    --nav-bg:      rgba(8, 24, 42, 0.85);
+    --nav-bg:      var(--i2-navy-900);
 
     --shadow-sm: none;
     --shadow-md: none;
