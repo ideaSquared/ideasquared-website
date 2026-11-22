@@ -244,3 +244,11 @@ describe('deploy and preview flow', () => {
     runs.forEach((script) => assert.doesNotMatch(script, /\$\{\{ *github\.event/));
   });
 });
+
+describe('Lighthouse gate (SITE-07)', () => {
+  const assertions = JSON.parse(read('lighthouserc.json')).ci.assert.assertions;
+
+  it('fails the build below 0.95 accessibility', () => {
+    assert.deepEqual(assertions['categories:accessibility'], ['error', { minScore: 0.95 }]);
+  });
+});
