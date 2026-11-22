@@ -1,5 +1,6 @@
 {
   "name": "ideasquared-website",
+  "packageManager": "pnpm@10.34.3",
   "engines": {
     "node": ">=24.0.0 <25.0.0"
   }
