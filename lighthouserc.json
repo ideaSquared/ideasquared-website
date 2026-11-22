@@ -11,8 +11,10 @@
         "http://127.0.0.1:8787/ventures/creatrgrid/",
         "http://127.0.0.1:8787/ventures/gaminginit/",
         "http://127.0.0.1:8787/ventures/pairflix/",
-        "http://127.0.0.1:8787/thesis/",
-        "http://127.0.0.1:8787/studio/",
+        "http://127.0.0.1:8787/how-we-work/",
+        "http://127.0.0.1:8787/about/",
+        "http://127.0.0.1:8787/press/",
+        "http://127.0.0.1:8787/privacy/",
         "http://127.0.0.1:8787/journal/"
       ],
       "numberOfRuns": 1,

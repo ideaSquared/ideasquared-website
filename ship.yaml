@@ -22,14 +22,14 @@ components:
     # The default path is the repo root, where wrangler.jsonc is. Nothing to build: the HTML is published as written.
     # workers.dev is off, so the checks use the custom domains. `expect` rejects a 404 page that answers 200.
     health:
-      staging: { url: 'https://staging.ideasquared.co.uk/', expect: Bold ideas }
-      production: { url: 'https://ideasquared.co.uk/', expect: Bold ideas }
+      staging: { url: 'https://staging.ideasquared.co.uk/', expect: A little spark }
+      production: { url: 'https://ideasquared.co.uk/', expect: A little spark }
 # After every component deployed and passed its health check, shipper requests each URL (3 attempts). A failure
 # fails the deploy but does not roll back. The first deploy after a hostname is attached can fail here while its
 # certificate is still being issued; re-run the failed job.
 smoke:
   staging:
-    - { url: 'https://staging.ideasquared.co.uk/', expect: Bold ideas }
+    - { url: 'https://staging.ideasquared.co.uk/', expect: A little spark }
   production:
-    - { url: 'https://ideasquared.co.uk/', expect: Bold ideas }
-    - { url: 'https://www.ideasquared.co.uk/', expect: Bold ideas }
+    - { url: 'https://ideasquared.co.uk/', expect: A little spark }
+    - { url: 'https://www.ideasquared.co.uk/', expect: A little spark }

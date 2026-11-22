@@ -1,15 +1,17 @@
 # ideasquared-website
 
-The public site of ideaSquared, a UK venture studio: the studio pages, the thesis, the journal and a page for
+The public site of ideaSquared, a UK venture studio: how the studio works, the build log and a page for
 each venture. It is plain HTML, CSS and a little JavaScript with no build step, served by a Cloudflare Worker with
 static assets and deployed through [ideaSquared/shipper](https://github.com/ideaSquared/shipper). Until the
 cutover in the pull request that added this setup is done, the live site is still served by Netlify.
 
 ## Layout
 
-- `index.html`, `thesis/`, `studio/`, `journal/`, `ventures/`: the pages. Each is a folder with an `index.html`.
+- `index.html`, `how-we-work/`, `about/`, `press/`, `privacy/`, `journal/`, `ventures/`: the pages. Each is a folder with an `index.html`.
 - `styles/` and `scripts/`: the shared stylesheet and scripts. `scripts/ventures-data.js` lists the ventures.
-- `404.html`, `_headers`: the 404 page and the response headers (security headers and the CSP).
+- `assets/`: the logo mark and the self-hosted fonts (SIL Open Font License, licence texts alongside).
+- `404.html`, `_headers`, `_redirects`: the 404 page, the response headers (security headers and the CSP) and
+  the redirects from the removed `/thesis/` and `/studio/` pages.
 - `wrangler.jsonc`, `ship.yaml`, `.assetsignore`: how the site is served and deployed.
 
 The repo root is the published folder, so everything that is not part of the site (`package.json`, `README.md`,
@@ -40,9 +42,9 @@ There is no type-check step (no TypeScript) and no build step.
 
 Things to know when editing:
 
-- The CSP in `_headers` allows the inline scripts in the pages by hash. If you change an inline `<script>`, its
-  hash changes and `pnpm test` fails until you update the hash in `_headers`. New external origins (fonts, images,
-  scripts) must be added to the CSP; the test lists any that are missing.
+- The CSP in `_headers` allows the site's own files only: the pages have no inline scripts and the fonts are
+  self-hosted. An inline `<script>` needs its hash in `_headers`, and a new external origin (fonts, images,
+  scripts) must be added to the CSP; `pnpm test` lists any that are missing.
 - Nothing is fingerprinted, so no file gets `immutable` caching. Only add that for paths whose name changes with
   their content.
 - Commits follow Conventional Commits (commitlint runs on `commit-msg`).

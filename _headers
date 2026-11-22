@@ -1,15 +1,13 @@
 # Response headers for every page. Cloudflare Workers static assets (and Netlify, until it is retired)
 # read this file; it is not served as a file itself.
 #
-# The CSP matches what the pages load: own files, Google Fonts (tokens.css imports the stylesheet
-# from fonts.googleapis.com, the font files come from fonts.gstatic.com) and three inline scripts
-# (the theme bootstrap on every page, the audience switch on two venture pages), allowed by hash
-# instead of 'unsafe-inline'. Inline style="" attributes are allowed through style-src-attr only;
-# <style> blocks and stylesheets stay restricted. If an inline script changes, its hash changes:
-# `pnpm test` fails until the hash here is updated.
+# The CSP matches what the pages load: own files only. Fonts are self-hosted in /assets/fonts/ and
+# there are no inline scripts, so every source is 'self'. Inline style="" attributes are allowed
+# through style-src-attr only; <style> blocks and stylesheets stay restricted. `pnpm test` fails if
+# a page gains an inline script or an external origin that is not allowed here.
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-VEFczH0q7VMFu2SWPhYespMu+XYIEtv3+BwDvqFeFVk=' 'sha256-BkL1qMmabnfltGLQtR8FmuqXQAP68xLbm237sr2vLpM=' 'sha256-Ac53c2OaN9jpzw3mFA8pItNDaHMGOeQyJRASUbjbl2o='; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; font-src 'self'; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()

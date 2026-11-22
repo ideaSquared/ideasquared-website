@@ -1,69 +1,65 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<title>Pairflix &mdash; Streaming is better together · ideaSquared</title>
+<title>Pairflix &middot; An ideaSquared venture</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Pairflix is an AI-powered matcher that helps couples and households decide what to watch in 30 seconds. A venture of the ideaSquared studio.">
-<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
-<link rel="stylesheet" href="../../styles/tokens.css">
-<link rel="stylesheet" href="../../styles/site.css">
-<script>(function(){try{var t=localStorage.getItem('i2-theme');document.documentElement.setAttribute('data-theme',t==='light'||t==='dark'?t:'auto');}catch(e){document.documentElement.setAttribute('data-theme','auto');}})();</script>
-<script>(function(){var h=location.hash;document.documentElement.setAttribute('data-audience',h==='#for-investors'?'investors':'households');})();</script>
+<meta name="description" content="Pairflix helps two people agree on what to watch. An ideaSquared venture at the Idea stage: a prototype exists, with no public users and no launch date yet.">
+<meta name="theme-color" content="#02273f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="Pairflix &middot; An ideaSquared venture">
+<meta property="og:description" content="Pairflix helps two people agree on what to watch. An ideaSquared venture at the Idea stage: a prototype exists, with no public users and no launch date yet.">
+<meta property="og:url" content="https://ideasquared.co.uk/ventures/pairflix/">
+<link rel="canonical" href="https://ideasquared.co.uk/ventures/pairflix/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
 </head>
 <body class="i2">
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<header class="nav" id="nav" aria-label="Primary">
+<header class="nav" id="nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="../../" aria-label="ideaSquared home"><img src="../../assets/logo-mark.svg" alt="" aria-hidden="true"><span class="brand-text">idea<em>Squared</em></span></a>
-    <nav class="nav-links" id="nav-links">
-      <a href="../../ventures/" data-nav="/ventures/">Ventures</a>
-      <a href="../../thesis/"   data-nav="/thesis/">Thesis</a>
-      <a href="../../studio/"   data-nav="/studio/">Studio</a>
-      <a href="../../journal/"  data-nav="/journal/">Journal</a>
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><img src="/assets/logo-mark-on-dark.svg" alt="" width="28" height="28"><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/about/" data-nav="/about/">About</a>
     </nav>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></svg>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
     </button>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
-    </button>
-    <a href="mailto:investors@ideasquared.co.uk?subject=Pitching%20an%20idea" class="btn btn-secondary btn-md">Pitch us an idea</a>
   </div>
 </header>
 
 <main id="main">
 
-<!-- ============================================================= -->
-<!-- SHARED  ·  the venture story everyone needs                    -->
-<!-- ============================================================= -->
-
 <section class="venture-hero" aria-labelledby="pairflix-name">
   <div class="venture-hero-inner">
     <div>
-      <span class="eyebrow signal">Venture · in build</span>
-      <h1 id="pairflix-name">Pairflix.</h1>
-      <p class="lede">Streaming is better together. Pairflix turns the nightly "what shall we watch?" argument into a 30-second decision &mdash; across Netflix, Prime, Disney+ and friends.</p>
+      <span class="eyebrow">Venture &middot; Idea stage</span>
+      <h1 id="pairflix-name">Pairflix</h1>
+      <p class="lede">Pairflix helps two people agree on what to watch. Say what mood you&rsquo;re in and how long you&rsquo;ve got, and it suggests one title from the services you already have.</p>
       <div class="meta">
-        <span class="chip">Web &amp; AI</span>
-        <span class="chip">UK households</span>
-        <span class="chip">Alpha · pre-launch</span>
+        <span class="chip">Streaming</span>
+        <span class="chip">Households</span>
+        <span class="chip">Prototype</span>
       </div>
       <div class="cta">
-        <a href="mailto:investors@ideasquared.co.uk?subject=Pairflix%20%C2%B7%20seed" class="btn btn-primary btn-lg">
-          Back the seed
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-        </a>
-        <a href="https://github.com/ideaSquared/pairflix" class="btn btn-ghost-dark btn-lg">View on GitHub</a>
+        <a href="https://github.com/ideaSquared/pairflix" class="btn btn-primary btn-lg">View the code <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg></a>
+        <a href="/journal/" class="btn btn-ghost-dark btn-lg">Build log</a>
       </div>
     </div>
     <aside class="venture-hero-side" aria-label="Pairflix at a glance">
-      <div class="venture-stat"><div class="label">Stage</div><div class="value">Alpha · in build</div></div>
-      <div class="venture-stat"><div class="label">Ask</div><div class="value">£400k seed</div></div>
-      <div class="venture-stat"><div class="label">3-yr ARR goal</div><div class="value">£1m+</div></div>
-      <div class="venture-stat"><div class="label">Market</div><div class="value">30m UK households</div></div>
+      <div class="venture-stat"><div class="label">Stage</div><div class="value">Idea. A prototype exists.</div></div>
+      <div class="venture-stat"><div class="label">Public users</div><div class="value">None yet</div></div>
+      <div class="venture-stat"><div class="label">Launch date</div><div class="value">Not set</div></div>
+      <div class="venture-stat"><div class="label">Waiting on</div><div class="value">The AdoptDontShop decision</div></div>
     </aside>
   </div>
 </section>
@@ -71,24 +67,8 @@
 <section class="venture-section" aria-labelledby="problem">
   <div class="head">
     <span class="eyebrow">The problem</span>
-    <h2 id="problem">Streaming made content abundant. It also made deciding miserable.</h2>
-  </div>
-  <div class="venture-grid-3">
-    <article class="venture-card">
-      <div class="num">12+ min</div>
-      <h4>Spent choosing each night</h4>
-      <p>The average household burns over twelve minutes of screen time before anything actually starts playing.</p>
-    </article>
-    <article class="venture-card">
-      <div class="num">2.5 hrs</div>
-      <h4>Daily streaming time</h4>
-      <p>UK adults stream for roughly two and a half hours a day &mdash; most of it on platforms designed for individual taste profiles.</p>
-    </article>
-    <article class="venture-card">
-      <div class="num">High</div>
-      <h4>Reported "what to watch" friction</h4>
-      <p>Decision fatigue, abandoned sessions and low-grade household friction are the steady cost of choice paralysis.</p>
-    </article>
+    <h2 id="problem">Streaming made content abundant. It also made deciding harder.</h2>
+    <p>Streaming services recommend for one viewer at a time. When two people sit down together, the choosing can take longer than it should. That&rsquo;s the hunch. We haven&rsquo;t tested it with real households yet.</p>
   </div>
 </section>
 
@@ -135,149 +115,14 @@
     </article>
     <article class="venture-card">
       <h4>Next gate</h4>
-      <p>Closed alpha with a small invited cohort once the matcher and partner-pairing UX are stable. The aspirational targets below describe the post-launch trajectory we're building toward.</p>
-    </article>
-  </div>
-</section>
-
-<!-- ============================================================= -->
-<!-- AUDIENCE SWITCH  ·  choose the track that fits you             -->
-<!-- ============================================================= -->
-
-<section class="audience-switch" data-audience-switch="households" aria-label="Choose your view">
-  <span class="audience-label">Who&rsquo;s this for?</span>
-  <div class="filter" role="group" aria-label="Choose your view">
-    <button type="button" data-audience="households" class="is-active" aria-pressed="true" data-hint="How Pairflix works, what it costs, and when you can use it.">I want to watch</button>
-    <button type="button" data-audience="investors" aria-pressed="false" data-hint="The market, model, three-year projection and the &pound;400k seed ask.">I&rsquo;m an investor</button>
-  </div>
-  <p class="audience-hint" data-audience-hint>How Pairflix works, what it costs, and when you can use it.</p>
-</section>
-
-<!-- ============================================================= -->
-<!-- TRACK  ·  FOR HOUSEHOLDS                                       -->
-<!-- ============================================================= -->
-
-<section class="venture-section" data-track="households" aria-labelledby="h-cost">
-  <div class="head">
-    <span class="eyebrow signal">For households</span>
-    <h2 id="h-cost">Free to end the standoff. Premium when you want more.</h2>
-    <p>Pairflix sits on top of the subscriptions you already pay for &mdash; it doesn&rsquo;t replace them. The core is free; premium is for the households that want the full cross-platform picture.</p>
-  </div>
-  <div class="venture-grid-2">
-    <article class="venture-card">
-      <h4>Free</h4>
-      <p>Your pair profile, the mood &amp; time picker, and daily matches across your services. Ad-light &mdash; enough to settle most &ldquo;what shall we watch?&rdquo; standoffs in about thirty seconds.</p>
-    </article>
-    <article class="venture-card">
-      <h4>Premium</h4>
-      <p>Unlimited matches, full cross-platform coverage and a richer watch-together history that keeps learning your household&rsquo;s taste &mdash; a small monthly fee per household.</p>
+      <p>Pairflix has no proposal yet. It needs go and stop numbers before it gets more than occasional evenings, and that waits for the AdoptDontShop decision.</p>
     </article>
   </div>
   <div class="callout" role="note">
     <span class="icon" aria-hidden="true">&#x25B6;</span>
     <div>
       <strong>Not open to the public yet</strong>
-      <p style="margin: 4px 0 0;">There&rsquo;s no waitlist and no launch date &mdash; we&rsquo;ll announce when the build clears its quality bar. Follow along on the <a href="../../journal/">studio journal</a>, or watch the build on <a href="https://github.com/ideaSquared/pairflix">GitHub</a>.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================= -->
-<!-- TRACK  ·  FOR INVESTORS                                        -->
-<!-- ============================================================= -->
-
-<section class="venture-section" data-track="investors" aria-labelledby="competition">
-  <div class="head">
-    <span class="eyebrow signal">For investors</span>
-    <h2 id="competition">The only product designed around the household decision.</h2>
-  </div>
-  <p class="table-label">How Pairflix differs</p>
-  <table class="venture-table">
-    <thead>
-      <tr><th scope="col">Player</th><th scope="col">Their strength</th><th scope="col">Pairflix edge</th></tr>
-    </thead>
-    <tbody>
-      <tr><th scope="row">Netflix profiles</th><td>Distribution</td><td>Single-platform only, individual-first</td></tr>
-      <tr><th scope="row">Teleparty</th><td>Sync watching</td><td>We solve the <em>decision</em>, not the playback</td></tr>
-      <tr><th scope="row">Generic recommenders</th><td>Algorithmic depth</td><td>Relationship-first profile model</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section class="venture-section" data-track="investors" aria-labelledby="model">
-  <div class="head">
-    <span class="eyebrow">Business model</span>
-    <h2 id="model">Freemium drives top of funnel; premium is the engine.</h2>
-  </div>
-  <p class="table-label">Revenue streams</p>
-  <table class="venture-table">
-    <thead>
-      <tr><th scope="col">Stream</th><th scope="col">Payer</th><th scope="col">Pricing</th></tr>
-    </thead>
-    <tbody>
-      <tr><th scope="row">Premium subscription</th><td>Couples &amp; households</td><td>Monthly fee &mdash; unlimited matches &amp; cross-platform</td></tr>
-      <tr><th scope="row">Affiliate revenue</th><td>Streamers &amp; content partners</td><td>Rev-share on signups</td></tr>
-      <tr><th scope="row">Free tier</th><td>Households</td><td>Limited matches per day, ad-light</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section class="venture-section" data-track="investors" aria-labelledby="projections">
-  <div class="head">
-    <span class="eyebrow">Three-year projection (post-launch)</span>
-    <h2 id="projections">The trajectory we're building toward.</h2>
-    <p>These are the targets in the seed plan, not current state. Year 1 starts at public launch, not today.</p>
-  </div>
-  <p class="table-label">Active pairs, conversion and ARR</p>
-  <table class="venture-table">
-    <thead>
-      <tr><th scope="col">Metric</th><th scope="col">Year 1</th><th scope="col">Year 2</th><th scope="col">Year 3</th></tr>
-    </thead>
-    <tbody>
-      <tr><th scope="row">Active pairs</th><td class="num-col">5,000</td><td class="num-col">50,000</td><td class="num-col">250,000</td></tr>
-      <tr><th scope="row">Premium conversion</th><td class="num-col">3%</td><td class="num-col">5%</td><td class="num-col">7%</td></tr>
-      <tr><th scope="row">ARR</th><td class="num-col">£50k</td><td class="num-col">£350k</td><td class="num-col">£1m+</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section class="venture-section" data-track="investors" aria-labelledby="ask">
-  <div class="head">
-    <span class="eyebrow signal">Funding ask</span>
-    <h2 id="ask">£400k seed to take Pairflix from alpha to paid product&ndash;market fit.</h2>
-  </div>
-  <p class="table-label">Allocation</p>
-  <table class="venture-table">
-    <thead>
-      <tr><th scope="col">Allocation</th><th scope="col">Share</th><th scope="col">Purpose</th></tr>
-    </thead>
-    <tbody>
-      <tr><th scope="row">Product &amp; AI</th><td class="num-col">50%</td><td>Matcher quality, mobile build</td></tr>
-      <tr><th scope="row">Growth</th><td class="num-col">35%</td><td>Paid &amp; influencer acquisition</td></tr>
-      <tr><th scope="row">Operations &amp; runway</th><td class="num-col">15%</td><td>Legal, infra, finance</td></tr>
-    </tbody>
-  </table>
-  <div class="callout" role="note">
-    <span class="icon" aria-hidden="true">£</span>
-    <div>
-      <strong>Want to back the seed?</strong>
-      <p style="margin: 4px 0 0;">Pitch decks and the full financial model are available on request. Email <a href="mailto:investors@ideasquared.co.uk?subject=Pairflix%20%C2%B7%20seed">investors@ideasquared.co.uk</a>.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================= -->
-<!-- SHARED  ·  founder note                                        -->
-<!-- ============================================================= -->
-
-<section class="quote" aria-label="From the founder">
-  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--i2-signal-400)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V11a4 4 0 0 1 4-4h2v3H7a1 1 0 0 0-1 1v2h3v8z"/><path d="M14 21V11a4 4 0 0 1 4-4h2v3h-2a1 1 0 0 0-1 1v2h3v8z"/></svg>
-  <blockquote>"Pairflix is the only product designed around the household decision, not the individual viewer."</blockquote>
-  <div class="quote-attrib">
-    <div class="quote-avatar" aria-hidden="true"></div>
-    <div>
-      <div class="quote-name">Alex Jenkinson</div>
-      <div class="quote-role">Founder &amp; CEO, Pairflix</div>
+      <p style="margin: 4px 0 0;">There is no waitlist and no launch date. Follow along on the <a href="/journal/">build log</a>, or watch the code on <a href="https://github.com/ideaSquared/pairflix">GitHub</a>.</p>
     </div>
   </div>
 </section>
@@ -285,16 +130,49 @@
 </main>
 
 <footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><img src="/assets/logo-mark-on-dark.svg" alt="" width="28" height="28"><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Ventures</h5>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Get in touch</h5>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
   <div class="footer-bottom">
-    <span>© 2026 ideaSquared · Pairflix is a venture of the ideaSquared studio</span>
-    <span class="links">
-      <a href="../../">Studio</a>
-      <a href="https://github.com/ideaSquared/pairflix">Source</a>
-    </span>
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
   </div>
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="../../scripts/site.js" defer></script>
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
 </body>
 </html>

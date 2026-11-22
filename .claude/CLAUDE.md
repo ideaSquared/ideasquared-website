@@ -16,7 +16,8 @@ a Cloudflare Worker with static assets (`wrangler.jsonc`) and deployed through s
 
 - The repo root is the published folder; files that are not part of the site go in `.assetsignore`.
 - Do not reformat or "tidy" the published HTML, CSS or JS; Prettier ignores them on purpose.
-- `_headers` carries the CSP. A new external origin or a changed inline `<script>` needs a matching CSP change;
+- `_headers` carries the CSP. The pages load own files only (no inline scripts, self-hosted fonts). A new external origin or an inline
+  `<script>` needs a matching CSP change;
   `pnpm test` says what is missing. Never add `'unsafe-inline'` to `script-src`.
 - Only fingerprinted files may get `Cache-Control: immutable`. Nothing is fingerprinted today.
 - No secrets, `vars` or API keys anywhere in the published files or `wrangler.jsonc`.

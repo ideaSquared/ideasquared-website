@@ -63,7 +63,6 @@ describe('the CSP matches what the pages load', () => {
         hash: `'sha256-${createHash('sha256').update(m[1]).digest('base64')}'`,
       })),
     );
-    assert.ok(inline.length > 0);
     inline.forEach(({ page, hash }) =>
       assert.ok(allowed.includes(hash), `${page}: ${hash} is not in script-src`),
     );
@@ -116,7 +115,6 @@ describe('the CSP matches what the pages load', () => {
         );
         return [...tags, ...imports, ...fonts];
       });
-    assert.ok(loads.length > 0);
     loads.forEach(({ url, names }) => {
       const origin = new URL(url).origin;
       assert.ok(
@@ -126,13 +124,29 @@ describe('the CSP matches what the pages load', () => {
     });
   });
 
-  it('allows the font files that the Google Fonts stylesheet pulls in', () => {
-    // fonts.googleapis.com serves only CSS; its @font-face rules point at fonts.gstatic.com.
-    const usesGoogleFonts = files.some(
-      (file) => file.endsWith('.css') && /fonts\.googleapis\.com/.test(read(file)),
+  it('self-hosts its fonts, so no page makes a third-party request for them', () => {
+    const css = files
+      .filter((file) => file.endsWith('.css'))
+      .map(read)
+      .join('\n');
+    assert.doesNotMatch(css, /fonts\.(googleapis|gstatic)\.com/);
+    const fontFiles = [...css.matchAll(/@font-face\s*\{[^}]*url\(["']?([^"')]+)/g)].map(
+      (m) => m[1],
     );
-    assert.ok(usesGoogleFonts);
-    assert.ok(directive('font-src').includes('https://fonts.gstatic.com'));
+    assert.ok(fontFiles.length > 0);
+    fontFiles.forEach((url) => {
+      assert.match(url, /^\/assets\/fonts\//, `${url} is not self-hosted`);
+      assert.ok(existsSync(join(root, url)), `${url} is missing`);
+    });
+    assert.deepEqual(directive('font-src'), ["'self'"]);
+  });
+
+  it('stores nothing in the browser, as the privacy notice says', () => {
+    const scripts = files
+      .filter((file) => file.endsWith('.js'))
+      .map(read)
+      .join('\n');
+    assert.doesNotMatch(scripts, /localStorage|sessionStorage|document\.cookie|indexedDB/);
   });
 });
 

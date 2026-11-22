@@ -1,56 +1,62 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<title>Journal &mdash; ideaSquared</title>
+<title>Build log &middot; ideaSquared</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Dated build log across the ideaSquared ventures, newest first, with venture-tagged entries and per-product current-state snapshots.">
-<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-<link rel="stylesheet" href="../styles/tokens.css">
-<link rel="stylesheet" href="../styles/site.css">
-<script>(function(){try{var t=localStorage.getItem('i2-theme');document.documentElement.setAttribute('data-theme',t==='light'||t==='dark'?t:'auto');}catch(e){document.documentElement.setAttribute('data-theme','auto');}})();</script>
+<meta name="description" content="Dated entries for every change ideaSquared ships across its ventures, newest first.">
+<meta name="theme-color" content="#02273f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="Build log &middot; ideaSquared">
+<meta property="og:description" content="Dated entries for every change ideaSquared ships across its ventures, newest first.">
+<meta property="og:url" content="https://ideasquared.co.uk/journal/">
+<link rel="canonical" href="https://ideasquared.co.uk/journal/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
 </head>
-<body class="i2">
+<body class="i2 page-journal">
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<header class="nav" id="nav" aria-label="Primary">
+<header class="nav" id="nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="../" aria-label="ideaSquared home"><img src="../assets/logo-mark.svg" alt="" aria-hidden="true"><span class="brand-text">idea<em>Squared</em></span></a>
-    <nav class="nav-links" id="nav-links">
-      <a href="../ventures/" data-nav="/ventures/">Ventures</a>
-      <a href="../thesis/"   data-nav="/thesis/">Thesis</a>
-      <a href="../studio/"   data-nav="/studio/">Studio</a>
-      <a href="../journal/"  data-nav="/journal/">Journal</a>
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><img src="/assets/logo-mark-on-dark.svg" alt="" width="28" height="28"><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/about/" data-nav="/about/">About</a>
     </nav>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
     </button>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
-    </button>
-    <a href="mailto:investors@ideasquared.co.uk?subject=Pitching%20an%20idea" class="btn btn-secondary btn-md">Pitch us an idea</a>
   </div>
 </header>
 
 <main id="main">
 
 <section class="subpage-hero">
-  <span class="eyebrow">The journal</span>
-  <h1>What's shipping across the studio, in the open.</h1>
-  <p>Dated entries from the live ventures, newest first. Each entry links to the <a href="../ventures/">venture brief</a> for the full current snapshot &mdash; roadmap, stack and stage.</p>
+  <div class="container">
+    <span class="eyebrow signal">Build log</span>
+    <h1>What we shipped, dated, newest first.</h1>
+    <p>Every change across the ventures, in plain English. Each entry is tagged with the venture it belongs to. The <a href="/ventures/">venture pages</a> have the current stage of each one.</p>
+  </div>
 </section>
 
 <section class="venture-section" aria-labelledby="entries">
   <div class="head">
-    <span class="eyebrow signal">Latest entries</span>
+    <span class="eyebrow">Latest entries</span>
     <h2 id="entries">Studio log.</h2>
-    <p>One line per change, tagged with the venture it belongs to.</p>
+    <p>One entry per change.</p>
   </div>
   <div class="venture-grid-2">
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/gaminginit/" rel="noopener">GAMINGINIT</a>
+        <a class="chip" href="/ventures/gaminginit/" rel="noopener">GAMINGINIT</a>
         <span style="font-size: 12px; color: var(--fg-muted);">21 Nov 2026</span>
       </div>
       <h4>gaminginit and the WARDOGS Discord bot are deprecated.</h4>
@@ -59,7 +65,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">21 Nov 2026</span>
       </div>
       <h4>When a staff member is removed from a rescue, they now lose access straight away.</h4>
@@ -68,7 +74,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">21 Nov 2026</span>
       </div>
       <h4>Rescue staff are now added by email invitation.</h4>
@@ -77,7 +83,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">21 Nov 2026</span>
       </div>
       <h4>Administrators can no longer act on accounts with higher roles.</h4>
@@ -86,7 +92,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">21 Nov 2026</span>
       </div>
       <h4>Uploaded photos now have hidden data removed.</h4>
@@ -95,7 +101,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">21 Nov 2026</span>
       </div>
       <h4>Error reports now have personal details and secrets removed first.</h4>
@@ -104,7 +110,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">21 Nov 2026</span>
       </div>
       <h4>A rescue sign-up that times out can now be retried.</h4>
@@ -149,7 +155,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/creatrgrid/" rel="noopener">CREATRGRID</a>
+        <a class="chip" href="/ventures/creatrgrid/" rel="noopener">CREATRGRID</a>
         <span style="font-size: 12px; color: var(--fg-muted);">21 Nov 2026</span>
       </div>
       <h4>Old password-reset and email-change links now stop working.</h4>
@@ -158,7 +164,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/creatrgrid/" rel="noopener">CREATRGRID</a>
+        <a class="chip" href="/ventures/creatrgrid/" rel="noopener">CREATRGRID</a>
         <span style="font-size: 12px; color: var(--fg-muted);">21 Nov 2026</span>
       </div>
       <h4>Connecting a social account now checks who finishes the connection.</h4>
@@ -167,7 +173,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/creatrgrid/" rel="noopener">CREATRGRID</a>
+        <a class="chip" href="/ventures/creatrgrid/" rel="noopener">CREATRGRID</a>
         <span style="font-size: 12px; color: var(--fg-muted);">21 Nov 2026</span>
       </div>
       <h4>Custom domains now need to be verified.</h4>
@@ -176,7 +182,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">19 Nov 2026</span>
       </div>
       <h4>Distance to the rescue now shows for adopters on search and pet pages.</h4>
@@ -185,7 +191,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">19 Nov 2026</span>
       </div>
       <h4>Rescue staff can pick a decline-reason template when declining several applications.</h4>
@@ -194,7 +200,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">19 Nov 2026</span>
       </div>
       <h4>A failed rescue sign-up no longer leaves a half-created account.</h4>
@@ -203,7 +209,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Nov 2026</span>
       </div>
       <h4>Your account settings page has been redesigned with a simpler layout and plain language.</h4>
@@ -212,7 +218,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Nov 2026</span>
       </div>
       <h4>Pet names, adopter names, and rescue names now appear as clickable links wherever they&rsquo;re mentioned.</h4>
@@ -221,7 +227,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Nov 2026</span>
       </div>
       <h4>Admin: conversation reports now filter correctly, and all chats are reachable in the Messages inbox.</h4>
@@ -230,7 +236,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">9 Nov 2026</span>
       </div>
       <h4>The Events section has been removed from the rescue dashboard.</h4>
@@ -239,7 +245,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">8 Nov 2026</span>
       </div>
       <h4>Staff invitation emails are now delivered, and photo uploads work again.</h4>
@@ -248,7 +254,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">8 Nov 2026</span>
       </div>
       <h4>Pre-launch holding page is live, plus font and mobile navigation fixes.</h4>
@@ -257,7 +263,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">7 Nov 2026</span>
       </div>
       <h4>Rescues can now register through the public portal, and email verification and password-reset messages are being sent.</h4>
@@ -266,7 +272,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">7 Nov 2026</span>
       </div>
       <h4>Mobile layout fixes, unverified rescue restrictions, and swipe session reliability.</h4>
@@ -293,7 +299,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">6 Nov 2026</span>
       </div>
       <h4>Distance to the rescue is now shown on pet search results and individual pet pages.</h4>
@@ -302,7 +308,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">2 Nov 2026</span>
       </div>
       <h4>Opt in to location-based discovery: see how far each rescue is, with activity signals on every card.</h4>
@@ -311,7 +317,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">1 Nov 2026</span>
       </div>
       <h4>All form fields now have a consistent look and feel across the platform.</h4>
@@ -320,7 +326,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">1 Nov 2026</span>
       </div>
       <h4>Rescue portal: settings, staff list, and application questions now load correctly.</h4>
@@ -329,7 +335,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">1 Nov 2026</span>
       </div>
       <h4>Pet listings and photos now display correctly. Stuck draft applications can be restarted.</h4>
@@ -338,7 +344,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">1 Nov 2026</span>
       </div>
       <h4>Keyboard and screen-reader navigation improved in the rescue portal and admin panel.</h4>
@@ -347,7 +353,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">31 Oct 2026</span>
       </div>
       <h4>Security: a high-severity vulnerability in how the platform handles certain network requests has been patched.</h4>
@@ -356,7 +362,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">31 Oct 2026</span>
       </div>
       <h4>Every release is now smoke-tested across all 14 platform services before it can reach users.</h4>
@@ -365,7 +371,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">30 Oct 2026</span>
       </div>
       <h4>Security: a high-severity and two related moderate advisories in a platform component have been patched.</h4>
@@ -374,7 +380,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">30 Oct 2026</span>
       </div>
       <h4>Production environment confirmed and hardened: the platform is ready to deploy on adoptdontshop.app.</h4>
@@ -383,7 +389,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">29 Oct 2026</span>
       </div>
       <h4>Security maintenance: high and critical vulnerabilities in third-party components have been patched.</h4>
@@ -392,7 +398,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">28 Oct 2026</span>
       </div>
       <h4>Security: the limit on account-deletion and data-export requests now applies to the authenticated account.</h4>
@@ -779,7 +785,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">17 Oct 2026</span>
       </div>
       <h4>Chat messages now show the real name of each person in the conversation.</h4>
@@ -824,7 +830,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">14 Oct 2026</span>
       </div>
       <h4>Uploads that don&rsquo;t match their declared file type are now rejected.</h4>
@@ -833,7 +839,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">13 Oct 2026</span>
       </div>
       <h4>Chat now shows how many unread messages each conversation has.</h4>
@@ -842,7 +848,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">13 Oct 2026</span>
       </div>
       <h4>&ldquo;Ask a question before applying&rdquo; now works on every pet page.</h4>
@@ -851,7 +857,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">13 Oct 2026</span>
       </div>
       <h4>The full adoption application journey is now working end to end.</h4>
@@ -860,7 +866,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">13 Oct 2026</span>
       </div>
       <h4>Creating an account, verifying your email, and resetting your password all now work.</h4>
@@ -869,7 +875,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">11 Oct 2026</span>
       </div>
       <h4>Rescue staff can now see the name and contact details of everyone who has applied.</h4>
@@ -878,7 +884,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">11 Oct 2026</span>
       </div>
       <h4>Button text on the adoption portal is now easier to read.</h4>
@@ -887,7 +893,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">11 Oct 2026</span>
       </div>
       <h4>Favouriting a pet and other core actions now work correctly.</h4>
@@ -950,7 +956,7 @@
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
-        <a class="chip" href="../ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
+        <a class="chip" href="/ventures/adopt-dont-shop/" rel="noopener">ADOPT DON&rsquo;T SHOP</a>
         <span style="font-size: 12px; color: var(--fg-muted);">8 Oct 2026</span>
       </div>
       <h4>Several security improvements applied to the adoption platform.</h4>
@@ -1029,7 +1035,6 @@
       <p>To appear on the kill/death leaderboard, a player now needs at least 10 hours of play in the last 30 days &mdash; including seeding time. The previous qualifier (3 matches) could be met in a brief visit without meaningful participation, which allowed short stays to dominate the top of the board.</p>
     </article>
 
-
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
         <a class="chip" href="https://gaminginit.com" target="_blank" rel="noopener">WARDOGS</a>
@@ -1065,7 +1070,6 @@
       <h4>Seeding alerts no longer ping the community at night.</h4>
       <p>Low-population Discord alerts between 9&thinsp;pm and 6&thinsp;am UK time now post without tagging the seeder role &mdash; a quiet server at night is everyone going to bed, not a call to action. Live alerts and the <code>/seednow</code> command still tag the role as normal.</p>
     </article>
-
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
@@ -1165,7 +1169,6 @@
       <h4>VIP changes are now recorded in the moderation log with a reason.</h4>
       <p>When a player&rsquo;s VIP or reserved slot status is added, changed, or removed via Discord or the staff page, the action is now logged in the moderation history with who made the change and the reason given.</p>
     </article>
-
 
     <article class="venture-card">
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 4px;">
@@ -2001,17 +2004,49 @@
 </main>
 
 <footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><img src="/assets/logo-mark-on-dark.svg" alt="" width="28" height="28"><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Ventures</h5>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>Get in touch</h5>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
   <div class="footer-bottom">
-    <span>&copy; 2026 ideaSquared &middot; Open source on GitHub</span>
-    <span class="links">
-      <a href="../">Studio</a>
-      <a href="https://github.com/ideaSquared/ideasquared-website">Source</a>
-      <a href="https://github.com/ideaSquared">GitHub</a>
-    </span>
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
   </div>
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="../scripts/site.js" defer></script>
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
 </body>
 </html>
