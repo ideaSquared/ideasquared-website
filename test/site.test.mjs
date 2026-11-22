@@ -160,6 +160,33 @@ describe('Workers static assets config (SITE-12, SITE-14, SITE-16, SITE-18)', ()
     assert.equal(wrangler.env.staging.preview_urls, false);
   });
 
+  it('serves production on the apex and www, and staging on its own subdomain, as custom domains', () => {
+    const hosts = (routes) =>
+      routes.map((route) =>
+        route.custom_domain === true ? route.pattern : `not a custom domain: ${route.pattern}`,
+      );
+    assert.deepEqual(hosts(wrangler.routes), ['ideasquared.co.uk', 'www.ideasquared.co.uk']);
+    assert.deepEqual(hosts(wrangler.env.staging.routes), ['staging.ideasquared.co.uk']);
+  });
+
+  it('turns workers.dev off for both Workers while previews stay on', () => {
+    assert.equal(wrangler.workers_dev, false);
+    assert.equal(wrangler.env.staging.workers_dev, false);
+    assert.equal(wrangler.preview_urls, true);
+  });
+
+  it('checks every served hostname after a deploy (ship.yaml health and smoke)', () => {
+    const ship = read('ship.yaml');
+    assert.match(ship, /staging: \{ url: 'https:\/\/staging\.ideasquared\.co\.uk\/'/);
+    assert.match(ship, /production: \{ url: 'https:\/\/ideasquared\.co\.uk\/'/);
+    const smoke = ship.slice(ship.indexOf('\nsmoke:'));
+    [
+      'https://staging.ideasquared.co.uk/',
+      'https://ideasquared.co.uk/',
+      'https://www.ideasquared.co.uk/',
+    ].forEach((url) => assert.ok(smoke.includes(`'${url}'`), `${url} is not smoke-checked`));
+  });
+
   it('defines a staging environment with its own name', () => {
     assert.match(wrangler.env.staging.name, /-staging$/);
   });
