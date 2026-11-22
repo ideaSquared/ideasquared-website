@@ -19,6 +19,9 @@ a Cloudflare Worker with static assets (`wrangler.jsonc`) and deployed through s
 - `_headers` carries the CSP. The pages load own files only (no inline scripts, self-hosted fonts). A new external origin or an inline
   `<script>` needs a matching CSP change;
   `pnpm test` says what is missing. Never add `'unsafe-inline'` to `script-src`.
+- Lighthouse accessibility is an error below 0.95. Keep heading levels in order: an h4 look under an h2 is an `h3` with
+  class `h4-look`; the footer headings are `h2.footer-heading`.
+- A new page needs a canonical link and a `sitemap.xml` entry (`pnpm test` checks both).
 - Only fingerprinted files may get `Cache-Control: immutable`. Nothing is fingerprinted today.
 - No secrets, `vars` or API keys anywhere in the published files or `wrangler.jsonc`.
 - Never run `wrangler deploy` yourself and do not create Cloudflare resources; deploys go through shipper.

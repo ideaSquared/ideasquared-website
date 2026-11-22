@@ -244,3 +244,62 @@ describe('deploy and preview flow', () => {
     runs.forEach((script) => assert.doesNotMatch(script, /\$\{\{ *github\.event/));
   });
 });
+
+describe('robots.txt and sitemap.xml (SITE-10)', () => {
+  const origin = 'https://ideasquared.co.uk';
+  const pageUrl = (page) =>
+    `${origin}/${page === 'index.html' ? '' : page.replace(/index\.html$/, '')}`;
+  const publicPages = pages.filter((page) => page !== '404.html');
+  const locs = [...read('sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+
+  it('robots.txt allows everything and points at the sitemap', () => {
+    const robots = read('robots.txt');
+    assert.match(robots, /^User-agent: \*$/m);
+    assert.match(robots, /^Allow: \/$/m);
+    assert.doesNotMatch(robots, /^Disallow: \/\S*/m);
+    assert.match(robots, new RegExp(`^Sitemap: ${origin}/sitemap\\.xml$`, 'm'));
+  });
+
+  it('sitemap.xml lists every public page once, and nothing else', () => {
+    assert.deepEqual([...locs].sort(), publicPages.map(pageUrl).sort());
+    assert.equal(new Set(locs).size, locs.length);
+  });
+
+  it('does not list a URL that _redirects sends elsewhere, and uses each page canonical URL', () => {
+    const sources = read('_redirects')
+      .split('\n')
+      .map((line) => line.trim().split(/\s+/)[0])
+      .filter((source) => source && !source.startsWith('#'))
+      .map((source) => source.replace(/\*$/, ''));
+    locs.forEach((loc) => {
+      const path = new URL(loc).pathname;
+      sources.forEach((source) =>
+        assert.ok(!path.startsWith(source) || source === '/', `${loc} is redirected`),
+      );
+    });
+    publicPages.forEach((page) =>
+      assert.ok(
+        read(page).includes(`<link rel="canonical" href="${pageUrl(page)}">`),
+        `${page} canonical differs from the sitemap`,
+      ),
+    );
+  });
+
+  it('publishes robots.txt and sitemap.xml (not in .assetsignore)', () => {
+    const ignored = read('.assetsignore')
+      .split('\n')
+      .map((line) => line.trim());
+    ['robots.txt', 'sitemap.xml'].forEach((file) => {
+      assert.ok(existsSync(join(root, file)));
+      assert.ok(!ignored.includes(file) && !ignored.includes(`/${file}`), `${file} is ignored`);
+    });
+  });
+});
+
+describe('Lighthouse gate (SITE-07)', () => {
+  const assertions = JSON.parse(read('lighthouserc.json')).ci.assert.assertions;
+
+  it('fails the build below 0.95 accessibility', () => {
+    assert.deepEqual(assertions['categories:accessibility'], ['error', { minScore: 0.95 }]);
+  });
+});

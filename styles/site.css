@@ -33,6 +33,8 @@ h2 { font-size: var(--t-h2); line-height: 1.15; letter-spacing: -0.02em; }
 h3 { font-size: var(--t-h3); line-height: 1.25; letter-spacing: -0.01em; }
 h4 { font-size: var(--t-h4); line-height: 1.3; }
 h5 { font-size: var(--t-small); line-height: 1.3; }
+/* An h4 turned into an h3 for heading order keeps the h4 look. */
+h3.h4-look { font-size: var(--t-h4); line-height: 1.3; letter-spacing: normal; }
 
 p { margin: 0; text-wrap: pretty; }
 p + p { margin-top: 12px; }
@@ -316,7 +318,7 @@ a.chip:hover { color: var(--accent); border-color: var(--accent); }
   letter-spacing: 0.08em;
   color: var(--fg-muted);
 }
-.track h3 { font-size: 20px; margin-top: 6px; }
+.track h2 { font-size: 20px; line-height: 1.25; letter-spacing: -0.01em; margin-top: 6px; }
 .track p { font-size: 15px; margin-top: 6px; max-width: 26ch; }
 .track-here {
   display: inline-block;
@@ -605,7 +607,8 @@ dl.facts { margin: 0; }
   border-radius: var(--radius-md);
   min-width: 0;
 }
-.venture-card h4 { font-size: 18px; }
+.venture-card h4,
+.venture-card h3.h4-look { font-size: 18px; }
 .venture-card p { font-size: 15px; overflow-wrap: anywhere; }
 .venture-card .num {
   font-family: var(--font-mono);
@@ -753,7 +756,8 @@ dl.facts { margin: 0; }
 .footer-brand p { margin-top: 12px; max-width: 34ch; color: var(--fg-muted); }
 .brand-lockup { display: inline-flex; align-items: center; gap: 10px; }
 .brand-lockup img { width: 28px; height: 28px; }
-.footer-col h5 {
+.footer-col .footer-heading {
+  line-height: 1.3;
   font-family: var(--font-mono);
   font-size: var(--t-label);
   font-weight: 500;
