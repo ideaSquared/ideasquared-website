@@ -10,6 +10,16 @@
     "html_handling": "auto-trailing-slash",
     // Unknown paths answer 404 with ./404.html.
     "not_found_handling": "404-page"
+  },
+  "env": {
+    "staging": {
+      "name": "ideasquared-website-staging",
+      "assets": {
+        "directory": ".",
+        "html_handling": "auto-trailing-slash",
+        "not_found_handling": "404-page"
+      }
+    }
   }
   // `routes` (custom domains) and `workers_dev: false` are not set yet: the production and staging
   // hostnames are an owner decision made when the domain moves to Cloudflare. See the "Deploy"
