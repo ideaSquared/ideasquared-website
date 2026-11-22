@@ -1,3 +1,10 @@
 # Single-package repo: pnpm 10+ reads its settings from this file.
 packages:
   - '.'
+
+# Supply-chain settings: https://pnpm.io/supply-chain-security
+minimumReleaseAge: 1440
+trustPolicy: no-downgrade
+strictDepBuilds: true
+blockExoticSubdeps: true
+allowBuilds: {}
