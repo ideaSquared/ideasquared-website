@@ -14,3 +14,9 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Cross-Origin-Opener-Policy: same-origin
+
+# Caching: nothing here is fingerprinted (styles/site.css, scripts/site.js ... keep their names when
+# their content changes), so nothing gets `immutable`. Every response keeps the default
+# `public, max-age=0, must-revalidate`. If a build step ever fingerprints files (for example
+# /assets/app.3f9a1c.css), add a rule that matches only those paths with
+# `Cache-Control: public, max-age=31536000, immutable`.
