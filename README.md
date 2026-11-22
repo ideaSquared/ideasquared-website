@@ -72,21 +72,18 @@ ideasquared-website production` puts back the previous commit.
 
 ### Custom domains
 
-`wrangler.jsonc` has no `routes` yet: they are added after the first staging deploy, once the zone for
-`ideasquared.co.uk` is on Cloudflare. Then add these to `wrangler.jsonc`, set `workers_dev` to `false` in both places (keep `preview_urls: true` on the production Worker), and
-point the health checks in `ship.yaml` at full URLs (see the comments there):
+The site is served from `ideasquared.co.uk` and `www.ideasquared.co.uk` (production) and
+`staging.ideasquared.co.uk` (staging) as Workers custom domains (`routes` with `custom_domain: true` in
+`wrangler.jsonc`); `workers_dev` is `false` for both Workers. The zone is on Cloudflare DNS, and each deploy keeps
+the DNS records and the certificate for those hostnames in place. Notes:
 
-```jsonc
-"routes": [
-  { "pattern": "ideasquared.co.uk", "custom_domain": true },
-  { "pattern": "www.ideasquared.co.uk", "custom_domain": true }
-],
-"env": {
-  "staging": {
-    "routes": [{ "pattern": "staging.ideasquared.co.uk", "custom_domain": true }],
-    "workers_dev": false
-  }
-}
-```
-
-Cloudflare then issues the certificate and creates the DNS records for those hostnames.
+- Matching is exact, so the apex and `www` are two entries. Both serve the same content; `www` does not redirect.
+- Cloudflare's docs name an existing **CNAME** on a hostname as the blocker for a custom domain. When wrangler runs
+  without a terminal (shipper's deploy does), it asks Cloudflare to override a conflicting DNS record or origin;
+  run by hand it asks first. If a deploy ever fails on a conflicting record, delete that record in Cloudflare >
+  DNS and re-run the failed job.
+- `ship.yaml` checks all three hostnames after a deploy (health on the apex and staging, smoke on all three). The
+  first deploy after a hostname is attached can fail while its certificate is still being issued; re-run the
+  failed job.
+- `preview_urls: true` stays on the production Worker: pull-request previews are served from `workers.dev` version
+  URLs, which custom domains cannot serve (see Deploy).

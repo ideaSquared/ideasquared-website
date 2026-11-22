@@ -25,6 +25,9 @@ a Cloudflare Worker with static assets (`wrangler.jsonc`) and deployed through s
   one sticky PR comment, no traffic). A merge to `main` deploys staging then production in one `ci.yml` run, with
   no manual step and no reviewer; production's gate is the merge plus a healthy staging deploy. Keep
   `preview_urls: true` in `wrangler.jsonc`: it must survive `workers_dev: false`.
+- Hostnames: production is the custom domains `ideasquared.co.uk` and `www.ideasquared.co.uk` (same content, no
+  redirect), staging is `staging.ideasquared.co.uk`; `workers_dev` is `false`. A new hostname needs a `routes`
+  entry, a `ship.yaml` smoke check and an update to the test that asserts them.
 - Conventional commits, one change per PR, tests with behaviour changes.
 
 ## Logging
