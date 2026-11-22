@@ -1,0 +1,3 @@
+# Single-package repo: pnpm 10+ reads its settings from this file.
+packages:
+  - '.'
