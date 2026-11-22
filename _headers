@@ -1,0 +1,22 @@
+# Response headers for every page. Cloudflare Workers static assets (and Netlify, until it is retired)
+# read this file; it is not served as a file itself.
+#
+# The CSP matches what the pages load: own files, Google Fonts (tokens.css imports the stylesheet
+# from fonts.googleapis.com, the font files come from fonts.gstatic.com) and three inline scripts
+# (the theme bootstrap on every page, the audience switch on two venture pages), allowed by hash
+# instead of 'unsafe-inline'. Inline style="" attributes are allowed through style-src-attr only;
+# <style> blocks and stylesheets stay restricted. If an inline script changes, its hash changes:
+# `pnpm test` fails until the hash here is updated.
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-VEFczH0q7VMFu2SWPhYespMu+XYIEtv3+BwDvqFeFVk=' 'sha256-BkL1qMmabnfltGLQtR8FmuqXQAP68xLbm237sr2vLpM=' 'sha256-Ac53c2OaN9jpzw3mFA8pItNDaHMGOeQyJRASUbjbl2o='; style-src 'self' https://fonts.googleapis.com; style-src-attr 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cross-Origin-Opener-Policy: same-origin
+
+# Caching: nothing here is fingerprinted (styles/site.css, scripts/site.js ... keep their names when
+# their content changes), so nothing gets `immutable`. Every response keeps the default
+# `public, max-age=0, must-revalidate`. If a build step ever fingerprints files (for example
+# /assets/app.3f9a1c.css), add a rule that matches only those paths with
+# `Cache-Control: public, max-age=31536000, immutable`.

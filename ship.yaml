@@ -1,0 +1,33 @@
+# How this repo deploys. Read by ideaSquared/shipper's reusable workflow (see its README).
+product: ideasquared-website
+# ideaSquared bot project: the deploy message goes to its ideasquared-github channel.
+discord: ideasquared
+# CI jobs (their `name:`) that must pass on the commit before it deploys.
+checks: [Verify, Lighthouse]
+# `ship deploy ideasquared-website <env>` starts this workflow; it deploys main's head, whose checks
+# already ran on its push.
+dispatch:
+  workflow: deploy.yml
+  environmentInput: environment
+# Every merge to main deploys to staging (ci.yml). Production only takes a commit that is live on staging.
+environments:
+  staging:
+    wranglerEnv: staging
+  production:
+    requires: [staging]
+components:
+  site:
+    type: cloudflare-worker
+    # The default path is the repo root, where wrangler.jsonc is. Nothing to build: the HTML is published as written.
+    # A relative path is polled on the URL wrangler prints; `expect` rejects a 404 page that answers 200.
+    health:
+      staging: { url: /, expect: Bold ideas }
+      production: { url: /, expect: Bold ideas }
+# Smoke checks need full https URLs, which exist only once the custom domains are attached (cutover
+# steps in the README). Until then they stay empty; a smoke failure fails the deploy, so do not add a
+# URL that does not answer yet. After the domains are live, list them here, for example:
+#   staging: [{ url: 'https://staging.ideasquared.co.uk/', expect: Bold ideas }]
+#   production: [{ url: 'https://ideasquared.co.uk/', expect: Bold ideas }]
+smoke:
+  staging: []
+  production: []
