@@ -2,6 +2,8 @@
 product: ideasquared-website
 # ideaSquared bot project: the deploy message goes to its ideasquared-github channel.
 discord: ideasquared
+# CI jobs (their `name:`) that must pass on the commit before it deploys.
+checks: [Verify, Lighthouse]
 # `ship deploy ideasquared-website <env>` starts this workflow; it deploys main's head, whose checks
 # already ran on its push.
 dispatch:
