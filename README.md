@@ -12,6 +12,8 @@ cutover in the pull request that added this setup is done, the live site is stil
 - `assets/`: the logo mark and the self-hosted fonts (SIL Open Font License, licence texts alongside).
 - `404.html`, `_headers`, `_redirects`: the 404 page, the response headers (security headers and the CSP) and
   the redirects from the removed `/thesis/` and `/studio/` pages.
+- `robots.txt`, `sitemap.xml`: crawler rules and the list of public pages (every page has a canonical link at the
+  same `https://ideasquared.co.uk/...` URL, and `pnpm test` checks the two agree).
 - `wrangler.jsonc`, `ship.yaml`, `.assetsignore`: how the site is served and deployed.
 
 The repo root is the published folder, so everything that is not part of the site (`package.json`, `README.md`,
@@ -35,7 +37,7 @@ pnpm lint           # ESLint over scripts/
 pnpm check:html     # html-validate over every .html file
 pnpm test           # the CSP matches the pages, header values, caching rule, wrangler config
 pnpm check:deploy   # wrangler deploy --dry-run for production and staging
-pnpm exec lhci autorun   # Lighthouse CI over the pages served by wrangler dev (needs Chrome)
+pnpm exec lhci autorun   # Lighthouse CI over the pages served by wrangler dev (needs Chrome); accessibility must be >= 0.95
 ```
 
 There is no type-check step (no TypeScript) and no build step.
