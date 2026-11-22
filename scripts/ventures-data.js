@@ -1,101 +1,80 @@
 (() => {
   // ---- Edit ventures here ------------------------------------------------
   // Each entry becomes a card on /ventures/ and on the home page.
-  // slug: URL segment under /ventures/<slug>/
-  // dark: true gives the card the dark style (alternates visually)
+  // slug:    URL segment under /ventures/<slug>/
+  // chip:    short stage label shown on the card
+  // focus:   true for the one venture the studio is focused on
+  // stopped: true for ventures we have stopped working on (shown, not hidden)
+  // Only claim what we can back with a dated source.
   const VENTURES = [
     {
       name: 'AdoptDontShop',
       slug: 'adopt-dont-shop',
-      chip: 'Alpha · in build',
+      chip: 'Project · beta Q1 2027',
       meta: 'Pet adoption · UK',
-      desc: 'A swipe-based pet adoption platform connecting UK rescue pets with the right humans. Free for adopters; SaaS for rescues; affiliate revenue from vets, insurers and food.',
-      dark: false,
-    },
-    {
-      name: 'Pairflix',
-      slug: 'pairflix',
-      chip: 'Alpha · in build',
-      meta: 'Streaming · UK households',
-      desc: 'An AI matcher that turns the nightly “what shall we watch?” argument into a 30-second decision — across Netflix, Prime, Disney+ and friends.',
-      dark: true,
+      desc: 'Rescues list animals once. Adopters search and apply in one place. The core service is free for rescues, and the code is open source.',
+      focus: true,
     },
     {
       name: 'CreatrGrid',
       slug: 'creatrgrid',
-      chip: 'Alpha · in build',
-      meta: 'Creator tools · global',
-      desc: 'An automatically-updated personal website for content creators. Connect YouTube, TikTok and Instagram — your posts appear on your public page without any manual work.',
-      dark: false,
+      chip: 'Live alpha',
+      meta: 'Creator tools',
+      desc: 'A personal site for content creators that updates itself. Connect YouTube, TikTok, Instagram and Twitch, and new posts appear on your page.',
+    },
+    {
+      name: 'Pairflix',
+      slug: 'pairflix',
+      chip: 'Idea · prototype',
+      meta: 'Streaming · households',
+      desc: 'Helps two people agree on what to watch. No public users and no launch date yet.',
     },
     {
       name: 'gaminginit',
       slug: 'gaminginit',
-      chip: 'Deprecated',
-      meta: 'Gaming community · WARDOGS',
-      desc: 'Deprecated 21 November 2026. The game lost popularity and keeping a big enough player base became difficult, so we have stopped working on it. Thank you to everyone who played.',
-      dark: true,
-      deprecated: true,
+      chip: 'Stopped · 21 Nov 2026',
+      meta: 'Gaming community',
+      desc: 'A community site and Discord bot for a game server. The game lost popularity and keeping a big enough player base became difficult, so we stopped.',
+      stopped: true,
     },
   ];
   // -----------------------------------------------------------------------
 
-  const ACTIVE = VENTURES.filter(function(v) { return !v.deprecated; });
-  const DEPRECATED = VENTURES.filter(function(v) { return v.deprecated; });
-  const WORDS = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'];
+  const FOCUS = VENTURES.filter((v) => v.focus);
+  const OTHERS = VENTURES.filter((v) => !v.focus && !v.stopped);
+  const STOPPED = VENTURES.filter((v) => v.stopped);
 
-  function cardHtml(v, prefix) {
-    return '<a class="project-card' + (v.dark ? ' dark' : '') + '" href="' + prefix + v.slug + '/" aria-label="' + v.name + ' — read the venture brief">'
+  function cardHtml(v) {
+    const cls = 'project-card' + (v.focus ? ' is-focus' : '') + (v.stopped ? ' is-stopped' : '');
+    const chip = 'chip' + (v.focus ? ' signal' : '') + (v.stopped ? ' stopped' : '');
+    return '<a class="' + cls + '" href="/ventures/' + v.slug + '/">'
       + '<div class="project-top">'
-        + '<span class="chip">' + v.chip + '</span>'
+        + '<span class="' + chip + '">' + v.chip + '</span>'
         + '<span class="project-meta">' + v.meta + '</span>'
       + '</div>'
       + '<h3 class="project-name">' + v.name + '</h3>'
       + '<p class="project-desc">' + v.desc + '</p>'
-      + '<div class="project-foot">'
-        + '<span class="project-stake-label">Read</span>'
-        + '<span class="project-stake-n">Venture brief →</span>'
-      + '</div>'
+      + '<div class="project-foot">Read the venture page →</div>'
     + '</a>';
   }
 
-  function andList(arr) {
-    if (arr.length <= 2) return arr.join(' & ');
-    return arr.slice(0, -1).join(', ') + ' & ' + arr[arr.length - 1];
+  function fill(id, list) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = list.map(cardHtml).join('\n');
   }
 
   function render() {
-    // Card grids
-    var vg = document.getElementById('venture-grid');
-    if (vg) vg.innerHTML = ACTIVE.map(function(v) { return cardHtml(v, ''); }).join('\n');
+    fill('focus-grid', FOCUS);          // /ventures/: the focus venture
+    fill('venture-grid', OTHERS);       // /ventures/: everything else in build
+    fill('deprecated-grid', STOPPED);   // /ventures/: stopped ventures
+    fill('project-grid', OTHERS.concat(STOPPED)); // home: beyond the focus venture
 
-    var pg = document.getElementById('project-grid');
-    if (pg) pg.innerHTML = ACTIVE.map(function(v) { return cardHtml(v, 'ventures/'); }).join('\n');
-
-    var dg = document.getElementById('deprecated-grid');
-    if (dg) dg.innerHTML = DEPRECATED.map(function(v) { return cardHtml(v, ''); }).join('\n');
-
-    // Footer ventures list
-    var fl = document.getElementById('footer-ventures');
+    const fl = document.getElementById('footer-ventures');
     if (fl) {
-      fl.innerHTML = VENTURES.map(function(v) {
-        return '<li><a href="/ventures/' + v.slug + '/">' + v.name + (v.deprecated ? ' (deprecated)' : '') + '</a></li>';
-      }).join('\n') + '\n<li><a href="/ventures/">All ventures</a></li>';
+      fl.innerHTML = VENTURES.map((v) =>
+        '<li><a href="/ventures/' + v.slug + '/">' + v.name + (v.stopped ? ' (stopped)' : '') + '</a></li>'
+      ).join('\n');
     }
-
-    // Stat: count number
-    var sn = document.getElementById('stat-venture-count');
-    if (sn) sn.textContent = String(ACTIVE.length);
-
-    // Stat: venture names note
-    var note = document.getElementById('stat-venture-note');
-    if (note) note.textContent = andList(ACTIVE.map(function(v) { return v.name; }));
-
-    // Any heading with data-venture-heading="{count} ..." gets {count} substituted
-    var word = WORDS[ACTIVE.length] !== undefined ? WORDS[ACTIVE.length] : String(ACTIVE.length);
-    document.querySelectorAll('[data-venture-heading]').forEach(function(el) {
-      el.textContent = el.getAttribute('data-venture-heading').replace('{count}', word);
-    });
   }
 
   if (document.readyState === 'loading') {

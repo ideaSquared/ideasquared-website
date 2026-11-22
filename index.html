@@ -1,175 +1,146 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<title>ideaSquared &mdash; Bold ideas, built properly.</title>
+<title>ideaSquared: a little spark can go a long way</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="ideaSquared (i²) is a UK venture studio. We build, launch and scale digital ventures with social and commercial upside &mdash; without recreating the same plumbing every time.">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="stylesheet" href="styles/tokens.css">
-<link rel="stylesheet" href="styles/site.css">
-<script>(function(){try{var t=localStorage.getItem('i2-theme');document.documentElement.setAttribute('data-theme',t==='light'||t==='dark'?t:'auto');}catch(e){document.documentElement.setAttribute('data-theme','auto');}})();</script>
+<meta name="description" content="ideaSquared is a small UK venture studio. We build digital products in the open and test each one properly before we grow it.">
+<meta name="theme-color" content="#02273f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="ideaSquared: a little spark can go a long way">
+<meta property="og:description" content="ideaSquared is a small UK venture studio. We build digital products in the open and test each one properly before we grow it.">
+<meta property="og:url" content="https://ideasquared.co.uk/">
+<link rel="canonical" href="https://ideasquared.co.uk/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/poppins-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
 </head>
 <body class="i2">
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<header class="nav" id="nav" aria-label="Primary">
+<header class="nav" id="nav">
   <div class="nav-inner">
-    <a class="nav-brand" href="/" aria-label="ideaSquared home"><img src="assets/logo-mark.svg" alt="" aria-hidden="true"><span class="brand-text">idea<em>Squared</em></span></a>
-    <nav class="nav-links" id="nav-links">
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><img src="/assets/logo-mark-on-dark.svg" alt="" width="28" height="28"><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
       <a href="/ventures/" data-nav="/ventures/">Ventures</a>
-      <a href="/thesis/"   data-nav="/thesis/">Thesis</a>
-      <a href="/studio/"   data-nav="/studio/">Studio</a>
-      <a href="/journal/"  data-nav="/journal/">Journal</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/about/" data-nav="/about/">About</a>
     </nav>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.93 19.07 1.41-1.41"/><path d="m17.66 6.34 1.41-1.41"/></svg>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
     </button>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
-    </button>
-    <a href="mailto:investors@ideasquared.co.uk?subject=Pitching%20an%20idea" class="btn btn-secondary btn-md">Pitch us an idea</a>
   </div>
 </header>
 
 <main id="main">
 
 <section class="hero">
-  <svg class="hero-circuit" aria-hidden="true" viewBox="0 0 1200 120" preserveAspectRatio="none">
-    <g stroke="#7fd4c5" stroke-width="1.2" fill="none">
-      <path d="M0 80 H160 L180 60 H300 L320 80 H540 L560 60 H760"/>
-      <path d="M740 60 L760 80 H980 L1000 60 H1200"/>
-      <circle cx="180"  cy="60" r="3" fill="#7fd4c5"/>
-      <circle cx="320"  cy="80" r="3" fill="#7fd4c5"/>
-      <circle cx="560"  cy="60" r="3" fill="#7fd4c5"/>
-      <circle cx="760"  cy="80" r="3" fill="#7fd4c5"/>
-      <circle cx="1000" cy="60" r="3" fill="#7fd4c5"/>
-    </g>
-  </svg>
-  <div class="hero-inner">
-    <span class="eyebrow signal">UK venture studio</span>
-    <h1>Bold ideas, <em>built</em> properly.</h1>
-    <p class="hero-lede">
-      ideaSquared (i²) is a UK-based venture studio. We build, launch and
-      scale digital ventures with social and commercial upside &mdash;
-      without recreating the same plumbing every time.
-    </p>
-    <div class="hero-cta">
-      <a href="mailto:investors@ideasquared.co.uk?subject=Pitching%20an%20idea" class="btn btn-primary btn-lg">
-        Pitch us an idea
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
-      </a>
-      <a href="/thesis/" class="btn btn-ghost-dark btn-lg">Read the thesis</a>
-    </div>
-  </div>
-</section>
-
-<section class="stats container" aria-label="Studio at a glance">
-  <div class="stats-grid">
-    <div class="stat">
-      <div class="stat-n" id="stat-venture-count">3</div>
-      <div class="stat-label">Active ventures</div>
-      <div class="stat-note" id="stat-venture-note">AdoptDontShop, Pairflix &amp; CreatrGrid</div>
-    </div>
-    <div class="stat">
-      <div class="stat-n">4</div>
-      <div class="stat-label">Stage lifecycle</div>
-      <div class="stat-note">Mandatory kill criteria at each gate</div>
-    </div>
-    <div class="stat">
-      <div class="stat-n">30–50%</div>
-      <div class="stat-label">Equity retained</div>
-      <div class="stat-note">In every spun-out venture</div>
-    </div>
-    <div class="stat">
-      <div class="stat-n">10</div>
-      <div class="stat-label">Ventures by 2030</div>
-      <div class="stat-note">The portfolio target north star</div>
-    </div>
-  </div>
-</section>
-
-<section class="projects container" id="projects" aria-label="Active ventures">
-  <div class="projects-head">
-    <div class="copy">
-      <span class="eyebrow">The portfolio</span>
-      <h2 class="section-h2" data-venture-heading="{count} ventures in build, one shared platform.">Three ventures in build, one shared platform.</h2>
-      <p class="section-lede">
-        Each one inherits our shared product, engineering and operations
-        stack. Each one launches faster. Each one keeps i² as a meaningful
-        owner.
-      </p>
-    </div>
-  </div>
-
-  <div class="project-grid" id="project-grid"></div>
-
-  <p style="margin-top: 32px; font-size: 14px; color: var(--fg-muted);">
-    See <a href="/ventures/">all ventures &amp; studio repos</a> for the full picture, including older open-source code from the studio.
-  </p>
-</section>
-
-<section class="how" aria-label="Venture lifecycle">
   <div class="container">
-    <div class="how-head">
-      <span class="eyebrow">The lifecycle</span>
-      <h2 class="section-h2">From bold idea to defensible business.</h2>
-      <p class="section-lede" style="margin-top: 12px;">
-        Every venture moves through a four-stage lifecycle, each with a
-        defined exit criterion. Kill criteria are mandatory.
-      </p>
+    <span class="eyebrow signal">A one-person UK venture studio</span>
+    <h1>A little spark can go a long way.</h1>
+    <p class="hero-lede">ideaSquared is a small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    <div class="hero-cta">
+      <a href="/ventures/" class="btn btn-primary btn-lg">See what we&rsquo;re building <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg></a>
+      <a href="mailto:hello@ideasquared.co.uk" class="btn btn-ghost-dark btn-lg">Get in touch</a>
     </div>
-    <div class="how-grid">
 
-      <article class="step">
-        <div class="step-top">
-          <span class="step-n">01 · IDEA</span>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m16 8-3 7-7 3 3-7 7-3z"/></svg>
-        </div>
-        <h4>Problem hypothesis</h4>
-        <p>Market sketch and a kill-or-keep call within weeks. We start with a painful, paid-for problem &mdash; not a technology in search of one.</p>
-      </article>
-
-      <article class="step">
-        <div class="step-top">
-          <span class="step-n">02 · PROPOSAL</span>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
-        </div>
-        <h4>Validate demand</h4>
-        <p>Willingness-to-pay and regulatory feasibility are tested before any production code. Mandatory kill criteria are set here.</p>
-      </article>
-
-      <article class="step">
-        <div class="step-top">
-          <span class="step-n">03 · PROJECT</span>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h7v7H3z"/><path d="M14 3h7v7h-7z"/><path d="M3 14h7v7H3z"/><path d="M14 14h7v7h-7z"/></svg>
-        </div>
-        <h4>Build on the platform</h4>
-        <p>Shared product, engineering, design, legal and ops construct the MVP. Design partners onboarded; first paying users.</p>
-      </article>
-
-      <article class="step">
-        <div class="step-top">
-          <span class="step-n">04 · PRODUCT</span>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--fg-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
-        </div>
-        <h4>Spin out &amp; scale</h4>
-        <p>Independent legal entity, follow-on capital, growth. i² retains 30–50% and stays useful as a partner, not a parent.</p>
-      </article>
-
+    <div class="track-wrap" aria-labelledby="track-title">
+      <div class="track-caption"><span id="track-title">How every idea travels</span><span>A go or no-go decision at every gate</span></div>
+      <ol class="track">
+        <li><span class="track-n">01</span><h3>Idea</h3><p>Write it down. Most stay here.</p></li>
+        <li><span class="track-n">02</span><h3>Proposal</h3><p>Set the numbers that would prove it works.</p></li>
+        <li class="is-here"><span class="track-n">03</span><h3>Project</h3><p>Build the smallest useful version.</p><span class="track-here">AdoptDontShop is here</span></li>
+        <li class="is-ahead"><span class="track-n">04</span><h3>Product</h3><p>Only if the numbers say go.</p></li>
+      </ol>
     </div>
   </div>
 </section>
 
-<section class="quote" aria-label="The bet we are making">
-  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--i2-signal-400)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V11a4 4 0 0 1 4-4h2v3H7a1 1 0 0 0-1 1v2h3v8z"/><path d="M14 21V11a4 4 0 0 1 4-4h2v3h-2a1 1 0 0 0-1 1v2h3v8z"/></svg>
-  <blockquote>"Startups don't fail at ideation. They fail at execution."</blockquote>
-  <div class="quote-attrib">
-    <div class="quote-avatar" aria-hidden="true"></div>
+<section class="section" aria-labelledby="now-building">
+  <div class="container split">
     <div>
-      <div class="quote-name">The i² thesis</div>
-      <div class="quote-role">Why a venture studio, and why now</div>
+      <span class="eyebrow signal">Now building</span>
+      <h2 id="now-building" style="margin-top: 14px;">AdoptDontShop</h2>
+      <p style="margin-top: 16px; font-size: var(--t-lede);">Rescues list animals once. Adopters search and apply in one place. The core service is free for rescues, and the code is open source.</p>
+      <p>The product is built. It has no live users yet. A closed beta with 3 to 5 rescues in Cheshire and Greater Manchester is planned for early 2027.</p>
+      <p>The numbers that decide what happens next are on the right. We wrote them down before the beta, so we can&rsquo;t move them afterwards.</p>
+      <div class="cta">
+        <a href="mailto:rescues@ideasquared.co.uk?subject=AdoptDontShop%20closed%20beta" class="btn btn-primary btn-lg">Run a rescue? Join the beta</a>
+        <a href="/ventures/adopt-dont-shop/" class="btn btn-ghost-dark btn-lg">About AdoptDontShop</a>
+      </div>
+    </div>
+    <div>
+      <div class="gate" aria-label="AdoptDontShop beta go and stop numbers">
+        <div class="gate-title"><span>AdoptDontShop &middot; closed beta gate</span><span>Written down 8 Nov 2026</span></div>
+        <div class="gate-block">
+          <span class="gate-label go">Go, if all four are met</span>
+          <ul>
+            <li><b>3+</b><span>rescues active, logging in every week</span></li>
+            <li><b>20+</b><span>animals listed in total</span></li>
+            <li><b>10+</b><span>adoption applications through the platform</span></li>
+            <li><b>2+</b><span>rescues say they would keep using it</span></li>
+          </ul>
+        </div>
+        <div class="gate-block">
+          <span class="gate-label stop">Stop</span>
+          <p>Fewer than 2 rescues active, or fewer than 5 applications, by week 8.</p>
+        </div>
+        <div class="gate-block">
+          <span class="gate-label mid">Anything in between</span>
+          <p>Fix the main problem and extend by 4 weeks. Once.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="rules-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The rules</span>
+      <h2 id="rules-title">Six rules keep a small studio honest.</h2>
+      <p>Each one is a decision we wrote down. To change a rule, we change the decision first.</p>
+    </div>
+    <ul class="rules">
+      <li><h3>One focus at a time</h3><p>One venture gets the real hours. Right now that is AdoptDontShop. The others wait their turn.</p></li>
+      <li><h3>Plan against real hours</h3><p>The studio runs on 6 to 16 hours a week, alongside a full-time job. Every date assumes that.</p></li>
+      <li><h3>Test before we build big</h3><p>Every proposal sets its go and stop numbers before real time or money goes in.</p></li>
+      <li><h3>Build in the open</h3><p>Public code where we can. Decisions written down, with the reason.</p></li>
+      <li><h3>Evidence over hype</h3><p>We only claim what we can back with a dated source. A target is called a target.</p></li>
+      <li><h3>Spend stays small</h3><p>Self-funded, with a cap of &pound;200 a month. No investors and no office.</p></li>
+    </ul>
+    <p class="section-foot"><a href="/how-we-work/">How we work, in full</a></p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="also-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Also in the studio</span>
+      <h2 id="also-title">Other builds, and one we stopped.</h2>
+      <p>These get occasional evenings while AdoptDontShop has the focus. We show the things we stop, too.</p>
+    </div>
+    <div class="project-grid" id="project-grid"></div>
+  </div>
+</section>
+
+<section class="section band" aria-labelledby="open-title">
+  <div class="container split">
+    <div>
+      <span class="eyebrow signal">Build in public</span>
+      <h2 id="open-title" style="margin-top: 14px;">The code is on GitHub. Decisions are written down.</h2>
+    </div>
+    <div>
+      <p style="font-size: var(--t-lede);">If something doesn&rsquo;t work, we&rsquo;ll say so. The build log lists every change we ship, dated, newest first.</p>
+      <div class="cta">
+        <a href="/journal/" class="btn btn-primary btn-lg">Read the build log</a>
+        <a href="https://github.com/ideaSquared" class="btn btn-ghost-dark btn-lg">ideaSquared on GitHub</a>
+      </div>
     </div>
   </div>
 </section>
@@ -179,17 +150,16 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="brand-lockup"><img src="assets/logo-mark.svg" alt="" aria-hidden="true"><span class="brand-text">idea<em>Squared</em></span></span>
-      <p>A UK venture studio building digital businesses with social and commercial upside.</p>
+      <span class="brand-lockup"><img src="/assets/logo-mark-on-dark.svg" alt="" width="28" height="28"><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
     </div>
 
     <div class="footer-col">
       <h5>Studio</h5>
       <ul>
-        <li><a href="/thesis/">Thesis</a></li>
-        <li><a href="/studio/">Operating principles</a></li>
-        <li><a href="/journal/">Journal</a></li>
-        <li><a href="https://github.com/ideaSquared">GitHub org</a></li>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/about/">About</a></li>
       </ul>
     </div>
 
@@ -197,34 +167,29 @@
       <h5>Ventures</h5>
       <ul id="footer-ventures">
         <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
-        <li><a href="/ventures/pairflix/">Pairflix</a></li>
         <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
-        <li><a href="/ventures/gaminginit/">gaminginit (deprecated)</a></li>
-        <li><a href="/ventures/">All ventures</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
       <h5>Get in touch</h5>
       <ul>
-        <li><a href="mailto:investors@ideasquared.co.uk?subject=Pitching%20an%20idea">Pitch us an idea</a></li>
-        <li><a href="https://github.com/ideaSquared">Contribute on GitHub</a></li>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
         <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
       </ul>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <span>© 2026 ideaSquared · Open source on GitHub</span>
-    <span class="links">
-      <a href="https://github.com/ideaSquared/ideasquared-website">Source</a>
-      <a href="https://github.com/ideaSquared">GitHub</a>
-    </span>
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
   </div>
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="scripts/ventures-data.js" defer></script>
-<script src="scripts/site.js" defer></script>
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
 </body>
 </html>
