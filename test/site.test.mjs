@@ -155,6 +155,11 @@ describe('Workers static assets config (SITE-12, SITE-14, SITE-16, SITE-18)', ()
     assert.ok(existsSync(join(root, wrangler.assets.directory, '404.html')));
   });
 
+  it('keeps preview URLs on for the production Worker, whatever workers_dev says', () => {
+    assert.equal(wrangler.preview_urls, true);
+    assert.equal(wrangler.env.staging.preview_urls, false);
+  });
+
   it('defines a staging environment with its own name', () => {
     assert.match(wrangler.env.staging.name, /-staging$/);
   });
@@ -162,5 +167,35 @@ describe('Workers static assets config (SITE-12, SITE-14, SITE-16, SITE-18)', ()
   it('needs no secrets', () => {
     assert.equal(wrangler.vars, undefined);
     assert.equal(wrangler.secrets, undefined);
+  });
+});
+
+describe('deploy and preview flow', () => {
+  const ci = read('.github/workflows/ci.yml');
+  const preview = read('.github/workflows/preview.yml');
+
+  it('deploys production after staging, in the same run, through shipper', () => {
+    assert.match(
+      ci,
+      /deploy-production:[\s\S]*?needs: deploy-staging[\s\S]*?environment: production/,
+    );
+    assert.match(read('ship.yaml'), /production:\s*\n\s*requires: \[staging\]/);
+    assert.doesNotMatch(ci + preview, /wrangler (pages )?deploy( |$)/m);
+  });
+
+  it('previews only same-repo PRs, with write access on the preview job alone', () => {
+    assert.match(preview, /head\.repo\.full_name == github\.repository/);
+    assert.match(preview, /environment: preview/);
+    assert.match(preview, /--preview-alias "pr-\$\{PR_NUMBER\}"/);
+    assert.match(preview, /^permissions:\n {2}contents: read\n/m);
+    assert.equal(preview.match(/pull-requests: write/g)?.length, 1);
+  });
+
+  it('never interpolates event data into a run script', () => {
+    const runs = [
+      ...preview.matchAll(/^ +run: [|>]?-?\n?([\s\S]*?)(?=^ {6}- |^ {6}[a-z-]+:|(?![\s\S]))/gm),
+    ].map((m) => m[1]);
+    assert.ok(runs.length >= 3);
+    runs.forEach((script) => assert.doesNotMatch(script, /\$\{\{ *github\.event/));
   });
 });
