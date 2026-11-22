@@ -61,7 +61,7 @@
 
   /* Semantic tokens, light theme (design system: Approved text pairs) */
   --bg:          var(--i2-ink-50);
-  --bg-raised:   #ffffff;
+  --bg-raised:   #fbfaf6;
   --bg-sunken:   var(--i2-ink-100);
   --bg-inverse:  var(--i2-navy-900);
 
@@ -186,4 +186,41 @@
 
   background: var(--bg);
   color: var(--fg-body);
+}
+
+/* Follow the OS dark setting with the same dark tokens. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg:          var(--i2-navy-900);
+    --bg-raised:   var(--i2-navy-800);
+    --bg-sunken:   var(--i2-navy-950);
+    --bg-inverse:  var(--i2-ink-50);
+
+    --fg:          var(--i2-ink-50);
+    --fg-body:     #d8d3c5;
+    --fg-muted:    #9aa1ab;
+    --fg-subtle:   #818995;
+    --fg-inverse:  var(--i2-ink-900);
+
+    --line:        rgba(255, 255, 255, 0.08);
+    --line-strong: #3f6f9e;
+
+    --accent-soft: var(--i2-signal-800);
+    --accent-text: var(--i2-signal-500);
+    --on-accent-soft: var(--i2-ink-50);
+
+    --go:          #2fa692;
+    --go-soft:     rgba(47, 166, 146, 0.14);
+    --stop:        #d06b62;
+
+    --link:        var(--i2-ink-50);
+    --link-hover:  var(--i2-signal-400);
+    --focus-ring:  var(--i2-signal-500);
+
+    --nav-bg:      rgba(8, 24, 42, 0.85);
+
+    --shadow-sm: none;
+    --shadow-md: none;
+  }
 }
