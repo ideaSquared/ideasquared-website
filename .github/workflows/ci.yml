@@ -28,6 +28,16 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+
+      # Dependabot bumps the shipper SHA in a `uses:` line but not the matching `shipper-ref:` input, so
+      # a bump would run the new workflow with the old shipper scripts. Every pin must be the same SHA.
+      - name: shipper pins match
+        run: |
+          refs=$(grep -hvE '^\s*#' .github/workflows/*.y*ml | sed -E 's/[[:space:]]+#.*$//' | grep -oE "uses: *[\"']?ideaSquared/shipper/\.github/workflows/[A-Za-z0-9_.-]+@[0-9a-f]{40}|shipper-ref: *[\"']?[0-9a-f]{40}" | grep -oE '[0-9a-f]{40}' | sort -u)
+          if [ "$(printf '%s\n' "$refs" | grep -c .)" -gt 1 ]; then
+            echo "::error::Every shipper pin in .github/workflows (each uses: line and each shipper-ref input) must be the same commit SHA. Found: $(echo $refs)"
+            exit 1
+          fi
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
@@ -121,9 +131,10 @@ jobs:
       contents: read
       checks: read
       deployments: write
-    uses: ideaSquared/shipper/.github/workflows/deploy.yml@v1
+    uses: ideaSquared/shipper/.github/workflows/deploy.yml@7839bde2edef52a5e58107bbf83e9b9760d7d52a # v1.0.0
     with:
       environment: staging
+      shipper-ref: 7839bde2edef52a5e58107bbf83e9b9760d7d52a
     secrets: inherit
 
   deploy-production:
@@ -134,7 +145,8 @@ jobs:
       contents: read
       checks: read
       deployments: write
-    uses: ideaSquared/shipper/.github/workflows/deploy.yml@v1
+    uses: ideaSquared/shipper/.github/workflows/deploy.yml@7839bde2edef52a5e58107bbf83e9b9760d7d52a # v1.0.0
     with:
       environment: production
+      shipper-ref: 7839bde2edef52a5e58107bbf83e9b9760d7d52a
     secrets: inherit
