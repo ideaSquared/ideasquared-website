@@ -86,3 +86,19 @@ jobs:
             status=$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:8788$path")
             [ "$status" = 404 ] || { echo "::error::$path is published (HTTP $status). Add it to .assetsignore."; exit 1; }
           done
+
+  # Every merge to main deploys to staging through ideaSquared/shipper once the checks pass (gate, wrangler
+  # deploy, health check, rollback on failure; see ship.yaml). Production is deployed by hand with
+  # `ship production ideasquared-website` or the Deploy workflow, and only takes a commit that is live on staging.
+  deploy-staging:
+    name: Deploy staging
+    needs: [verify, lighthouse]
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    permissions:
+      contents: read
+      checks: read
+      deployments: write
+    uses: ideaSquared/shipper/.github/workflows/deploy.yml@v1
+    with:
+      environment: staging
+    secrets: inherit
