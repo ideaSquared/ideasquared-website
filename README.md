@@ -2,8 +2,8 @@
 
 The public site of ideaSquared, a UK venture studio: how the studio works, the build log and a page for
 each venture. It is plain HTML, CSS and a little JavaScript with no build step, served by a Cloudflare Worker with
-static assets and deployed through [ideaSquared/shipper](https://github.com/ideaSquared/shipper). Until the
-cutover in the pull request that added this setup is done, the live site is still served by Netlify.
+static assets and deployed through [ideaSquared/shipper](https://github.com/ideaSquared/shipper). Production is
+served at the custom domains `ideasquared.co.uk` and `www.ideasquared.co.uk`.
 
 ## Layout
 

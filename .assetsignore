@@ -1,6 +1,5 @@
-# The repo root is the published folder (it is also what Netlify publishes today), so everything that
-# is not part of the site is listed here and never uploaded. `_headers` is read by Cloudflare and is
-# not served as a file.
+# The repo root is the published folder, so everything that is not part of the site is listed here and
+# never uploaded. `_headers` is read by Cloudflare and is not served as a file.
 .*
 node_modules
 test

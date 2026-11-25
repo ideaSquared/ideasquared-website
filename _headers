@@ -1,5 +1,5 @@
-# Response headers for every page. Cloudflare Workers static assets (and Netlify, until it is retired)
-# read this file; it is not served as a file itself.
+# Response headers for every page. Cloudflare Workers static assets read this file; it is not served as
+# a file itself.
 #
 # The CSP matches what the pages load: own files only. Fonts are self-hosted in /assets/fonts/ and
 # there are no inline scripts, so every source is 'self'. Inline style="" attributes are allowed
