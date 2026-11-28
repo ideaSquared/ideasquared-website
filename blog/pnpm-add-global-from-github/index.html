@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Shipping a CLI with pnpm add -g github: &middot; ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Two pnpm errors, ERR_PNPM_EXOTIC_SUBDEP and ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED, and the pnpm 11 stale shims, from installing eng and shipper from GitHub.">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="Shipping a CLI with pnpm add -g github: &middot; ideaSquared">
+<meta property="og:description" content="Two pnpm errors, ERR_PNPM_EXOTIC_SUBDEP and ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED, and the pnpm 11 stale shims, from installing eng and shipper from GitHub.">
+<meta property="og:url" content="https://ideasquared.co.uk/blog/pnpm-add-global-from-github/">
+<meta name="author" content="Alex Jenkinson, with support from Claude">
+<link rel="canonical" href="https://ideasquared.co.uk/blog/pnpm-add-global-from-github/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body class="i2 page-post">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/tools/" data-nav="/tools/">Tools</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/about/" data-nav="/about/">About</a>
+    </nav>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<article class="post" aria-labelledby="post-title">
+<header class="subpage-hero">
+  <div class="container">
+    <span class="eyebrow signal">Blog &middot; Engineering notes</span>
+    <h1 id="post-title">Shipping a CLI with pnpm add -g github:.</h1>
+    <p>Our CLIs install straight from GitHub, with no npm publish. It works, but pnpm has rules about it. Here are the errors we hit, with their exact codes.</p>
+    <ul class="post-meta" aria-label="About this post">
+      <li>By Alex Jenkinson, with support from Claude</li>
+      <li><time datetime="2026-11-28">28 Nov 2026</time></li>
+      <li>3 min read</li>
+      <li>Covers 15 to 22 Nov 2026</li>
+      <li><a href="https://github.com/ideaSquared/eng">ideaSquared/eng</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container post-body">
+<div class="prose">
+<h2>Why install from GitHub</h2>
+<p><code>eng</code>, <code>ship</code> and <code>idea</code> are not on the npm registry. Each is installed from its GitHub repo:</p>
+<pre tabindex="0"><code>pnpm add -g github:ideaSquared/eng</code></pre>
+<p>That keeps releases simple: the repo is the package. The cost is that pnpm treats a package installed this way with suspicion. We hit three separate problems in eight days. This post is about those, in the order they happened. For the wider story of the tool, see <a href="/blog/building-eng/">building eng</a>.</p>
+
+<h2>ERR_PNPM_EXOTIC_SUBDEP</h2>
+<p>On 15 November <code>eng update</code> started failing with <code>ERR_PNPM_EXOTIC_SUBDEP</code>. pnpm refuses URL and git dependencies of a package that is installed globally from GitHub. eng depended on <code>@ideasquared/ops</code> by release URL, so pnpm refused it.</p>
+<p>It hurt more than one tool. <code>ship</code>, <code>idea</code> and <code>eng</code> are installed in one command, so when eng failed, none of them updated.</p>
+<p>The fix, in commit <code>12546fe</code>, was to vendor the client. eng now carries the three files it uses (contract, args and client, from <code>ops-v0.1.1</code>) under <code>src/vendor/ops</code>, and takes <code>zod</code> from the registry. Then we added a test so the problem cannot come back quietly. It reads <code>package.json</code> and fails if any runtime dependency looks like a URL or path:</p>
+<pre tabindex="0"><code>const exotic = Object.entries(dependencies).filter(([, spec]) =&gt; /[:/]/.test(spec));
+expect(exotic).toEqual([]);</code></pre>
+<p>The test comment says why: every runtime dependency of a globally installed package must come from the npm registry.</p>
+
+<h2>ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED</h2>
+<p>On 22 November, a standards sweep added commit linting with husky. The husky hook was installed by a <code>prepare</code> script in <code>package.json</code>. The script was written to do nothing where husky is absent, as in global installs.</p>
+<p>That was not enough. A non-empty <code>prepare</code> script makes <code>pnpm add -g github:ideaSquared/eng</code> fail with <code>ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED</code>. Commit <code>26262be</code> dropped it. Contributors now run <code>pnpm hooks:install</code> once instead, and the README says so.</p>
+<p>shipper had the same problem, and the same fix the same day: commit <code>43d3f20</code>, &ldquo;drop the prepare script&rdquo;, with <code>hooks:install</code> as an explicit script.</p>
+
+<h2>Committing dist/</h2>
+<p>Both errors point at one design choice. Nothing builds on the user&rsquo;s machine, so the built <code>dist/</code> folder is committed. Both CLAUDE.md files say so: it is what the install command fetches.</p>
+<p>CI enforces it. After <code>pnpm build</code>, it fails if <code>git status --porcelain -- dist</code> prints anything. We use <code>git status</code> and not <code>git diff</code> because <code>git diff</code> misses a file that the build creates but nobody committed. shipper&rsquo;s commit <code>e0621cc</code> made that change, and eng took the same check.</p>
+<p>CI also packs the repo, installs the tarball globally and checks that <code>--version</code> matches <code>package.json</code>. That tests the packed CLI. It does not run the GitHub install itself, which is why the two errors above reached us in use.</p>
+
+<h2>pnpm 11 and stale shims</h2>
+<p>The third problem was quieter. pnpm 11 moved global bins to <code>PNPM_HOME/bin</code>. Shims for <code>ship</code>, <code>idea</code> and <code>eng</code> left by pnpm 10 could sit earlier on the PATH and win. An update then looked as if it had failed, because the old copy kept running.</p>
+<p>On 22 November we made four changes:</p>
+<ul>
+<li><code>eng doctor</code> finds every PATH folder holding each tool, fails when there is more than one or the first is not pnpm&rsquo;s global bin, and shows each tool&rsquo;s <code>--version</code> (<code>7d2b509</code>);</li>
+<li>after <code>pnpm add -g</code>, <code>eng update</code> runs the same check and records the install only when it passes (<code>7d2b509</code>);</li>
+<li>the installers put <code>pnpm bin -g</code> first on the PATH and remove stale shims, touching only those three names and only files that look like pnpm shims, so they stay safe to re-run (<code>2ad5dff</code>);</li>
+<li>the PATH scan follows the shell: an empty entry is the current folder on Linux and macOS, and a directory or a file without an execute bit is not a match (<code>c6f89ba</code>).</li>
+</ul>
+<p>shipper&rsquo;s README now says the same for pnpm 11: run <code>pnpm setup</code> (11.15.1 or newer) and use <code>which -a ship</code> or <code>Get-Command ship -All</code> to find a stale copy.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Test the install, not just the code.</strong> Both pnpm errors came from package metadata, which unit tests do not cover. A test over <code>package.json</code> caught the first class of error for good.</li>
+<li><strong>A harmless hook is not harmless everywhere.</strong> A <code>prepare</code> script that does nothing still counts as a script to pnpm.</li>
+<li><strong>Check which copy runs.</strong> After a tool manager changes where it puts binaries, &ldquo;installed&rdquo; and &ldquo;running&rdquo; can be different files.</li>
+</ul>
+</div>
+
+<nav class="post-pager" aria-label="More posts">
+  <a class="pager-card is-next" href="/blog/claude-code-in-the-git-history/"><span class="pager-label">Next post</span><span class="pager-title">What working with Claude Code looks like in our git history.</span></a>
+  <a class="pager-card" href="/blog/#series-engineering"><span class="pager-label">In this series</span><span class="pager-title">More engineering notes</span></a>
+</nav>
+<p class="post-all"><a href="/blog/">All posts</a></p>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Studio</h2>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Ventures</h2>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
+  </div>
+</footer>
+
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
+</body>
+</html>

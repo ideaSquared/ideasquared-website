@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Pinning the deploy tool every product depends on &middot; ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="shipper runs with production credentials in every product. How we stopped its v1 tag moving on its own and pinned callers to exact commits.">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="Pinning the deploy tool every product depends on &middot; ideaSquared">
+<meta property="og:description" content="shipper runs with production credentials in every product. How we stopped its v1 tag moving on its own and pinned callers to exact commits.">
+<meta property="og:url" content="https://ideasquared.co.uk/blog/pinning-the-deploy-tool/">
+<meta name="author" content="Alex Jenkinson, with support from Claude">
+<link rel="canonical" href="https://ideasquared.co.uk/blog/pinning-the-deploy-tool/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body class="i2 page-post">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/tools/" data-nav="/tools/">Tools</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/about/" data-nav="/about/">About</a>
+    </nav>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<article class="post" aria-labelledby="post-title">
+<header class="subpage-hero">
+  <div class="container">
+    <span class="eyebrow signal">Blog &middot; Engineering notes</span>
+    <h1 id="post-title">Pinning the deploy tool every product depends on.</h1>
+    <p>Every ideaSquared product deploys through shipper, and shipper runs with the Cloudflare token in reach. So who can change shipper, and how fast that change reaches production, is a design question. We changed our answer between 14 and 22 November.</p>
+    <ul class="post-meta" aria-label="About this post">
+      <li>By Alex Jenkinson, with support from Claude</li>
+      <li><time datetime="2026-11-28">28 Nov 2026</time></li>
+      <li>3 min read</li>
+      <li>Covers 14 to 22 Nov 2026</li>
+      <li><a href="https://github.com/ideaSquared/shipper">ideaSquared/shipper</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container post-body">
+<div class="prose">
+<h2>One dependency with the keys</h2>
+<p>Each product repo calls shipper&rsquo;s reusable workflows. Those workflows check out shipper&rsquo;s own scripts and run them with the Cloudflare token. That makes shipper a dependency with more reach than any library in a product. A change to it runs in every product&rsquo;s next deploy.</p>
+<p>This post is about how a change gets there. It is not about an incident. Nothing in the history says anything went wrong. We wanted the answer to be a decision, not a side effect.</p>
+
+<h2>14 November: v1 follows main</h2>
+<p>Products used the <code>v1</code> tag. On 14 November, commit <code>6308da4</code> made the tag move by itself. A <code>release-v1</code> job in shipper&rsquo;s CI ran on every push to <code>main</code>, after the tests passed, and moved <code>v1</code> to that commit. A commit marked breaking (<code>feat!:</code> or a <code>BREAKING CHANGE</code> footer) left the tag where it was.</p>
+<p>It was simple. The effect was that a green merge into shipper reached every product&rsquo;s next deploy with no further step.</p>
+
+<h2>21 November: v1 moves only by approval</h2>
+<p>Ticket ENG-1511 changed that. Commit <code>5ced319</code> removed the push-triggered job. Now <code>v1</code> moves only through a manual run of <code>release.yml</code>. Its comment says why: callers on <code>@v1</code> pick up whatever <code>v1</code> points at, with the Cloudflare token in reach.</p>
+<p>The workflow has two jobs. <code>verify</code> runs first, and refuses a commit that:</p>
+<ul>
+<li>is not on <code>main</code>;</li>
+<li>has not passed the <code>test</code> check;</li>
+<li>is marked breaking since <code>v1</code>, so it needs a new major tag by hand.</li>
+</ul>
+<p>Only then does <code>release</code> run, and it runs in a protected GitHub environment called <code>release</code>, which needs a reviewer to approve. Verification comes first so that the reviewer is only ever asked about a commit that is on <code>main</code> with green tests.</p>
+
+<h2>Pin to a commit, not a tag</h2>
+<p>The same commit changed what we tell products to do. The README now says to pin shipper to an exact commit SHA, never to a tag or branch, because a moving ref would let any change to shipper reach production unreviewed. A product pins two things to the same SHA: the <code>uses:</code> line, and the <code>shipper-ref</code> input, which says which version of the scripts the workflow checks out. The input&rsquo;s default stays <code>v1</code> for callers still on <code>@v1</code>.</p>
+<p>Two pins can drift. Dependabot updates a <code>uses:</code> SHA but does not know about <code>shipper-ref</code>. So products carry a CI step that fails unless every shipper pin is a full 40-character SHA and all of them match. <code>ideasquared-website</code> added it on 22 November, then tightened it to fail on a tag or a missing <code>shipper-ref</code>. <code>agent-idea</code> had moved to a pinned SHA the day before, and its check was fixed to read quoted values and skip commented lines.</p>
+
+<h2>22 November: the rest of the chain</h2>
+<p>If shipper is pinned, shipper&rsquo;s own supply chain matters too. That day:</p>
+<ul>
+<li>shipper pinned its own GitHub Actions to full commit SHAs, with a version comment on each (<code>85f0bdb</code>), and added Dependabot for npm and GitHub Actions;</li>
+<li>the release workflow began creating a <code>vX.Y.Z</code> tag and a GitHub Release, with <code>package.json</code> at 1.0.0, and checks before the approval that the version is a new 1.x.y;</li>
+<li>a release runbook went into the README (<code>9606287</code>).</li>
+</ul>
+<p>Then products moved to the SHA commented <code>v1.0.0</code>. <code>agent-idea</code> moved from its earlier SHA pin, and <code>ideasquared-website</code> from <code>@v1</code>. Each commit is titled &ldquo;pin shipper workflows to v1.0.0&rdquo;.</p>
+
+<h2>The runbook</h2>
+<p>Five steps: merge with the version bumped and a changelog entry; run the release workflow and approve; merge the product repos&rsquo; bump pull requests; let developer machines pick it up through <code>eng</code>; and, if a release is bad, revert the change in shipper and release a new patch. The last step carries the point of the whole design. Product repos keep their old SHA until they merge the bump, so nothing moves without a pull request.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Decide how a change reaches production, then build the path.</strong> Moving a tag after green CI is a path too, just one nobody chose. Now each step has a person or a pull request in it.</li>
+<li><strong>Put the checks before the approval.</strong> A reviewer should be asked only about a commit that already passed the mechanical rules.</li>
+<li><strong>Two pins need a check.</strong> A tool that updates one of them will not always update the other. Make CI say so.</li>
+</ul>
+</div>
+
+<nav class="post-pager" aria-label="More posts">
+  <a class="pager-card is-next" href="/blog/what-review-found/"><span class="pager-label">Next post</span><span class="pager-title">What review found: three security fixes in one day.</span></a>
+  <a class="pager-card" href="/blog/#series-engineering"><span class="pager-label">In this series</span><span class="pager-title">More engineering notes</span></a>
+</nav>
+<p class="post-all"><a href="/blog/">All posts</a></p>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Studio</h2>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Ventures</h2>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
+  </div>
+</footer>
+
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
+</body>
+</html>

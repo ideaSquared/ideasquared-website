@@ -18,7 +18,9 @@
         "http://127.0.0.1:8787/journal/",
         "http://127.0.0.1:8787/tools/",
         "http://127.0.0.1:8787/blog/",
-        "http://127.0.0.1:8787/blog/building-shipper/"
+        "http://127.0.0.1:8787/blog/building-shipper/",
+        "http://127.0.0.1:8787/blog/stopping-gaminginit/",
+        "http://127.0.0.1:8787/blog/every-leak-becomes-a-test/"
       ],
       "numberOfRuns": 1,
       "settings": { "chromeFlags": "--no-sandbox --headless=new" }

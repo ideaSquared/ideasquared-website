@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>What working with Claude Code looks like in our git history &middot; ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Counts from git log across four ideaSquared repos: commits, Claude-Session trailers, authors, claude/* merges, a shared logging skill. And what git cannot show.">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="What working with Claude Code looks like in our git history &middot; ideaSquared">
+<meta property="og:description" content="Counts from git log across four ideaSquared repos: commits, Claude-Session trailers, authors, claude/* merges, a shared logging skill. And what git cannot show.">
+<meta property="og:url" content="https://ideasquared.co.uk/blog/claude-code-in-the-git-history/">
+<meta name="author" content="Alex Jenkinson, with support from Claude">
+<link rel="canonical" href="https://ideasquared.co.uk/blog/claude-code-in-the-git-history/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body class="i2 page-post">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/tools/" data-nav="/tools/">Tools</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/about/" data-nav="/about/">About</a>
+    </nav>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<article class="post" aria-labelledby="post-title">
+<header class="subpage-hero">
+  <div class="container">
+    <span class="eyebrow signal">Blog &middot; Engineering notes</span>
+    <h1 id="post-title">What working with Claude Code looks like in our git history.</h1>
+    <p>We use Claude Code every day. Instead of describing that, we counted what git can prove, in four repos, as of 28 November 2026. Then we list what git cannot tell you.</p>
+    <ul class="post-meta" aria-label="About this post">
+      <li>By Alex Jenkinson, with support from Claude</li>
+      <li><time datetime="2026-11-28">28 Nov 2026</time></li>
+      <li>3 min read</li>
+    </ul>
+  </div>
+</header>
+
+<div class="container post-body">
+<div class="prose">
+<h2>How we counted</h2>
+<p>Every number below comes from <code>git log --all</code> in four repos: agent-idea, shipper, eng and ideasquared-website. Counts are as of 28 November 2026. Where a number depends on a choice, we say which.</p>
+<p>The repos start on different dates. ideasquared-website&rsquo;s first commit is 14 August 2026. shipper&rsquo;s is 13 November. agent-idea&rsquo;s and eng&rsquo;s are 14 November. Last commits are 24 November for the first three and 28 November for the website.</p>
+
+<h2>Commits and trailers</h2>
+<p>Commits per repo, merges included: agent-idea 64, shipper 139, eng 114 and ideasquared-website 201. That is 518 in all.</p>
+<p>Of those, 143 are merge commits and 375 are not. Of the 375, <strong>356 carry a <code>Claude-Session:</code> trailer</strong> in the commit message: 46 of 47 in agent-idea, 97 of 98 in shipper, 79 of 81 in eng and 134 of 149 in the website. The other 19 have no trailer.</p>
+<p>Those trailers hold 69 distinct session links across the four repos. Some sessions touched more than one repo, so adding the per-repo counts would give 85, not 69.</p>
+
+<h2>Author names</h2>
+<p>Git records an author name on each commit. Among the 375 non-merge commits, 343 have an author name that is Claude (one of them under a second Claude name) and 32 are authored as Alex Jenkinson. Per repo, Alex authored 12 in agent-idea, 2 in shipper, 2 in eng and 16 in the website.</p>
+<p>This is a count of names, not of work. It says who ran the commit, not who thought of the change or edited the result.</p>
+
+<h2>Branches and merges</h2>
+<p>Of the 143 merge commits, 135 are authored as Alex Jenkinson and committed by GitHub. Another 8 are authored by Claude, and their subjects show changes from <code>main</code> being merged into a branch.</p>
+<p>The pull request merges are the clearest trace. We counted merge commits whose subject names a <code>claude/*</code> branch: <strong>131 pull requests</strong> (16 in agent-idea, 37 in shipper, 29 in eng, 49 in the website). Four more pull request merges name another branch, such as <code>fix/venv-readiness</code>.</p>
+<p>That is as far as we take it. A merge commit shows that Alex&rsquo;s account merged the pull request, on that date. It does not show what he checked first.</p>
+
+<h2>Rules in every repo</h2>
+<p>Each repo carries a <code>CLAUDE.md</code>: at the root in agent-idea, shipper and eng, and under <code>.claude/</code> in the website. It holds the rules for working there: commands to run before a change is done, what to test, what never to log. The rules are decided by us.</p>
+<p>All four repos also carry <code>.claude/skills/logging/SKILL.md</code>, and the file is identical in each. We checked with <code>md5sum</code>: all four print <code>5a51e155309144a277f41d3fe369d784</code>. agent-idea holds the canonical copy. The other three received it by copy: shipper and eng on 14 November, the website on 22 November. For more on how rules travel between repos, see <a href="/blog/one-rulebook-every-repo/">one rulebook, every repo</a>.</p>
+
+<h2>Review-driven fixes</h2>
+<p>We looked for commits whose own message says review caused the change. There are six:</p>
+<ul>
+<li>agent-idea, 14 November: &ldquo;close three sanitiser gaps found in review&rdquo;;</li>
+<li>agent-idea, 15 November: &ldquo;close review leaks in the ADS errors route and tunnel guide&rdquo;;</li>
+<li>eng, 14 November: &ldquo;address review findings in the installers and CLI&rdquo;;</li>
+<li>eng, 22 November, and again on 24 November: two &ldquo;address review&rdquo; commits on the engineering standards;</li>
+<li>ideasquared-website, 9 October: &ldquo;correct three factual errors flagged in review&rdquo;.</li>
+</ul>
+<p>More fixes were probably prompted by review without saying so. We only count the ones that say it. The posts <a href="/blog/what-review-found/">what review found</a> and <a href="/blog/every-leak-becomes-a-test/">every leak becomes a test</a> cover some of them.</p>
+
+<h2>What the history doesn&rsquo;t show</h2>
+<ul>
+<li><strong>No speed or productivity baseline.</strong> We have no earlier period without Claude Code to compare against, so we make no claim about faster or slower.</li>
+<li><strong>Nothing on quality or defect rates.</strong> Commit counts say nothing about whether the code is good. Fix commits exist, but we have no count of bugs that were never found.</li>
+<li><strong>Not how much a person edited before merging.</strong> A commit holds the end result, not the conversation that led to it.</li>
+<li><strong>Not who reviewed.</strong> A merge shows who pressed the button. It does not show who read the diff, or how closely.</li>
+<li><strong>Not a share of the code.</strong> Author names and trailers count commits. We do not know, and will not state, what fraction of the code came from whom.</li>
+</ul>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Trailers make the record honest.</strong> A <code>Claude-Session:</code> line on a commit lets anyone count the sessions behind a repo, and we never have to rely on memory.</li>
+<li><strong>Put the rules in the repo.</strong> A <code>CLAUDE.md</code> and one shared skill file are checkable with <code>md5sum</code>. A rule held in someone&rsquo;s head is not.</li>
+<li><strong>Say what the data cannot say.</strong> The history proves how often and where. It cannot prove that the work is better, faster or well reviewed.</li>
+</ul>
+</div>
+
+<nav class="post-pager" aria-label="More posts">
+  <a class="pager-card is-next" href="/blog/building-shipper/"><span class="pager-label">Back to the first post</span><span class="pager-title">One way to deploy: building shipper.</span></a>
+  <a class="pager-card" href="/blog/#series-engineering"><span class="pager-label">In this series</span><span class="pager-title">More engineering notes</span></a>
+</nav>
+<p class="post-all"><a href="/blog/">All posts</a></p>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Studio</h2>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Ventures</h2>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
+  </div>
+</footer>
+
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
+</body>
+</html>

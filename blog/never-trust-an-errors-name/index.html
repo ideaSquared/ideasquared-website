@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Never trust an error&rsquo;s name &middot; ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An error&#x27;s name is writable, so it can carry anything into a log. How our shared ops package logs only a fixed list of error types, and fails safely.">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="Never trust an error&rsquo;s name &middot; ideaSquared">
+<meta property="og:description" content="An error&#x27;s name is writable, so it can carry anything into a log. How our shared ops package logs only a fixed list of error types, and fails safely.">
+<meta property="og:url" content="https://ideasquared.co.uk/blog/never-trust-an-errors-name/">
+<meta name="author" content="Alex Jenkinson, with support from Claude">
+<link rel="canonical" href="https://ideasquared.co.uk/blog/never-trust-an-errors-name/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body class="i2 page-post">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/tools/" data-nav="/tools/">Tools</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/about/" data-nav="/about/">About</a>
+    </nav>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<article class="post" aria-labelledby="post-title">
+<header class="subpage-hero">
+  <div class="container">
+    <span class="eyebrow signal">Blog &middot; Engineering notes</span>
+    <h1 id="post-title">Never trust an error's name.</h1>
+    <p>We thought logging only an error&rsquo;s type was the safe choice. Then we remembered that the type is just a string anyone can set.</p>
+    <ul class="post-meta" aria-label="About this post">
+      <li>By Alex Jenkinson, with support from Claude</li>
+      <li><time datetime="2026-11-28">28 Nov 2026</time></li>
+      <li>3 min read</li>
+      <li>Covers 15 Nov 2026</li>
+      <li><a href="https://github.com/ideaSquared/agent-idea">ideaSquared/agent-idea</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container post-body">
+<div class="prose">
+<h2>What the package is</h2>
+<p><code>@ideasquared/ops</code> lives in the Agent Idea repo, under <code>packages/ops</code>. It is a shared contract for a product&rsquo;s admin commands: a catalogue of commands, a way to preview a write, and a way to run it. The server half is a small handler that uses only Web <code>Request</code> and <code>Response</code>. The client half is what <code>eng</code> uses. For the client side, and how <code>eng ops</code> got its shape, see <a href="/blog/building-eng/">building eng</a>.</p>
+<p>Admin commands run with real power, and their errors can hold real data. So most of what we did on 15 November was about what happens when a handler fails.</p>
+
+<h2>Log the type, not the message</h2>
+<p>A handler&rsquo;s error message and stack can carry personal data, arguments or tokens. <code>@ideasquared/log</code> copies both. So in <code>5a859e6</code> the failure line stopped receiving the real error. It gets a stand-in with a fixed message and only the original&rsquo;s type as its name:</p>
+<pre tabindex="0"><code>function sanitisedCause(cause: unknown): Error {
+  const name = cause instanceof Error &amp;&amp; /^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(cause.name) ? cause.name : 'UnknownError';
+  const safe = new Error('handler threw');
+  safe.name = name;
+  return safe;
+}</code></pre>
+<p>That looks safe, and it was wrong. <code>Error.name</code> is a writable string. Code can set it to anything that matches a pattern, and a name made of letters, digits and underscores can hold an identifier or a token as easily as a type.</p>
+
+<h2>A fixed list</h2>
+<p>The fix (<code>f75c73d</code>) replaced the pattern with a list. Only a known type is kept. Everything else is logged as <code>UnknownError</code>:</p>
+<pre tabindex="0"><code>const KNOWN_ERROR_NAMES: ReadonlySet&lt;string&gt; = new Set([
+  'Error', 'TypeError', 'RangeError', 'ReferenceError', 'SyntaxError',
+  'URIError', 'EvalError', 'AggregateError', 'AbortError', 'TimeoutError',
+  'ZodError', 'OpsError',
+]);</code></pre>
+<p>The tests set the name to a made-up person, a made-up token and a made-up account id, then check the serialised log:</p>
+<pre tabindex="0"><code>it.each(['alex', 'ghp_SYNTHETIC_TOKEN_123', 'acct_private_42'])(
+  'replaces a made-up name (%s) with UnknownError', ...)</code></pre>
+<p>Two more tests keep it honest. A real <code>TypeError</code> keeps its name, even when its message is an email address that must not appear. And a thrown value that is not an error at all, such as a string, becomes <code>UnknownError</code>.</p>
+
+<h2>A logger must never change the response</h2>
+<p>The same commit (<code>5a859e6</code>) dealt with a different failure. If the logger throws, because its sink is down, the naive handler throws too. For a read that is only an annoyance. For a write that already ran, it returns a 500, the caller retries, and the write happens twice.</p>
+<p>The log call is now wrapped. If it throws, the handler carries on and answers as if nothing happened:</p>
+<pre tabindex="0"><code>try {
+  if (!failure) logger.info('ops command ran', fields);
+  else if (failure.code === 'internal') logger.error('ops command failed', fields, sanitisedCause(cause));
+  else logger.warn('ops command rejected', fields);
+} catch {
+  // Nothing to do: the response below is what matters.
+}</code></pre>
+<p>Two tests use a logger whose every method throws. A write that ran is still reported as ran, with a 200. A failing command still answers the contract&rsquo;s generic 500.</p>
+
+<h2>Choosing who may call</h2>
+<p>Version 0.2.0 (<code>9857e21</code>, merged in <code>528a254</code>) made the access check pluggable. You give <code>createOpsHandler</code> exactly one of two things: <code>repo</code>, for the built-in write-access check, or <code>authorize</code>, your own check. Neither, or both, is an error at startup. A ready-made <code>checkTeamMembership</code> covers the common case of a GitHub team.</p>
+<p>A custom check is new code that can throw, so <code>2b72d87</code> added a rule. An <code>OpsError</code> thrown by <code>authorize</code> used to keep its code and message on the way out. Now anything the authoriser throws becomes the generic 500, and only the error&rsquo;s type is logged. The test throws an <code>OpsError</code> whose message holds an email and a token, and checks that neither the response nor the log contains them.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>A string you did not choose is not safe.</strong> An error&rsquo;s name can be set by any code. Check it against a list you wrote.</li>
+<li><strong>Logging is a side effect, so contain it.</strong> A failed log write must not change what the caller is told, least of all after a write has happened.</li>
+<li><strong>Extension points need the same rules as the core.</strong> A custom authoriser got the same treatment as a handler: generic message out, type only in the log.</li>
+</ul>
+</div>
+
+<nav class="post-pager" aria-label="More posts">
+  <a class="pager-card is-next" href="/blog/testing-workers-in-workerd/"><span class="pager-label">Next post</span><span class="pager-title">Testing a Cloudflare Worker inside workerd.</span></a>
+  <a class="pager-card" href="/blog/#series-engineering"><span class="pager-label">In this series</span><span class="pager-title">More engineering notes</span></a>
+</nav>
+<p class="post-all"><a href="/blog/">All posts</a></p>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Studio</h2>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Ventures</h2>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
+  </div>
+</footer>
+
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Every leak becomes a test: a field guide to our sanitiser &middot; ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Real leaks our log sanitiser missed, each paired with the test line that now stops it. A field guide to failing closed, from 14 to 21 November 2026.">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="Every leak becomes a test: a field guide to our sanitiser &middot; ideaSquared">
+<meta property="og:description" content="Real leaks our log sanitiser missed, each paired with the test line that now stops it. A field guide to failing closed, from 14 to 21 November 2026.">
+<meta property="og:url" content="https://ideasquared.co.uk/blog/every-leak-becomes-a-test/">
+<meta name="author" content="Alex Jenkinson, with support from Claude">
+<link rel="canonical" href="https://ideasquared.co.uk/blog/every-leak-becomes-a-test/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body class="i2 page-post">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/tools/" data-nav="/tools/">Tools</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/about/" data-nav="/about/">About</a>
+    </nav>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<article class="post" aria-labelledby="post-title">
+<header class="subpage-hero">
+  <div class="container">
+    <span class="eyebrow signal">Blog &middot; Engineering notes</span>
+    <h1 id="post-title">Every leak becomes a test: a field guide to our sanitiser.</h1>
+    <p>Our log sanitiser is never finished. It is a list of everything that got through once. Here are the leaks, and the test line each one left behind.</p>
+    <ul class="post-meta" aria-label="About this post">
+      <li>By Alex Jenkinson, with support from Claude</li>
+      <li><time datetime="2026-11-28">28 Nov 2026</time></li>
+      <li>4 min read</li>
+      <li>Covers 14 to 21 Nov 2026</li>
+      <li><a href="https://github.com/ideaSquared/agent-idea">ideaSquared/agent-idea</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container post-body">
+<div class="prose">
+<h2>The rule</h2>
+<p>The sanitiser in <a href="/blog/building-agent-idea/">Agent Idea</a> has one rule that matters more than the rest: if it does not recognise something, it does not let it through. Fields are on an allowlist. Anything else is dropped or replaced. Our <code>CLAUDE.md</code> adds a second rule for people working on it: add a line to the PII test lines for every new kind of leak.</p>
+<p>The result is that <code>test/sanitise.test.ts</code> reads like a field guide. Each line is a log message that once got through, or could have. Each is checked the same way: scrub the line, then assert that none of the listed values survive.</p>
+<pre tabindex="0"><code>it.each(PII_CORPUS)('removes personal data and secrets: $line', async ({ line, leaks }) =&gt; {
+  const scrubbed = await scrubText(line, KEY, RULES);
+  leaks.forEach((leak) =&gt; expect(scrubbed).not.toContain(leak));
+});</code></pre>
+<p>All the values below are made up. We have left out anything shaped like a real key.</p>
+
+<h2>Keys that were not on the list</h2>
+<p>On 14 November, review found that the secret rule matched names such as <code>token=</code> but not <code>refresh_token=</code>, <code>csrfToken:</code> or <code>"refreshToken":"..."</code>. It also missed credentials inside URLs when there was no username, like a Redis password or the key in an error-tracker address (<code>fdc5675</code>). The fix matched any key whose name contains a word like <code>token</code>, <code>secret</code> or <code>password</code>. The tests:</p>
+<pre tabindex="0"><code>{ line: 'refresh_token=abc.def.ghi rejected', leaks: ['abc.def.ghi'] },
+{ line: 'redis://:s3cretpw@redis:6379 AUTH failed', leaks: ['s3cretpw'] },</code></pre>
+<p>A week later, the 21 November review (ticket ENG-1504) found the same weakness from the other side. Names that <em>end</em> in <code>_KEY</code> were not caught, and neither were Stripe-style keys, which start with <code>sk_live_</code> or <code>sk_test_</code> (<code>d97d6ce</code>). The rule now looks for the word anywhere in the name:</p>
+<pre tabindex="0"><code>{ line: 'env STRIPE_SECRET_KEY=dummyvalue123 loaded', leaks: ['dummyvalue123'] },
+{ line: 'config secret_key: s3kr1tvalue set', leaks: ['s3kr1tvalue'] },</code></pre>
+<p>The same commit made a <code>Cookie</code> header redact to the end of the line, and any <code>Authorization</code> value redact whatever its scheme. A follow-up (<code>38fa06c</code>) closed two gaps in that: a Digest header with several parts, and a quoted password with an escaped quote inside it, where the text after the quote used to survive.</p>
+
+<h2>Emails that were not ASCII</h2>
+<p>The first email pattern only knew plain letters. A name with an accent walked straight past it. The 21 November fix switched to Unicode letters, and allowed the <code>@</code> to arrive URL-encoded as <code>%40</code>:</p>
+<pre tabindex="0"><code>{ line: 'send to zoë@example.com failed', leaks: ['zoë', 'example.com'] },
+{ line: 'send to jo%40example.org failed', leaks: ['jo%40', 'example.org'] },</code></pre>
+<p>That left one more shape: an accent written as a separate combining mark, not as one character. The second commit added combining marks to the pattern and a test written with an explicit <code>́</code>. It looks the same on screen and is different text.</p>
+
+<h2>Things that only looked like routes</h2>
+<p>Not every leak is a secret. On 14 November, review found three gaps in a single commit (<code>d837dd8</code>). One was about routes. A path such as <code>/api/v1/creators/some-handle</code> carries a person&rsquo;s handle in plain sight. So each project now has a list of known route words, and every other segment becomes <code>:param</code>. A word that takes an id, like <code>creators</code>, hides the next segment even if it is a known word. And parameter syntax in a raw path is not trusted, because a caller can write <code>:something</code> too:</p>
+<pre tabindex="0"><code>expect(event.route).toBe('/api/v1/creators/:param');
+// a raw path claiming to be a template is not believed
+{ route: '/api/:name/images/{name}' }  // becomes /api/:param/images/:param</code></pre>
+<p>The same commit made search run over sanitised events instead of Cloudflare&rsquo;s own search. Otherwise a search for a name could reveal, by returning a result or not, whether it was in the raw logs.</p>
+
+<h2>Free text we stopped trusting at all</h2>
+<p>The best fix on 15 November (<code>78d091d</code>) was to delete something. Error titles from GlitchTip are free text, and a free-text message can name a person. We could have scrubbed harder. Instead the API now returns only the exception type:</p>
+<pre tabindex="0"><code>// 'TypeError: cannot read owner of &lt;a name&gt;'
+expect(title).toBe('TypeError');
+// a title with no recognisable type at all
+expect(title).toBe('Error');</code></pre>
+<p>The same commit templated the routes in culprits, dropped any culprit it could not read, scrubbed stack frame paths, and moved the length limit to <em>after</em> scrubbing. Clipping first can cut a secret in half and leave the part the pattern no longer recognises.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Fail closed beats a better pattern.</strong> Allowlisting a field, or returning only an error&rsquo;s type, removes a whole class of leak. A smarter regex only narrows it.</li>
+<li><strong>Write the test line first.</strong> A leak found in review becomes one line in the list. The list is how we know the next change did not bring it back.</li>
+<li><strong>Order matters.</strong> Scrub before you clip, and match secrets before anything else, so a token is never half-matched as something harmless.</li>
+<li><strong>Leaks come in families.</strong> A suffix one week was a prefix the next. We now look for the family when we add the line.</li>
+</ul>
+</div>
+
+<nav class="post-pager" aria-label="More posts">
+  <a class="pager-card is-next" href="/blog/live-but-marked-failed/"><span class="pager-label">Next post</span><span class="pager-title">The release that was live but marked failed.</span></a>
+  <a class="pager-card" href="/blog/#series-engineering"><span class="pager-label">In this series</span><span class="pager-title">More engineering notes</span></a>
+</nav>
+<p class="post-all"><a href="/blog/">All posts</a></p>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Studio</h2>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Ventures</h2>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
+  </div>
+</footer>
+
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
+</body>
+</html>

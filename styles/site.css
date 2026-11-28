@@ -836,6 +836,8 @@ dl.facts { margin: 0; }
   color: var(--fg-muted);
 }
 .post-meta li { white-space: nowrap; }
+/* The byline gets its own line and may wrap; the short facts after it stay whole. */
+.post-meta li:first-child { flex-basis: 100%; white-space: normal; color: var(--fg-body); }
 
 .post-body { padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(64px, 9vw, 120px); }
 .prose { font-size: 18px; line-height: 1.75; }

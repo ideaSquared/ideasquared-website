@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>What review found: three security fixes in one day &middot; ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="On 21 November review found three security problems across eng, agent-idea and shipper. Each was fixed with a test the same day. Here is what and how.">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="What review found: three security fixes in one day &middot; ideaSquared">
+<meta property="og:description" content="On 21 November review found three security problems across eng, agent-idea and shipper. Each was fixed with a test the same day. Here is what and how.">
+<meta property="og:url" content="https://ideasquared.co.uk/blog/what-review-found/">
+<meta name="author" content="Alex Jenkinson, with support from Claude">
+<link rel="canonical" href="https://ideasquared.co.uk/blog/what-review-found/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body class="i2 page-post">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/tools/" data-nav="/tools/">Tools</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/about/" data-nav="/about/">About</a>
+    </nav>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<article class="post" aria-labelledby="post-title">
+<header class="subpage-hero">
+  <div class="container">
+    <span class="eyebrow signal">Blog &middot; Engineering notes</span>
+    <h1 id="post-title">What review found: three security fixes in one day.</h1>
+    <p>On 21 November review found a token sent too widely, log lines that slipped past the sanitiser, and a deploy tag that moved too easily. All three were fixed and tested that day.</p>
+    <ul class="post-meta" aria-label="About this post">
+      <li>By Alex Jenkinson, with support from Claude</li>
+      <li><time datetime="2026-11-28">28 Nov 2026</time></li>
+      <li>3 min read</li>
+      <li>Covers 21 Nov 2026</li>
+    </ul>
+  </div>
+</header>
+
+<div class="container post-body">
+<div class="prose">
+<h2>Three tickets, one day</h2>
+<p>On 21 November three fixes landed, one each in <a href="https://github.com/ideaSquared/eng">eng</a>, <a href="https://github.com/ideaSquared/agent-idea">agent-idea</a> and <a href="https://github.com/ideaSquared/shipper">shipper</a>. They are ENG-1499, ENG-1504 and ENG-1511. Review found all three. The commits carry the ticket number and the fix, not the name of who reviewed, so we say no more than that.</p>
+<p>This post is about the shape of the work, not the detail of each fix. The deeper stories have their own posts, linked below.</p>
+
+<h2>ENG-1499: a token wider than the job</h2>
+<p><code>eng ops</code> talks to each product&rsquo;s ops server. It sent the GitHub token from <code>gh auth token</code>, which carries the <code>repo</code> scope, to every product. The ops server replays the token to GitHub to check team membership. The commit describes the risk: a product server, or a compromised dependency of one, could collect repo-scoped tokens. <code>eng ops find</code> also sent the token to products the engineer was not a member of. We have no evidence that any token was collected.</p>
+<p>The fix took three commits:</p>
+<ul>
+<li>eng refuses a token with <code>repo</code>, <code>workflow</code>, <code>write:*</code>, <code>admin:*</code> and similar scopes, or whose scopes it cannot read. <code>ENG_OPS_TOKEN</code> supplies a token that can only read team membership;</li>
+<li>that check then became an allowlist. Anything other than <code>read:org</code> is refused;</li>
+<li><code>eng ops find</code> contacts only products whose team the user is in, and ops URLs must be https (plain http only for localhost).</li>
+</ul>
+<p>Refusing a token is no help if <code>eng doctor</code> keeps telling you to widen it. So <code>doctor</code> and <code>setup</code> now point you to <code>ENG_OPS_TOKEN</code> and give a link that pre-selects <code>read:org</code>. The tests are in <code>test/ops.test.ts</code> and <code>test/checks.test.ts</code>.</p>
+
+<h2>ENG-1504: shapes the sanitiser let through</h2>
+<p>agent-idea gives people and agents sanitised logs, so what slips through the sanitiser matters. On 21 November, two commits closed a list of shapes that passed through unchanged:</p>
+<ul>
+<li>Stripe keys such as <code>sk_live_&hellip;</code> and <code>rk_test_&hellip;</code>, and variables ending in <code>_KEY</code>;</li>
+<li>emails with non-English letters, and emails written with decomposed accents;</li>
+<li>whole <code>Cookie</code> and <code>Authorization</code> values, not just the first word;</li>
+<li>passwords with escaped quotes or spaces inside quotes.</li>
+</ul>
+<p>Each shape is now a line in <code>test/sanitise.test.ts</code>, listing the exact text that must not survive. Both commits changed <code>src/sanitise.ts</code> and the test file together. The pattern is in <a href="/blog/every-leak-becomes-a-test/">every leak becomes a test</a>.</p>
+
+<h2>ENG-1511: a deploy tag that moved on every push</h2>
+<p>Every product calls shipper&rsquo;s reusable workflow through the <code>v1</code> tag. Until this fix, a job triggered by pushes to shipper&rsquo;s <code>main</code> could move that tag. The commit removes that job. Now <code>v1</code> moves only through a manual run of the release workflow, inside a protected <code>release</code> environment. A verify job runs first and refuses a commit that is not on <code>main</code>, whose test check has not passed, or that is marked breaking since <code>v1</code>.</p>
+<p>The same ticket changed the advice. shipper&rsquo;s docs and its rollback template now tell products to pin the workflow, and <code>shipper-ref</code>, to an exact commit SHA. A workflow sample that a shipper command prints now shows the SHA form, and its test checks for it. On the same day, agent-idea pinned its own shipper workflows to a SHA. The full story is in <a href="/blog/pinning-the-deploy-tool/">pinning the deploy tool</a>.</p>
+
+<h2>The process</h2>
+<p>The same steps ran three times. Review raised the problem. We wrote the fix as small commits, each named for the ticket. A test pinned the fix in place: a scope check, a leak line, a changed sample. It merged the same day, 21 November. None of these were big changes. The value was in the order: find it, fix it, write the test, then move on.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Put the ticket number in the commit.</strong> A year from now, ENG-1499 tells you why <code>eng ops</code> refuses your token.</li>
+<li><strong>Fix the guidance as well as the code.</strong> A refusal that sends people to the old, wide token would have been a new bug.</li>
+<li><strong>Tests keep a fix fixed.</strong> Every one of these has a line that fails if the old behaviour returns.</li>
+<li><strong>Say what we do not know.</strong> We have no sign that any of these were abused, and we do not claim they were.</li>
+</ul>
+</div>
+
+<nav class="post-pager" aria-label="More posts">
+  <a class="pager-card is-next" href="/blog/supply-chain-afternoon/"><span class="pager-label">Next post</span><span class="pager-title">One afternoon of supply-chain hardening.</span></a>
+  <a class="pager-card" href="/blog/#series-engineering"><span class="pager-label">In this series</span><span class="pager-title">More engineering notes</span></a>
+</nav>
+<p class="post-all"><a href="/blog/">All posts</a></p>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Studio</h2>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Ventures</h2>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
+  </div>
+</footer>
+
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
+</body>
+</html>

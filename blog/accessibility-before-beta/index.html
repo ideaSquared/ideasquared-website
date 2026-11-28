@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Accessibility before a single rescue logged in &middot; ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The accessibility work on AdoptDontShop before its beta: checks on every change, button contrast, screen-reader names, focus outlines and reduced motion.">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="Accessibility before a single rescue logged in &middot; ideaSquared">
+<meta property="og:description" content="The accessibility work on AdoptDontShop before its beta: checks on every change, button contrast, screen-reader names, focus outlines and reduced motion.">
+<meta property="og:url" content="https://ideasquared.co.uk/blog/accessibility-before-beta/">
+<meta name="author" content="Alex Jenkinson, with support from Claude">
+<link rel="canonical" href="https://ideasquared.co.uk/blog/accessibility-before-beta/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body class="i2 page-post">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/tools/" data-nav="/tools/">Tools</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/about/" data-nav="/about/">About</a>
+    </nav>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<article class="post" aria-labelledby="post-title">
+<header class="subpage-hero">
+  <div class="container">
+    <span class="eyebrow signal">Blog &middot; How the studio works</span>
+    <h1 id="post-title">Accessibility before a single rescue logged in.</h1>
+    <p>No rescue has used AdoptDontShop yet. We still spent September to November on accessibility. This is what we did, in order. It is work done, not a claim of compliance.</p>
+    <ul class="post-meta" aria-label="About this post">
+      <li>By Alex Jenkinson, with support from Claude</li>
+      <li><time datetime="2026-11-28">28 Nov 2026</time></li>
+      <li>3 min read</li>
+      <li>Covers 9 Sep to 26 Nov 2026</li>
+      <li><a href="https://github.com/ideaSquared/adopt-dont-shop">ideaSquared/adopt-dont-shop</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container post-body">
+<div class="prose">
+<h2>What this is, and is not</h2>
+<p>AdoptDontShop is built and has no live users. Its closed beta is planned for early 2027. Rescues are often run by volunteers, and some of those volunteers use screen readers, keyboards or settings that reduce motion. We wanted the basics in place before anyone logged in.</p>
+<p>This post describes work we did, using the dated entries on the <a href="/ventures/adopt-dont-shop/">venture page</a> and in the <a href="/journal/">build log</a>. It is not a claim that the platform meets any accessibility standard. </p>
+
+<h2>First, checks on every change</h2>
+<p>On 9 September the platform started running automated accessibility tests on every update. Legal pages, such as the privacy policy and terms, were also linked from inside the app, so nobody has to leave to find them.</p>
+<p>Automated checks catch only some problems. They do not replace using the app with a keyboard or a screen reader. But they stop the easy ones coming back, and the later work leaned on them.</p>
+
+<h2>Button colour, 11 October</h2>
+<p>The brand colour on primary action buttons failed the colour contrast standard. White text on the original rose tone measured below the required ratio. We darkened the colour. The journal says the aim was to make buttons more readable for everyone, including people with visual impairments.</p>
+<p>A brand colour is a design choice. Here we changed it to meet the check.</p>
+
+<h2>Keyboards and tab panels, 1 November</h2>
+<p>On 1 November all form fields (text boxes, dropdowns, date pickers and text areas) gained a consistent focus indicator across the three apps. Tab panels in rescue settings, application review and the admin panel were also fixed so they work with keyboard navigation and assistive technology.</p>
+
+<h2>The late November run, 22 to 26 November</h2>
+<p>Most of the detailed work landed in five days.</p>
+<ul>
+<li><strong>22 November.</strong> Date and checkbox filters got labels. Checkboxes and the top navigation bar are now announced correctly by screen readers.</li>
+<li><strong>23 November.</strong> The Delete button on pet cards in the rescue app is easier to read when you hover over it or press it. Checkboxes show a clear outline when reached by keyboard, ticked or not. Chart header buttons work with screen readers.</li>
+<li><strong>24 November.</strong> Sign-in, chat and the text editor show a clear outline on controls reached by keyboard. If your device is set to reduce motion, animations, transitions and smooth scrolling are switched off across the apps. Pages that scroll by themselves, such as pet search, the adoption application and chat, now jump instead.</li>
+<li><strong>25 November.</strong> Screen readers now announce names that match the text on screen for the pet status filter, the admin dashboard cards, the user menus and the chat conversation list.</li>
+</ul>
+<p>The 25 November fix matters more than it sounds. If a button says &ldquo;Approve&rdquo; on screen and a screen reader says something else, the two groups of users are using different apps.</p>
+
+<h2>What is still open</h2>
+<p>Nothing on the pages we drew from says AdoptDontShop has been audited or tested with rescue volunteers who use assistive technology, so we make no claim about either. The beta is where rescues will tell us. Our <a href="/how-we-work/">rule</a> is to claim only what we can back with a dated source, so this post lists changes and stops short of a verdict.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Automate first.</strong> Checks on every change stop easy faults returning, so human time goes on harder ones.</li>
+<li><strong>Names must match the screen.</strong> What a screen reader says should be what the page shows.</li>
+<li><strong>Respect the device settings.</strong> Reduce-motion and keyboard focus are things people have already told their device. We should listen.</li>
+<li><strong>Describe the work, not a verdict.</strong> Until real users and an audit say so, we only claim what we changed.</li>
+</ul>
+</div>
+
+<nav class="post-pager" aria-label="More posts">
+  <a class="pager-card is-next" href="/blog/one-rulebook-every-repo/"><span class="pager-label">Next post</span><span class="pager-title">One rulebook for every repo.</span></a>
+  <a class="pager-card" href="/blog/#series-studio"><span class="pager-label">In this series</span><span class="pager-title">More how the studio works</span></a>
+</nav>
+<p class="post-all"><a href="/blog/">All posts</a></p>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Studio</h2>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Ventures</h2>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
+  </div>
+</footer>
+
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
+</body>
+</html>

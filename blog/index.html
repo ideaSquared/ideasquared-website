@@ -46,15 +46,15 @@
   <div class="container">
     <span class="eyebrow signal">Blog</span>
     <h1>Longer notes on how we build.</h1>
-    <p>The <a href="/journal/">build log</a> lists every change in a line or two. The blog is for the longer story: why we built something, what went wrong and what we would do again.</p>
+    <p>The <a href="/journal/">build log</a> lists every change in a line or two. The blog is for the longer story: why we built something, what went wrong and what we would do again. Written by Alex Jenkinson, with support from Claude.</p>
   </div>
 </section>
 
-<section class="section" aria-labelledby="posts-title">
+<section class="section blog-series" id="series-tools" aria-labelledby="series-tools-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">Series</span>
-      <h2 id="posts-title">Building the studio tools.</h2>
+      <span class="eyebrow">Series &middot; 3 posts</span>
+      <h2 id="series-tools-title">Building the studio tools.</h2>
       <p>Three posts on the <a href="/tools/">tools</a> we built in November 2026, written afterwards from the commit history.</p>
     </div>
     <ol class="post-grid">
@@ -74,6 +74,132 @@
         <div class="entry-meta"><span class="chip">ENG</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
         <h3><a href="/blog/building-eng/">One command to set up a machine: building eng.</a></h3>
         <p>An installer that is safe to run again, a themed terminal app, and an SSH tunnel that lasted a few hours.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section blog-series" id="series-studio" aria-labelledby="series-studio-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Series &middot; 5 posts</span>
+      <h2 id="series-studio-title">How the studio works.</h2>
+      <p>How we decide what to build, when to stop, and what we fix before anyone uses it.</p>
+    </div>
+    <ol class="post-grid">
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">GAMINGINIT</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/stopping-gaminginit/">We stopped gaminginit: what we know and what we don’t.</a></h3>
+        <p>gaminginit stopped on 21 November 2026. The stated reason is short. The lesson is about the numbers we never wrote down.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">ADOPTDONTSHOP</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/go-and-stop-numbers/">Writing the go and stop numbers before the beta.</a></h3>
+        <p>The AdoptDontShop beta gate was written down on 8 November 2026. Here are the numbers, why we published them first, and why completed adoptions are only a stretch goal.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">STUDIO</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/six-to-sixteen-hours/">Running a studio on 6 to 16 hours a week.</a></h3>
+        <p>What running a one-person studio on 6 to 16 hours a week looks like: the rules, the spend cap, the reused tools, and a venture that is waiting its turn.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">ADOPTDONTSHOP</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/adoptdontshop-before-launch/">Built, with no users: what we did instead of launching.</a></h3>
+        <p>No rescue has used AdoptDontShop yet. Before the closed beta we fixed missing permission checks, hashed invitation tokens, tightened uploads and added a production smoke test.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">ADOPTDONTSHOP</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/accessibility-before-beta/">Accessibility before a single rescue logged in.</a></h3>
+        <p>From automated checks on every change to button contrast, screen-reader names, focus outlines and reduced motion: the accessibility work on AdoptDontShop before its beta.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section blog-series" id="series-engineering" aria-labelledby="series-engineering-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Series &middot; 12 posts</span>
+      <h2 id="series-engineering-title">Engineering notes.</h2>
+      <p>Shorter, more technical posts on single problems: what broke, what we changed and what we would tell someone else.</p>
+    </div>
+    <ol class="post-grid">
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">STANDARDS</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/one-rulebook-every-repo/">One rulebook for every repo.</a></h3>
+        <p>151 numbered rules in the eng repo, a repo-type table, and a sweep that opens a PR per repo. What the rules look like, and what the gap tables said on 24 November.</p>
+        <span class="post-card-foot">4 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">AGENT IDEA</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/every-leak-becomes-a-test/">Every leak becomes a test: a field guide to our sanitiser.</a></h3>
+        <p>The sanitiser behind Agent Idea fails closed. This is a tour of the leaks reviews found in it, and the one-line tests that keep each one shut.</p>
+        <span class="post-card-foot">4 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">SHIPPER</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/live-but-marked-failed/">The release that was live but marked failed.</a></h3>
+        <p>A release that failed its smoke checks was still serving traffic, but shipper recorded it as not live. We fixed what rollback and the stale check believed, in two steps.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">SHIPPER</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/pinning-the-deploy-tool/">Pinning the deploy tool every product depends on.</a></h3>
+        <p>v1 used to move after every green merge. Now it moves only through an approved release, and products pin shipper to an exact commit. This is how we got there.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">SECURITY</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/what-review-found/">What review found: three security fixes in one day.</a></h3>
+        <p>Three fixes from one day of review: an over-scoped token in eng ops, leaks past the agent-idea sanitiser, and shipper's v1 deploy tag. What changed and how it was tested.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">SECURITY</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/supply-chain-afternoon/">One afternoon of supply-chain hardening.</a></h3>
+        <p>Pinned actions, Dependabot cooldowns, pnpm release-age and trust settings, SECURITY.md and dist checks, added across four repos on 22 November. With the gaps we still have.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">AGENT IDEA</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/github-403-means-two-things/">GitHub's 403 means two things.</a></h3>
+        <p>How Agent Idea's team gate reads GitHub's 403: a denial when the token is not allowed, an error when it is a rate limit. Plus the token expiry warning and its rounding bug.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">SHIPPER</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/rerun-ci-job-undo-deploy/">How a re-run CI job could undo a deploy.</a></h3>
+        <p>An old CI run, re-run, passed the gate because its commit was still on main. We compare it with what is live, check again inside the lock, and never let a failed compare stop a deploy.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">OPS</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/never-trust-an-errors-name/">Never trust an error's name.</a></h3>
+        <p>Lessons from @ideasquared/ops: a fixed list of error types for logs, a logger that can never change a response, and an authoriser whose errors never reach the caller.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">AGENT IDEA</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/testing-workers-in-workerd/">Testing a Cloudflare Worker inside workerd.</a></h3>
+        <p>A practical guide to running Worker tests in workerd with @cloudflare/vitest-plugin, a real local KV binding, and a second Vitest project for the Node code.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">ENG</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/pnpm-add-global-from-github/">Shipping a CLI with pnpm add -g github:.</a></h3>
+        <p>ERR_PNPM_EXOTIC_SUBDEP, ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED and stale pnpm 10 shims: what broke when eng and shipper installed from GitHub, and what we changed.</p>
+        <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
+      </li>
+      <li class="post-card">
+        <div class="entry-meta"><span class="chip">CLAUDE CODE</span><time class="entry-date" datetime="2026-11-28">28 Nov 2026</time></div>
+        <h3><a href="/blog/claude-code-in-the-git-history/">What working with Claude Code looks like in our git history.</a></h3>
+        <p>518 commits across four repos, 356 non-merge commits with a Claude-Session trailer, 131 merged claude/* pull requests, and a list of what none of it proves.</p>
         <span class="post-card-foot">3 min read<span aria-hidden="true">Read &rarr;</span></span>
       </li>
     </ol>
