@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Tools &middot; ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The four tools that run ideaSquared: shipper deploys, Agent Idea and @ideasquared/log keep personal data out of logs, and eng sets up a machine.">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="Tools &middot; ideaSquared">
+<meta property="og:description" content="The four tools that run ideaSquared: shipper deploys, Agent Idea and @ideasquared/log keep personal data out of logs, and eng sets up a machine.">
+<meta property="og:url" content="https://ideasquared.co.uk/tools/">
+<link rel="canonical" href="https://ideasquared.co.uk/tools/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body class="i2 page-tools">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/tools/" data-nav="/tools/">Tools</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/about/" data-nav="/about/">About</a>
+    </nav>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="subpage-hero">
+  <div class="container">
+    <span class="eyebrow signal">Studio tools</span>
+    <h1>The tools that run the studio.</h1>
+    <p>A one-person studio has no platform team, so we wrote one down in code. Four tools deploy every venture, keep personal data out of the logs, and set up a new machine with one command. All four are public on GitHub.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="fit-title">
+  <div class="container split">
+    <div>
+      <span class="eyebrow">How they fit together</span>
+      <h2 id="fit-title" class="mt-4">One path from laptop to live.</h2>
+      <p class="mt-4">Each tool does one job. The safety rules live inside the tools, not in a document someone has to remember.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Set up</dt><dd><a href="#eng">eng</a> installs what a machine needs, clones every repo and installs <code>ship</code> and <code>idea</code>.</dd></div>
+      <div><dt>Write logs</dt><dd><a href="#log">@ideasquared/log</a> is how every server writes a log line, with no personal data.</dd></div>
+      <div><dt>Deploy</dt><dd><a href="#shipper">shipper</a> deploys, checks the result and rolls back if it fails.</dd></div>
+      <div><dt>Read logs</dt><dd><a href="#agent-idea">Agent Idea</a> reads the logs back, sanitised, for people and for Claude.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="tools-title">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The four tools</span>
+      <h2 id="tools-title">What each one does.</h2>
+      <p>All four were built in November 2026, for every ideaSquared product.</p>
+    </div>
+    <ul class="tool-list">
+      <li class="tool-card" id="shipper">
+        <span class="tool-cmd">ship</span>
+        <h3>shipper</h3>
+        <p class="tool-tag">One way to deploy every product.</p>
+        <ul>
+          <li>Each repo describes its deploy in a short <code>ship.yaml</code>. One shared GitHub Actions workflow does the rest.</li>
+          <li>It won&rsquo;t deploy a commit whose checks failed, or one older than what is live.</li>
+          <li>A health check runs after every deploy. If it fails, the deploy rolls back.</li>
+          <li><code>ship status all</code> shows what is live everywhere. <code>ship diff</code>, <code>ship rollback</code>, <code>ship freeze</code> and <code>ship doctor</code> cover the rest.</li>
+        </ul>
+        <div class="tool-links"><a href="/blog/building-shipper/">How we built it</a><a href="https://github.com/ideaSquared/shipper">Source on GitHub</a><span>MIT licence</span></div>
+      </li>
+      <li class="tool-card" id="agent-idea">
+        <span class="tool-cmd">idea</span>
+        <h3>Agent Idea</h3>
+        <p class="tool-tag">Sanitised logs, for people and for LLMs.</p>
+        <ul>
+          <li>Reads Cloudflare Workers Logs, GitHub Actions runs, Loki and GlitchTip through one command.</li>
+          <li>Only fields on an allowlist come back. Emails, tokens, IP addresses and card numbers are scrubbed, and ids become anonymous tags.</li>
+          <li>You only see a product&rsquo;s logs if you are in its GitHub team.</li>
+          <li><code>idea mcp</code> lets Claude Code read the same sanitised logs as tools, so an AI assistant never sees raw data.</li>
+        </ul>
+        <div class="tool-links"><a href="/blog/building-agent-idea/">How we built it</a><a href="https://github.com/ideaSquared/agent-idea">Source on GitHub</a></div>
+      </li>
+      <li class="tool-card" id="log">
+        <span class="tool-cmd">@ideasquared/log</span>
+        <h3>The logger</h3>
+        <p class="tool-tag">A logger that refuses personal data.</p>
+        <ul>
+          <li>Modelled on Monzo&rsquo;s slog. Every service declares the fields it may log.</li>
+          <li>The message must be a fixed string, so <code>`sent to ${email}`</code> doesn&rsquo;t compile.</li>
+          <li>Declaring a field such as <code>email</code>, <code>ip</code> or <code>token</code> throws. Log an id instead.</li>
+          <li>Server code that calls <code>console</code> directly fails CI.</li>
+        </ul>
+        <div class="tool-links"><a href="/blog/building-agent-idea/">How we built it</a><a href="https://github.com/ideaSquared/agent-idea/tree/main/packages/log">Source on GitHub</a></div>
+      </li>
+      <li class="tool-card" id="eng">
+        <span class="tool-cmd">eng</span>
+        <h3>eng</h3>
+        <p class="tool-tag">One command to set up a developer machine.</p>
+        <ul>
+          <li>One installer for macOS, Linux and Windows. It installs only what is missing and is safe to run again.</li>
+          <li>Signs you in to GitHub, clones every repo you can see and installs their dependencies.</li>
+          <li>Running <code>eng</code> on its own opens a menu over deploys, logs and ops. Each session is fixed to staging or production, so a stray command can&rsquo;t hit the wrong one.</li>
+          <li>It also holds the engineering standards every ideaSquared repo follows.</li>
+        </ul>
+        <div class="tool-links"><a href="/blog/building-eng/">How we built it</a><a href="https://github.com/ideaSquared/eng">Source on GitHub</a><span>MIT licence</span></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="why-title">
+  <div class="container split">
+    <div>
+      <span class="eyebrow">Why build our own</span>
+      <h2 id="why-title" class="mt-4">Each venture starts further along.</h2>
+      <p class="mt-4">A new venture shouldn&rsquo;t have to work out deploys, logging and machine setup again. It adds a <code>ship.yaml</code>, uses the logger, and gets the rest on day one.</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Safety in the tool</dt><dd>A rule the tool enforces can&rsquo;t be forgotten at 11pm on a weeknight.</dd></div>
+      <div><dt>Privacy by default</dt><dd>Personal data is stopped when a log is written, and again when it is read.</dd></div>
+      <div><dt>Small and boring</dt><dd>Plain TypeScript on Cloudflare Workers and GitHub Actions. Nothing new to host.</dd></div>
+      <div><dt>In the open</dt><dd>The code is public, and the posts below say what went wrong along the way.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section band" aria-labelledby="posts-title">
+  <div class="container split">
+    <div>
+      <span class="eyebrow signal">On the blog</span>
+      <h2 id="posts-title" class="mt-4">How we built them.</h2>
+    </div>
+    <div>
+      <p class="lede-text">One post per tool: why it exists, what we built first, and what we had to fix.</p>
+      <div class="cta">
+        <a href="/blog/" class="btn btn-primary btn-lg">Read the blog</a>
+        <a href="https://github.com/ideaSquared" class="btn btn-ghost-dark btn-lg">ideaSquared on GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Studio</h2>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Ventures</h2>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
+  </div>
+</footer>
+
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
+</body>
+</html>

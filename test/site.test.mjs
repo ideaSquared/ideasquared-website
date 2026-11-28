@@ -303,3 +303,29 @@ describe('Lighthouse gate (SITE-07)', () => {
     assert.deepEqual(assertions['categories:accessibility'], ['error', { minScore: 0.95 }]);
   });
 });
+
+describe('navigation', () => {
+  const navLinks = (page) =>
+    [
+      ...(read(page).match(/<nav class="nav-links"[\s\S]*?<\/nav>/)?.[0] ?? '').matchAll(
+        /href="([^"]+)"/g,
+      ),
+    ].map((m) => m[1]);
+  const expected = ['/ventures/', '/how-we-work/', '/tools/', '/journal/', '/blog/', '/about/'];
+
+  it('gives every page the same primary nav, and every link is a page', () => {
+    pages.forEach((page) => assert.deepEqual(navLinks(page), expected, page));
+    expected.forEach((href) =>
+      assert.ok(existsSync(join(root, href, 'index.html')), `${href} has no page`),
+    );
+  });
+
+  it('links every blog post from the blog index', () => {
+    const index = read('blog/index.html');
+    pages
+      .filter((page) => /^blog\/[^/]+\/index\.html$/.test(page))
+      .forEach((page) =>
+        assert.ok(index.includes(`href="/${page.replace(/index\.html$/, '')}"`), page),
+      );
+  });
+});

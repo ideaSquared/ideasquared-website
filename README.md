@@ -7,7 +7,8 @@ served at the custom domains `ideasquared.co.uk` and `www.ideasquared.co.uk`.
 
 ## Layout
 
-- `index.html`, `how-we-work/`, `about/`, `press/`, `privacy/`, `journal/`, `ventures/`: the pages. Each is a folder with an `index.html`.
+- `index.html`, `how-we-work/`, `tools/`, `about/`, `press/`, `privacy/`, `journal/`, `blog/`, `ventures/`: the pages. Each is a folder with an `index.html`. Each blog post is a folder under `blog/`, linked from `blog/index.html`.
+- The primary nav and footer are copied into every page by hand; `pnpm test` checks every page has the same nav.
 - `styles/` and `scripts/`: the shared stylesheet and scripts. `scripts/ventures-data.js` lists the ventures.
 - `assets/`: the logo mark and the self-hosted fonts (SIL Open Font License, licence texts alongside).
 - `styles/tokens.css`: generated from the ideaSquared Design System, which is the source of truth for colour, type, spacing, radii and shadows. Change a value there first, then here.

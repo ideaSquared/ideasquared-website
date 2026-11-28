@@ -15,7 +15,10 @@
         "http://127.0.0.1:8787/about/",
         "http://127.0.0.1:8787/press/",
         "http://127.0.0.1:8787/privacy/",
-        "http://127.0.0.1:8787/journal/"
+        "http://127.0.0.1:8787/journal/",
+        "http://127.0.0.1:8787/tools/",
+        "http://127.0.0.1:8787/blog/",
+        "http://127.0.0.1:8787/blog/building-shipper/"
       ],
       "numberOfRuns": 1,
       "settings": { "chromeFlags": "--no-sandbox --headless=new" }
