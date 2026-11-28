@@ -531,6 +531,19 @@ dl.facts { margin: 0; }
   border-top: 1px solid var(--line);
 }
 
+/* In dark mode the page is navy too, so heroes and bands drop to the deepest navy to stay set apart,
+   as they are in light mode. Cards inside them keep --bg-raised and stand out more. */
+@media (prefers-color-scheme: dark) {
+  .hero,
+  .subpage-hero,
+  .venture-hero,
+  .section.band {
+    --bg: var(--i2-navy-950);
+    border-bottom: 1px solid var(--line);
+  }
+  .section.band { border-top: 1px solid var(--line); }
+}
+
 /* ---------- Subpage + venture pages (flat navy) ---------- */
 
 .subpage-hero,
