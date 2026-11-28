@@ -1,0 +1,13 @@
+{
+  "title": "The release that was live but marked failed.",
+  "description": "A release that passed deploy but failed its smoke checks still served traffic. How shipper recorded it, why rollback picked the wrong target, and the two fixes.",
+  "lede": "A deploy can finish and still fail a check afterwards. In that gap, shipper&rsquo;s record said one thing and production said another. Two fixes, on 20 and 23 November, closed it.",
+  "series": "engineering",
+  "chip": "SHIPPER",
+  "covers": "20 to 23 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/shipper",
+    "label": "ideaSquared/shipper"
+  },
+  "summary": "A release that failed its smoke checks was still serving traffic, but shipper recorded it as not live. We fixed what rollback and the stale check believed, in two steps."
+}

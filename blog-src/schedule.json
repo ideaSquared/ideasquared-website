@@ -1,0 +1,121 @@
+{
+  "series": [
+    {
+      "key": "tools",
+      "id": "series-tools",
+      "eyebrow": "Studio tools",
+      "heading": "Building the studio tools.",
+      "intro": "Three posts on the <a href=\"/tools/\">tools</a> we built in November 2026, written afterwards from the commit history."
+    },
+    {
+      "key": "studio",
+      "id": "series-studio",
+      "eyebrow": "How the studio works",
+      "heading": "How the studio works.",
+      "intro": "How we decide what to build, when to stop, and what we fix before anyone uses it."
+    },
+    {
+      "key": "engineering",
+      "id": "series-engineering",
+      "eyebrow": "Engineering notes",
+      "heading": "Engineering notes.",
+      "intro": "Shorter, more technical posts on single problems: what broke, what we changed and what we would tell someone else."
+    }
+  ],
+  "posts": [
+    {
+      "slug": "building-shipper",
+      "date": "2026-11-28",
+      "watch": "Dated history; fine as is."
+    },
+    {
+      "slug": "building-agent-idea",
+      "date": "2026-11-28"
+    },
+    {
+      "slug": "building-eng",
+      "date": "2026-11-28"
+    },
+    {
+      "slug": "stopping-gaminginit",
+      "date": "2026-12-01",
+      "watch": "None expected; gaminginit is closed."
+    },
+    {
+      "slug": "go-and-stop-numbers",
+      "date": "2026-12-01",
+      "watch": "Says the closed beta has not started. Check the AdoptDontShop venture page for a start date."
+    },
+    {
+      "slug": "six-to-sixteen-hours",
+      "date": "2026-12-03",
+      "watch": "Says \"sole trader\" and \"incorporation is planned\"; incorporation is planned for December 2026 (business plan v2.1, decision D5/D15). Also says the AdoptDontShop beta is planned for early 2027 and Pairflix waits (ENG-1514)."
+    },
+    {
+      "slug": "adoptdontshop-before-launch",
+      "date": "2026-12-08",
+      "watch": "Says AdoptDontShop has no users. Check the venture page for a beta start. Do not mention open security issues that are not fixed."
+    },
+    {
+      "slug": "accessibility-before-beta",
+      "date": "2026-12-10",
+      "watch": "Says the beta has not started; check the venture page."
+    },
+    {
+      "slug": "one-rulebook-every-repo",
+      "date": "2026-12-15",
+      "watch": "Figures are as of 24 Nov 2026 (151 rule IDs, gap tables). The weekly standards sweep changes them; keep the dated wording. The SHA vs @v1 pin question is shipper#47."
+    },
+    {
+      "slug": "every-leak-becomes-a-test",
+      "date": "2027-01-05"
+    },
+    {
+      "slug": "live-but-marked-failed",
+      "date": "2027-01-12",
+      "watch": "shipper#46 touches deployingTo, not lastLiveDeployment."
+    },
+    {
+      "slug": "pinning-the-deploy-tool",
+      "date": "2027-02-16",
+      "watch": "shipper#47 may remove shipper-ref or change the pinning advice; ENG-1518 changes how developer machines get shipper; check whether shipper 1.1.0 is released."
+    },
+    {
+      "slug": "what-review-found",
+      "date": "2027-02-23",
+      "watch": "ENG ticket ids moved from Linear to GitHub issues on 21 Nov 2026; the pinning advice may change with shipper#47."
+    },
+    {
+      "slug": "supply-chain-afternoon",
+      "date": "2027-02-02"
+    },
+    {
+      "slug": "github-403-means-two-things",
+      "date": "2027-01-19"
+    },
+    {
+      "slug": "rerun-ci-job-undo-deploy",
+      "date": "2027-01-14",
+      "watch": "Queueing is in shipper 1.1.0 (check whether released); shipper#46 is a follow-up."
+    },
+    {
+      "slug": "never-trust-an-errors-name",
+      "date": "2027-01-26"
+    },
+    {
+      "slug": "testing-workers-in-workerd",
+      "date": "2027-02-09",
+      "watch": "agent-idea PR #37: if merged, the claim that a test file not listed runs nowhere is no longer true."
+    },
+    {
+      "slug": "pnpm-add-global-from-github",
+      "date": "2027-02-11",
+      "watch": "ENG-1518 would move installs from bare github: specs to release tags."
+    },
+    {
+      "slug": "claude-code-in-the-git-history",
+      "date": "2027-02-25",
+      "watch": "Counts are as of 28 Nov 2026 and say so; keep that wording."
+    }
+  ]
+}

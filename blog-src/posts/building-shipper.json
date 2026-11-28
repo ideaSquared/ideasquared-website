@@ -1,0 +1,17 @@
+{
+  "title": "One way to deploy: building shipper.",
+  "description": "How shipper, the deploy tool behind every ideaSquared product, was built in eleven days, and what we had to fix.",
+  "series": "tools",
+  "chip": "SHIPPER",
+  "covers": "13 to 24 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/shipper",
+    "label": "ideaSquared/shipper"
+  },
+  "summary": "From an empty repo to every deploy going through one tool, in eleven days. The safety rules we added, and the three we got wrong.",
+  "lede": "Every ideaSquared deploy now goes through one tool. This is how shipper went from an empty repo to that in eleven days, and what we had to fix on the way.",
+  "tool": {
+    "href": "/tools/#shipper",
+    "title": "shipper on the tools page"
+  }
+}

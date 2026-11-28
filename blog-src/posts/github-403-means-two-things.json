@@ -1,0 +1,13 @@
+{
+  "title": "GitHub's 403 means two things.",
+  "description": "Agent Idea asks GitHub whether you are in a team. GitHub answers 403 for 'no' and for 'slow down'. How we tell them apart, and what we did about token expiry.",
+  "lede": "A 403 from GitHub can mean &ldquo;you may not&rdquo; or &ldquo;not now&rdquo;. Our access check has to treat those differently, in opposite directions.",
+  "series": "engineering",
+  "chip": "AGENT IDEA",
+  "covers": "15 to 21 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/agent-idea",
+    "label": "ideaSquared/agent-idea"
+  },
+  "summary": "How Agent Idea's team gate reads GitHub's 403: a denial when the token is not allowed, an error when it is a rate limit. Plus the token expiry warning and its rounding bug."
+}

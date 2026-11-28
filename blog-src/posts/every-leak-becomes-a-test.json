@@ -1,0 +1,13 @@
+{
+  "title": "Every leak becomes a test: a field guide to our sanitiser.",
+  "description": "Real leaks our log sanitiser missed, each paired with the test line that now stops it. A field guide to failing closed, from 14 to 21 November 2026.",
+  "lede": "Our log sanitiser is never finished. It is a list of everything that got through once. Here are the leaks, and the test line each one left behind.",
+  "series": "engineering",
+  "chip": "AGENT IDEA",
+  "covers": "14 to 21 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/agent-idea",
+    "label": "ideaSquared/agent-idea"
+  },
+  "summary": "The sanitiser behind Agent Idea fails closed. This is a tour of the leaks reviews found in it, and the one-line tests that keep each one shut."
+}

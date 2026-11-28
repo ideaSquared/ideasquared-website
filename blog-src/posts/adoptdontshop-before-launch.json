@@ -1,0 +1,13 @@
+{
+  "title": "Built, with no users: what we did instead of launching.",
+  "description": "AdoptDontShop is built and has no users. Before the beta, we spent weeks on security and reliability fixes. Here is what the dated changelog shows.",
+  "lede": "AdoptDontShop is built and has no users. Here is what we did instead of launching: weeks of fixes to security and reliability, all in a public changelog.",
+  "series": "studio",
+  "chip": "ADOPTDONTSHOP",
+  "covers": "21 Aug to 21 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/adopt-dont-shop",
+    "label": "ideaSquared/adopt-dont-shop"
+  },
+  "summary": "No rescue has used AdoptDontShop yet. Before the closed beta we fixed missing permission checks, hashed invitation tokens, tightened uploads and added a production smoke test."
+}

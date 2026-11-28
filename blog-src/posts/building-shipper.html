@@ -1,0 +1,59 @@
+<h2>Why it exists</h2>
+<p>The idea comes from Monzo&rsquo;s Shipper: one way to deploy, with the safety rules built into the tool rather than written down. A studio that runs on evenings can&rsquo;t rely on someone remembering a checklist. The tool has to remember it.</p>
+<p>shipper has three parts:</p>
+<ul>
+<li>a <code>ship.yaml</code> in each product repo, saying what it deploys and how to check it;</li>
+<li>one shared GitHub Actions workflow that gates, deploys to Cloudflare Workers, runs a health check, rolls back on failure and posts a report to Discord;</li>
+<li>the <code>ship</code> command-line tool, for people.</li>
+</ul>
+
+<h2>Day one: the manifest, the workflow and the CLI</h2>
+<p>The first day, 13 November, produced the manifest, the reusable workflow, the Discord report through the ideaSquared bot and the first version of <code>ship</code>. This site&rsquo;s own <code>ship.yaml</code> shows the shape, trimmed:</p>
+<pre tabindex="0"><code>product: ideasquared-website
+discord: ideasquared
+checks: [Verify, Lighthouse]
+environments:
+  staging:
+    wranglerEnv: staging
+  production:
+    requires: [staging]
+components:
+  site:
+    type: cloudflare-worker
+    health:
+      production:
+        url: https://ideasquared.co.uk/
+        expect: A little spark</code></pre>
+<p>Most of the rest of that day was fixes, and most of those fixes were safety rules we hadn&rsquo;t thought of until a first real product moved over:</p>
+<ul>
+<li>roll back when the health URL is unknown, and time out a health check that hangs;</li>
+<li>never deploy a commit older than what is live;</li>
+<li>never let a failed GitHub comparison stop a deploy;</li>
+<li>make people type the product name before a production deploy or rollback.</li>
+</ul>
+<p>By the end of the day shipper recorded a GitHub Deployment for each commit it shipped, could deploy a given commit, and had <code>ship rollback</code>.</p>
+
+<h2>Week two: the commands you need on a bad day</h2>
+<p>On 20 November we added the commands for when something is wrong, not only for when things go well:</p>
+<ul>
+<li><code>ship doctor</code> checks a product&rsquo;s deploy setup, so a mistake shows up as a failed check instead of a failed deploy;</li>
+<li><code>ship freeze</code> blocks deploys with a reason everyone sees, and <code>ship unfreeze</code> lifts it;</li>
+<li><code>ship logs</code> streams a deployed environment&rsquo;s live logs;</li>
+<li>smoke checks run after the health check, and <code>ship diff</code> lists database migrations waiting to ship.</li>
+</ul>
+<p>Review of that work found three things worth saying out loud. <code>ship doctor</code>&rsquo;s error messages could include secrets, so we took them out. A broken freeze setting could block a rollback, which is the one deploy you must never block; now a rollback warns and carries on. And two freeze changes made at once could lose one. We narrowed that race, but GitHub&rsquo;s variables can&rsquo;t close it fully, so it is still there, smaller.</p>
+
+<h2>Saying what to do next</h2>
+<p>On 21 November we went through every message shipper prints when it refuses to deploy. A blocked deploy now says why it was blocked and what to do next. It no longer claims a commit is fine or broken when a check is still running or was cancelled. And <code>ship status</code> warns before you deploy if a check on the latest commit would block it.</p>
+<p>The same day, releases of shipper itself changed: the <code>v1</code> tag that every product uses now moves only through an approved release run, and products can pin the workflow to an exact commit.</p>
+
+<h2>Making it a proper project</h2>
+<p>On 22 November shipper went through the same engineering standards as every other ideaSquared repo: Node 24, <code>ship --version</code>, Prettier, ESLint, Conventional Commits, a changelog and tagged releases. CI now installs the packed CLI and runs it, so a broken install is caught before anyone else meets it. The last feature that day was a small one we use constantly: a deploy now queues until its checks pass, instead of failing because CI was still running.</p>
+<p>By 24 November shipper had 98 commits.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>A safety check must never block the fix.</strong> The freeze bug and the GitHub comparison bug were the same mistake: a check meant to protect production could stop us repairing it.</li>
+<li><strong>The refusal message is part of the feature.</strong> A deploy that says &ldquo;blocked&rdquo; and nothing else moves the work to whoever reads it.</li>
+<li><strong>Test the thing people install.</strong> Running the packed CLI in CI catches problems that unit tests can&rsquo;t.</li>
+</ul>

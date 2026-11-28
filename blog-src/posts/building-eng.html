@@ -1,0 +1,26 @@
+<h2>Why it exists</h2>
+<p>With shipper and Agent Idea in place, a working setup meant Node, pnpm, git, the GitHub CLI, two more CLIs, a GitHub sign-in and every repo, each with its own dependencies. Written down, that is a long page nobody follows twice the same way. So we made it one command:</p>
+<pre tabindex="0"><code>curl -fsSL https://raw.githubusercontent.com/ideaSquared/eng/main/install.sh | bash</code></pre>
+<p>Windows gets the same thing through PowerShell. The installer only installs what is missing and never overwrites your own setup, so it is safe to run again. Then <code>eng setup</code> signs you in to GitHub, installs <code>ship</code> and <code>idea</code>, clones every repo you can see and installs their dependencies. <code>eng update</code> keeps it all current, and only ever pulls a clean checkout of the default branch, so it never touches work in progress.</p>
+
+<h2>The eng app</h2>
+<p>On 14 November, the same day as the installers, <code>eng</code> on its own became a themed menu over everything: what is live in every product, deploys, sanitised logs, failed runs, and setup and doctor. Each choice runs the real command, then brings you back to the menu. <code>eng theme</code> adds a matching terminal colour scheme and prompt, including for <code>cmd.exe</code> through Clink.</p>
+<p>The fiddly part was handing the terminal over. The menu owns the keyboard. When it runs <code>ship</code> or <code>idea</code>, those need the keyboard instead, and then the menu needs it back. Three fixes on 15 November dealt with typed text not showing, a key press going to the wrong program, and &ldquo;Press any key&rdquo; not waiting.</p>
+
+<h2>Staging or production, fixed for the session</h2>
+<p>Also on 15 November: every eng session now starts in staging. To work in production you start the session that way, see a full-width red warning and type <code>production</code>. There is no switching mid-session, so a stray command can&rsquo;t hit the wrong environment. <code>ship</code> still asks for the product name on a production deploy; eng never skips that.</p>
+
+<h2>Changing our minds in public</h2>
+<p><code>eng ops</code> runs each product&rsquo;s admin commands from one place. For AdoptDontShop, the first version on 15 November reached the server through an SSH tunnel, and <code>eng setup</code> created an SSH key for each engineer and added it to GitHub. Later that day we switched to plain HTTPS and removed the key step. Fewer moving parts, and nothing to set up per person.</p>
+<p>On 21 November, review found that <code>eng ops</code> sent each product a GitHub token with more access than it needed. It now accepts only a token limited to reading team membership, and <code>eng doctor</code> and <code>eng setup</code> walk you through making one.</p>
+
+<h2>Standards and the long tail</h2>
+<p>On 22 November eng became home to the engineering standards every ideaSquared repo follows, by type of repo, including the frontend rules for accessibility. The same day eng itself met them: Node 24, linting, Conventional Commits, tagged releases, and CI that installs the packed CLI and runs it.</p>
+<p>The rest was the long tail of real machines. <code>eng doctor</code> now finds stale copies of a CLI earlier on your PATH, which made an update look like it had failed. And on 23 November eng learned to set up a Python repo, with its own virtual environment, and to repair one that is half made.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Safe to re-run is the whole feature.</strong> An installer you are scared to run again is one you won&rsquo;t run when it matters.</li>
+<li><strong>Make the dangerous choice once, at the start.</strong> Fixing the environment for a session is simpler than checking it on every command.</li>
+<li><strong>Undo early.</strong> The SSH tunnel lasted a few hours. Dropping it the same day was cheaper than living with it.</li>
+</ul>

@@ -1,0 +1,17 @@
+{
+  "title": "One command to set up a machine: building eng.",
+  "description": "How eng sets up an ideaSquared developer machine with one command, and what we learned building it.",
+  "series": "tools",
+  "chip": "ENG",
+  "covers": "14 to 24 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/eng",
+    "label": "ideaSquared/eng"
+  },
+  "summary": "An installer that is safe to run again, a themed terminal app, and an SSH tunnel that lasted a few hours.",
+  "lede": "eng takes a new laptop to a working ideaSquared setup with one command, then keeps it up to date. It also grew a themed terminal app, and a few lessons about handing a terminal back and forth.",
+  "tool": {
+    "href": "/tools/#eng",
+    "title": "eng on the tools page"
+  }
+}

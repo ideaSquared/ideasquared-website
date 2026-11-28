@@ -1,0 +1,13 @@
+{
+  "title": "Pinning the deploy tool every product depends on.",
+  "description": "shipper runs with production credentials in every product. How we stopped its v1 tag moving on its own and pinned callers to exact commits.",
+  "lede": "Every ideaSquared product deploys through shipper, and shipper runs with the Cloudflare token in reach. So who can change shipper, and how fast that change reaches production, is a design question. We changed our answer between 14 and 22 November.",
+  "series": "engineering",
+  "chip": "SHIPPER",
+  "covers": "14 to 22 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/shipper",
+    "label": "ideaSquared/shipper"
+  },
+  "summary": "v1 used to move after every green merge. Now it moves only through an approved release, and products pin shipper to an exact commit. This is how we got there."
+}

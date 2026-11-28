@@ -1,0 +1,13 @@
+{
+  "title": "Accessibility before a single rescue logged in.",
+  "description": "The accessibility work on AdoptDontShop before its beta: checks on every change, button contrast, screen-reader names, focus outlines and reduced motion.",
+  "lede": "No rescue has used AdoptDontShop yet. We still spent September to November on accessibility. This is what we did, in order. It is work done, not a claim of compliance.",
+  "series": "studio",
+  "chip": "ADOPTDONTSHOP",
+  "covers": "9 Sep to 26 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/adopt-dont-shop",
+    "label": "ideaSquared/adopt-dont-shop"
+  },
+  "summary": "From automated checks on every change to button contrast, screen-reader names, focus outlines and reduced motion: the accessibility work on AdoptDontShop before its beta."
+}

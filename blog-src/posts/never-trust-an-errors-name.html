@@ -1,0 +1,48 @@
+<h2>What the package is</h2>
+<p><code>@ideasquared/ops</code> lives in the Agent Idea repo, under <code>packages/ops</code>. It is a shared contract for a product&rsquo;s admin commands: a catalogue of commands, a way to preview a write, and a way to run it. The server half is a small handler that uses only Web <code>Request</code> and <code>Response</code>. The client half is what <code>eng</code> uses. For the client side, and how <code>eng ops</code> got its shape, see <a href="/blog/building-eng/">building eng</a>.</p>
+<p>Admin commands run with real power, and their errors can hold real data. So most of what we did on 15 November was about what happens when a handler fails.</p>
+
+<h2>Log the type, not the message</h2>
+<p>A handler&rsquo;s error message and stack can carry personal data, arguments or tokens. <code>@ideasquared/log</code> copies both. So in <code>5a859e6</code> the failure line stopped receiving the real error. It gets a stand-in with a fixed message and only the original&rsquo;s type as its name:</p>
+<pre tabindex="0"><code>function sanitisedCause(cause: unknown): Error {
+  const name = cause instanceof Error &amp;&amp; /^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(cause.name) ? cause.name : 'UnknownError';
+  const safe = new Error('handler threw');
+  safe.name = name;
+  return safe;
+}</code></pre>
+<p>That looks safe, and it was wrong. <code>Error.name</code> is a writable string. Code can set it to anything that matches a pattern, and a name made of letters, digits and underscores can hold an identifier or a token as easily as a type.</p>
+
+<h2>A fixed list</h2>
+<p>The fix (<code>f75c73d</code>) replaced the pattern with a list. Only a known type is kept. Everything else is logged as <code>UnknownError</code>:</p>
+<pre tabindex="0"><code>const KNOWN_ERROR_NAMES: ReadonlySet&lt;string&gt; = new Set([
+  'Error', 'TypeError', 'RangeError', 'ReferenceError', 'SyntaxError',
+  'URIError', 'EvalError', 'AggregateError', 'AbortError', 'TimeoutError',
+  'ZodError', 'OpsError',
+]);</code></pre>
+<p>The tests set the name to a made-up person, a made-up token and a made-up account id, then check the serialised log:</p>
+<pre tabindex="0"><code>it.each(['alex', 'ghp_SYNTHETIC_TOKEN_123', 'acct_private_42'])(
+  'replaces a made-up name (%s) with UnknownError', ...)</code></pre>
+<p>Two more tests keep it honest. A real <code>TypeError</code> keeps its name, even when its message is an email address that must not appear. And a thrown value that is not an error at all, such as a string, becomes <code>UnknownError</code>.</p>
+
+<h2>A logger must never change the response</h2>
+<p>The same commit (<code>5a859e6</code>) dealt with a different failure. If the logger throws, because its sink is down, the naive handler throws too. For a read that is only an annoyance. For a write that already ran, it returns a 500, the caller retries, and the write happens twice.</p>
+<p>The log call is now wrapped. If it throws, the handler carries on and answers as if nothing happened:</p>
+<pre tabindex="0"><code>try {
+  if (!failure) logger.info('ops command ran', fields);
+  else if (failure.code === 'internal') logger.error('ops command failed', fields, sanitisedCause(cause));
+  else logger.warn('ops command rejected', fields);
+} catch {
+  // Nothing to do: the response below is what matters.
+}</code></pre>
+<p>Two tests use a logger whose every method throws. A write that ran is still reported as ran, with a 200. A failing command still answers the contract&rsquo;s generic 500.</p>
+
+<h2>Choosing who may call</h2>
+<p>Version 0.2.0 (<code>9857e21</code>, merged in <code>528a254</code>) made the access check pluggable. You give <code>createOpsHandler</code> exactly one of two things: <code>repo</code>, for the built-in write-access check, or <code>authorize</code>, your own check. Neither, or both, is an error at startup. A ready-made <code>checkTeamMembership</code> covers the common case of a GitHub team.</p>
+<p>A custom check is new code that can throw, so <code>2b72d87</code> added a rule. An <code>OpsError</code> thrown by <code>authorize</code> used to keep its code and message on the way out. Now anything the authoriser throws becomes the generic 500, and only the error&rsquo;s type is logged. The test throws an <code>OpsError</code> whose message holds an email and a token, and checks that neither the response nor the log contains them.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>A string you did not choose is not safe.</strong> An error&rsquo;s name can be set by any code. Check it against a list you wrote.</li>
+<li><strong>Logging is a side effect, so contain it.</strong> A failed log write must not change what the caller is told, least of all after a write has happened.</li>
+<li><strong>Extension points need the same rules as the core.</strong> A custom authoriser got the same treatment as a handler: generic message out, type only in the log.</li>
+</ul>

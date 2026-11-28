@@ -15,7 +15,7 @@ export default [
     },
   },
   {
-    files: ['test/**/*.mjs', '*.config.mjs'],
+    files: ['test/**/*.mjs', '*.config.mjs', 'blog-src/**/*.mjs'],
     languageOptions: { sourceType: 'module', globals: { ...globals.node } },
   },
 ];

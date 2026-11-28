@@ -1,0 +1,42 @@
+<h2>A deploy that is both done and failed</h2>
+<p>On 20 November we added smoke checks to shipper. A health check proves one component answers. A smoke check requests real pages after every component has deployed and passed its health check. The commit gives the reason: one health URL per component stayed green while real pages were broken. Its examples are a CSP blocking the API and a Worker answering on the wrong hostnames.</p>
+<p>A failed smoke check fails the deploy job. It does not roll back. The commit explains why: a smoke failure can come from a dependency, so rolling back might fix nothing. The message suggests <code>ship rollback</code> and leaves the decision to a person.</p>
+<p>That choice has a consequence. The new release is already serving traffic, and the job is red. Those two facts did not fit the two states we had.</p>
+
+<h2>The states we had</h2>
+<p>shipper records each deploy as a GitHub Deployment, with a status. Until that day it wrote <code>success</code> or <code>failure</code>. Everything that came later read those two words:</p>
+<ul>
+<li>the gate for the next environment asks whether a commit has a <code>success</code> in each environment it <code>requires</code>;</li>
+<li>the stale check asks what is live and compares the new commit against it;</li>
+<li><code>ship rollback</code> asks what is live and picks the newest earlier release that was live.</li>
+</ul>
+<p>A smoke-failed release was written as <code>failure</code>. So the record said it was not live. It was.</p>
+
+<h2>First fix: 20 November</h2>
+<p>Commit <code>86d24c3</code> says it plainly: a smoke-failed release is live but was recorded as failure, so <code>ship rollback</code> skipped the last healthy release. The fix added a third state. A smoke failure is now written as <code>error</code>, and the type says what each word means:</p>
+<pre tabindex="0"><code>// `error`: deployed and live, but its smoke checks failed.
+// `failure`: not live.
+state: 'in_progress' | 'success' | 'failure' | 'error'</code></pre>
+<p><code>error</code> still keeps the release out of <code>requires</code>, because it is not <code>success</code>. And rollback now treats a newest deployment in the <code>error</code> state as the one running. The test builds exactly that case: a newer release went live, failed smoke, and rollback goes to the last healthy commit instead of saying that commit is already live.</p>
+<p>The same commit tightened smoke output. A missing <code>expect</code> text is reported without echoing the text, and smoke URLs must parse as https URLs.</p>
+
+<h2>Second fix: 23 November</h2>
+<p>The first fix was narrow. It looked at the newest deployment only. If a newer deploy then <em>failed</em>, the smoke-failed release was hidden behind it, and rollback could pick the wrong release again.</p>
+<p>Commit <code>83b8b47</code> gave the idea a name and one place to live. <code>lastLiveDeployment</code> returns the newest deployment that either reached <code>success</code> or whose latest status is <code>error</code>. A newer <code>failure</code>, or a deploy still running, no longer hides it. Statuses come newest first, so the code reads the first one.</p>
+<p>Then every place that used &ldquo;last successful&rdquo; to mean &ldquo;what is running&rdquo; was switched over:</p>
+<ul>
+<li>the stale check, so an older commit is refused over a smoke-failed release too;</li>
+<li>the previous commit shown in the deploy preview and the Discord commit list;</li>
+<li><code>ship diff</code>, the CLI deploy gate and <code>ship rollback</code>.</li>
+</ul>
+<p>Two things stayed on <code>success</code> only: <code>requires</code> and <code>deployedTo</code>. That is deliberate. An environment that requires staging will not take a commit that failed smoke there, even though staging is serving it.</p>
+
+<h2>What we do not know</h2>
+<p>We found this by reading the code against the states. Nothing in the commits says a rollback went wrong in a real incident, and we do not claim one did.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Define the states before you automate on them.</strong> We built the gate, the stale check and rollback on <code>success</code> and <code>failure</code> before we had decided what to call a release that is live and failing a check.</li>
+<li><strong>&ldquo;Live&rdquo; and &ldquo;healthy&rdquo; are different questions.</strong> Each caller should ask the one it means. After the second fix, one function answers &ldquo;what is running&rdquo; and the rest ask it.</li>
+<li><strong>Fix the concept, not the caller.</strong> The first fix patched rollback. The second named the idea, and the other callers followed.</li>
+</ul>

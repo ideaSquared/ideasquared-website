@@ -1,0 +1,10 @@
+{
+  "title": "One afternoon of supply-chain hardening.",
+  "description": "On 22 November we pinned actions to SHAs and added Dependabot cooldowns, pnpm trust settings, security policies and dist checks across four repos.",
+  "lede": "On 22 November, between about 12:30 and 13:40 UTC, the same set of controls went into four repos. This is what they are, what each one stops, and where a repo still lacks one.",
+  "series": "engineering",
+  "chip": "SECURITY",
+  "covers": "22 Nov 2026",
+  "repo": null,
+  "summary": "Pinned actions, Dependabot cooldowns, pnpm release-age and trust settings, SECURITY.md and dist checks, added across four repos on 22 November. With the gaps we still have."
+}
