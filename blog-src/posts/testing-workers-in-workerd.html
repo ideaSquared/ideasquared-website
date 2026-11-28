@@ -1,0 +1,67 @@
+<h2>Why move</h2>
+<p>Agent Idea&rsquo;s Worker caches access answers in a KV namespace called <code>ACCESS_CACHE</code>. Until 22 November, its tests ran on Node and used a small fake of KV that we had written ourselves. A fake can only agree with what its author understood. The real binding, running in the real runtime, can disagree.</p>
+<p>The change (<code>90574d1</code>, PR 28) did two things. The Worker tests now run inside workerd, with the bindings from <code>wrangler.jsonc</code> backed by local Miniflare storage. And the repo now has two Vitest projects, because not everything in it is a Worker.</p>
+
+<h2>Two projects, one config</h2>
+<p>The Worker code is in <code>src/</code>. The <code>idea</code> CLI, the MCP server and the packages under <code>packages/</code> are Node programs. They should be tested on Node. So <code>vitest.config.ts</code> declares a project for each. This is the real file, trimmed:</p>
+<pre tabindex="0"><code>import { cloudflareTest } from '@cloudflare/vitest-plugin';
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    projects: [
+      {
+        plugins: [cloudflareTest({ wrangler: { configPath: './wrangler.jsonc' } })],
+        test: {
+          name: 'worker',
+          setupFiles: ['./test/setup-worker.ts'],
+          include: ['test/access.test.ts', 'test/sanitise.test.ts', 'test/worker.test.ts', /* ... */],
+        },
+      },
+      {
+        test: {
+          name: 'node',
+          include: ['test/cli.test.ts', 'test/cli-process.test.ts', 'test/mcp.test.ts', 'packages/*/test/**/*.test.ts'],
+        },
+      },
+    ],
+  },
+});</code></pre>
+<p>The worker project lists seven files: access, sanitise, the three log sources (Workers Logs, Loki, GlitchTip), GitHub Actions, and the Worker entry point. The node project lists the CLI, the MCP server and everything under <code>packages/</code>. Each project lists its files by name, so a new file runs nowhere until you add it.</p>
+
+<h2>A real binding, emptied each time</h2>
+<p>The plugin gives tests the bindings declared in <code>wrangler.jsonc</code>. Ours is one line: <code>"kv_namespaces": [{ "binding": "ACCESS_CACHE" }]</code>. Tests import it from <code>cloudflare:workers</code>. A tiny helper in <code>test/kv.ts</code> wraps that, and the tests no longer use the old <code>fakeKv</code>:</p>
+<pre tabindex="0"><code>import { env } from 'cloudflare:workers';
+
+export const accessCache = (): KVNamespace =&gt; env.ACCESS_CACHE;
+
+export async function cachedKeys(kv: KVNamespace): Promise&lt;string[]&gt; {
+  return (await kv.list()).keys.map((key) =&gt; key.name);
+}</code></pre>
+<p>Storage that lasts between tests is how tests start to depend on each other. So <code>test/setup-worker.ts</code> runs before every test in the worker project and deletes every key:</p>
+<pre tabindex="0"><code>beforeEach(async () =&gt; {
+  const { keys } = await env.ACCESS_CACHE.list();
+  await Promise.all(keys.map((key) =&gt; env.ACCESS_CACHE.delete(key.name)));
+});</code></pre>
+<p>The tests changed in small ways. Where one used to read <code>cache.store.size</code> on the fake, it now awaits <code>cachedKeys(cache)</code> and checks the length. Where one seeded the fake with an old entry, it now calls <code>cache.put(...)</code>. The test for &ldquo;never stores the token&rdquo; now reads every real key and value back and searches the lot.</p>
+
+<h2>The numbers</h2>
+<p>The commit body gives the counts: all 371 tests pass, 185 in workerd and 186 on Node, with no change to the Worker or the CLI. Two other files changed to support it: <code>tsconfig.json</code> gained the plugin&rsquo;s types, and <code>package.json</code> gained <code>@cloudflare/vitest-plugin</code> as a dev dependency.</p>
+
+<h2>The rule for new tests</h2>
+<p>We wrote it into <code>CLAUDE.md</code>, where both people and Claude Code read it:</p>
+<ul>
+<li><code>pnpm test</code> runs both projects.</li>
+<li>Worker code under <code>src/</code> is tested inside workerd, with the real local <code>ACCESS_CACHE</code> binding.</li>
+<li>The CLI, the MCP server and <code>packages/</code> stay on Node.</li>
+<li>Put a new test file in the project that matches the code it imports.</li>
+</ul>
+<p>The commit also records which standards rule it satisfies, CF-15, and notes that CF-16 needed no change because the repo never used the older <code>@cloudflare/vitest-pool-workers</code>. The standards themselves are in <a href="/blog/one-rulebook-every-repo/">one rulebook for every repo</a>.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Test in the runtime you ship to.</strong> A fake KV can only be as right as its author. The real local binding costs one config line.</li>
+<li><strong>Split projects by runtime, not by folder.</strong> Node programs stay on Node. Only the Worker needs workerd.</li>
+<li><strong>Reset shared storage before every test.</strong> One setup file keeps a real store from becoming hidden state.</li>
+<li><strong>Write the where-do-tests-go rule down.</strong> With named include lists, a file that is not listed does not run.</li>
+</ul>

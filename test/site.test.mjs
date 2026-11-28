@@ -9,7 +9,7 @@ const read = (file) => readFileSync(join(root, file), 'utf8');
 
 const walk = (dir) =>
   readdirSync(join(root, dir), { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name.startsWith('.') || entry.name === 'node_modules' || entry.name === 'test')
+    if (entry.name.startsWith('.') || ['node_modules', 'test', 'blog-src'].includes(entry.name))
       return [];
     const path = join(dir, entry.name);
     return entry.isDirectory() ? walk(path) : [path];
@@ -301,5 +301,80 @@ describe('Lighthouse gate (SITE-07)', () => {
 
   it('fails the build below 0.95 accessibility', () => {
     assert.deepEqual(assertions['categories:accessibility'], ['error', { minScore: 0.95 }]);
+  });
+});
+
+describe('navigation', () => {
+  const navLinks = (page) =>
+    [
+      ...(read(page).match(/<nav class="nav-links"[\s\S]*?<\/nav>/)?.[0] ?? '').matchAll(
+        /href="([^"]+)"/g,
+      ),
+    ].map((m) => m[1]);
+  const expected = ['/ventures/', '/how-we-work/', '/tools/', '/journal/', '/blog/', '/about/'];
+
+  it('gives every page the same primary nav, and every link is a page', () => {
+    pages.forEach((page) => assert.deepEqual(navLinks(page), expected, page));
+    expected.forEach((href) =>
+      assert.ok(existsSync(join(root, href, 'index.html')), `${href} has no page`),
+    );
+  });
+
+  it('links every blog post from the blog index', () => {
+    const index = read('blog/index.html');
+    pages
+      .filter((page) => /^blog\/[^/]+\/index\.html$/.test(page))
+      .forEach((page) =>
+        assert.ok(index.includes(`href="/${page.replace(/index\.html$/, '')}"`), page),
+      );
+  });
+});
+
+describe('scheduled blog (blog-src)', async () => {
+  const { build, loadSchedule } = await import('../blog-src/build.mjs');
+  const { posts } = loadSchedule();
+  const live = readdirSync(join(root, 'blog'), { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
+  const today = new Date().toISOString().slice(0, 10);
+
+  it('publishes no post before its date', () => {
+    live.forEach((slug) => {
+      const post = posts.find((p) => p.slug === slug);
+      assert.ok(post, `blog/${slug}/ is not in blog-src/schedule.json`);
+      assert.ok(post.date <= today, `blog/${slug}/ is dated ${post.date}, after today`);
+    });
+  });
+
+  it('matches a fresh build for the newest live date (run pnpm blog:build after editing blog-src)', () => {
+    const newest = posts
+      .filter((p) => live.includes(p.slug))
+      .map((p) => p.date)
+      .sort()
+      .at(-1);
+    const { files, remove } = build(newest);
+    assert.deepEqual(remove, []);
+    assert.deepEqual(
+      [...files.keys()].filter(
+        (path) => !path.startsWith('blog/index') && !path.endsWith('index.html'),
+      ),
+      [],
+    );
+    files.forEach((text, path) => assert.equal(read(path), text, `${path} is out of date`));
+    assert.deepEqual(
+      posts
+        .filter((p) => p.date <= newest)
+        .map((p) => p.slug)
+        .sort(),
+      [...live].sort(),
+      'a post due by the newest live date is missing',
+    );
+  });
+
+  it('keeps blog-src off the live site', () => {
+    const ignored = read('.assetsignore')
+      .split('\n')
+      .map((line) => line.trim());
+    assert.ok(ignored.includes('blog-src'));
   });
 });

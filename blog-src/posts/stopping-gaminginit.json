@@ -1,0 +1,10 @@
+{
+  "title": "We stopped gaminginit: what we know and what we don’t.",
+  "description": "We stopped gaminginit in November 2026. Weekly players fell from 4,622 to 16 while we kept shipping, and we had no written stop line.",
+  "lede": "Our process says every stop gets a write-up. This is the one for gaminginit: what the player numbers show, and the part where we never wrote down what would make us stop.",
+  "series": "studio",
+  "chip": "GAMINGINIT",
+  "covers": "30 Sep to 24 Nov 2026",
+  "repo": null,
+  "summary": "Weekly players fell from 4,622 to 16 while the changelog kept growing. The lesson is about the stop line we never wrote down."
+}

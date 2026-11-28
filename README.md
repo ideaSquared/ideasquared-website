@@ -7,7 +7,8 @@ served at the custom domains `ideasquared.co.uk` and `www.ideasquared.co.uk`.
 
 ## Layout
 
-- `index.html`, `how-we-work/`, `about/`, `press/`, `privacy/`, `journal/`, `ventures/`: the pages. Each is a folder with an `index.html`.
+- `index.html`, `how-we-work/`, `tools/`, `about/`, `press/`, `privacy/`, `journal/`, `blog/`, `ventures/`: the pages. Each is a folder with an `index.html`. Each blog post is a folder under `blog/`, linked from `blog/index.html`.
+- The primary nav and footer are copied into every page by hand; `pnpm test` checks every page has the same nav.
 - `styles/` and `scripts/`: the shared stylesheet and scripts. `scripts/ventures-data.js` lists the ventures.
 - `assets/`: the logo mark and the self-hosted fonts (SIL Open Font License, licence texts alongside).
 - `styles/tokens.css`: generated from the ideaSquared Design System, which is the source of truth for colour, type, spacing, radii and shadows. Change a value there first, then here.
@@ -20,6 +21,24 @@ served at the custom domains `ideasquared.co.uk` and `www.ideasquared.co.uk`.
 The repo root is the published folder, so everything that is not part of the site (`package.json`, `README.md`,
 `test/`, ...) is listed in `.assetsignore` and is never uploaded. Add a new tooling file there too; CI fails if
 a known tooling file becomes reachable.
+
+## Blog
+
+Blog posts are written in `blog-src/` and published on a schedule. `blog/` holds only the posts whose date has
+arrived; everything else waits in `blog-src/`, which `.assetsignore` keeps off the live site.
+
+- `blog-src/posts/<slug>.json` holds a post's title, description, lede, series, chip, summary and optional repo
+  and tool links; `blog-src/posts/<slug>.html` holds its body (the part inside `<div class="prose">`).
+- `blog-src/schedule.json` lists the series and every post with its publish `date` (UTC) and an optional `watch`
+  note: what to re-check before that post goes live.
+- `pnpm blog:build` builds every post dated today or earlier into `blog/`, rebuilds `blog/index.html` and
+  `sitemap.xml`, and removes any post that is not due yet. `pnpm blog:build --today 2027-01-05` builds for
+  another day. The page shell is copied from `how-we-work/index.html`.
+- The build refuses a live post that links to a post which is not live yet. `pnpm test` fails if a post is
+  published before its date, or if `blog/` differs from a fresh build (run `pnpm blog:build` after editing
+  `blog-src/`).
+- Every post carries the byline "By Alex Jenkinson, with support from Claude". A scheduled task runs on each
+  publish date: it re-checks the post's `watch` note, builds, and opens a pull request.
 
 ## Develop
 

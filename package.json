@@ -13,7 +13,8 @@
     "format:check": "prettier --check .",
     "test": "node --test",
     "check:html": "git ls-files -z \"*.html\" | xargs -0 html-validate",
-    "check:deploy": "wrangler deploy --dry-run --env= && wrangler deploy --dry-run --env staging"
+    "check:deploy": "wrangler deploy --dry-run --env= && wrangler deploy --dry-run --env staging",
+    "blog:build": "node blog-src/build.mjs"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.4",

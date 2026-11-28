@@ -1,0 +1,13 @@
+{
+  "title": "Never trust an error's name.",
+  "description": "An error's name is writable, so it can carry anything into a log. How our shared ops package logs only a fixed list of error types, and fails safely.",
+  "lede": "We thought logging only an error&rsquo;s type was the safe choice. Then we remembered that the type is a string anyone can set.",
+  "series": "engineering",
+  "chip": "OPS",
+  "covers": "15 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/agent-idea",
+    "label": "ideaSquared/agent-idea"
+  },
+  "summary": "Lessons from @ideasquared/ops: a fixed list of error types for logs, a logger that can never change a response, and an authoriser whose errors never reach the caller."
+}

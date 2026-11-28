@@ -1,0 +1,13 @@
+{
+  "title": "Shipping a CLI with pnpm add -g github:.",
+  "description": "Two pnpm errors, ERR_PNPM_EXOTIC_SUBDEP and ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED, and the pnpm 11 stale shims, from installing eng and shipper from GitHub.",
+  "lede": "Our CLIs install straight from GitHub, with no npm publish. It works, but pnpm has rules about it. Here are the errors we hit, with their exact codes.",
+  "series": "engineering",
+  "chip": "ENG",
+  "covers": "15 to 22 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/eng",
+    "label": "ideaSquared/eng"
+  },
+  "summary": "ERR_PNPM_EXOTIC_SUBDEP, ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED and stale pnpm 10 shims: what broke when eng and shipper installed from GitHub, and what we changed."
+}

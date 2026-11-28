@@ -76,7 +76,7 @@ jobs:
         with:
           args: >-
             --offline --no-progress --root-dir ${{ github.workspace }}
-            --exclude-path node_modules --exclude-path .git
+            --exclude-path node_modules --exclude-path .git --exclude-path blog-src
             './**/*.html'
           fail: true
       # External links only warn: other sites go down and rate-limit CI runners.
@@ -86,7 +86,7 @@ jobs:
         with:
           args: >-
             --no-progress --scheme https --max-retries 2 --accept '200..=299,403,429'
-            --exclude-path node_modules --exclude-path .git
+            --exclude-path node_modules --exclude-path .git --exclude-path blog-src
             './**/*.html'
           fail: false
       # Builds the Worker as a deploy would, for production and staging, without deploying.

@@ -1,0 +1,13 @@
+{
+  "title": "Writing the go and stop numbers before the beta.",
+  "description": "The AdoptDontShop closed beta gate, written down on 8 November 2026: the numbers, why adoptions are a stretch goal, and the extend-once rule.",
+  "lede": "We wrote down what would count as go and what would count as stop for the AdoptDontShop closed beta, and published it first. The beta has not started, so there are no results here.",
+  "series": "studio",
+  "chip": "ADOPTDONTSHOP",
+  "covers": "8 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/adopt-dont-shop",
+    "label": "ideaSquared/adopt-dont-shop"
+  },
+  "summary": "The AdoptDontShop beta gate was written down on 8 November 2026. Here are the numbers, why we published them first, and why completed adoptions are only a stretch goal."
+}

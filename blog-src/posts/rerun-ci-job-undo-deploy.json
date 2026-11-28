@@ -1,0 +1,13 @@
+{
+  "title": "How a re-run CI job could undo a deploy.",
+  "description": "A re-run of an old CI run passed shipper's gate and could put older code back. How we blocked it, checked twice, and made sure the check never blocks a fix.",
+  "lede": "Pressing &ldquo;re-run&rdquo; on an old CI run is an ordinary thing to do. In shipper&rsquo;s first week it could have put older code back in production. We closed that on 13 November.",
+  "series": "engineering",
+  "chip": "SHIPPER",
+  "covers": "13 to 22 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/shipper",
+    "label": "ideaSquared/shipper"
+  },
+  "summary": "An old CI run, re-run, passed the gate because its commit was still on main. We compare it with what is live, check again inside the lock, and never let a failed compare stop a deploy."
+}

@@ -1,0 +1,34 @@
+<h2>One folder, six files</h2>
+<p>On 22 November we added <code>standards/</code> to <a href="https://github.com/ideaSquared/eng">eng</a>. It holds the engineering rules for every ideaSquared repo. One file, <code>common.md</code>, applies to all of them. Five more apply by repo type: <code>cloudflare-app.md</code>, <code>vps-app.md</code>, <code>cli-tool.md</code>, <code>static-site.md</code> and <code>frontend.md</code>.</p>
+<p>A table in the README says which repo is which type. A repo can have more than one. The marker for each type is a file you can look for: a <code>wrangler.jsonc</code> with a Worker script, a <code>docker-compose*.yml</code> plus a Dockerfile, a <code>bin</code> entry pointing at a committed <code>dist/</code>. If the table and a repo disagree, the markers win and the fix is a PR to the table.</p>
+
+<h2>What a rule looks like</h2>
+<p>Every rule has an ID, a level, one sentence and a <code>Check:</code> line. Counting the files on 28 November, there are 151 IDs: 41 in common, 25 for Cloudflare apps, 31 for VPS apps, 15 for CLIs, 18 for static sites and 21 for frontends. 115 are MUST, 32 are SHOULD and 4 are retired.</p>
+<p>Here is one in full:</p>
+<pre tabindex="0"><code>COMMON-03 &middot; MUST &middot; Every actions/setup-node step reads the
+version from the repo (node-version-file: .nvmrc),
+never a hard-coded node-version.
+Check: grep -rn 'node-version:' .github/workflows
+is empty, and every setup-node step has node-version-file.</code></pre>
+<p>The <code>Check:</code> line is the point. A rule that says &ldquo;keep dependencies tidy&rdquo; cannot be checked. A rule that names a file, a key and a value can be, by a script or by an agent.</p>
+<p>MUST and SHOULD mean different things. A repo that breaks a MUST has a gap, and the sweep opens a PR. A SHOULD is the default, and a repo can depart from it by writing the rule ID and one line of why in its <code>CLAUDE.md</code> under <code>## Standards exceptions</code>. A MUST cannot be excepted. You change it in eng, by PR. IDs are never reused: the four retired ones are the Netlify rules, kept with the reason, after we decided to move static sites to Workers static assets.</p>
+
+<h2>Decisions that are not up for debate</h2>
+<p>The top of <code>common.md</code> lists decisions the owner has made: Node.js 24 LTS, Dependabot not Renovate, pnpm workspaces, deploys through <a href="/blog/building-shipper/">shipper</a>, logging through <code>@ideasquared/log</code>, Conventional Commits, strict TypeScript. We recorded the later ones on 22 November, including that code-owner review is recommended, not required, while the org has one maintainer. Reopening one needs the owner&rsquo;s approval on the PR. The sweep never changes a rule.</p>
+
+<h2>The sweep</h2>
+<p>The README describes the Consistency sweep as a weekly scheduled task. For each repo it reads the rules that apply, runs each <code>Check:</code> against the default branch, and skips excepted SHOULD rules. It opens at most one PR per repo, titled <code>chore(standards): close &lt;n&gt; gaps</code>, with one commit per rule ID. Gaps that need a person, such as repo settings and secrets, go in the PR body. Then it updates the &ldquo;Current gaps&rdquo; tables.</p>
+<p>What we can show is narrower than the design. In the four repos we hold, only agent-idea has &ldquo;close N gaps&rdquo; commits. #22 closed 19 gaps on 22 November, about an hour and twenty minutes after the standards first landed. #32 closed 2 on 24 November. shipper and this website each have a single <code>chore(standards)</code> commit from 24 November, and the tables cite open PRs in creatrgrid, pairflix and adopt-dont-shop that we have not looked at here. The tables carry one sweep date, 24 November.</p>
+
+<h2>What the gap tables said</h2>
+<p>On 24 November the common table listed 13 MUST gaps, the CLI table 1, and the frontend table 24 (accessibility, design-system and UX rules). The Cloudflare, static-site and VPS tables listed none. Of the 13 common gaps, five had a PR open against them. Eight needed a person: no branch ruleset, no required status checks, or secret-scanning push protection off, on shipper, eng and adopt-dont-shop. A sweep that edits files cannot change those settings. It can only say so.</p>
+<p>The tables also admit what was not checked. COMMON-27 and COMMON-33 were not checked in any repo, because the sweep&rsquo;s API access was blocked.</p>
+<p>There is an open disagreement too. Two rules say shipper workflows are called by <code>@v1</code>, but agent-idea and this website pin an exact commit, with a CI check that the pins match. The tables say the rule needs a decision. We have not made it yet.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Write the check with the rule.</strong> If you cannot say how to test it, it is advice, not a standard.</li>
+<li><strong>Separate what an agent can fix from what a person must.</strong> Files go in a PR. Settings and secrets go on a list with a name beside them.</li>
+<li><strong>Say what was not checked.</strong> A gap table that only lists failures reads as a clean bill of health for everything else.</li>
+<li><strong>Let the rule lose to the repo when the repo is right.</strong> The pinning disagreement is a rule to change, not a repo to fix.</li>
+</ul>

@@ -1,0 +1,17 @@
+{
+  "title": "Logs you can hand to an AI: building Agent Idea.",
+  "description": "How we built a logger that refuses personal data and a service that sanitises logs, so people and Claude can read them safely.",
+  "series": "tools",
+  "chip": "AGENT IDEA",
+  "covers": "14 to 24 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/agent-idea",
+    "label": "ideaSquared/agent-idea"
+  },
+  "summary": "A logger that refuses personal data, and a service that cleans up whatever gets through, so Claude can read our logs safely.",
+  "lede": "We wanted to read every product&rsquo;s logs from one place, and to let Claude read them too, without any personal data leaving. That took two tools: a logger that refuses personal data, and a service that cleans up whatever gets through.",
+  "tool": {
+    "href": "/tools/#agent-idea",
+    "title": "Agent Idea on the tools page"
+  }
+}

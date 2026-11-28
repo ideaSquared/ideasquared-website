@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>One command to set up a machine: building eng &middot; ideaSquared</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How eng sets up an ideaSquared developer machine with one command, and what we learned building it.">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ideaSquared">
+<meta property="og:title" content="One command to set up a machine: building eng &middot; ideaSquared">
+<meta property="og:description" content="How eng sets up an ideaSquared developer machine with one command, and what we learned building it.">
+<meta property="og:url" content="https://ideasquared.co.uk/blog/building-eng/">
+<meta name="author" content="Alex Jenkinson, with support from Claude">
+<link rel="canonical" href="https://ideasquared.co.uk/blog/building-eng/">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/site.css">
+</head>
+<body class="i2 page-post">
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/" aria-label="ideaSquared home"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Primary">
+      <a href="/ventures/" data-nav="/ventures/">Ventures</a>
+      <a href="/how-we-work/" data-nav="/how-we-work/">How we work</a>
+      <a href="/tools/" data-nav="/tools/">Tools</a>
+      <a href="/journal/" data-nav="/journal/">Build log</a>
+      <a href="/blog/" data-nav="/blog/">Blog</a>
+      <a href="/about/" data-nav="/about/">About</a>
+    </nav>
+    <a href="mailto:hello@ideasquared.co.uk" class="btn btn-secondary btn-md">Get in touch</a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle menu" aria-controls="nav-links" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<article class="post" aria-labelledby="post-title">
+<header class="subpage-hero">
+  <div class="container">
+    <span class="eyebrow signal">Blog &middot; Studio tools</span>
+    <h1 id="post-title">One command to set up a machine: building eng.</h1>
+    <p>eng takes a new laptop to a working ideaSquared setup with one command, then keeps it up to date. It also grew a themed terminal app, and a few lessons about handing a terminal back and forth.</p>
+    <ul class="post-meta" aria-label="About this post">
+      <li>By Alex Jenkinson, with support from Claude</li>
+      <li><time datetime="2026-11-28">28 Nov 2026</time></li>
+      <li>3 min read</li>
+      <li>Covers 14 to 24 Nov 2026</li>
+      <li><a href="https://github.com/ideaSquared/eng">ideaSquared/eng</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="container post-body">
+<div class="prose">
+<h2>Why it exists</h2>
+<p>With shipper and Agent Idea in place, a working setup meant Node, pnpm, git, the GitHub CLI, two more CLIs, a GitHub sign-in and every repo, each with its own dependencies. Written down, that is a long page nobody follows twice the same way. So we made it one command:</p>
+<pre tabindex="0"><code>curl -fsSL https://raw.githubusercontent.com/ideaSquared/eng/main/install.sh | bash</code></pre>
+<p>Windows gets the same thing through PowerShell. The installer only installs what is missing and never overwrites your own setup, so it is safe to run again. Then <code>eng setup</code> signs you in to GitHub, installs <code>ship</code> and <code>idea</code>, clones every repo you can see and installs their dependencies. <code>eng update</code> keeps it all current, and only ever pulls a clean checkout of the default branch, so it never touches work in progress.</p>
+
+<h2>The eng app</h2>
+<p>On 14 November, the same day as the installers, <code>eng</code> on its own became a themed menu over everything: what is live in every product, deploys, sanitised logs, failed runs, and setup and doctor. Each choice runs the real command, then brings you back to the menu. <code>eng theme</code> adds a matching terminal colour scheme and prompt, including for <code>cmd.exe</code> through Clink.</p>
+<p>The fiddly part was handing the terminal over. The menu owns the keyboard. When it runs <code>ship</code> or <code>idea</code>, those need the keyboard instead, and then the menu needs it back. Three fixes on 15 November dealt with typed text not showing, a key press going to the wrong program, and &ldquo;Press any key&rdquo; not waiting.</p>
+
+<h2>Staging or production, fixed for the session</h2>
+<p>Also on 15 November: every eng session now starts in staging. To work in production you start the session that way, see a full-width red warning and type <code>production</code>. There is no switching mid-session, so a stray command can&rsquo;t hit the wrong environment. <code>ship</code> still asks for the product name on a production deploy; eng never skips that.</p>
+
+<h2>Changing our minds in public</h2>
+<p><code>eng ops</code> runs each product&rsquo;s admin commands from one place. For AdoptDontShop, the first version on 15 November reached the server through an SSH tunnel, and <code>eng setup</code> created an SSH key for each engineer and added it to GitHub. Later that day we switched to plain HTTPS and removed the key step. Fewer moving parts, and nothing to set up per person.</p>
+<p>On 21 November, review found that <code>eng ops</code> sent each product a GitHub token with more access than it needed. It now accepts only a token limited to reading team membership, and <code>eng doctor</code> and <code>eng setup</code> walk you through making one.</p>
+
+<h2>Standards and the long tail</h2>
+<p>On 22 November eng became home to the engineering standards every ideaSquared repo follows, by type of repo, including the frontend rules for accessibility. The same day eng itself met them: Node 24, linting, Conventional Commits, tagged releases, and CI that installs the packed CLI and runs it.</p>
+<p>The rest was the long tail of real machines. <code>eng doctor</code> now finds stale copies of a CLI earlier on your PATH, which made an update look like it had failed. And on 23 November eng learned to set up a Python repo, with its own virtual environment, and to repair one that is half made.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Safe to re-run is the whole feature.</strong> An installer you are scared to run again is one you won&rsquo;t run when it matters.</li>
+<li><strong>Make the dangerous choice once, at the start.</strong> Fixing the environment for a session is simpler than checking it on every command.</li>
+<li><strong>Undo early.</strong> The SSH tunnel lasted a few hours. Dropping it the same day was cheaper than living with it.</li>
+</ul>
+</div>
+
+<nav class="post-pager" aria-label="More posts">
+  <a class="pager-card is-next" href="/blog/building-agent-idea/"><span class="pager-label">Previous post</span><span class="pager-title">Logs you can hand to an AI: building Agent Idea.</span></a>
+  <a class="pager-card" href="/tools/#eng"><span class="pager-label">The tool</span><span class="pager-title">eng on the tools page</span></a>
+</nav>
+<p class="post-all"><a href="/blog/">All posts</a></p>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-lockup"><picture><source srcset="/assets/logo-mark-on-dark.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo-mark.svg" alt="" width="40" height="40"></picture><span class="brand-text">idea<em>Squared</em></span></span>
+      <p>A small UK venture studio. We build digital products in the open and test each one properly before we grow it.</p>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Studio</h2>
+      <ul>
+        <li><a href="/how-we-work/">How we work</a></li>
+        <li><a href="/tools/">Tools</a></li>
+        <li><a href="/journal/">Build log</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/press/">Press</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Ventures</h2>
+      <ul id="footer-ventures">
+        <li><a href="/ventures/adopt-dont-shop/">AdoptDontShop</a></li>
+        <li><a href="/ventures/creatrgrid/">CreatrGrid</a></li>
+        <li><a href="/ventures/pairflix/">Pairflix</a></li>
+        <li><a href="/ventures/gaminginit/">gaminginit (stopped)</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">Get in touch</h2>
+      <ul>
+        <li><a href="mailto:hello@ideasquared.co.uk">hello@ideasquared.co.uk</a></li>
+        <li><a href="https://github.com/ideaSquared">GitHub</a></li>
+        <li><a href="https://github.com/ideaSquared/ideasquared-website/issues">Report a site issue</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>ideaSquared is a trading name of Alex Jenkinson. &copy; 2026.</span>
+    <span>This site sets no cookies and runs no tracking. <a href="/privacy/">Privacy</a> <a href="https://github.com/ideaSquared/ideasquared-website">Source</a></span>
+  </div>
+</footer>
+
+<script src="/scripts/ventures-data.js" defer></script>
+<script src="/scripts/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "title": "What review found: three security fixes in one day.",
+  "description": "On 21 November review found three security problems across eng, agent-idea and shipper. Each was fixed with a test the same day. Here is what and how.",
+  "lede": "On 21 November review found a token sent too widely, log lines that slipped past the sanitiser, and a deploy tag that moved too easily. All three were fixed and tested that day.",
+  "series": "engineering",
+  "chip": "SECURITY",
+  "covers": "21 Nov 2026",
+  "repo": null,
+  "summary": "Three fixes from one day of review: an over-scoped token in eng ops, leaks past the agent-idea sanitiser, and shipper's v1 deploy tag. What changed and how it was tested."
+}

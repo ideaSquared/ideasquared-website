@@ -1,0 +1,10 @@
+{
+  "title": "What working with Claude Code looks like in our git history.",
+  "description": "Counts from git log across four ideaSquared repos: commits, Claude-Session trailers, authors, claude/* merges, a shared logging skill. And what git cannot show.",
+  "lede": "We use Claude Code every day. Instead of describing that, we counted what git can prove, in four repos, as of 28 November 2026. Then we list what git cannot tell you.",
+  "series": "engineering",
+  "chip": "CLAUDE CODE",
+  "covers": "",
+  "repo": null,
+  "summary": "518 commits across four repos, 356 non-merge commits with a Claude-Session trailer, 131 merged claude/* pull requests, and a list of what none of it proves."
+}

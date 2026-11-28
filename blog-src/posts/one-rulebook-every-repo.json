@@ -1,0 +1,13 @@
+{
+  "title": "One rulebook for every repo.",
+  "description": "How the eng repo holds one set of engineering rules for every ideaSquared repo: rule IDs, MUST and SHOULD, checks, and a sweep that opens PRs to close gaps.",
+  "lede": "Eight repos, one person, evenings only. We wrote the rules down once, made each one checkable, and let a weekly sweep find where a repo has drifted.",
+  "series": "engineering",
+  "chip": "STANDARDS",
+  "covers": "22 to 24 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/eng",
+    "label": "ideaSquared/eng"
+  },
+  "summary": "151 numbered rules in the eng repo, a repo-type table, and a sweep that opens a PR per repo. What the rules look like, and what the gap tables said on 24 November."
+}

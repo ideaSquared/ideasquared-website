@@ -1,0 +1,35 @@
+<h2>Why one afternoon</h2>
+<p>The new <a href="/blog/one-rulebook-every-repo/">engineering standards</a> landed in eng on 22 November. Several of their rules are about what we let into a build: other people&rsquo;s actions, other people&rsquo;s packages, other people&rsquo;s tags. The commit times that day, in UTC, run from 12:33 (eng) to 13:35 (agent-idea). One afternoon, four repos: agent-idea, shipper, eng and this website.</p>
+<p>These controls do not make us safe. Each one closes a specific door. Here is each door.</p>
+
+<h2>Actions pinned to commit SHAs</h2>
+<p>A tag like <code>actions/checkout@v5</code> can be moved by whoever controls that repo. A full 40-character commit SHA cannot. As of 28 November, the four repos have 54 <code>uses:</code> lines in their workflows, and all 54 are pinned to a SHA with a version comment: 12 in agent-idea, 20 in shipper, 4 in eng and 18 in this site. That counts lines, not different actions, and it includes shipper&rsquo;s own reusable workflows, which agent-idea and this site pin too.</p>
+<p>Pinning stops a moved tag changing what runs in our CI. It also stops updates arriving on their own, which is why the next control exists.</p>
+
+<h2>Dependabot with a cooldown</h2>
+<p>All four repos have Dependabot for npm and for GitHub Actions, weekly, with minor and patch updates grouped into one PR. Each sets a three-day <code>cooldown</code>, so Dependabot skips versions published in the last three days. That stops us taking a bad release in the hours before anyone notices it. (agent-idea&rsquo;s GitHub Actions entry came a day earlier, on 21 November.) Dependabot also bumps the pinned SHAs, so pinning does not mean going stale.</p>
+<p>One small inconsistency: a comment at the top of this site&rsquo;s <code>dependabot.yml</code> still says shipper is referenced by its moving <code>@v1</code> tag. The workflows now pin a SHA. The comment is wrong, not the pin.</p>
+
+<h2>pnpm supply-chain settings</h2>
+<p>shipper, eng and this site have a <code>pnpm-workspace.yaml</code> with <code>minimumReleaseAge: 1440</code> and <code>trustPolicy: no-downgrade</code>.</p>
+<ul>
+<li><code>minimumReleaseAge</code> makes pnpm refuse any version published less than 1,440 minutes (24 hours) ago, so a freshly published bad version is not installed.</li>
+<li><code>trustPolicy: no-downgrade</code> fails an install when a version has weaker publishing evidence than earlier ones, so a package that quietly lost its trusted publisher is not accepted.</li>
+<li><code>allowBuilds</code> lists the only packages allowed to run install scripts. eng and this site also set <code>strictDepBuilds</code> and <code>blockExoticSubdeps</code>, which fail on unreviewed build scripts and on transitive dependencies fetched from odd places.</li>
+</ul>
+<p>The honest part: agent-idea does not have these two settings. Its file lists the workspace packages and an <code>allowBuilds</code> for esbuild and workerd, and nothing else. In the standards this is COMMON-06, a SHOULD, so it is not in the MUST gap tables. It is still a gap.</p>
+<p>This site shows what the settings cost. Its file has a <code>trustPolicyExclude</code> entry for one exact version of <code>chromium-bidi</code>, which comes in through the Lighthouse CI tool. That version was published without the trusted-publisher evidence earlier versions had, and <code>no-downgrade</code> refused it. The comment says the tool is dev only, never deployed, and to revisit when Lighthouse moves on. We made an exception, wrote down why, and named the exact version.</p>
+
+<h2>SECURITY.md</h2>
+<p>All four repos have a <code>SECURITY.md</code> saying how to report a vulnerability privately and what to expect. shipper&rsquo;s promises an acknowledgement within three working days. A policy with no way to follow it is worse than none. The website&rsquo;s commit says GitHub&rsquo;s private reporting must be switched on in repo settings by the owner, and we cannot check that setting from the files.</p>
+
+<h2>dist/ checks and release tarballs</h2>
+<p>agent-idea, shipper and eng commit their <code>dist/</code> folders, because the CLIs install straight from GitHub with <code>pnpm add -g github:ideaSquared/&lt;repo&gt;</code>. CI rebuilds and fails if <code>git status</code> shows any difference, new files included. That stops a committed build that does not match its source. This site has no <code>dist/</code>, so has no such check.</p>
+<p>For <code>@ideasquared/log</code> we went a step further, but earlier: on 14 November, not 22. Products install it from a tarball on a GitHub Release, and their lockfile pins it with an integrity hash. The README says not to use a git URL or a <code>github:</code> spec. A tarball with a hash cannot change under you. A branch can.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Controls come in pairs.</strong> Pinning needs Dependabot, and Dependabot needs a cooldown. Any one alone either goes stale or moves too fast.</li>
+<li><strong>Write the exception next to the setting.</strong> The <code>chromium-bidi</code> comment says why, how narrow it is, and when to look again.</li>
+<li><strong>Audit your own list.</strong> Writing this post found a missing setting in agent-idea and a stale comment on this site.</li>
+</ul>

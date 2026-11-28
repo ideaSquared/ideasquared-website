@@ -1,0 +1,34 @@
+<h2>The gap in the gate</h2>
+<p>shipper&rsquo;s gate is a list of rules a commit must pass before it deploys. On 13 November, the first day, the rules were: the commit is on the default branch, every named check has passed on it, and it has already deployed to each environment it <code>requires</code>.</p>
+<p>Every rule was true of an old commit. An old commit is still on the default branch. Its checks still show as passed. It may well have deployed to staging weeks ago.</p>
+<p>So the commit message for <code>49af35f</code> describes two ways to go wrong. You re-run an old CI run. Or a run queues behind a newer deploy, and by the time it starts, the newer one has shipped. Either way the gate passes, and older code goes over newer code. None of the rules asked the question that mattered: is this commit older than what is live?</p>
+
+<h2>Ask GitHub how the two commits relate</h2>
+<p>The fix adds one fact to the gate: what is live in the target environment, and how the commit relates to it. We do not work that out ourselves. GitHub&rsquo;s compare endpoint returns a status for two commits: <code>ahead</code>, <code>behind</code>, <code>identical</code> or <code>diverged</code>. The gate blocks on two of them:</p>
+<ul>
+<li><code>behind</code>: &ldquo;abcdef1 is older than fedcba9, which is live on staging&rdquo;;</li>
+<li><code>diverged</code>: &ldquo;abcdef1 is not built on fedcba9, which is live on staging&rdquo;.</li>
+</ul>
+<p><code>ahead</code> and <code>identical</code> pass. The gate tests cover all four.</p>
+
+<h2>Check again inside the lock</h2>
+<p>The gate runs early. The deploy job runs later, and the deploy job runs one at a time per environment. A lot can change in between. So the deploy job repeats the check once it holds the environment&rsquo;s lock, against what is live at that moment. If it blocks, the job writes the reason to the job summary and posts a <em>blocked</em> report to Discord, rather than failing without a word.</p>
+<p>The third place is the command line. <code>ship deploy</code> runs the same check before it starts anything. We wanted all three to say the same thing in the same words, so the wording comes from one function, <code>staleFailure</code>.</p>
+
+<h2>A check that must never block the fix</h2>
+<p>Five minutes later, commit <code>63ef723</code> corrected our own work. The first version of the check in <code>ship deploy</code> called GitHub&rsquo;s compare and let any error escape. If GitHub returned a 502, you could not deploy. The workflow already warned and carried on. The command did not.</p>
+<p>Now the freshness check and the commit preview warn and carry on when GitHub cannot compare. The rule in the code comment is short: unknown history never blocks a deploy. The new test makes the compare fail with a 502 and expects the deploy to be dispatched, with the warnings printed.</p>
+<p>It is a trade. If GitHub is down at the wrong moment, the stale check does not run. We took that over the alternative, where a broken safety check stops you shipping the fix for an incident.</p>
+
+<h2>Rollbacks are allowed to go back</h2>
+<p>A rollback is meant to put an older commit live, so the stale check has to step aside for it. The <code>deploy.yml</code> input says how far: putting back a commit that <em>was live on that environment before</em>. A commit that was never live there is still refused as a rollback target. The stale check and the rollback rule are two halves of one question: which older commits may go live?</p>
+
+<h2>Queueing without weakening it</h2>
+<p>On 22 November, commit <code>262344b</code> made the gate wait when the only thing blocking a deploy is a check still running, or an environment this commit is being deployed to right now. It waits up to <code>wait-minutes</code> (default 30; <code>0</code> fails at once, as before). It fails as soon as a check fails. The commit message is explicit that every other failure still fails at once, and that the deploy job&rsquo;s stale-commit re-check is unchanged. Waiting makes a queued run more likely, and a queued run is exactly the case the re-check exists for.</p>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>List what could be true of a bad input.</strong> An old commit satisfies every rule that was about the commit alone. The missing rule was about the commit and the world: what is live now.</li>
+<li><strong>Check again where it counts.</strong> The place that runs one at a time is the place to make the final decision. Earlier checks are only advice.</li>
+<li><strong>A safety check that cannot run should say so and step aside.</strong> We broke this on day one and fixed it within minutes.</li>
+</ul>

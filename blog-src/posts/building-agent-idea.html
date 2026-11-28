@@ -1,0 +1,48 @@
+<h2>The problem</h2>
+<p>Logs are where personal data leaks. An email in an error message, a token in a URL, a full request body dumped while debugging. Once it is in the logs, it is copied to wherever the logs go. We wanted to point an AI assistant at our logs to help find bugs, so the bar was higher: nothing personal could reach it at all.</p>
+<p>So we built two layers. The logger stops personal data being written. Agent Idea cleans what is read. Either one alone would leave a gap.</p>
+
+<h2>Layer one: a logger that refuses personal data</h2>
+<p><code>@ideasquared/log</code> is modelled on Monzo&rsquo;s slog. Its rules are enforced by TypeScript and at run time, not by a style guide:</p>
+<ul>
+<li>the message must be a fixed string, so <code>log.info(`sent to ${email}`)</code> is a type error;</li>
+<li>every service declares the fields it may log, and anything else is dropped;</li>
+<li>declaring a field such as <code>email</code>, <code>phone</code>, <code>ip</code> or <code>token</code> throws when the logger is created;</li>
+<li>field values must be plain strings, numbers or booleans, so nobody dumps a whole object.</li>
+</ul>
+<pre tabindex="0"><code>const log = createLogger({
+  service: 'creatorgrid-api',
+  fields: ['accountId', 'platform', 'count', 'requestId'],
+});
+
+log.info('sync processed', { platform: 'youtube', count: 3 });</code></pre>
+<p>Every ideaSquared repo carries the same logging guide for Claude Code, and CI fails if server code calls <code>console</code> directly.</p>
+
+<h2>Layer two: Agent Idea</h2>
+<p>Agent Idea is a Cloudflare Worker with a command-line tool, <code>idea</code>. When you ask for a product&rsquo;s logs, it:</p>
+<ol>
+<li>asks GitHub, with your own token, whether you are in that product&rsquo;s team;</li>
+<li>fetches the logs from Cloudflare Workers Logs, GitHub Actions, Loki or GlitchTip;</li>
+<li>keeps only fields on an allowlist and drops the rest: bodies, headers, cookies, IP addresses;</li>
+<li>scrubs the message for tokens, API keys, emails, phone numbers, postcodes and card numbers;</li>
+<li>turns ids into anonymous tags, so you can follow one user through the logs without knowing who they are.</li>
+</ol>
+<p>The sanitiser fails closed: anything it doesn&rsquo;t recognise is dropped. Even search only looks at sanitised events, so a search can&rsquo;t reveal whether some hidden email is in the raw logs.</p>
+
+<h2>Built in a day, fixed for a week</h2>
+<p>The first version went in on 14 November: the access-gated API, the sanitiser, Workers Logs, the <code>idea</code> CLI, the logger package, GitHub Actions logs and Loki and GlitchTip for AdoptDontShop. The same day, review found three gaps in the sanitiser, and we closed them before anything else shipped.</p>
+<p>That set the pattern. Each gap found later became a fix and a new line in the sanitiser&rsquo;s test file. On 21 November, a focused review found more: Stripe keys, keys ending in <code>_KEY</code>, emails with non-English letters, emails written with decomposed accents, escaped quotes and whole <code>Authorization</code> values. All are now redacted, and all are tested.</p>
+<p>Access had its own lesson. GitHub answers &ldquo;403&rdquo; both when you are not in a team and when you have hit a rate limit. The first meant &ldquo;deny&rdquo;. The second must not, or a busy afternoon locks everyone out. We fixed both on 21 November.</p>
+
+<h2>Letting Claude read the logs</h2>
+<p><code>idea mcp</code> runs a small MCP server on your own machine, so Claude Code can read logs as tools, signed in as you. It talks only to the Agent Idea API, never to a log source. The team check and the sanitiser still run on the server, so Claude only ever sees what a person would see.</p>
+<pre tabindex="0"><code>idea logs creatrgrid --level error --since 24
+idea runs pairflix --failed
+idea errors ads --frames</code></pre>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>Two layers beat one clever one.</strong> The logger makes the sanitiser&rsquo;s job small. The sanitiser catches what the logger can&rsquo;t, such as text inside an error message.</li>
+<li><strong>Every leak becomes a test.</strong> The sanitiser&rsquo;s test file is a list of every kind of leak we have found so far.</li>
+<li><strong>&ldquo;Denied&rdquo; and &ldquo;try later&rdquo; are different answers.</strong> Treating them the same fails in one direction or the other.</li>
+</ul>

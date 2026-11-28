@@ -1,0 +1,13 @@
+{
+  "title": "Testing a Cloudflare Worker inside workerd.",
+  "description": "How we moved Agent Idea's Worker tests from Node to workerd, with two Vitest projects and a real local KV binding.",
+  "lede": "Our Worker was tested in Node, against a hand-made fake of its KV store. On 22 November we moved those tests into workerd, the runtime the Worker runs in.",
+  "series": "engineering",
+  "chip": "AGENT IDEA",
+  "covers": "22 Nov 2026",
+  "repo": {
+    "url": "https://github.com/ideaSquared/agent-idea",
+    "label": "ideaSquared/agent-idea"
+  },
+  "summary": "A practical guide to running Worker tests in workerd with @cloudflare/vitest-plugin, a real local KV binding, and a second Vitest project for the Node code."
+}

@@ -1,0 +1,39 @@
+<h2>The gate</h2>
+<p>Agent Idea shows a product&rsquo;s logs only to people who should see them. On 15 November (<code>7e6dd9d</code>, merged in <code>5ce56eb</code>) we changed what &ldquo;should&rdquo; means. Before, you needed write access to the product&rsquo;s repo. Now you need an active membership of the product&rsquo;s GitHub team in our organisation.</p>
+<p>The Worker does not keep a list of people. It asks GitHub, using the caller&rsquo;s own token. First <code>GET /user</code> to learn the login, then the team membership for that login. Only a membership with state <code>active</code> is allowed. A pending invitation is not.</p>
+<p>Two details from that commit. The cache of answers is keyed by team under a new prefix, <code>team-access:</code>, so old entries keyed by repo can never grant access. And the cache key uses a hash of the token, never the token.</p>
+
+<h2>When 403 means no</h2>
+<p>The first version handled 401 (bad token) and 404 (not a member). On 21 November (<code>6708f06</code>) we found a third case. A token that has not been authorised for SAML single sign-on, or a fine-grained token without the organisation&rsquo;s Members read permission, gets a 403 from GitHub. Our check threw on it. The caller got an uncaught 500 and we wrote no audit line.</p>
+<p>That is a denial, not a fault. The fix returned <code>denied</code>, so the caller gets a proper 403 that names the team they need to be in.</p>
+
+<h2>When 403 means wait</h2>
+<p>The same status also means a rate limit. If we cached that as &ldquo;denied&rdquo;, a busy afternoon would lock people out for the cache lifetime, five minutes. Our first fix, in the same commit, checked one header:</p>
+<pre tabindex="0"><code>if (response.status === 403 &amp;&amp; response.headers.get('x-ratelimit-remaining') !== '0') {
+  return { outcome: 'denied', login, ...expiry };
+}</code></pre>
+<p>That covers a spent quota. It does not cover GitHub&rsquo;s secondary rate limit, which can answer 403 with quota left. The commit message for <code>9b505a2</code> says it plainly: the secondary limit is signalled only by <code>retry-after</code> or by the error message. So the check became a function that looks at all three:</p>
+<pre tabindex="0"><code>async function rateLimited(response: Response): Promise&lt;boolean&gt; {
+  if (response.headers.get('x-ratelimit-remaining') === '0' || response.headers.has('retry-after')) return true;
+  return /rate limit/i.test(await response.text());
+}</code></pre>
+<p>A rate-limited answer now throws, and it is not cached. Each shape has a test, and so does the cache:</p>
+<pre tabindex="0"><code>['quota spent', { status: 403, headers: { 'x-ratelimit-remaining': '0' } }],
+['secondary limit with retry-after', { status: 403, headers: { 'retry-after': '60' } }],
+['secondary limit named only in the message', { status: 403, body: { message: 'You have exceeded a secondary rate limit.' } }],
+// ...and: it('does not cache a rate-limited 403')</code></pre>
+<p>Reading the message text is the weakest of the three signals, but the commit notes that a secondary limit may only say so there.</p>
+
+<h2>The token that is about to expire</h2>
+<p>The access check also saw something useful. GitHub sends the token&rsquo;s expiry date in a header on <code>/user</code>. On 21 November (<code>8d1ef66</code>) we passed it back to the CLI, and the CLI and the MCP server now print a warning on stderr when the token expires within 30 days. Tokens with no expiry never warn. The expiry is cached with the access answer.</p>
+<p>The first version rounded down to whole days before comparing with the 30-day window. A token with a few hours left showed as &ldquo;today&rdquo;, and one slightly over the limit could slip under it. The fix (<code>d1cc589</code>) compares the exact time left, and says &ldquo;in less than a day&rdquo; when it is within hours. The tests added a case for each side of the line:</p>
+<pre tabindex="0"><code>expect(warnings[0]).toContain('expires on 2027-11-01 (in less than a day)');
+// stays quiet at 2027-12-01T12:00:00Z, and at 2027-12-15, and with no expiry</code></pre>
+
+<h2>What we learned</h2>
+<ul class="lessons">
+<li><strong>One status code is not one meaning.</strong> Read the headers and the body before you decide. &ldquo;Denied&rdquo; and &ldquo;try later&rdquo; need opposite handling.</li>
+<li><strong>Never cache a temporary failure as a permanent answer.</strong> A cached rate limit turns a short problem into a lockout.</li>
+<li><strong>A denial should still leave a record.</strong> The uncaught 500 meant no audit line. Turning it into a real 403 fixed the log as well as the status.</li>
+<li><strong>Round last.</strong> Compare exact values with a threshold, and only round for display.</li>
+</ul>

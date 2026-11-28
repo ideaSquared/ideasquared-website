@@ -14,3 +14,4 @@ ship.yaml
 eslint.config.mjs
 commitlint.config.mjs
 lighthouserc.json
+blog-src

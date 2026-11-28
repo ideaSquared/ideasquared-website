@@ -220,6 +220,7 @@ a.chip:hover { color: var(--link-hover); border-color: var(--accent); }
   text-decoration: none;
   padding: var(--sp-2) var(--sp-3);
   border-radius: var(--radius-pill);
+  white-space: nowrap;
 }
 .nav-links a:hover { color: var(--fg); background: var(--bg-sunken); }
 .nav-links a[aria-current="page"] { color: var(--accent-text); }
@@ -236,7 +237,8 @@ a.chip:hover { color: var(--link-hover); border-color: var(--accent); }
   cursor: pointer;
 }
 
-@media (max-width: 760px) {
+/* Six nav links plus the button need about 940px; below that the menu folds. */
+@media (max-width: 960px) {
   .nav-toggle { display: inline-flex; }
   .nav .btn { display: none; }
   .nav-links {
@@ -529,6 +531,19 @@ dl.facts { margin: 0; }
   border-top: 1px solid var(--line);
 }
 
+/* In dark mode the page is navy too, so heroes and bands drop to the deepest navy to stay set apart,
+   as they are in light mode. Cards inside them keep --bg-raised and stand out more. */
+@media (prefers-color-scheme: dark) {
+  .hero,
+  .subpage-hero,
+  .venture-hero,
+  .section.band {
+    --bg: var(--i2-navy-950);
+    border-bottom: 1px solid var(--line);
+  }
+  .section.band { border-top: 1px solid var(--line); }
+}
+
 /* ---------- Subpage + venture pages (flat navy) ---------- */
 
 .subpage-hero,
@@ -722,6 +737,165 @@ dl.facts { margin: 0; }
   font-size: var(--t-small);
   color: var(--fg-muted);
 }
+
+/* ---------- Tools ---------- */
+
+.tool-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-4);
+}
+@media (max-width: 760px) { .tool-list { grid-template-columns: 1fr; } }
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-6);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  scroll-margin-top: var(--sp-24);
+}
+.tool-cmd { font-family: var(--font-mono); font-size: var(--t-small); color: var(--accent-text); }
+.tool-card h3 { font-size: var(--t-h3); }
+.tool-tag { color: var(--fg); font-size: var(--t-lede); }
+.tool-card ul { padding-left: var(--sp-5); display: grid; gap: var(--sp-2); font-size: var(--t-small); overflow-wrap: anywhere; }
+.tool-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-5);
+  margin-top: auto;
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+  font-size: var(--t-small);
+}
+.tool-links span { color: var(--fg-muted); }
+
+/* ---------- Blog ---------- */
+
+/* Index: one card per post. The title link stretches over the whole card. */
+.post-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: var(--sp-6);
+}
+.post-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-8) var(--sp-6) var(--sp-6);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+.post-card:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.post-card:focus-within { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+.post-card .entry-meta { margin-bottom: 0; }
+.post-card h3 { font-size: var(--t-h4); line-height: 1.3; }
+.post-card h3 a { color: var(--fg); text-decoration: none; }
+.post-card h3 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.post-card h3 a:focus-visible { outline: none; }
+.post-card p { flex: 1; }
+.post-card-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--t-small);
+  color: var(--fg-muted);
+}
+.post-card-foot span { color: var(--accent-text); }
+
+/* Post: one centred reading column for the header and the body. */
+.page-post .subpage-hero .container,
+.post-body { max-width: calc(var(--measure) + 2 * var(--gutter)); }
+.page-post { --measure: 820px; }
+.page-post .subpage-hero h1 { max-width: none; }
+.page-post .subpage-hero p { max-width: none; }
+
+.post-meta {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-6);
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--t-small);
+  color: var(--fg-muted);
+}
+.post-meta li { white-space: nowrap; }
+/* The byline gets its own line and may wrap; the short facts after it stay whole. */
+.post-meta li:first-child { flex-basis: 100%; white-space: normal; color: var(--fg-body); }
+
+.post-body { padding-top: clamp(40px, 5vw, 64px); padding-bottom: clamp(64px, 9vw, 120px); }
+.prose { font-size: 18px; line-height: 1.75; }
+.prose > * + * { margin-top: 1.25em; }
+.prose h2 { font-size: var(--t-h3); line-height: 1.25; margin-top: 2.4em; }
+.prose h2 + * { margin-top: 0.75em; }
+.prose h2:first-child { margin-top: 0; }
+.prose ul, .prose ol { padding-left: 1.4em; display: grid; gap: 0.6em; }
+.prose li::marker { color: var(--accent-text); }
+.prose code { font-size: 0.82em; }
+.prose pre {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--fg);
+  background: var(--bg-sunken);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--sp-5) var(--sp-6);
+  overflow-x: auto;
+}
+.prose pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+
+/* "What we learned": set apart so the takeaways stand out. */
+.prose .lessons {
+  list-style: none;
+  padding: var(--sp-6);
+  gap: var(--sp-4);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+}
+.prose .lessons strong { display: block; }
+
+.post-pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-4);
+  margin-top: clamp(48px, 6vw, 72px);
+}
+@media (max-width: 560px) { .post-pager { grid-template-columns: 1fr; } }
+.pager-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-5) var(--sp-6);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--fg);
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+.pager-card:hover { border-color: var(--accent); color: var(--fg); }
+.pager-card.is-next { background: var(--bg-raised); }
+.pager-label { font-family: var(--font-mono); font-size: var(--t-small); color: var(--accent-text); }
+.pager-title { font-weight: 600; line-height: 1.35; }
+.post-all { margin-top: var(--sp-6); font-size: var(--t-small); }
 
 /* ---------- Footer ---------- */
 
