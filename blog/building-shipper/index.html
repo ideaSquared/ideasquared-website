@@ -48,7 +48,12 @@
     <span class="eyebrow signal">Blog &middot; Studio tools</span>
     <h1 id="post-title">One way to deploy: building shipper.</h1>
     <p>Every ideaSquared deploy now goes through one tool. This is how shipper went from an empty repo to that in eleven days, and what we had to fix on the way.</p>
-    <p class="post-meta"><time datetime="2026-11-28">28 Nov 2026</time> &middot; About work from 13 to 24 Nov 2026 &middot; <a href="https://github.com/ideaSquared/shipper">ideaSquared/shipper</a></p>
+    <ul class="post-meta" aria-label="About this post">
+      <li><time datetime="2026-11-28">28 Nov 2026</time></li>
+      <li>3 min read</li>
+      <li>Covers 13 to 24 Nov 2026</li>
+      <li><a href="https://github.com/ideaSquared/shipper">ideaSquared/shipper</a></li>
+    </ul>
   </div>
 </header>
 
@@ -77,7 +82,9 @@ components:
   site:
     type: cloudflare-worker
     health:
-      production: { url: 'https://ideasquared.co.uk/', expect: A little spark }</code></pre>
+      production:
+        url: https://ideasquared.co.uk/
+        expect: A little spark</code></pre>
 <p>Most of the rest of that day was fixes, and most of those fixes were safety rules we hadn&rsquo;t thought of until a first real product moved over:</p>
 <ul>
 <li>roll back when the health URL is unknown, and time out a health check that hangs;</li>
@@ -106,18 +113,18 @@ components:
 <p>By 24 November shipper had 98 commits.</p>
 
 <h2>What we learned</h2>
-<ul>
+<ul class="lessons">
 <li><strong>A safety check must never block the fix.</strong> The freeze bug and the GitHub comparison bug were the same mistake: a check meant to protect production could stop us repairing it.</li>
 <li><strong>The refusal message is part of the feature.</strong> A deploy that says &ldquo;blocked&rdquo; and nothing else just moves the work to whoever reads it.</li>
 <li><strong>Test the thing people install.</strong> Running the packed CLI in CI catches problems that unit tests can&rsquo;t.</li>
 </ul>
 </div>
 
-<nav class="post-next" aria-label="More on the studio tools">
-  <a href="/tools/#shipper">shipper on the tools page</a>
-  <a href="/blog/building-agent-idea/">Next: building Agent Idea</a>
-  <a href="/blog/">All posts</a>
+<nav class="post-pager" aria-label="More posts">
+  <a class="pager-card is-next" href="/blog/building-agent-idea/"><span class="pager-label">Next post</span><span class="pager-title">Logs you can hand to an AI: building Agent Idea.</span></a>
+  <a class="pager-card" href="/tools/#shipper"><span class="pager-label">The tool</span><span class="pager-title">shipper on the tools page</span></a>
 </nav>
+<p class="post-all"><a href="/blog/">All posts</a></p>
 </div>
 </article>
 

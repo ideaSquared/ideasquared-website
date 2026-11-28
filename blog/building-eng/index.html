@@ -48,7 +48,12 @@
     <span class="eyebrow signal">Blog &middot; Studio tools</span>
     <h1 id="post-title">One command to set up a machine: building eng.</h1>
     <p>eng takes a new laptop to a working ideaSquared setup with one command, then keeps it up to date. It also grew a themed terminal app, and a few lessons about handing a terminal back and forth.</p>
-    <p class="post-meta"><time datetime="2026-11-28">28 Nov 2026</time> &middot; About work from 14 to 24 Nov 2026 &middot; <a href="https://github.com/ideaSquared/eng">ideaSquared/eng</a></p>
+    <ul class="post-meta" aria-label="About this post">
+      <li><time datetime="2026-11-28">28 Nov 2026</time></li>
+      <li>3 min read</li>
+      <li>Covers 14 to 24 Nov 2026</li>
+      <li><a href="https://github.com/ideaSquared/eng">ideaSquared/eng</a></li>
+    </ul>
   </div>
 </header>
 
@@ -75,18 +80,18 @@
 <p>The rest was the long tail of real machines. <code>eng doctor</code> now finds stale copies of a CLI earlier on your PATH, which made an update look like it had failed. And on 23 November eng learned to set up a Python repo, with its own virtual environment, and to repair one that is half made.</p>
 
 <h2>What we learned</h2>
-<ul>
+<ul class="lessons">
 <li><strong>Safe to re-run is the whole feature.</strong> An installer you are scared to run again is one you won&rsquo;t run when it matters.</li>
 <li><strong>Make the dangerous choice once, at the start.</strong> Fixing the environment for a session is simpler than checking it on every command.</li>
 <li><strong>Undo early.</strong> The SSH tunnel lasted a few hours. Dropping it the same day was cheaper than living with it.</li>
 </ul>
 </div>
 
-<nav class="post-next" aria-label="More on the studio tools">
-  <a href="/tools/#eng">eng on the tools page</a>
-  <a href="/blog/building-shipper/">Start with shipper</a>
-  <a href="/blog/">All posts</a>
+<nav class="post-pager" aria-label="More posts">
+  <a class="pager-card is-next" href="/blog/building-shipper/"><span class="pager-label">Start of the series</span><span class="pager-title">One way to deploy: building shipper.</span></a>
+  <a class="pager-card" href="/tools/#eng"><span class="pager-label">The tool</span><span class="pager-title">eng on the tools page</span></a>
 </nav>
+<p class="post-all"><a href="/blog/">All posts</a></p>
 </div>
 </article>
 
