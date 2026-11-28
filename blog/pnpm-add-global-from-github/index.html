@@ -97,7 +97,7 @@ expect(exotic).toEqual([]);</code></pre>
 
 <h2>What we learned</h2>
 <ul class="lessons">
-<li><strong>Test the install, not just the code.</strong> Both pnpm errors came from package metadata, which unit tests do not cover. A test over <code>package.json</code> caught the first class of error for good.</li>
+<li><strong>Test the install, not only the code.</strong> Both pnpm errors came from package metadata, which unit tests do not cover. A test over <code>package.json</code> caught the first class of error for good.</li>
 <li><strong>A harmless hook is not harmless everywhere.</strong> A <code>prepare</code> script that does nothing still counts as a script to pnpm.</li>
 <li><strong>Check which copy runs.</strong> After a tool manager changes where it puts binaries, &ldquo;installed&rdquo; and &ldquo;running&rdquo; can be different files.</li>
 </ul>

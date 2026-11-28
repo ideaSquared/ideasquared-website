@@ -79,7 +79,7 @@
 <ul>
 <li>Stripe keys such as <code>sk_live_&hellip;</code> and <code>rk_test_&hellip;</code>, and variables ending in <code>_KEY</code>;</li>
 <li>emails with non-English letters, and emails written with decomposed accents;</li>
-<li>whole <code>Cookie</code> and <code>Authorization</code> values, not just the first word;</li>
+<li>whole <code>Cookie</code> and <code>Authorization</code> values, not only the first word;</li>
 <li>passwords with escaped quotes or spaces inside quotes.</li>
 </ul>
 <p>Each shape is now a line in <code>test/sanitise.test.ts</code>, listing the exact text that must not survive. Both commits changed <code>src/sanitise.ts</code> and the test file together. The pattern is in <a href="/blog/every-leak-becomes-a-test/">every leak becomes a test</a>.</p>

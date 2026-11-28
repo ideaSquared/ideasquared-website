@@ -97,7 +97,7 @@ components:
 <p>By the end of the day shipper recorded a GitHub Deployment for each commit it shipped, could deploy a given commit, and had <code>ship rollback</code>.</p>
 
 <h2>Week two: the commands you need on a bad day</h2>
-<p>On 20 November we added the commands for when something is wrong, not just for when things go well:</p>
+<p>On 20 November we added the commands for when something is wrong, not only for when things go well:</p>
 <ul>
 <li><code>ship doctor</code> checks a product&rsquo;s deploy setup, so a mistake shows up as a failed check instead of a failed deploy;</li>
 <li><code>ship freeze</code> blocks deploys with a reason everyone sees, and <code>ship unfreeze</code> lifts it;</li>
@@ -117,7 +117,7 @@ components:
 <h2>What we learned</h2>
 <ul class="lessons">
 <li><strong>A safety check must never block the fix.</strong> The freeze bug and the GitHub comparison bug were the same mistake: a check meant to protect production could stop us repairing it.</li>
-<li><strong>The refusal message is part of the feature.</strong> A deploy that says &ldquo;blocked&rdquo; and nothing else just moves the work to whoever reads it.</li>
+<li><strong>The refusal message is part of the feature.</strong> A deploy that says &ldquo;blocked&rdquo; and nothing else moves the work to whoever reads it.</li>
 <li><strong>Test the thing people install.</strong> Running the packed CLI in CI catches problems that unit tests can&rsquo;t.</li>
 </ul>
 </div>

@@ -89,7 +89,7 @@
 
 <h2>The token that is about to expire</h2>
 <p>The access check also saw something useful. GitHub sends the token&rsquo;s expiry date in a header on <code>/user</code>. On 21 November (<code>8d1ef66</code>) we passed it back to the CLI, and the CLI and the MCP server now print a warning on stderr when the token expires within 30 days. Tokens with no expiry never warn. The expiry is cached with the access answer.</p>
-<p>The first version rounded down to whole days before comparing with the 30-day window. A token with a few hours left showed as &ldquo;today&rdquo;, and one just over the limit could slip under it. The fix (<code>d1cc589</code>) compares the exact time left, and says &ldquo;in less than a day&rdquo; when it is within hours. The tests added a case for each side of the line:</p>
+<p>The first version rounded down to whole days before comparing with the 30-day window. A token with a few hours left showed as &ldquo;today&rdquo;, and one slightly over the limit could slip under it. The fix (<code>d1cc589</code>) compares the exact time left, and says &ldquo;in less than a day&rdquo; when it is within hours. The tests added a case for each side of the line:</p>
 <pre tabindex="0"><code>expect(warnings[0]).toContain('expires on 2027-11-01 (in less than a day)');
 // stays quiet at 2027-12-01T12:00:00Z, and at 2027-12-15, and with no expiry</code></pre>
 
