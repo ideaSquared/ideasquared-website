@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <title>We stopped gaminginit: what we know and what we don’t &middot; ideaSquared</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="We stopped gaminginit on 21 November 2026. What we can say about why, what we can’t, and why it had no written go and stop numbers.">
+<meta name="description" content="We stopped gaminginit in November 2026. Weekly players fell from 4,622 to 16 while we kept shipping, and we had no written stop line.">
 <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#08182a" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="ideaSquared">
 <meta property="og:title" content="We stopped gaminginit: what we know and what we don’t &middot; ideaSquared">
-<meta property="og:description" content="We stopped gaminginit on 21 November 2026. What we can say about why, what we can’t, and why it had no written go and stop numbers.">
+<meta property="og:description" content="We stopped gaminginit in November 2026. Weekly players fell from 4,622 to 16 while we kept shipping, and we had no written stop line.">
 <meta property="og:url" content="https://ideasquared.co.uk/blog/stopping-gaminginit/">
 <meta name="author" content="Alex Jenkinson, with support from Claude">
 <link rel="canonical" href="https://ideasquared.co.uk/blog/stopping-gaminginit/">
@@ -48,12 +48,12 @@
   <div class="container">
     <span class="eyebrow signal">Blog &middot; How the studio works</span>
     <h1 id="post-title">We stopped gaminginit: what we know and what we don’t.</h1>
-    <p>Our process says every stop gets a write-up. This is the one for gaminginit, including the part where we never wrote down what would have made us stop.</p>
+    <p>Our process says every stop gets a write-up. This is the one for gaminginit: what the player numbers show, and the part where we never wrote down what would make us stop.</p>
     <ul class="post-meta" aria-label="About this post">
       <li>By Alex Jenkinson, with support from Claude</li>
       <li><time datetime="2026-11-28">28 Nov 2026</time></li>
       <li>3 min read</li>
-      <li>Covers 30 Sep to 22 Nov 2026</li>
+      <li>Covers 30 Sep to 24 Nov 2026</li>
     </ul>
   </div>
 </header>
@@ -65,17 +65,30 @@
 <p>The full platform launched on 30 September 2026. We shipped updates to it from 1 October to 7 November. On 21 November we stopped.</p>
 
 <h2>The reason we gave</h2>
-<p>This is the reason on the venture page, as written there: the game lost popularity, and it became difficult to keep a big enough player base, so we stopped working on it.</p>
-<p>That is what we know. It is one sentence, and we are not going to stretch it into more. This post has no player counts, because we are not going to put a number here that we can&rsquo;t source and show properly.</p>
+<p>This is the reason on the venture page, as written there: the game lost popularity, and it became difficult to keep a big enough player base, so we stopped working on it. The server itself shut down on 24 November, and <a href="https://gaminginit.com/">gaminginit.com</a> is now a thank-you page.</p>
+
+<h2>What the numbers show</h2>
+<p>That thank-you page publishes the server&rsquo;s lifetime numbers, from 30 September to 18 November 2026. They are counts only, with no names. Over those 50 days, 14,070 different players joined, for 20,314 hours across 182 matches. The busiest day was 6 October, with 1,919 different players.</p>
+<p>The weekly numbers tell the story the one-line reason leaves out:</p>
+<ul>
+<li>week of 28 September: 4,439 players;</li>
+<li>week of 5 October: 4,622;</li>
+<li>week of 12 October: 2,391;</li>
+<li>week of 19 October: 2,691;</li>
+<li>week of 26 October: 1,050;</li>
+<li>week of 2 November: 16;</li>
+<li>week of 9 November: 431, almost all on one day, 12 November.</li>
+</ul>
+<p>After 31 October there was a match on only one day, 12 November. And in every week from 28 September to 26 October, between 69 and 92 percent of players were playing with us for the first time. People came, and most did not come back.</p>
 
 <h2>What the changelog shows, and what it doesn&rsquo;t</h2>
 <p>The changelog on the venture page runs from 1&ndash;2 October to 7 November. It is a list of things we built: a live dashboard, a staff page, a coin system called INITcoins, support tickets, a Lifetime page for server history. The last feature entry, on 7 November, was a lighting control for staff.</p>
-<p>That list tells you how much we built. It does not tell you whether it worked. A changelog counts output. It says nothing about whether the community grew or shrank, and we can&rsquo;t read a result into it.</p>
+<p>Put the two side by side. Weekly players halved in mid-October and were down to 16 by the first week of November. The changelog kept growing through all of it. A changelog counts output. On its own it would have told us things were going well.</p>
 
 <h2>The gate we didn&rsquo;t have</h2>
 <p>Our <a href="/how-we-work/">process</a> says every idea gets a proposal with the numbers that would mean &ldquo;go&rdquo;, and that a stop ends with a write-up of what we learned. This post is that write-up.</p>
 <p>The same process says go and stop numbers get written down before real time goes in. For gaminginit we have no such record. We did not write down what would mean go, and we did not write down what would mean stop. The written gate for AdoptDontShop, the <a href="/blog/go-and-stop-numbers/">closed beta gate</a>, dates from 8 November 2026. gaminginit had launched on 30 September.</p>
-<p>So the decision to stop was made without a number to compare against. We can say the reason we gave. We can&rsquo;t say what level of players would have changed our minds, because we never said.</p>
+<p>The odd part is that we had the numbers the whole time. The Lifetime page showed players per day and per week while the server ran. What we lacked was a line to hold them against. Without one, the stop came weeks after the numbers fell, and we can&rsquo;t say what level of players would have changed our minds, because we never said.</p>
 
 <h2>What the stop touched</h2>
 <p>Stopping a venture leaves work behind in the tools. In shipper, <code>gaminginit</code> was marked retired on 20 November. Deploys and rollbacks for it are refused, while status and logs still work so its history stays readable. The bot, <code>gaminginit-bot</code>, was marked retired on 22 November.</p>
@@ -85,8 +98,9 @@
 <h2>What we learned</h2>
 <ul class="lessons">
 <li><strong>Write the numbers before launch.</strong> A stop with no stop number is a judgement call, and you can&rsquo;t learn much from one. We now write the go and stop numbers first, as the AdoptDontShop gate shows.</li>
-<li><strong>A changelog is not evidence.</strong> A long list of shipped work can sit alongside a shrinking audience. Track the result you care about, not only what you built.</li>
-<li><strong>Write the stop up even when it is thin.</strong> The write-up is where we found out how little we had written down. That is worth publishing.</li>
+<li><strong>A changelog is not evidence.</strong> We shipped features for three more weeks after weekly players halved. Track the result you care about, not what you built.</li>
+<li><strong>Having the data is not the same as deciding on it.</strong> The numbers were on our own Lifetime page. A written stop line would have turned them into a decision weeks earlier.</li>
+<li><strong>Write the stop up.</strong> Putting the player numbers next to the changelog is what made the lesson plain. That is worth publishing.</li>
 </ul>
 </div>
 
