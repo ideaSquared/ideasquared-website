@@ -819,7 +819,7 @@ dl.facts { margin: 0; }
 /* Post: one centred reading column for the header and the body. */
 .page-post .subpage-hero .container,
 .post-body { max-width: calc(var(--measure) + 2 * var(--gutter)); }
-.page-post { --measure: 720px; }
+.page-post { --measure: 820px; }
 .page-post .subpage-hero h1 { max-width: none; }
 .page-post .subpage-hero p { max-width: none; }
 
